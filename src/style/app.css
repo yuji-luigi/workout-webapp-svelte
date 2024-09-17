@@ -1,0 +1,36 @@
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    font-family: 'SuisseIntl', Arial, Helvetica, sans-serif;
+
+
+
+    --bg: #0FA4AF;
+    --fg: #AFDDE5;
+
+    --primary-800:
+
+
+      --accent: #964734;
+
+    --card-radius: 1rem;
+
+    color-scheme: light dark;
+
+    --text-primary: #003135;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+  }
+
+  /* button is clickable div */
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
