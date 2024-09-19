@@ -2,17 +2,14 @@
   import { page } from "$app/stores";
   import logo from "$lib/images/svelte-logo.svg";
   import github from "$lib/images/github.svg";
+  import hamburger from "$lib/images/icons/menu-hamburger.svg";
+  import HamburgerSvg from "../lib/components/icons/svgs/HamburgerSvg.svelte";
+  import GithubSvg from "../lib/components/icons/svgs/GithubSvg.svelte";
 </script>
 
 <header>
-  <div class="corner">
-    <a href="https://kit.svelte.dev">
-      <img src={logo} alt="SvelteKit" />
-    </a>
-  </div>
-
   <nav>
-    <svg viewBox="0 0 2 3" aria-hidden="true">
+    <svg viewBox="-0.1 0 2 3" aria-hidden="true">
       <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
     </svg>
     <ul>
@@ -44,15 +41,20 @@
         <a href="/workouts">Workouts</a>
       </li>
     </ul>
-    <svg viewBox="0 0 2 3" aria-hidden="true">
+    <svg viewBox="0.1 0 2 3" aria-hidden="true">
       <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
     </svg>
   </nav>
 
-  <div class="corner">
-    <a href="https://github.com/sveltejs/kit">
-      <img src={github} alt="GitHub" />
-    </a>
+  <div class="flex-row icons-white">
+    <div class="corner">
+      <a target="_blank" href="https://github.com/yuji-luigi">
+        <GithubSvg />
+      </a>
+    </div>
+    <div class="corner">
+      <HamburgerSvg />
+    </div>
   </div>
 </header>
 
@@ -63,13 +65,25 @@
     left: 0;
     width: 100%;
     z-index: 1000;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     justify-content: space-between;
   }
-
+  .flex-row {
+    grid-column: 3; /* Place the nav in the center */
+    gap: 0.5rem;
+    place-self: end;
+  }
   .corner {
     width: 3em;
     height: 3em;
+    & svg {
+      width: 100%;
+      height: 100%;
+      & path {
+        fill: var(--text-light);
+      }
+    }
   }
 
   .corner a {
@@ -88,7 +102,11 @@
 
   nav {
     display: flex;
+    grid-column: 2; /* Place the nav in the center */
+
     justify-content: center;
+    flex-grow: 1; /* Make the nav take up available space */
+    position: relative;
     --background: rgba(255, 255, 255, 0.7);
   }
 

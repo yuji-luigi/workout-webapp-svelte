@@ -1,6 +1,7 @@
-  * {
+  *, ::after, ::before {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
   :root {
@@ -21,6 +22,9 @@
     color-scheme: light dark;
 
     --text-primary: #003135;
+    --text-light: var(--fg);
+
+    --hero-padding: 2rem 4rem;
   }
 
   body {
@@ -33,4 +37,9 @@
     cursor: pointer;
     border: none;
     background-color: transparent;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
   }

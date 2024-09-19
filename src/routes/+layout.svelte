@@ -1,6 +1,7 @@
 <script>
   import "../style/app.css";
   import "../style/component.css";
+  import "../style/utility.css";
   import Dialog from "../lib/components/Dialog.svelte";
   import VideoHero from "../lib/components/hero/VideoHero.svelte";
   import SubHeader from "./SubHeader.svelte";
