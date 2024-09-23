@@ -9,7 +9,7 @@
       "request": "launch",
       "type": "chrome",
       "preLaunchTask": "npm run dev",
-      "url": "http://localhost:5173",
+      "url": "http://generic.host:3030",
       "webRoot": "${workspaceFolder}"
     }
   ]

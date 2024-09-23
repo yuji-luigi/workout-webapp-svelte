@@ -1,34 +1,42 @@
 <script lang="ts">
-  import type { PageLoad } from "./$types";
-  export const prerender = true;
-  export let data;
-  import GradientButton from "../../lib/components/GradientButton.svelte";
-  import ExerciseCard from "../../lib/components/ExerciseCard.svelte";
+	import type { PageLoad } from './$types';
+	export const prerender = true;
+	export let data;
+	import GradientButton from '../../lib/components/GradientButton.svelte';
+	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
+	import ExerciseCard from '../../lib/components/card/exercise-card/ExerciseCard.svelte';
 
-  export let exercises: Array<{
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-  }>; // Adjust the type as needed
+	export let exercises: Array<{
+		id: number;
+		name: string;
+		description: string;
+		image: string;
+	}>; // Adjust the type as needed
 </script>
 
 <svelte:head>
-  <title>About</title>
-  <meta name="description" content="About this app" />
+	<title>Exercises</title>
+	<meta name="description" content="Exercise list page" />
 </svelte:head>
 
-<h1>Your workouts</h1>
-<div class="card-grid">
-  {#each data.exercises as exercise}
-    <ExerciseCard {exercise} />
-  {/each}
+<div class="stretch-container flex-column">
+	<h1>Exercises</h1>
+	<div class="card-grid">
+		{#each data.exercises as exercise}
+			<ExerciseCard {exercise} />
+		{/each}
+	</div>
 </div>
 
 <style>
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-  }
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		grid-auto-rows: 400px;
+		place-content: center;
+		/* gap: 1rem; */
+	}
+	h1 {
+		margin-bottom: 1rem;
+	}
 </style>

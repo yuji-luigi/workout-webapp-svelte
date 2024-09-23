@@ -9,28 +9,56 @@
 
 
 
-    --bg: #0FA4AF;
-    --fg: #AFDDE5;
+    /* --bg: #024950; */
+    /* --bg: linear-gradient(#003135, #024950); */
+    /* --bg: black; */
+    /* --bg: #0FA4AF; */
+    --bg: #0e1111;
 
-    --primary-800:
+    --bg-800: #003135;
+    --fg: #414a4c;
 
+    --sub-header-height: 2em;
 
-      --accent: #964734;
+    --accent-color: #964734;
 
     --card-radius: 1rem;
 
+    --text-color-primary: #dcf0fa;
+    --text-color-primary: var(--);
+    /* --text-color-primary: #398bea; */
+    /* --text-color-light: var(--fg); */
+    --hero-padding: 2rem 4rem;
     color-scheme: light dark;
 
-    --text-primary: #003135;
-    --text-light: var(--fg);
+    --padding-top-main: 1rem;
+    --padding-inline: 5rem;
+    --font-size-xs: 0.65rem;
+    --font-size-sm: 0.85rem;
+    --font-size-md: 1.25rem;
 
-    --hero-padding: 2rem 4rem;
   }
 
   body {
     background: var(--bg);
-    color: var(--text-primary);
+    color: var(--text-color-primary);
+    font-size: var(--font-size-md);
   }
+
+  main {
+    &:not(:has(.video-hero)) {
+      padding-top: calc(var(--sub-header-height) + var(--padding-top-main));
+      padding-bottom: var(--padding-top-main);
+    }
+
+    &:has(.video-hero) .container,
+    &:has(.video-hero) .stretch-container {
+      padding-top: var(--padding-top-main);
+      padding-bottom: var(--padding-top-main);
+    }
+  }
+
+
 
   /* button is clickable div */
   button {
@@ -42,4 +70,10 @@
   .title {
     font-size: 2rem;
     font-weight: 700;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
   }
