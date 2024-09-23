@@ -18,6 +18,11 @@
 	<title>Exercises</title>
 	<meta name="description" content="Exercise list page" />
 </svelte:head>
+<VideoHero
+	videoStyle="--video-object-position: 50% 25%;"
+	videoSrc="/videos/cover/workout_with_yume.mov"
+	class="video"
+/>
 
 <div class="stretch-container flex-column">
 	<h1>Exercises</h1>
@@ -36,6 +41,7 @@
 		place-content: center;
 		/* gap: 1rem; */
 	}
+
 	h1 {
 		margin-bottom: 1rem;
 	}
