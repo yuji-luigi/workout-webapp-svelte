@@ -1,40 +1,33 @@
 <script lang="ts">
 	import { dialogStore, openDialog } from '../../../../store/dialog-store';
 
-	import ExerciseCardModalContent from './ExerciseCardModalContent.svelte';
+	import ExerciseCardModalContent from './TimverCardModal.svelte';
 	type Exercise = {
 		name: string;
 		description: string;
 		image: string;
 	};
 	export let exercise: Exercise;
+	export let active = false;
 
-	const handleOpenDialog = () => {
-		openDialog({
-			componentInDialog: {
-				component: ExerciseCardModalContent,
-				props: { exercise }
-			}
-		});
-	};
+	const handleOpenTimer = () => {};
 </script>
 
 <div
+	data-active={active}
 	role="button"
 	tabindex="-1"
 	class="card"
 	on:keydown={(e) => null}
-	on:click={handleOpenDialog}
+	on:click={handleOpenTimer}
 	style={`--image-url:${exercise.image}`}
 >
-	<!-- <img alt="exercise" src="https://picsum.photos/410/300" /> -->
 	<div class="info">
 		<h4>{exercise.name}</h4>
 		<p class="description">
 			{exercise.description}
 		</p>
 	</div>
-	<!-- <button on:click={handleOpenDialog} class="read-more">Read more</button> -->
 </div>
 
 <style>
@@ -51,6 +44,16 @@
 		/* url('https://picsum.photos/410/300'); */
 		background-size: cover; /* Ensure the image covers the card */
 		background-position: center;
+		transition: all 1.5s;
+		&[data-active='true'] {
+			position: absolute;
+			top: 50%;
+			bottom: 50%;
+			left: 50%;
+			right: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 1000;
+		}
 	}
 	.info {
 		margin-top: auto;
@@ -61,10 +64,5 @@
 		display: -webkit-box; /* Add this */
 		-webkit-line-clamp: 3; /* Add this */
 		-webkit-box-orient: vertical; /* Add this */
-	}
-	.read-more {
-		border: none;
-		background-color: transparent;
-		margin: auto 0 0 auto;
 	}
 </style>

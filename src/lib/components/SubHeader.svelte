@@ -22,7 +22,7 @@
 				<a href="/workouts">Workouts</a>
 			</li>
 			<li aria-current={$page.url.pathname.startsWith('/timers') ? 'page' : undefined}>
-				<a href="/workouts">Timers</a>
+				<a href="/timers">Timers</a>
 			</li>
 		</ul>
 	</nav>
