@@ -11,6 +11,34 @@
       "preLaunchTask": "npm run dev",
       "url": "http://generic.host:3030",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "1.client-side debug",
+      "type": "chrome",
+      "request": "launch",
+      "trace": true,
+      "userDataDir": true,
+      "skipFiles": [
+        "${workspaceFolder}/<node_internals>/**",
+        "${workspaceFolder}/node_modules/**"
+      ],
+      "url": "http://generic.host:3030"
+    },
+    {
+      "name": "server-side",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev"
+    },
+  ],
+  "compounds": [
+    {
+      "name": "Chrome/Node",
+      "configurations": [
+        "server-side",
+        "1.client-side debug"
+      ],
+      "stopAll": true
     }
   ]
 }
