@@ -13,7 +13,7 @@ const timers = [
 		timer: 90,
 		description: '3 to 4 sets of 13 to 25 reps',
 		image: 'url(https://picsum.photos/410/300)',
-		active: true
+		active: false
 	},
 	{
 		name: 'Strength 3:00',

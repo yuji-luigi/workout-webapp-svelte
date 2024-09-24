@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { dialogStore, openDialog } from '../../../../store/dialog-store';
+	import { onMount } from 'svelte';
 
-	import ExerciseCardModalContent from './TimverCardModal.svelte';
 	type Exercise = {
 		name: string;
 		description: string;
@@ -9,18 +8,33 @@
 	};
 	export let exercise: Exercise;
 	export let active = false;
+	let cardEl: HTMLDivElement;
 
-	const handleOpenTimer = () => {};
+	let initialPosition = {
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		width: 0,
+		height: 0
+	};
+
+	// When the component mounts, ensure the card position is available
+	onMount(() => {
+		const rect = cardEl.getBoundingClientRect();
+		initialPosition = rect;
+		console.log(rect);
+	});
 </script>
 
 <div
+	bind:this={cardEl}
 	data-active={active}
 	role="button"
 	tabindex="-1"
 	class="card"
 	on:keydown={(e) => null}
-	on:click={handleOpenTimer}
-	style={`--image-url:${exercise.image}`}
+	style={`--image-url:${exercise.image};`}
 >
 	<div class="info">
 		<h4>{exercise.name}</h4>
@@ -44,19 +58,22 @@
 		/* url('https://picsum.photos/410/300'); */
 		background-size: cover; /* Ensure the image covers the card */
 		background-position: center;
-		transition: all 1.5s;
+		transition: height 1.5s;
 		&[data-active='true'] {
-			position: absolute;
+			/* position: fixed;
 			top: 50%;
-			bottom: 50%;
 			left: 50%;
+			bottom: 50%;
 			right: 50%;
 			transform: translate(-50%, -50%);
-			z-index: 1000;
+			height: 600px;
+			width: 300px;
+			z-index: 1; */
 		}
 	}
 	.info {
 		margin-top: auto;
+		position: relative;
 	}
 	.description {
 		text-overflow: ellipsis;
