@@ -6,24 +6,27 @@
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import ExerciseCard from '../../lib/components/card/exercise-card/ExerciseCard.svelte';
 	import TimerCard from '../../lib/components/card/timer-card/TimerCard.svelte';
+	import { openDialog } from '../../store/dialog-store';
+	import TimerConfirmDialogContent from '../../lib/components/card/timer-card/TimerConfirmDialogContent.svelte';
 
 	let cardGrid: HTMLDivElement;
-	export let timers: Array<{
-		id: number;
-		name: string;
-		description: string;
-		image: string;
-	}>; // Adjust the type as needed
+
+	let timers = data.timers;
+	// Adjust the type as needed
 	//click event type
 	function handleClick(e: MouseEvent) {
-		console.log(
-			cardGrid
-				.querySelectorAll('.card')
-				.forEach((element) => ((element as HTMLDivElement).dataset.active = 'false'))
-		);
 		const cardEl = (e.target as HTMLElement)?.closest('.card') as HTMLDivElement;
 		if (cardEl) {
+			// target gets to active state.
 			cardEl.dataset.active = 'true';
+			const timer = timers[Number(cardEl.dataset.index)];
+			// open global dialog with the target timer data
+			openDialog({
+				componentInDialog: {
+					component: TimerConfirmDialogContent,
+					props: { timer }
+				}
+			});
 		}
 	}
 </script>
@@ -48,8 +51,8 @@
 		on:keydown={null}
 		class="card-grid"
 	>
-		{#each data.timers as exercise}
-			<TimerCard {exercise} active={exercise.active} />
+		{#each data.timers as timer, index}
+			<TimerCard {timer} active={timer.active} {index} />
 		{/each}
 	</div>
 </div>

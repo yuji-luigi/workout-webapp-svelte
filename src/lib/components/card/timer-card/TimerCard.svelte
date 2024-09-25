@@ -1,15 +1,21 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { getTimerTime } from '../../../helpers/formatTimerTime';
 
-	type Exercise = {
+	type Timer = {
 		name: string;
 		description: string;
 		image: string;
+		id: number;
+		seconds: number;
 	};
-	export let exercise: Exercise;
+
+	export let index: number;
+	export let timer: Timer;
 	export let active = false;
 	let cardEl: HTMLDivElement;
-
+	// TODO: Can be calculated in a server
+	const time = getTimerTime(timer.seconds);
 	let initialPosition = {
 		top: 0,
 		left: 0,
@@ -23,7 +29,6 @@
 	onMount(() => {
 		const rect = cardEl.getBoundingClientRect();
 		initialPosition = rect;
-		console.log(rect);
 	});
 </script>
 
@@ -34,12 +39,13 @@
 	tabindex="-1"
 	class="card"
 	on:keydown={(e) => null}
-	style={`--image-url:${exercise.image};`}
+	data-index={index}
+	style={`--image-url:${timer.image};`}
 >
 	<div class="info">
-		<h4>{exercise.name}</h4>
+		<h4>{timer.name} {time}</h4>
 		<p class="description">
-			{exercise.description}
+			{timer.description}
 		</p>
 	</div>
 </div>

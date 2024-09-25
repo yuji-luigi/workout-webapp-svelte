@@ -2,7 +2,7 @@
 	import '../style/app.css';
 	import '../style/component.css';
 	import '../style/utility.css';
-	import Dialog from '../lib/components/Dialog.svelte';
+	import Dialog from '../lib/components/dialog/Dialog.svelte';
 	import VideoHero from '../lib/components/hero/video-hero/VideoHero.svelte';
 	import SubHeader from '../lib/components/SubHeader.svelte';
 	import Footer from '../lib/components/Footer.svelte';

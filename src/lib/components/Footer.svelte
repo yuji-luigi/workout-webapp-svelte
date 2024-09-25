@@ -18,7 +18,7 @@
 <style>
 	footer {
 		position: fixed;
-		padding-inline: var(--padding-inline);
+		padding-inline: var(--padding-inline-main);
 		bottom: 0;
 		left: 0;
 		width: 100%;

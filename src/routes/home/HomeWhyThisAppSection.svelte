@@ -27,9 +27,7 @@
 	];
 </script>
 
-<div class="stretch-container">
-	<img src={why_this_app_img} alt="" />
-</div>
+<img src={why_this_app_img} alt="" />
 <article class="container flex-column">
 	<h2>Why you want to use this app??</h2>
 	<p>
@@ -44,8 +42,8 @@
 		<CardColumn {card} />
 	{/each}
 </div>
+<img src={program_img} alt="" />
 <div class="container">
-	<img src={program_img} alt="" />
 	<article class="flex-column">
 		<h2>The program</h2>
 		<p>
@@ -55,7 +53,9 @@
 			optio nihil libero.
 		</p>
 	</article>
-	<img src={program_img2} alt="" />
+</div>
+<img src={program_img2} alt="" />
+<div class="container">
 	<article>
 		<h2>Program the app as you like!</h2>
 		<p>
@@ -75,8 +75,6 @@
 		margin-block: 2rem;
 	}
 	.stretch-container {
-		display: flex;
-		flex-direction: column;
 		gap: 2rem;
 	}
 	.container {

@@ -32,9 +32,7 @@
 	</slot>
 </VideoHero>
 
-<div class="container">
-	<HomeMainSection />
-</div>
+<HomeMainSection />
 <HomeWhyThisAppSection />
 
 <style>

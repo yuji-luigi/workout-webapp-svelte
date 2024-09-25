@@ -2,7 +2,7 @@
 	import placeholder_img from '$lib/images/placeholder/placeholder-home-1.jpg';
 </script>
 
-<section>
+<section class="container">
 	<h1>Workout web v1</h1>
 	<p>
 		The workout web v1 is a web application that allows users to view workout plans and follow along

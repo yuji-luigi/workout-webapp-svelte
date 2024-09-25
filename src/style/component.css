@@ -60,5 +60,33 @@ dialog[open]::backdrop {
 
 dialog {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-
 }
+
+.button-primary {
+  width: 100%;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  background: light-dark(var(--gray-100), var(--gray-300));
+  color: var(--text-color-dark);
+  /* color: black; */
+  font-weight: 600;
+  font-size: var(--text-size-md);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--card-radius);
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
+  &:hover {
+    background: light-dark(var(--gray-50), var(--gray-200));
+  }
+
+  &:active {
+    background: light-dark(var(--gray-200), var(--gray-400));
+  }
+}
+
+/* 
+button:active.button-primary {
+  background: light-dark(var(--gray-200), var(--gray-400));
+} */

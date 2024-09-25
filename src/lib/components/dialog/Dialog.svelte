@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { closeDialog, dialogStore, type DialogStore } from '../../store/dialog-store';
-	import { sleep } from '../sleep';
+	import { closeDialog, dialogStore, type DialogStore } from '../../../store/dialog-store';
+	import { sleep } from '../../helpers/sleep';
 	let dialog: HTMLDialogElement;
 	let dialogStoreParams: DialogStore;
 	dialogStore.subscribe((value) => (dialogStoreParams = value));
@@ -42,15 +42,16 @@
 				{/if}
 			</div>
 		</div>
-		<div class="dialog-actions">
+		<!-- <div class="dialog-actions">
 			<button type="button" on:keydown={handleKeyDown} on:click={closeDialog}>Close</button>
 			<button type="button" on:keydown={handleKeyDown} on:click={handleConfirm}>Confirm</button>
-		</div>
+		</div> -->
 	</div>
 </dialog>
 
 <style>
 	dialog {
 		max-width: 600px;
+		background-color: var(--fg);
 	}
 </style>

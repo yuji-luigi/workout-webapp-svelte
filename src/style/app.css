@@ -5,6 +5,16 @@
   }
 
   :root {
+
+    --gray-50: oklch(100% 0 253.06);
+    --gray-100: oklch(95.76% 0 253.06);
+    --gray-200: oklch(85.76% 0 253.06);
+    --gray-300: oklch(71.76% 0 253.06);
+    --gray-400: oklch(51.76% 0 253.06);
+    --gray-500: oklch(41.76% 0 253.06);
+    --gray-700: oklch(31.76% 0 253.06);
+    --gray-800: oklch(21.76% 0 253.06);
+
     font-family: 'SuisseIntl', Arial, Helvetica, sans-serif;
 
 
@@ -13,7 +23,7 @@
     /* --bg: linear-gradient(#003135, #024950); */
     /* --bg: black; */
     /* --bg: #0FA4AF; */
-    --bg: #0e1111;
+    --bg: oklch(17.43% 0.005 196.72);
 
     --bg-800: #003135;
     --fg: #414a4c;
@@ -22,21 +32,36 @@
 
     --accent-color: #964734;
 
-    --card-radius: 1rem;
+    --card-radius: 0.5rem;
 
     --text-color-primary: #dcf0fa;
-    --text-color-primary: var(--);
+    --text-color-dark: var(--bg-800);
     /* --text-color-primary: #398bea; */
     /* --text-color-light: var(--fg); */
     --hero-padding: 2rem 4rem;
     color-scheme: light dark;
 
+
+
+
+
     --padding-top-main: 1rem;
-    --padding-inline: 5rem;
+
+    --padding-inline-main: 5rem;
+
+
     --font-size-xs: 0.65rem;
     --font-size-sm: 0.85rem;
     --font-size-md: 1.25rem;
+    --font-size-lg: 1.5rem;
 
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --padding-inline-main: 0.5rem;
+      /* Smaller value for screens smaller than 768px */
+    }
   }
 
   body {
