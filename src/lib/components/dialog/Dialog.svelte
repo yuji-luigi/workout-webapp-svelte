@@ -40,6 +40,9 @@
 						{...dialogStoreParams.componentInDialog.props}
 					/>
 				{/if}
+				{#if dialogStoreParams?.rawHtml}
+					{@html dialogStoreParams.rawHtml}
+				{/if}
 			</div>
 		</div>
 		<!-- <div class="dialog-actions">
@@ -53,5 +56,6 @@
 	dialog {
 		max-width: 600px;
 		background-color: var(--fg);
+		border: none;
 	}
 </style>

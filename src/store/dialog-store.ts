@@ -11,6 +11,7 @@ export type DialogStore = {
 	type?: string | null;
 	description?: string | null;
 	componentInDialog?: ComponentInDialog | null;
+	rawHtml?: string | null;
 	data?: any;
 };
 const defaultDialogStore: DialogStore = {

@@ -75,7 +75,7 @@ dialog {
   border: none;
   border-radius: var(--card-radius);
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
+  transition: background 0.25s ease-in-out, transform 0.25s ease-in-out;
 
   &:hover {
     background: light-dark(var(--gray-50), var(--gray-200));
@@ -83,6 +83,7 @@ dialog {
 
   &:active {
     background: light-dark(var(--gray-200), var(--gray-400));
+    transform: scale(0.98);
   }
 }
 

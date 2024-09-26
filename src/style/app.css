@@ -1,104 +1,106 @@
-  *, ::after, ::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+@import url(https://db.onlinewebfonts.com/c/84cb021d5f9af287ffff84b61beef6dc?family=clockicons);
 
+*, ::after, ::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+
+  --gray-50: oklch(100% 0 253.06);
+  --gray-100: oklch(95.76% 0 253.06);
+  --gray-200: oklch(85.76% 0 253.06);
+  --gray-300: oklch(71.76% 0 253.06);
+  --gray-400: oklch(51.76% 0 253.06);
+  --gray-500: oklch(41.76% 0 253.06);
+  --gray-700: oklch(31.76% 0 253.06);
+  --gray-800: oklch(21.76% 0 253.06);
+
+  font-family: 'SuisseIntl', Arial, Helvetica, sans-serif;
+
+
+
+  /* --bg: #024950; */
+  /* --bg: linear-gradient(#003135, #024950); */
+  /* --bg: black; */
+  /* --bg: #0FA4AF; */
+  --bg: oklch(17.43% 0.005 196.72);
+
+  --bg-800: #003135;
+  --fg: #414a4c;
+
+  --sub-header-height: 2em;
+
+  --accent-color: #964734;
+
+  --card-radius: 0.5rem;
+
+  --text-color-primary: #dcf0fa;
+  --text-color-dark: var(--bg-800);
+  /* --text-color-primary: #398bea; */
+  /* --text-color-light: var(--fg); */
+  --hero-padding: 2rem 4rem;
+  color-scheme: light dark;
+
+
+
+
+
+  --padding-top-main: 1rem;
+
+  --padding-inline-main: 5rem;
+
+
+  --font-size-xs: 0.65rem;
+  --font-size-sm: 0.85rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
+
+}
+
+@media (max-width: 768px) {
   :root {
+    --padding-inline-main: 0.5rem;
+    /* Smaller value for screens smaller than 768px */
+  }
+}
 
-    --gray-50: oklch(100% 0 253.06);
-    --gray-100: oklch(95.76% 0 253.06);
-    --gray-200: oklch(85.76% 0 253.06);
-    --gray-300: oklch(71.76% 0 253.06);
-    --gray-400: oklch(51.76% 0 253.06);
-    --gray-500: oklch(41.76% 0 253.06);
-    --gray-700: oklch(31.76% 0 253.06);
-    --gray-800: oklch(21.76% 0 253.06);
+body {
+  background: var(--bg);
+  color: var(--text-color-primary);
+  font-size: var(--font-size-md);
+}
 
-    font-family: 'SuisseIntl', Arial, Helvetica, sans-serif;
-
-
-
-    /* --bg: #024950; */
-    /* --bg: linear-gradient(#003135, #024950); */
-    /* --bg: black; */
-    /* --bg: #0FA4AF; */
-    --bg: oklch(17.43% 0.005 196.72);
-
-    --bg-800: #003135;
-    --fg: #414a4c;
-
-    --sub-header-height: 2em;
-
-    --accent-color: #964734;
-
-    --card-radius: 0.5rem;
-
-    --text-color-primary: #dcf0fa;
-    --text-color-dark: var(--bg-800);
-    /* --text-color-primary: #398bea; */
-    /* --text-color-light: var(--fg); */
-    --hero-padding: 2rem 4rem;
-    color-scheme: light dark;
-
-
-
-
-
-    --padding-top-main: 1rem;
-
-    --padding-inline-main: 5rem;
-
-
-    --font-size-xs: 0.65rem;
-    --font-size-sm: 0.85rem;
-    --font-size-md: 1.25rem;
-    --font-size-lg: 1.5rem;
-
+main {
+  &:not(:has(.video-hero)) {
+    padding-top: calc(var(--sub-header-height) + var(--padding-top-main));
+    padding-bottom: var(--padding-top-main);
   }
 
-  @media (max-width: 768px) {
-    :root {
-      --padding-inline-main: 0.5rem;
-      /* Smaller value for screens smaller than 768px */
-    }
+  &:has(.video-hero) .container,
+  &:has(.video-hero) .stretch-container {
+    padding-top: var(--padding-top-main);
+    padding-bottom: var(--padding-top-main);
   }
-
-  body {
-    background: var(--bg);
-    color: var(--text-color-primary);
-    font-size: var(--font-size-md);
-  }
-
-  main {
-    &:not(:has(.video-hero)) {
-      padding-top: calc(var(--sub-header-height) + var(--padding-top-main));
-      padding-bottom: var(--padding-top-main);
-    }
-
-    &:has(.video-hero) .container,
-    &:has(.video-hero) .stretch-container {
-      padding-top: var(--padding-top-main);
-      padding-bottom: var(--padding-top-main);
-    }
-  }
+}
 
 
 
-  /* button is clickable div */
-  button {
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-  }
+/* button is clickable div */
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
 
-  .title {
-    font-size: 2rem;
-    font-weight: 700;
-  }
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+}
 
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}

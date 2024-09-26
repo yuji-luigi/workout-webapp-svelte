@@ -1,21 +1,29 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
 	import type { Timer } from '../../../types/db/timer';
+	import { openDialog } from '../../../store/dialog-store';
+	import TimerDialog from './TimerDialog.svelte';
 
 	export let data: { timer: Timer };
-	console.log(data.timer);
+	let dialog: HTMLDialogElement;
+	onMount(() => {
+		openDialog({
+			componentInDialog: {
+				component: TimerDialog,
+				props: { timer: data.timer }
+			}
+		});
+	});
 </script>
 
-<div class="container">
+<dialog class="dialog" bind:this={dialog}>
 	{#if data.timer}
 		<h1>{data.timer.name}</h1>
 		<p>{data.timer.description}</p>
-		<p>{data.timer.seconds}</p>
-		<img src={data.timer.image.split('(')[1].split(')')[0]} alt="" height="300px" />
+		<p class="timer-number">{getTimerTime(data.timer.seconds)}</p>
 	{/if}
-	{#if !data.timer}
-		<h1 class="not-found-title">404 Timer not found</h1>
-	{/if}
-</div>
+</dialog>
 
 <style>
 	.container {
@@ -25,5 +33,9 @@
 	}
 	.not-found-title {
 		text-align: center;
+	}
+	.timer-number {
+		font-family: clockicons, sans-serif;
+		font-size: 2rem;
 	}
 </style>
