@@ -1,19 +1,26 @@
-<script>
-	const maxSeconds = 80;
-	const currentSeconds = 50;
-	const percent = currentSeconds / maxSeconds;
-	const r = 80;
-	const circumference = Math.round(2 * Math.PI * r);
-	const processed = Math.round(circumference - circumference * percent);
-	console.log({ processed, circumference });
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	export let seconds: number = 0;
+	export let timePassed: number = 0;
+	console.log(timePassed);
+	let percent = timePassed && seconds ? timePassed / seconds : 0;
+
+	let r = 80;
+
+	let circumference = Math.round(2 * Math.PI * r);
+	let processed = Math.round(circumference - circumference * percent);
+	$: percent = timePassed && seconds ? timePassed / seconds : 0;
+	$: r = 80;
+	$: circumference = Math.round(2 * Math.PI * r);
+	$: processed = Math.round(circumference - circumference * percent);
+
+	// Reactive console logging to see updated values
+	$: console.log({ processed, percent, timePassed });
+	$: console.log({ processed, percent });
 </script>
 
 <circle stroke-linecap="round" style={`--processed:${processed};--max-c:${circumference};`} />
-
-<!-- <circle
-	stroke-linecap="round"
-	style={`--processed:${processed};--max-c: ${circumference}`}
-/> -->
 
 <style>
 	:root {
@@ -35,6 +42,6 @@
 		stroke-dashoffset: var(--processed, 200);
 		/* 450 - 450 * percent */
 
-		animation: anim linear 2s forwards;
+		transition: stroke-dashoffset 2s;
 	}
 </style>

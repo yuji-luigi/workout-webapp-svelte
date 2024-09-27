@@ -9,7 +9,6 @@
 
 <div class="contents">
 	<TimerWatch {timer} />
-	<ProgressSvg />
 </div>
 <div class="actions flex-row sm-column">
 	<button class="button-primary">Back</button>

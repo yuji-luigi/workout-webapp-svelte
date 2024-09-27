@@ -1,11 +1,7 @@
-<script>
+<script lang="ts">
 	import Circle from './Circle.svelte';
-
-	const maxSeconds = 80;
-	const currentSeconds = 50;
-	const percent = currentSeconds / maxSeconds;
-	const r = 80;
-	const circumference = 2 * Math.PI * r;
+	export let seconds: number = 0;
+	export let timePassed: number = 0;
 </script>
 
 <div class="skill">
@@ -19,7 +15,7 @@
 				<stop offset="100%" stop-color="#ffcc00" />
 			</linearGradient>
 		</defs>
-		<Circle />
+		<Circle {seconds} {timePassed} />
 	</svg>
 </div>
 

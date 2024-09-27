@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import type { Timer } from '../../../types/db/timer';
+	import ProgressSvg from '../progress/progress-svg/ProgressSvg.svelte';
 
 	export let timer: Timer;
 	let seconds = timer.seconds;
+	let timePassed = 0;
 	let interval: number;
 	let isRunning = false;
 
@@ -11,8 +13,8 @@
 		if (isRunning) return;
 		isRunning = true;
 		interval = setInterval(() => {
-			seconds--;
-			if (seconds <= 0) {
+			timePassed++;
+			if (timePassed > seconds) {
 				clearInterval(interval);
 				isRunning = false;
 			}
@@ -34,10 +36,10 @@
 </script>
 
 <progress max="100" value="20"></progress>
-<div class="progress-bar"></div>
-<h1>{seconds}</h1>
+<h1>{seconds - timePassed}</h1>
 <div class="watch">
 	<div class="remaining">JIJ</div>
+	<ProgressSvg {seconds} {timePassed} />
 </div>
 
 <style>
@@ -68,7 +70,6 @@
 	}
 	.watch {
 		--size: 250px;
-		transform: rotate(200deg);
 		position: relative;
 		border: solid 4px #000;
 		width: var(--size);
