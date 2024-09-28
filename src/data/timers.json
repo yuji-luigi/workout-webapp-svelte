@@ -2,7 +2,7 @@
 	{
 		"id": 1,
 		"name": "Hypertrophy",
-		"seconds": 90,
+		"seconds": 3,
 		"description": "4 to 5 sets of 6 to 12 reps",
 		"image": "url(https://picsum.photos/400/301)"
 	},

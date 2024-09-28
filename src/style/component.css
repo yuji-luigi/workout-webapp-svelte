@@ -60,6 +60,8 @@ dialog[open]::backdrop {
 
 dialog {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  background-color: var(--fg);
+  border: none;
 }
 
 .button-primary {

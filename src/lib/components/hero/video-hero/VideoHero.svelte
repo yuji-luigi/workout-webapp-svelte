@@ -8,17 +8,15 @@
 		<source src={videoSrc} type="video/mp4" />
 	</video>
 	<div class="hero-content-container">
-		<div class="hero-content-top-right">
+		<!-- <div class="hero-content-top-right">
 			<slot name="top-right">
 				<h1 class="title">Fallback title</h1>
 				<p>Fallback content is shown here</p>
 			</slot>
-		</div>
+		</div> -->
 		<div class="hero-content-bottom-left">
 			<slot name="bottom-left">
 				<h2 class="title">Fallback title</h2>
-				<p>Fallback content is shown here</p>
-				<p>Fallback content is shown here</p>
 				<p>Fallback content is shown here</p>
 			</slot>
 		</div>
@@ -49,7 +47,7 @@
 		transform: translateZ(-1px);
 
 		@media (max-width: 768px) {
-			min-height: 50dvh;
+			min-height: 100dvh;
 		}
 		/* overflow: hidden; */
 		&::before {
@@ -72,7 +70,7 @@
 		top: 0;
 		left: 0;
 		position: absolute;
-		padding: 6rem;
+		padding: 2rem var(--padding-inline-main);
 		z-index: 1;
 	}
 	.hero-content-bottom-left {

@@ -1,0 +1,13 @@
+:root {
+  /* overwrites in js */
+  --size: 0px;
+  --r: calc(var(--size) / 2);
+  --max-c: calc(var(--r) * 2 * 3.14159265359);
+  --processed: 200;
+  --watch-radius: 50%;
+  --border-color: orange;
+  --empty-border-color: lightgray;
+  /* --padding-outer: 10px; */
+  --size-inner: calc(var(--size) - var(--padding-outer) * 2);
+  --stroke-dashoffset: 450;
+}

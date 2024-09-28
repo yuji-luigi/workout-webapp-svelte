@@ -1,8 +1,9 @@
 <script>
+	import '../style/timer.css';
 	import '../style/app.css';
 	import '../style/component.css';
 	import '../style/utility.css';
-	import Dialog from '../lib/components/dialog/Dialog.svelte';
+	import DialogGlobal from '../lib/components/dialog/global/DialogGlobal.svelte';
 	import VideoHero from '../lib/components/hero/video-hero/VideoHero.svelte';
 	import SubHeader from '../lib/components/SubHeader.svelte';
 	import Footer from '../lib/components/Footer.svelte';
@@ -16,7 +17,7 @@
 
 	<Footer />
 </div>
-<Dialog />
+<DialogGlobal />
 
 <style>
 	.app {

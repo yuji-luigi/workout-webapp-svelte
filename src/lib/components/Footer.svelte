@@ -17,6 +17,7 @@
 
 <style>
 	footer {
+		visibility: hidden;
 		position: fixed;
 		padding-inline: var(--padding-inline-main);
 		bottom: 0;
@@ -25,7 +26,9 @@
 		z-index: 1000;
 		display: grid;
 		justify-content: space-between;
+		background: var(--fg);
 		&::before {
+			visibility: hidden;
 			content: '';
 			position: absolute;
 			top: 0;

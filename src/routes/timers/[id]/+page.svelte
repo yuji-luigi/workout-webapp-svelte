@@ -1,31 +1,42 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
 	import type { Timer } from '../../../types/db/timer';
-	import { openDialog } from '../../../store/dialog-store';
 	import TimerDialog from './TimerDialog.svelte';
+	import { openDialog } from '../../../store/dialog-store';
 
 	export let data: { timer: Timer };
 	let dialog: HTMLDialogElement;
+
 	onMount(() => {
-		openDialog({
-			componentInDialog: {
-				component: TimerDialog,
-				props: { timer: data.timer }
-			}
-		});
+		if (dialog) {
+			dialog.showModal();
+		}
+	});
+	onDestroy(() => {
+		if (dialog) {
+			dialog.close();
+		}
 	});
 </script>
 
 <dialog class="dialog" bind:this={dialog}>
-	{#if data.timer}
-		<h1>{data.timer.name}</h1>
-		<p>{data.timer.description}</p>
-		<p class="timer-number">{getTimerTime(data.timer.seconds)}</p>
-	{/if}
+	<div class="dialog-container">
+		<div class="dialog-content">
+			{#if data.timer}
+				<TimerDialog timer={data.timer} />
+			{/if}
+		</div>
+	</div>
 </dialog>
 
 <style>
+	dialog {
+		max-width: 600px;
+		background-color: var(--fg);
+		border: none;
+		position: absolute;
+	}
 	.container {
 		display: grid;
 		place-content: center;
