@@ -4,9 +4,7 @@
 
 <dialog class="dialog" bind:this={dialog}>
 	<div class="dialog-container">
-		<div class="dialog-content">
-			<slot />
-		</div>
+		<slot />
 	</div>
 </dialog>
 

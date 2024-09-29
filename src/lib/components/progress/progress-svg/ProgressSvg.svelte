@@ -2,7 +2,6 @@
 	import Circle from './Circle.svelte';
 	export let seconds: number = 0;
 	export let timePassed: number = 0;
-	export let computedTime: string = '00:00:00';
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">

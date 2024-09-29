@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { spring } from 'svelte/motion';
 
-	let count = 0;
+	export let count = 0;
+	export let unit = '';
+	export let min: number | undefined = undefined;
+	export let max: number | undefined = undefined;
 
 	const displayed_count = spring();
 	$: displayed_count.set(count);
@@ -14,7 +17,10 @@
 </script>
 
 <div class="counter">
-	<button on:click={() => (count -= 1)} aria-label="Decrease the counter by one">
+	<button
+		on:click={() => (min || min === 0 ? count <= min && min : (count -= 1))}
+		aria-label="Decrease the counter by one"
+	>
 		<svg aria-hidden="true" viewBox="0 0 1 1">
 			<path d="M0,0.5 L1,0.5" />
 		</svg>
@@ -27,7 +33,12 @@
 		</div>
 	</div>
 
-	<button on:click={() => (count += 1)} aria-label="Increase the counter by one">
+	<button
+		on:click={() => {
+			count = max !== undefined && max !== null ? (count >= max ? max : count + 1) : count + 1;
+		}}
+		aria-label="Increase the counter by one"
+	>
 		<svg aria-hidden="true" viewBox="0 0 1 1">
 			<path d="M0,0.5 L1,0.5 M0.5,0 L0.5,1" />
 		</svg>
@@ -35,6 +46,9 @@
 </div>
 
 <style>
+	:root {
+		/* --font-size-lg: 9.25 rem; */
+	}
 	.counter {
 		display: flex;
 		border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -51,7 +65,7 @@
 		border: 0;
 		background-color: transparent;
 		touch-action: manipulation;
-		font-size: 2rem;
+		font-size: var(--font-size-lg);
 	}
 
 	.counter button:hover {
@@ -70,7 +84,7 @@
 	}
 
 	.counter-viewport {
-		width: 8em;
+		width: 3em;
 		height: 4em;
 		overflow: hidden;
 		text-align: center;
@@ -84,7 +98,7 @@
 		height: 100%;
 		font-weight: 400;
 		color: var(--color-theme-1);
-		font-size: 4rem;
+		font-size: var(--font-size-lg);
 		align-items: center;
 		justify-content: center;
 	}

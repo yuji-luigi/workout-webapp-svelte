@@ -1,16 +1,16 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { onDestroy, onMount } from 'svelte';
-	import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
+	import CountInput from '../../../lib/components/counter/CountInput.svelte';
 	import type { Timer } from '../../../types/db/timer';
-	import TimerDialog from './TimerDialog.svelte';
-	import { openDialog } from '../../../store/dialog-store';
+	import TimerSection from './TimerSection.svelte';
 
 	export let data: { timer: Timer };
 	let dialog: HTMLDialogElement;
-
-	onMount(() => {
+	onMount(async () => {
+		// await tick();
 		if (dialog) {
-			dialog.showModal();
+			dialog?.showModal();
 		}
 	});
 	onDestroy(() => {
@@ -20,33 +20,21 @@
 	});
 </script>
 
-<dialog class="dialog" bind:this={dialog}>
-	<div class="dialog-container">
-		<div class="dialog-content">
-			{#if data.timer}
-				<TimerDialog timer={data.timer} />
-			{/if}
-		</div>
-	</div>
-</dialog>
+<div class="page">
+	{#if data.timer}
+		<TimerSection timer={data.timer} />
+	{/if}
+</div>
 
 <style>
-	dialog {
-		max-width: 600px;
-		background-color: var(--fg);
-		border: none;
-		position: absolute;
-	}
-	.container {
+	.page {
 		display: grid;
-		place-content: center;
+		place-items: center;
+		min-height: calc(100dvh - var(--sub-header-height));
+	}
+	.flex-column {
 		gap: 1rem;
-	}
-	.not-found-title {
-		text-align: center;
-	}
-	.timer-number {
-		font-family: clockicons, sans-serif;
-		font-size: 2rem;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
