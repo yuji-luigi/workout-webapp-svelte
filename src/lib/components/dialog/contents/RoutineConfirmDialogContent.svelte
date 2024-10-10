@@ -6,23 +6,31 @@
 
 	export let routine: Routine;
 	onMount(async function join_routine() {
-		console.log(routine);
-		const raw_flows = await fetch('/src/data/workout_flow.json');
+		const flow_params = new URLSearchParams();
+		flow_params.append('id_routine', routine.id.toString());
+		const raw_flows = await fetch(`../../api/workout_flow?${flow_params.toString()}`);
 		const flows = await raw_flows.json();
+		const routine_ids = flows.map((flow: WorkoutFlow) => flow.id_routine);
+		const params = new URLSearchParams();
+
+		routine_ids.forEach((id) => params.append('id', id));
+		// const flow_params = params.toString();
+		// const raw_flows_beta = await fetch(`../../api/workout_flow?${flow_params}`);
+
 		const target_flows = flows.filter((flow: WorkoutFlow) => flow.id_routine === routine.id);
 		routine.workout_flows = target_flows;
-		console.log(target_flows);
-		const raw_workouts = await fetch('/src/data/workout.json');
-		const raw_exercises = await fetch('/src/data/exercise.json');
-		const raw_sets = await fetch('/src/data/set.json');
-		const raw_timers = await fetch('/src/data/timer.json');
+
+		const raw_workouts = await fetch('../../api/workout');
+		const raw_exercises = await fetch('../../api/exercise');
+		const raw__workout_sets = await fetch('../../api/workout_set');
+		const raw_timers = await fetch('../../api/timer');
 		const timers = await raw_timers.json();
 		const exercises = await raw_exercises.json();
 		const workouts = await raw_workouts.json();
-		const sets = await raw_sets.json();
+		const workout_sets = await raw__workout_sets.json();
 
 		routine.workout_flows.forEach((workout_flow: WorkoutFlow, iwf: number) => {
-			sets.forEach((set: Workout_set, iws: number) => {
+			workout_sets.forEach((set: Workout_set, iws: number) => {
 				const _workout: Workout = workouts.find(
 					(workout: Workout) => workout.id_exercise === set.id_workout
 				);
@@ -30,18 +38,19 @@
 					(exercise: Exercise) => exercise.id === _workout.id_exercise
 				);
 				const _timer = timers.find((timer: Timer) => timer.id === set.id_timer);
-				routine.workout_flows[iwf].sets[iws] = {
-					...sets[iws],
+
+				if (!routine.workout_flows[iwf].workout_sets) {
+					routine.workout_flows[iwf].workout_sets = [];
+				}
+				routine.workout_flows[iwf].workout_sets[iws] = {
+					...workout_sets[iws],
 					name: _exercise.name,
 					timer: _timer
-
-          
 				};
 
 				//  set.id === routine.workout_flows[iwf].id_set;
 			});
 		});
-		console.log(routine);
 	});
 
 	function handlePush() {
