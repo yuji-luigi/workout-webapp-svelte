@@ -1,17 +1,12 @@
 <script lang="ts">
-	import type { PageLoad } from './$types';
-	export const prerender = true;
-	export let data;
-	import GradientButton from '../../lib/components/GradientButton.svelte';
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
-	import ExerciseCard from '../../lib/components/card/exercise-card/ExerciseCard.svelte';
-	import TimerCard from '../../lib/components/card/timer-card/TimerCard.svelte';
+	import RoutineCard from '../../lib/components/card/cards/RoutineCard.svelte';
+	import RoutineConfirmDialogContent from '../../lib/components/dialog/contents/RoutineConfirmDialogContent.svelte';
 	import { openDialog } from '../../store/dialog-store';
-	import TimerConfirmDialogContent from '../../lib/components/card/timer-card/TimerConfirmDialogContent.svelte';
 
 	let cardGrid: HTMLDivElement;
-
-	let timers = data.timers;
+	export let data;
+	const { routines } = data;
 	// Adjust the type as needed
 	//click event type
 	function handleClick(e: MouseEvent) {
@@ -19,12 +14,12 @@
 		if (cardEl) {
 			// target gets to active state.
 			cardEl.dataset.active = 'true';
-			const timer = timers[Number(cardEl.dataset.index)];
-			// open global dialog with the target timer data
+			const routine = routines[Number(cardEl.dataset.index)];
+			// open global dialog with the target routine data
 			openDialog({
 				componentInDialog: {
-					component: TimerConfirmDialogContent,
-					props: { timer }
+					component: RoutineConfirmDialogContent,
+					props: { routine }
 				}
 			});
 		}
@@ -51,9 +46,12 @@
 		on:keydown={null}
 		class="card-grid"
 	>
-		{#each data.timers as timer, index}
-			<TimerCard {timer} active={timer.active} {index} />
+		{#each routines as routine, index}
+			<RoutineCard {routine} active={routine.active} {index} />
 		{/each}
+		<!-- {#each timers as timer, index}
+			<TimerCard {timer} active={timer.active} {index} />
+		{/each} -->
 	</div>
 </div>
 
@@ -64,7 +62,7 @@
 		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 		grid-auto-rows: 400px;
 		place-content: center;
-		/* gap: 1rem; */
+		/* gap: 0.25rem; */
 	}
 
 	h1 {

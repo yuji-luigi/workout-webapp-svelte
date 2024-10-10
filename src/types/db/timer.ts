@@ -1,7 +1,6 @@
-export type Timer = {
-	id: number;
-	name: string;
-	seconds: number;
-	description: string;
-	image: string;
-};
+// Type for Timer (unchanged from the previous diagram)
+interface Timer {
+	id: number; // primary key
+	secondsActive: number;
+	secondsRest: number;
+}

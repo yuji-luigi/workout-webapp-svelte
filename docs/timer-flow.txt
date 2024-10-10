@@ -1,0 +1,40 @@
+1. choose from routine.
+  - routine has all so you are all step
+2. choose from workout
+  - choose workout
+  example A
+      name: Pull up
+      type: reps and sets
+      timer: 90sec
+  Work out has all this configurations
+   example B
+      name: Pull up
+      type: HIIT
+      timer: [{90sec, 30sec}, {90sec, 30sec}, {90sec, 30sec}] // {active, rest}
+
+Approach 2.
+Timer base.
+Choose timer.
+<Example Reps and sets>
+  starts timer and count up. tap to and count down the seconds
+    name: reps and sets
+    type: reps_and_sets
+    seconds: 90sec
+
+<Example EMOM>
+  starts timer and only countdown. finish and start countdown again. until given number of sets are done.  
+    name: timer.secondsActive + timer.secondsRest
+
+<Example HIIT>
+  starts timer and only countdown. finish and start countdown again. Timer should be tuple of [int, int] => [active, rest] 
+    name: timer.secondsActive + timer.secondsRest
+  Problem seconds field is int it should not be a tuple
+
+<Example Abs>
+  starts timer and only countdown. finish and start countdown again. Timer is array of object {name, description, id_exercise, seconds}
+    name: timer.secondsActive + timer.secondsRest
+  Problem seconds field is int it should not be a tuple
+
+NOTE: The rest time is not a Exercise. It can be like pseudo Timer without creating a record.
+NOTE: May be Timer object should contain seconds: int and also restSeconds: int
+

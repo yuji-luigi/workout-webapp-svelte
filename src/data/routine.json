@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"slug": "first-test-routine",
+		"name": "first test routine",
+		"description": "The test",
+		"created_by": 1
+	},
+	{
+		"id": 3,
+		"slug": "second-test-routine",
+		"name": "second test routine",
+		"description": "The test",
+		"created_by": 1
+	},
+	{
+		"id": 4,
+		"slug": "third-test-routine",
+		"name": "Third test routine",
+		"description": "The test",
+		"created_by": 1
+	}
+]

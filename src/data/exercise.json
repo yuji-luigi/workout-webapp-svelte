@@ -1,0 +1,30 @@
+[
+	{
+		"id": 1,
+		"name": "Hollow Pull up",
+		"slug": "pull-up-hollow",
+		"description": "Hollow pull up. Anterior pelvic tilt + scapula depression + retraction. Full extended position to chest to the bar if you can.",
+		"image": "url(https://picsum.photos/400/301)"
+	},
+	{
+		"id": 2,
+		"name": "Arched Pull up",
+		"slug": "pull-up-arched",
+		"description": "Arched pull up. Arche your back hit more of upper lats + scapula depression + retraction. Full extended position to chest to the bar if you can.",
+		"image": "url(https://picsum.photos/400/301)"
+	},
+	{
+		"id": 3,
+		"name": "Archer pull up",
+		"slug": "pull-up-archer",
+		"description": "Archer pull up. Not easy one.",
+		"image": "url(https://picsum.photos/400/301)"
+	},
+	{
+		"id": 4,
+		"name": "TABATA",
+		"slug": "TABATA",
+		"description": "timer indicates the rest time",
+		"image": "url(https://picsum.photos/400/301)"
+	}
+]

@@ -1,4 +1,5 @@
 export const getTimerTime = (seconds: number) => {
+	if (isNaN(seconds)) return '';
 	if (seconds < 0) return '0:00';
 	let _seconds: string | number = seconds % 60;
 	_seconds = _seconds < 10 ? `0${_seconds}` : _seconds;

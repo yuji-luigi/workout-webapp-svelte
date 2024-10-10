@@ -2,45 +2,32 @@
 	import { goto } from '$app/navigation';
 	import { getStores } from '$app/stores';
 	import { closeDialog } from '../../../../store/dialog-store';
-	import type { Timer } from '../../../../types/db/timer';
+	import type { Timer } from '../../../../types/db/data';
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
-	import DialogActions from '../../dialog/DialogActions.svelte';
+	import Counter from '../../Counter.svelte';
+	import CountInput from '../../counter/CountInput.svelte';
+	import TimeCounter from '../../time-counter/TimeCounter.svelte';
+	import DialogActions from '../DialogActions.svelte';
 
-	export let timer: Timer;
+	export let data: Timer;
 	let sets = 1;
 
 	function handlePush() {
 		closeDialog();
-		goto(`/timers/${timer.id}?sets=${sets}`);
+		goto(`/timers/${data.id}?sets=${sets}`);
 	}
 </script>
 
 <div class="contents">
-	<img src={timer.image.split('(')[1].split(')')[0]} alt="" height="300px" />
-	<h5>Time: {getTimerTime(timer.seconds)}</h5>
+	<img src={data.image.split('(')[1].split(')')[0]} alt="" height="300px" />
+	<h5>Time: {getTimerTime(data.seconds)}</h5>
 
 	<div class="counter-section">
 		<h4>How many sets?</h4>
-		<div class="counter">
-			<button
-				class="button-primary"
-				on:click={() => {
-					if (sets > 1) {
-						{
-							sets--;
-						}
-					}
-				}}>-</button
-			>
-			{sets}
-			<button
-				class="button-primary"
-				on:click={() => {
-					sets++;
-				}}>+</button
-			>
-		</div>
+
+		<TimeCounter />
 	</div>
+	<CountInput />
 </div>
 <div class="actions flex-row sm-column">
 	<button class="button-primary">Back</button>

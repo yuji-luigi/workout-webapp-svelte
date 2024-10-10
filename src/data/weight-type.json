@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"name": "weight vest",
+		"slug": "weight-vest",
+		"description": "Calisthenic helper",
+		"image": "url(https://picsum.photos/400/301)"
+	},
+	{
+		"id": 2,
+		"name": "Weight belt",
+		"slug": "weight-belt",
+		"description": "Calisthenic also regular weight lifting",
+		"image": "url(https://picsum.photos/400/301)"
+	},
+	{
+		"id": 3,
+		"name": "Free weights",
+		"slug": "free-weights",
+		"description": "Discs, dumbbells, used for any free weight training.",
+		"image": "url(https://picsum.photos/400/301)"
+	}
+]

@@ -9,6 +9,9 @@
 	import { openDialog } from '../../../store/dialog-store';
 	let count = 0;
 
+	let reps = 0;
+	let currentSet = 1;
+
 	let timePassed = 0;
 
 	let sets = '';
@@ -22,6 +25,10 @@
 		goto(`/timers`);
 	};
 
+	function onFinished() {
+		console.log('Rest is over!!');
+	}
+
 	$: {
 		if (timePassed >= timer.seconds) {
 			openDialog({});
@@ -31,7 +38,7 @@
 
 <section class="timer-section">
 	<button class="button-primary">Open</button>
-	<TimerWatch {timer} {timePassed}>
+	<TimerWatch {timer} {onFinished}>
 		<div class="contents">
 			<h4>sets 1/{sets}</h4>
 			<h4>reps</h4>
@@ -58,9 +65,7 @@
 		margin-top: 0.5rem;
 		gap: 0.25rem;
 	}
-	.actions {
-		display: flex;
-		justify-content: center;
-		margin-top: 1rem;
+	.flex-column {
+		gap: 1rem;
 	}
 </style>

@@ -4,24 +4,39 @@
 	import ProgressSvg from '../progress/progress-svg/ProgressSvg.svelte';
 	import { getTimerTime } from '../../helpers/formatTimerTime';
 	import Circle from '../progress/progress-svg/Circle.svelte';
-	import { countDown } from './timer-sound';
 
 	export let timer: Timer;
 	export let seconds = timer.seconds;
 	export let timePassed = 0;
+	export let onFinished: () => void = () => {};
+
+	let displaySeconds = timer.seconds;
+
 	let interval: number;
 	let isRunning = false;
-	let computedTime = getTimerTime(seconds);
+	let computedTime = '0';
+	let startTime = new Date();
+	let entTime;
+	let setEndTimes = [];
+	/* 
+1. start from rep phase(count up)
+2. count up phase: on click/tap switch to rest phase that starts count down.(compute remaining time)
+3. when time is up, vibrate, switching to rep/(count up) phase.
+4. how to count reps per set?: you can count with counter any time for current set or set before rest phase
+*/
 
+	/* 
+  1. routine types: custom, tabata, emom, amrap, for time, for reps
+*/
 	function handleToggleWatch() {
 		if (isRunning) {
 			stop();
 		} else {
-			start();
+			countDown();
 		}
 	}
 
-	function start() {
+	function countDown() {
 		if (isRunning) return;
 		isRunning = true;
 		interval = setInterval(() => {
@@ -34,10 +49,20 @@
 				navigator.vibrate(1000);
 				isRunning = false;
 				computedTime = getTimerTime(seconds - timePassed - 1);
+				onFinished();
 				return;
 			}
 			timePassed++;
 			computedTime = getTimerTime(seconds - timePassed + 1);
+		}, 1000);
+	}
+	function countUp() {
+		displaySeconds = 0;
+		if (isRunning) return;
+		isRunning = true;
+		interval = setInterval(() => {
+			displaySeconds++;
+			computedTime = getTimerTime(displaySeconds);
 		}, 1000);
 	}
 
@@ -51,7 +76,8 @@
 	});
 
 	onMount(() => {
-		// start();
+		countUp();
+		// countDown();
 	});
 </script>
 

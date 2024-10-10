@@ -6,7 +6,8 @@ export const load: PageServerLoad = async ({ fetch }) => {
 		console.error(error);
 	});
 	const rawTimers = await fetch('/src/data/timers.json');
+	const rawWorkoutTypes = await fetch('/src/data/workout_types.json');
 	const timers = await rawTimers.json();
 	const todo = res ? await res.json() : null;
-	return { timers, res: todo };
+	return { timers, workoutTypes: await rawWorkoutTypes.json() };
 };

@@ -18,11 +18,14 @@
 				<a href="/follow-along">Follow along</a>
 			</li>
 
-			<li aria-current={$page.url.pathname.startsWith('/workouts') ? 'page' : undefined}>
-				<a href="/workouts">Workouts</a>
+			<li aria-current={$page.url.pathname.startsWith('/workout') ? 'page' : undefined}>
+				<a href="/workout">Workouts</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/timers') ? 'page' : undefined}>
-				<a href="/timers">Timers</a>
+			<li aria-current={$page.url.pathname.startsWith('/timer') ? 'page' : undefined}>
+				<a href="/timer">Timers</a>
+			</li>
+			<li aria-current={$page.url.pathname.startsWith('/routine') ? 'page' : undefined}>
+				<a href="/routine">Routines</a>
 			</li>
 		</ul>
 	</nav>

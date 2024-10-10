@@ -50,7 +50,6 @@
 		percent = timePassed && seconds ? timePassed / seconds : 0;
 		circumference = Math.round(2 * Math.PI * R);
 		processed = Math.round(circumference - circumference * percent);
-		console.log({ processed, circumference, percent });
 	}
 </script>
 
