@@ -5,12 +5,14 @@
 	import '../style/utility.css';
 	import DialogGlobal from '../lib/components/dialog/global/DialogGlobal.svelte';
 	import VideoHero from '../lib/components/hero/video-hero/VideoHero.svelte';
-	import SubHeader from '../lib/components/SubHeader.svelte';
+	import SubHeader from '../lib/components/sub-header/SubHeader.svelte';
 	import Footer from '../lib/components/Footer.svelte';
+	import VerticalMenu from '../lib/components/vertical-menu/VerticalMenu.svelte';
 </script>
 
 <div class="app">
 	<SubHeader />
+	<VerticalMenu />
 	<main>
 		<slot />
 	</main>

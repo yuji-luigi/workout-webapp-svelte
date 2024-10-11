@@ -1,27 +1,27 @@
 [
 	{
 		"id": 1,
-		"id_set": 1,
+		"id_workout_set": 1,
 		"id_routine": 1
 	},
 	{
 		"id": 2,
-		"id_set": 1,
+		"id_workout_set": 1,
 		"id_routine": 3
 	},
 	{
 		"id": 3,
-		"id_set": 1,
+		"id_workout_set": 1,
 		"id_routine": 2
 	},
 	{
 		"id": 4,
-		"id_set": 2,
+		"id_workout_set": 2,
 		"id_routine": 1
 	},
 	{
 		"id": 5,
-		"id_set": 3,
+		"id_workout_set": 3,
 		"id_routine": 1
 	}
 ]

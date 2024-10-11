@@ -1,17 +1,14 @@
 import { json } from '@sveltejs/kit';
+import { filterByQueryParams } from '../../../lib/helpers/search-params/filterByQueryParams.js';
 
 export async function GET({ fetch, params, url, ...other }) {
-	console.log(other);
-
-	const raw_data = await fetch(`/src/data/${params.collection}.json`);
-	if (url.searchParams.size > 0) {
-		const searchParams = new URLSearchParams(url.search);
-		const searchKey = searchParams.keys().next().value;
-		const searchValue = searchParams.get(searchKey);
-		const data = await raw_data.json();
-		const filteredData = data.filter((item) => item[searchKey]?.toString?.() === searchValue);
-		return json(filteredData);
+	const response = await fetch(`/src/data/${params.collection}.json`);
+	if (!response.ok) {
+		throw new Error(response.statusText);
 	}
-	const _data = await raw_data.json();
-	return json(_data);
+	const data = (await response.json()) as Record<string, number | string>[];
+	if (url.searchParams.size > 0) {
+		return json(filterByQueryParams(data, url.searchParams));
+	}
+	return json(data);
 }

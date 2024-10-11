@@ -14,8 +14,9 @@
   --gray-300: oklch(71.76% 0 253.06);
   --gray-400: oklch(51.76% 0 253.06);
   --gray-500: oklch(41.76% 0 253.06);
-  --gray-700: oklch(31.76% 0 253.06);
-  --gray-800: oklch(21.76% 0 253.06);
+  --gray-600: oklch(31.76% 0 253.06);
+  --gray-700: oklch(21.76% 0 253.06);
+  --gray-800: oklch(16.76% 0 253.06);
 
   font-family: 'SuisseIntl', Arial, Helvetica, sans-serif;
 
@@ -31,6 +32,8 @@
   --fg: #414a4c;
 
   --sub-header-height: 2em;
+
+  --vertical-menu-width: 350px;
 
   --accent-color: #964734;
 
@@ -50,6 +53,8 @@
   --padding-top-main: 1rem;
 
   --padding-inline-main: 5rem;
+
+  --padding-inline-header: 2rem;
 
 
   --font-size-xs: 0.65rem;
@@ -93,7 +98,7 @@ main {
 
 
 
-/* button is clickable div */
+/* button style is almost plain */
 button {
   cursor: pointer;
   border: none;
@@ -109,4 +114,28 @@ img {
   max-width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+input {
+  border: none;
+  background-color: var(--gray-500);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  height: 2.5rem;
+  font-size: calc(var(--font-size-md) *1.2);
+
+  &.sm {
+    height: 2rem;
+    font-size: calc(var(--font-size-sm) *1.3)
+  }
+
+  &.lg {
+    height: 3rem;
+    font-size: calc(var(--font-size-lg) *1.3);
+  }
+
+  &.md {
+    height: 2.5rem;
+    font-size: calc(var(--font-size-md) *1.2)
+  }
 }

@@ -3,8 +3,9 @@
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 	import hamburger from '$lib/images/icons/menu-hamburger.svg';
-	import HamburgerSvg from './icons/svgs/HamburgerSvg.svelte';
-	import GithubSvg from './icons/svgs/GithubSvg.svelte';
+	import HamburgerSvg from '../icons/svgs/HamburgerSvg.svelte';
+	import GithubSvg from '../icons/svgs/GithubSvg.svelte';
+	import HamburgerMenu from './HamburgerMenu.svelte';
 </script>
 
 <header>
@@ -37,7 +38,7 @@
 			</a>
 		</div>
 		<div class="corner">
-			<HamburgerSvg />
+			<HamburgerMenu />
 		</div>
 	</div>
 </header>
@@ -52,6 +53,7 @@
 		display: grid;
 		grid-template-columns: 1fr auto 1fr;
 		justify-content: space-between;
+		padding-inline: var(--padding-inline-header);
 		&::before {
 			content: '';
 			position: absolute;
@@ -64,6 +66,7 @@
 			z-index: -1;
 		}
 	}
+
 	.flex-row {
 		grid-column: 3; /* Place the nav in the center */
 		gap: 0.5rem;
@@ -81,7 +84,8 @@
 		}
 	}
 
-	.corner a {
+	.corner a,
+	.corner button {
 		display: flex;
 		align-items: center;
 		justify-content: center;
