@@ -1,5 +1,10 @@
+<script lang="ts">
+	export let id: string | undefined = undefined;
+</script>
+
 <svg
-	class="icon-svg"
+	{id}
+	class="icon-svg hamburger-svg"
 	width="600px"
 	height="600px"
 	viewBox="0 0 24 24"

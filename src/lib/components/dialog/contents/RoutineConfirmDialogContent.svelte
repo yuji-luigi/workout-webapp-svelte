@@ -68,8 +68,8 @@
 	</div>
 </div>
 <div class="actions flex-row sm-column">
-	<button class="button-primary">Back</button>
-	<button on:click={handlePush} class="button-primary">Confirm</button>
+	<button class="button">Back</button>
+	<button on:click={handlePush} class="button">Confirm</button>
 </div>
 
 <style>
@@ -109,7 +109,7 @@
 	.actions {
 		margin-top: 1rem;
 	}
-	.button-primary {
+	.button {
 		width: 100%;
 	}
 </style>

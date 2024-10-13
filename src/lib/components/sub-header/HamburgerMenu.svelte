@@ -17,5 +17,5 @@
 </script>
 
 <button on:click={handleOpenMenu} class="corner">
-	<HamburgerSvg />
+	<HamburgerSvg id="vertical-menu-open-icon" />
 </button>

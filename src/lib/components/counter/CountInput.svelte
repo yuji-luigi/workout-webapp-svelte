@@ -7,7 +7,7 @@
 
 <div class="counter">
 	<button
-		class="button-primary"
+		class="button"
 		on:click={() => {
 			if (count > min) {
 				count--;
@@ -19,7 +19,7 @@
 		{count}
 	</h4>
 	<button
-		class="button-primary"
+		class="button"
 		on:click={() => {
 			if (max && count >= max) {
 				return;

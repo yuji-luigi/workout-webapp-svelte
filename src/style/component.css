@@ -64,7 +64,7 @@ dialog {
   border: none;
 }
 
-.button-primary {
+.button {
   width: 100%;
   padding-inline: 1rem;
   padding-block: 0.5rem;
@@ -89,7 +89,21 @@ dialog {
   }
 }
 
+.button.primary {
+  background: light-dark(var(--color-primary-400), var(--color-primary-500));
+  color: var(--text-color-light);
+
+  &:hover {
+    background: light-dark(var(--color-primary-300), var(--color-primary-400));
+  }
+
+  &:active {
+    background: light-dark(var(--color-primary-600), var(--color-primary-700));
+    transform: scale(0.98);
+  }
+}
+
 /* 
-button:active.button-primary {
+button:active.button {
   background: light-dark(var(--gray-200), var(--gray-400));
 } */

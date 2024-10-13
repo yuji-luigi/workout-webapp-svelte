@@ -37,7 +37,7 @@
 </script>
 
 <section class="timer-section">
-	<button class="button-primary">Open</button>
+	<button class="button">Open</button>
 	<TimerWatch {timer} {onFinished}>
 		<div class="contents">
 			<h4>sets 1/{sets}</h4>
@@ -46,7 +46,7 @@
 	</TimerWatch>
 	<div class="flex-column">
 		<CountInput unit="Reps" {count} max={12} />
-		<button class="button-primary" on:click={handleBack}> back </button>
+		<button class="button" on:click={handleBack}> back </button>
 	</div>
 </section>
 
