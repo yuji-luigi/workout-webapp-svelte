@@ -60,13 +60,17 @@
 
 	// Attach global pclick listener on mount to detect outside clicks
 	onMount(() => {
-		document.addEventListener('click', handleClickOutside);
-		selectContainer.addEventListener('click', removeSelectOption);
+		if (typeof document !== 'undefined') {
+			document.addEventListener('click', handleClickOutside);
+			selectContainer.addEventListener('click', removeSelectOption);
+		}
 	});
 
 	// Clean up the listener on destroy
 	onDestroy(() => {
-		document.removeEventListener('click', handleClickOutside);
+		if (typeof document !== 'undefined') {
+			document.removeEventListener('click', handleClickOutside);
+		}
 	});
 </script>
 

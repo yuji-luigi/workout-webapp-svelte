@@ -10,7 +10,7 @@
 	.chip {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
-		border-radius: 9999px;
+		border-radius: var(--button-radius);
 		background-color: var(--color-primary);
 		color: var(--color-white);
 	}

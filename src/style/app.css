@@ -39,6 +39,8 @@
 
   --card-radius: 0.5rem;
 
+  --button-radius: 0.5rem;
+
   --text-color-primary: #dcf0fa;
   --text-color-dark: var(--bg-800);
   /* --text-color-primary: #398bea; */

@@ -75,7 +75,7 @@ dialog {
   font-size: var(--text-size-md);
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: var(--card-radius);
+  border-radius: var(--button-radius);
   cursor: pointer;
   transition: background 0.25s ease-in-out, transform 0.25s ease-in-out;
 
