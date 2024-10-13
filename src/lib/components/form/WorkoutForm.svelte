@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { sleep } from '../../helpers/sleep';
 	import SelectInput from '../select-input/SelectInputMulti.svelte';
+	import SelectInputSingle from '../select-input/SelectInputSingle.svelte';
 	import WorkoutSelectMulti from '../select-input/WorkoutSelectMulti.svelte';
 
 	let loading = false;
@@ -39,12 +40,12 @@
 			</div>
 			<div class="input-group">
 				<label for="name">Type of workout?</label>
-				<SelectInput
+				<SelectInputSingle
 					name="slug_routine"
 					loading={false}
 					options={[
-						{ id: 0, name: 'HIIT' },
-						{ id: 1, name: 'reps and sets' }
+						{ value: 0, label: 'HIIT' },
+						{ value: 1, label: 'reps and sets' }
 					]}
 				/>
 			</div>

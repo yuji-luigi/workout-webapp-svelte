@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { sleep } from '../../helpers/sleep';
+	import type { Option } from '../../../types/form/option';
 	export let loading = true;
 	export let name;
 
-	export let options: { id: number; name: string }[] = [];
+	export let options: Option[] = [];
 	// Handle changes to the select
 	export let selectedOption: string = '';
 
@@ -26,7 +27,7 @@
 		<option disabled selected hidden>please select...</option>
 	{/if}
 	{#each options as option}
-		<option value={option.id}>{option.name}</option>
+		<option value={option.value}>{option.label}</option>
 	{/each}
 	{#if loading}
 		<option>Loading...</option>
