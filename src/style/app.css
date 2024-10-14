@@ -48,6 +48,9 @@
   --hero-padding: 2rem 4rem;
   color-scheme: light dark;
 
+  --chip-padding: 0.25rem 0.75rem;
+
+
   --color-primary: oklch(65.58% 0.1097 203.42);
 
   --color-primary-100: oklch(99.58% 0.1097 203.42);

@@ -9,9 +9,11 @@
 <style>
 	.chip {
 		display: inline-block;
-		padding: 0.25rem 0.75rem;
+
+		padding: var(--chip-padding);
 		border-radius: var(--button-radius);
 		background-color: var(--color-primary);
 		color: var(--color-white);
+		cursor: pointer;
 	}
 </style>

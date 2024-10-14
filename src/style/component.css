@@ -65,14 +65,13 @@ dialog {
 }
 
 .button {
-  width: 100%;
   padding-inline: 1rem;
   padding-block: 0.5rem;
   background: light-dark(var(--gray-100), var(--gray-300));
   color: var(--text-color-dark);
   /* color: black; */
   font-weight: 600;
-  font-size: var(--text-size-md);
+  /* font-size: var(--text-size-md); */
   padding: 0.5rem 1rem;
   border: none;
   border-radius: var(--button-radius);
@@ -88,6 +87,8 @@ dialog {
     transform: scale(0.98);
   }
 }
+
+
 
 .button.primary {
   background: light-dark(var(--color-primary-400), var(--color-primary-500));

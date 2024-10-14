@@ -23,9 +23,4 @@
 	}
 </script>
 
-<button
-	class="button primary"
-	style="background-color: var();"
-	type="button"
-	on:click={handleOpenDialog}><slot /></button
->
+<button class="button primary" type="button" on:click={handleOpenDialog}><slot /></button>

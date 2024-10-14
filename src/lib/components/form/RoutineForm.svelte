@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="fullWidth flex-column button-div">
-				<button class="button" type="submit">Submit</button>
+				<button class="button primary" type="submit">Submit</button>
 			</div>
 		</form>
 	</fieldset>
