@@ -82,6 +82,7 @@
   --font-size-md: 1.25rem;
   --font-size-lg: 1.5rem;
 
+  --input-bg: var(--gray-500);
 }
 
 @media (max-width: 768px) {
@@ -98,7 +99,7 @@
 }
 
 body {
-  background: var(--bg);
+  background: light-dart(var(--bg), white);
   color: var(--text-color-primary);
   font-size: var(--font-size-md);
 }
@@ -147,7 +148,7 @@ textarea {
 input, textarea, select, div.input {
   width: 100%;
   border: none;
-  background-color: var(--gray-500);
+  background-color: var(--input-bg);
   padding: 0.5rem;
   border-radius: 0.25rem;
 

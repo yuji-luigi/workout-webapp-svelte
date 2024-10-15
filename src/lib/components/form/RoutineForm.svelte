@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { handle_array_form_data } from '../../helpers/handle-array-form-data';
 	import { sleep } from '../../helpers/sleep';
+	import InputGrid from '../input/InputGrid.svelte';
 	import NewWorkoutModalFormOpenButton from '../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
 	import SelectInput from '../select-input/SelectInputMulti.svelte';
 	import WorkoutSelectMulti from '../select-input/WorkoutSelectMulti.svelte';
@@ -20,6 +21,7 @@
 	<h3>Create a new routine</h3>
 	<fieldset disabled={loading} aria-busy={loading}>
 		<form on:submit={handleSubmit}>
+			<InputGrid label="TEST" name="name" type="text" />
 			<div class="input-group">
 				<label for="name">Name of the routine</label>
 				<input name="name" type="text" />

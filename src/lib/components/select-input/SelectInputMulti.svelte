@@ -119,7 +119,7 @@
 	<!-- Hidden select element for form submission -->
 	<select {name} multiple bind:this={selectElement} hidden>
 		{#each options as option}
-			<option value={option.value}>{option.name}</option>
+			<option value={option.value}>{option.label}</option>
 		{/each}
 	</select>
 </div>
@@ -133,13 +133,12 @@
 	.custom-select {
 		height: 0;
 		overflow: hidden;
-		/* background-color: #fff; */
+		background-color: var(--input-bg);
 	}
-
 	.custom-select[data-open='true'] {
 		display: flex;
+		transition: height 1.3s ease-in-out;
 		flex-direction: column;
-		border: 1px solid #ccc;
 		padding: 1rem;
 		border-radius: 4px;
 		height: auto;
