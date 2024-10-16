@@ -34,11 +34,11 @@
 	<div class="flex-row icons-white">
 		<div class="corner">
 			<a target="_blank" href="https://github.com/yuji-luigi">
-				<GithubSvg />
+				<GithubSvg color="var(--text-color-primary)" />
 			</a>
 		</div>
 		<div class="corner">
-			<HamburgerMenu />
+			<HamburgerMenu color="var(--text-color-primary)" />
 		</div>
 	</div>
 </header>
@@ -73,15 +73,11 @@
 		place-self: end;
 	}
 	.corner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		width: var(--sub-header-height);
 		height: var(--sub-header-height);
-		& svg {
-			width: 100%;
-			height: 100%;
-			& path {
-				fill: var(--text-color-primary);
-			}
-		}
 	}
 
 	.corner a,
