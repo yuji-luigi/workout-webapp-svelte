@@ -22,5 +22,11 @@
 		"vite": "^5.4.9"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {
+		"@ubermanu/sveltekit-websocket": "^0.2.1",
+		"ws": "^8.16.0",
+		"y-indexeddb": "^9.0.12",
+		"y-websocket": "^1.5.4",
+		"yjs": "^13.6.12"
+	}
 }

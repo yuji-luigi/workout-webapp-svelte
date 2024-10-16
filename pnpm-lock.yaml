@@ -11,20 +11,17 @@ importers:
       '@ubermanu/sveltekit-websocket':
         specifier: ^0.2.1
         version: 0.2.1(@sveltejs/kit@2.7.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@5.0.0-next.266)(vite@5.4.9))(svelte@5.0.0-next.266)(vite@5.4.9))(svelte@5.0.0-next.266)
-      replicache:
-        specifier: ^15.0.1
-        version: 15.0.1
       ws:
-        specifier: ^8.18.0
+        specifier: ^8.16.0
         version: 8.18.0
       y-indexeddb:
         specifier: ^9.0.12
         version: 9.0.12(yjs@13.6.20)
       y-websocket:
-        specifier: ^2.0.4
-        version: 2.0.4(yjs@13.6.20)
+        specifier: ^1.5.4
+        version: 1.5.4(yjs@13.6.20)
       yjs:
-        specifier: ^13.6.20
+        specifier: ^13.6.12
         version: 13.6.20
     devDependencies:
       '@fontsource/fira-mono':
@@ -66,10 +63,6 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
-
-  '@badrap/valita@0.3.10':
-    resolution: {integrity: sha512-KMl4g6NlBeMQfpKQlelKj7npc2CzvNJLhjSQuVBJs7ur3HhOuf5saVYTU6UGvYCuHT7pnij3ejHQAyIQKcbc/w==}
-    engines: {node: '>= 16'}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -235,17 +228,6 @@ packages:
 
   '@polka/url@1.0.0-next.28':
     resolution: {integrity: sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==}
-
-  '@rocicorp/lock@1.0.4':
-    resolution: {integrity: sha512-FavTiO8ETXFXDVfA87IThGduTTTR8iqzBnr/c60gUUmbk7knGEXPmf2B+yiNuluJD0ku0fL2V2r62UXnsLXl6w==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
-  '@rocicorp/logger@5.3.0':
-    resolution: {integrity: sha512-j5WYYkzpGxkemS9cUEzGvWJFOdrKRSbTXKC6P032oXMnVb5VLr/aN/7RT7jczAwmQgkY2ds+/93CEiua4rCY1A==}
-
-  '@rocicorp/resolver@1.0.2':
-    resolution: {integrity: sha512-TfjMTQp9cNNqNtHFfa+XHEGdA7NnmDRu+ZJH4YF3dso0Xk/b9DMhg/sl+b6CR4ThFZArXXDsG1j8Mwl34wcOZQ==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   '@rollup/plugin-commonjs@25.0.8':
     resolution: {integrity: sha512-ZEZWTK5n6Qde0to4vS9Mr5x/0UZoqCxPVR9KRUjU4kA2sO7GEUn1fop0DAwpO6z0Nw/kJON9bDmSxdWxO/TT1A==}
@@ -698,11 +680,6 @@ packages:
     resolution: {integrity: sha512-yDMz9g+VaZkqBYS/ozoBJwaBhTbZo3UNYQHNRw1D3UFQB8oHB4uS/tAODO+ZLjGWmUbKnIlOWO+aaIiAxrUWHA==}
     engines: {node: '>= 14.16.0'}
 
-  replicache@15.0.1:
-    resolution: {integrity: sha512-I7HK6h2eT2QNxO4mwQFDqbuxhvCQgSlU4QuwfN9dqA6EKnO73VYiKB676r36N3q5W7L+htLgAcrSsrX+JPsRlQ==}
-    engines: {node: '>=14.8.0'}
-    hasBin: true
-
   resolve@1.22.8:
     resolution: {integrity: sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==}
     hasBin: true
@@ -856,8 +833,8 @@ packages:
     peerDependencies:
       yjs: ^13.0.0
 
-  y-websocket@2.0.4:
-    resolution: {integrity: sha512-UbrkOU4GPNFFTDlJYAxAmzZhia8EPxHkngZ6qjrxgIYCN3gI2l+zzLzA9p4LQJ0IswzpioeIgmzekWe7HoBBjg==}
+  y-websocket@1.5.4:
+    resolution: {integrity: sha512-Y3021uy0anOIHqAPyAZbNDoR05JuMEGjRNI8c+K9MHzVS8dWoImdJUjccljAznc8H2L7WkIXhRHZ1igWNRSgPw==}
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     hasBin: true
     peerDependencies:
@@ -876,8 +853,6 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
-
-  '@badrap/valita@0.3.10': {}
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
@@ -970,14 +945,6 @@ snapshots:
   '@neoconfetti/svelte@2.2.1': {}
 
   '@polka/url@1.0.0-next.28': {}
-
-  '@rocicorp/lock@1.0.4':
-    dependencies:
-      '@rocicorp/resolver': 1.0.2
-
-  '@rocicorp/logger@5.3.0': {}
-
-  '@rocicorp/resolver@1.0.2': {}
 
   '@rollup/plugin-commonjs@25.0.8(rollup@4.24.0)':
     dependencies:
@@ -1436,13 +1403,6 @@ snapshots:
 
   readdirp@4.0.2: {}
 
-  replicache@15.0.1:
-    dependencies:
-      '@badrap/valita': 0.3.10
-      '@rocicorp/lock': 1.0.4
-      '@rocicorp/logger': 5.3.0
-      '@rocicorp/resolver': 1.0.2
-
   resolve@1.22.8:
     dependencies:
       is-core-module: 2.15.1
@@ -1580,7 +1540,7 @@ snapshots:
       lib0: 0.2.98
       yjs: 13.6.20
 
-  y-websocket@2.0.4(yjs@13.6.20):
+  y-websocket@1.5.4(yjs@13.6.20):
     dependencies:
       lib0: 0.2.98
       lodash.debounce: 4.0.8
