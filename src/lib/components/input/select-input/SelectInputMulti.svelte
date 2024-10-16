@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import Chip from '../chip/Chip.svelte';
-	import type { Option } from '../../../types/form/option';
+	import Chip from '$lib/components/chip/Chip.svelte';
+	import type { Option } from '$types/form/option';
 
 	export let loading = true;
 	export let name;

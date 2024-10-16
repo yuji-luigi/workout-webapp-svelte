@@ -2,9 +2,9 @@
 	import { handle_array_form_data } from '../../helpers/handle-array-form-data';
 	import { sleep } from '../../helpers/sleep';
 	import InputGrid from '../input/InputGrid.svelte';
+	import WorkoutSelectMulti from '../input/select-input/WorkoutSelectMulti.svelte';
 	import NewWorkoutModalFormOpenButton from '../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
-	import SelectInput from '../select-input/SelectInputMulti.svelte';
-	import WorkoutSelectMulti from '../select-input/WorkoutSelectMulti.svelte';
+
 	let loading = false;
 	function handleArrayFormData(form_data: FormData) {}
 	async function handleSubmit(event: SubmitEvent) {

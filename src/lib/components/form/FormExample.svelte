@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { exampleFormTemplate } from '../../../data/template-json/example-template';
 	import { handle_array_form_data } from '../../helpers/handle-array-form-data';
 	import { sleep } from '../../helpers/sleep';
 	import InputGrid from '../input/InputGrid.svelte';
@@ -18,9 +19,9 @@
 
 <fieldset disabled={loading} aria-busy={loading}>
 	<form on:submit={handleSubmit}>
-		<InputGrid label="TEST" name="name1" />
-		<InputGrid label="TEST2" name="name2" />
-		<InputGrid label="TEST3" name="name3" />
+		{#each exampleFormTemplate as formField}
+			<InputGrid label={formField.label} name={formField.name} />
+		{/each}
 		<div class="fullWidth flex-column button-div">
 			<button class="button primary" type="submit">Submit</button>
 		</div>

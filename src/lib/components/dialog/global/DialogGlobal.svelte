@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { closeDialog, dialogStore, type DialogStore } from '../../../../store/dialog-store';
+	import { closeDialog, dialogStore, type DialogStore } from '../../../store/dialog-store';
 	import Dialog from '../Dialog.svelte';
 	let dialog: HTMLDialogElement;
 	let dialogStoreParams: DialogStore;

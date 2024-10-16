@@ -5,7 +5,7 @@
 		openVerticalMenu,
 		verticalMenuStore,
 		type DrawerStore
-	} from '../../../store/vertical-menu-store';
+	} from '../../store/vertical-menu-store';
 	let verticalMenuParams: DrawerStore;
 	verticalMenuStore.subscribe((value) => (verticalMenuParams = value));
 

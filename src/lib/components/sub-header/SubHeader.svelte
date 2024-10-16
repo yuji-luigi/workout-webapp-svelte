@@ -85,20 +85,6 @@
 	}
 
 	.corner a,
-	.corner button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
-
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
-
 	nav {
 		display: flex;
 		grid-column: 2; /* Place the nav in the center */
@@ -107,16 +93,6 @@
 		position: relative;
 		/* --background: rgba(255, 255, 255, 0.7); */
 		/* --background: var(--fg); */
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
 	}
 
 	ul {

@@ -3,7 +3,7 @@
 		closeVerticalMenu,
 		openVerticalMenu,
 		verticalMenuStore
-	} from '../../../store/vertical-menu-store';
+	} from '../../store/vertical-menu-store';
 	import HamburgerSvg from '../icons/svgs/HamburgerSvg.svelte';
 	let isOpen = false;
 	function handleOpenMenu() {

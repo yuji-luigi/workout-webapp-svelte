@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { sleep } from '../../helpers/sleep';
-	import SelectInput from '../select-input/SelectInputMulti.svelte';
-	import SelectInputSingle from '../select-input/SelectInputSingle.svelte';
-	import WorkoutSelectMulti from '../select-input/WorkoutSelectMulti.svelte';
-
+	import SelectInputSingle from '../input/select-input/SelectInputSingle.svelte';
 	let loading = false;
 
 	async function handleSubmit(event: SubmitEvent) {

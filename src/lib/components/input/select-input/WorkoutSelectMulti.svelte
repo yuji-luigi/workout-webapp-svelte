@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { sleep } from '../../helpers/sleep';
+	import { sleep } from '../../../helpers/sleep';
 	import SelectInputMulti from './SelectInputMulti.svelte';
-	import type { Option } from '../../../types/form/option';
+	import type { Option } from '../../../../types/form/option';
 	export let loading = true;
 	export let name = 'workouts';
 
