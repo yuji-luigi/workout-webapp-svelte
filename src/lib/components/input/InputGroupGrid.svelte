@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let label: string;
+	export let className: string = '';
 </script>
 
-<div class="input-group">
+<div class={`input-group ${className}`}>
 	<label for="name">{label}</label>
 	<slot name="input" />
 </div>

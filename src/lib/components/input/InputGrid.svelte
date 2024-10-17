@@ -11,26 +11,6 @@
 	export let className: string = '';
 </script>
 
-<InputGroupGrid {label}>
+<InputGroupGrid {label} {className}>
 	<input slot="input" {name} {type} />
 </InputGroupGrid>
-
-<style>
-	.input-group {
-		display: grid;
-		grid-column: span 2;
-		gap: 0.5rem;
-		grid-template-columns: subgrid;
-		grid-auto-flow: dense;
-		align-items: baseline;
-		justify-items: end;
-		@container (max-width: 600px) {
-			&.input-group {
-				display: none;
-				gap: 0.25rem;
-				justify-items: start;
-				grid-column: 1/-1;
-			}
-		}
-	}
-</style>
