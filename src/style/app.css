@@ -22,14 +22,34 @@
 
 
 
-  /* --bg: #024950; */
-  /* --bg: linear-gradient(#003135, #024950); */
-  /* --bg: black; */
-  /* --bg: #0FA4AF; */
-  --bg: oklch(17.43% 0.005 196.72);
+  /* --bg-dark: #024950; */
+  /* --bg-dark: linear-gradient(#003135, #024950); */
+  /* --bg-dark: black; */
+  /* --bg-dark: #0FA4AF; */
+  --bg-dark: oklch(17.43% 0.005 196.72);
+  --bg-light: oklch(98.14% 0.0342 99.83);
+
+  --bg-light-100: oklch(98.14% 0.0342 99.83);
+  --bg-light-200: oklch(88.14% 0.0342 99.83);
+  --bg-light-300: oklch(78.14% 0.0342 99.83);
+  --bg-light-400: oklch(68.14% 0.0342 99.83);
+  --bg-light-500: oklch(58.14% 0.0342 99.83);
+  --bg-light-700: oklch(48.14% 0.0342 99.83);
+  --bg-light-800: oklch(38.14% 0.0342 99.83);
+
+  --fg-color-light-100: oklch(98.14% 0.006 223.46);
+  --fg-color-light-200: oklch(88.14% 0.006 223.46);
+  --fg-color-light-300: oklch(78.14% 0.006 223.46);
+  --fg-color-light-400: oklch(68.14% 0.006 223.46);
+  --fg-color-light-500: oklch(58.14% 0.006 223.46);
+  --fg-color-light-700: oklch(48.14% 0.006 223.46);
+  --fg-color-light-800: oklch(38.14% 0.006 223.46);
 
   --bg-800: #003135;
-  --fg: #414a4c;
+
+  --fg-color-dark: oklch(40.18% 0.0121 212.58);
+
+  --fg-color-light: oklch(95.79% 0.006 223.46);
 
   --sub-header-height: 2em;
 
@@ -44,9 +64,8 @@
   --text-color-primary: #dcf0fa;
   --text-color-dark: var(--bg-800);
   /* --text-color-primary: #398bea; */
-  /* --text-color-light: var(--fg); */
+  /* --text-color-light: var(--fg-color-dark); */
   --hero-padding: 2rem 4rem;
-  color-scheme: light dark;
 
   --chip-padding: 0.25rem 0.75rem;
 
@@ -61,6 +80,18 @@
   --color-primary-600: oklch(55.58% 0.1097 203.42);
   --color-primary-700: oklch(45.58% 0.1097 203.42);
   --color-primary-800: oklch(35.58% 0.1097 203.42);
+
+  /* --color-primary: oklch(65.58% 0.1281 77.66);
+
+  --color-primary-100: oklch(99.58% 0.1281 77.66);
+  --color-primary-200: oklch(85.58% 0.1281 77.66);
+  --color-primary-300: oklch(80.58% 0.1281 77.66);
+  --color-primary-400: oklch(70.58% 0.1281 77.66);
+  --color-primary-500: oklch(65.58% 0.1281 77.66);
+  --color-primary-600: oklch(55.58% 0.1281 77.66);
+  --color-primary-700: oklch(45.58% 0.1281 77.66);
+  --color-primary-800: oklch(35.58% 0.1281 77.66); */
+
 
 
   --color-secondary: oklch(99.58% 0.1097 203.42);
@@ -82,7 +113,8 @@
   --font-size-md: 1.25rem;
   --font-size-lg: 1.5rem;
 
-  --input-bg: var(--gray-500);
+  color-scheme: light dark;
+
 }
 
 @media (max-width: 768px) {
@@ -99,9 +131,12 @@
 }
 
 body {
-  background: light-dart(var(--bg), white);
-  color: var(--text-color-primary);
+  background-color: light-dart(var(--bg-light), var(--bg-dark));
+  /* background-color: red; */
+  color: light-dark(var(--text-color-dark), var(--text-color-primary));
   font-size: var(--font-size-md);
+  --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
+  --color-primary: light-dark(var(--color-primary-200), var(--color-primary-500));
 }
 
 main {
@@ -145,12 +180,13 @@ textarea {
   resize: none;
 }
 
+
 input, textarea, select, div.input {
   width: 100%;
-  border: none;
-  background-color: var(--input-bg);
+  background-color: light-dark(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01));
   padding: 0.5rem;
   border-radius: 0.25rem;
+  border: 1px solid light-dark(var(--gray-200), var(--gray-500));
 
   &:focus {
     outline: none;

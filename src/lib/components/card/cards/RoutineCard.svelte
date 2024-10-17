@@ -5,6 +5,7 @@
 	let cardEl: HTMLDivElement;
 	// TODO: Can be calculated in a server
 	routine;
+	let var_image_url = routine.image && `--image-url:${routine.image};`;
 
 	// When the component mounts, ensure the card position is available
 </script>
@@ -17,7 +18,7 @@
 	class="card"
 	on:keydown={(e) => null}
 	data-index={index}
-	style={`--image-url:${routine.image};`}
+	style={var_image_url}
 >
 	<div class="info">
 		<h4>{routine.name}</h4>
@@ -36,23 +37,14 @@
 		gap: 0.25rem;
 		cursor: pointer;
 		gap: 0.75rem;
-		background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)),
+		background-image: linear-gradient(
+				transparent,
+				light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5))
+			),
 			var(--image-url, url('https://picsum.photos/410/300'));
-		/* url('https://picsum.photos/410/300'); */
 		background-size: cover; /* Ensure the image covers the card */
 		background-position: center;
 		transition: height 1.5s;
-		&[data-active='true'] {
-			/* position: fixed;
-			top: 50%;
-			left: 50%;
-			bottom: 50%;
-			right: 50%;
-			transform: translate(-50%, -50%);
-			height: 600px;
-			width: 300px;
-			z-index: 1; */
-		}
 	}
 	.info {
 		margin-top: auto;
@@ -61,8 +53,8 @@
 	.description {
 		text-overflow: ellipsis;
 		overflow: hidden;
-		display: -webkit-box; /* Add this */
-		-webkit-line-clamp: 3; /* Add this */
-		-webkit-box-orient: vertical; /* Add this */
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
 	}
 </style>

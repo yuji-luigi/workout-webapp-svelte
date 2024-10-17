@@ -2,7 +2,7 @@
 	export let dialog: HTMLDialogElement;
 </script>
 
-<dialog class="dialog" bind:this={dialog}>
+<dialog class="dialog card" bind:this={dialog}>
 	<div class="dialog-container">
 		<slot />
 	</div>
@@ -11,7 +11,6 @@
 <style>
 	dialog {
 		max-width: 600px;
-		background-color: var(--fg);
 		border: none;
 	}
 </style>

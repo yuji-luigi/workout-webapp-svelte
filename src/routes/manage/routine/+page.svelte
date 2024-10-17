@@ -16,23 +16,6 @@
 </script>
 
 <RoutineForm />
-<FormGrid {handleSubmit} {loading}>
-	<InputGrid label="TEST" name="name1" />
-	<InputGrid label="TEST2" name="name2" />
-	<InputGrid label="TEST3" name="name3" />
-
-	<div class="fullWidth flex-column button-div">
-		<button class="button primary form-button" disabled={loading} type="submit">Submit</button>
-	</div>
-</FormGrid>
 
 <style>
-	.fullWidth {
-		grid-column: 1/-1;
-	}
-
-	.button {
-		width: unset;
-		margin-left: auto;
-	}
 </style>

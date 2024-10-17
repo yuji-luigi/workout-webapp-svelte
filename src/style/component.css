@@ -2,8 +2,8 @@
   border: none;
   border-radius: var(--card-radius);
   padding: 1rem 1.5rem;
-  background: #232b2b;
-  /* background: var(--fg); */
+  background: var(--fg-color);
+  color: light-dark(var(--text-color-dark), var(--text-color-light));
 }
 
 /* 
@@ -16,7 +16,7 @@
   border-radius: var(--card-radius);
   margin: auto;
   min-width: 600px;
-
+  background-color: var(--fg-color);
 
   @media (max-width: 600px) {
     min-width: 100%;
@@ -60,14 +60,14 @@ dialog[open]::backdrop {
 
 dialog {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  background-color: var(--fg);
+  background-color: var(--fg-color-dark);
   border: none;
 }
 
 .button {
   padding-inline: 1rem;
   padding-block: 0.5rem;
-  background: light-dark(var(--gray-100), var(--gray-300));
+  background: light-dark(var(--gray-300), var(--gray-300));
   color: var(--text-color-dark);
   /* color: black; */
   font-weight: 600;
@@ -78,8 +78,9 @@ dialog {
   cursor: pointer;
   transition: background 0.25s ease-in-out, transform 0.25s ease-in-out;
 
+
   &:hover {
-    background: light-dark(var(--gray-50), var(--gray-200));
+    background: light-dark(var(--gray-200), var(--gray-200));
   }
 
   &:active {
@@ -91,15 +92,18 @@ dialog {
 
 
 .button.primary {
-  background: light-dark(var(--color-primary-400), var(--color-primary-500));
+  background: var(--color-primary);
+  /* background: transparent; */
+  border: 1.5px solid var(--color-primary);
+  /* color: var(--color-primary-400); */
   color: var(--text-color-light);
 
   &:hover {
-    background: light-dark(var(--color-primary-300), var(--color-primary-400));
+    background: light-dark(var(--color-primary-100), var(--color-primary-400));
   }
 
   &:active {
-    background: light-dark(var(--color-primary-600), var(--color-primary-700));
+    background: light-dark(var(--color-primary-300), var(--color-primary-700));
     transform: scale(0.98);
   }
 }

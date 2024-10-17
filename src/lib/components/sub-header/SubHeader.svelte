@@ -61,7 +61,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: var(--fg);
+			background: var(--fg-color-dark);
 			opacity: 0.75;
 			z-index: -1;
 		}
@@ -88,7 +88,7 @@
 		flex-grow: 1; /* Make the nav take up available space */
 		position: relative;
 		/* --background: rgba(255, 255, 255, 0.7); */
-		/* --background: var(--fg); */
+		/* --background: var(--fg-color-dark); */
 	}
 
 	ul {

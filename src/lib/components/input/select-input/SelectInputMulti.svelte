@@ -133,7 +133,7 @@
 	.custom-select {
 		height: 0;
 		overflow: hidden;
-		background-color: var(--input-bg);
+		background-color: var(--fg-color);
 	}
 	.custom-select[data-open='true'] {
 		display: flex;

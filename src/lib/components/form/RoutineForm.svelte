@@ -21,7 +21,7 @@
 <div class="container">
 	<h3>Create a new routine</h3>
 	<FormGrid {handleSubmit} {loading}>
-		<InputGrid label="TEST" name="name" type="text" span={2} />
+		<InputGrid label="TEST" name="name" type="text" />
 		<InputGrid label="TEST" name="name" type="text" />
 		<InputGrid label="TEST" name="name" type="text" />
 		<InputGrid label="TEST" name="name" type="text" />
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 		<div class="fullWidth flex-column button-div">
-			<button class="button primary" type="submit">Submit</button>
+			<button class="button" type="submit">Submit</button>
 		</div>
 	</FormGrid>
 </div>

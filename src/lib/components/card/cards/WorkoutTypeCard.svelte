@@ -52,6 +52,7 @@
 		background-size: cover; /* Ensure the image covers the card */
 		background-position: center;
 		transition: height 1.5s;
+		color: var(--text-color-primary);
 		&[data-active='true'] {
 			/* position: fixed;
 			top: 50%;
@@ -67,6 +68,7 @@
 	.info {
 		margin-top: auto;
 		position: relative;
+		color: red;
 	}
 	.description {
 		text-overflow: ellipsis;

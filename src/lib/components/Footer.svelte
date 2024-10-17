@@ -26,7 +26,7 @@
 		z-index: 1000;
 		display: grid;
 		justify-content: space-between;
-		background: var(--fg);
+		background: var(--fg-color-dark);
 		&::before {
 			visibility: hidden;
 			content: '';
@@ -35,7 +35,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: var(--fg);
+			background: var(--fg-color-dark);
 			opacity: 0.75;
 			z-index: -1;
 		}
