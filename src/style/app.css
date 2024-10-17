@@ -157,3 +157,11 @@ input, textarea, select, div.input {
     border: 1px solid var(--accent-color);
   }
 }
+
+fieldset[aria-busy="true"] {
+  & .form-button {
+    opacity: 0.5;
+    filter: grayscale(1);
+    cursor: progress
+  }
+}

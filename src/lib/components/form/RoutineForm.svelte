@@ -4,6 +4,7 @@
 	import InputGrid from '../input/InputGrid.svelte';
 	import WorkoutSelectMulti from '../input/select-input/WorkoutSelectMulti.svelte';
 	import NewWorkoutModalFormOpenButton from '../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
+	import FormGrid from './FormGrid.svelte';
 
 	let loading = false;
 	function handleArrayFormData(form_data: FormData) {}
@@ -19,38 +20,39 @@
 
 <div class="container">
 	<h3>Create a new routine</h3>
-	<fieldset disabled={loading} aria-busy={loading}>
-		<form on:submit={handleSubmit}>
-			<InputGrid label="TEST" name="name" type="text" />
-			<div class="input-group">
-				<label for="name">Name of the routine</label>
-				<input name="name" type="text" />
-			</div>
-			<div class="input-group">
-				<label for="slug">Name of the routine</label>
-				<input name="slug" type="text" />
-			</div>
+	<FormGrid {handleSubmit} {loading}>
+		<InputGrid label="TEST" name="name" type="text" span={2} />
+		<InputGrid label="TEST" name="name" type="text" />
+		<InputGrid label="TEST" name="name" type="text" />
+		<InputGrid label="TEST" name="name" type="text" />
+		<div class="input-group">
+			<label for="name">Name of the routine</label>
+			<input name="name" type="text" />
+		</div>
+		<div class="input-group">
+			<label for="slug">Slug of the routine</label>
+			<input name="slug" type="text" />
+		</div>
 
-			<div class="input-group">
-				<label for="name">Description of the routine</label>
-				<textarea name="description_routine" />
+		<div class="input-group">
+			<label for="name">Description of the routine</label>
+			<textarea name="description_routine" />
+		</div>
+		<div class="input-group">
+			<label for="image">image of the routine</label>
+			<input type="file" alt="workout routine" name="image" />
+		</div>
+		<div class="input-group">
+			<label for="workout">Workout</label>
+			<WorkoutSelectMulti />
+			<div class="fullWidth">
+				<NewWorkoutModalFormOpenButton />
 			</div>
-			<div class="input-group">
-				<label for="image">image of the routine</label>
-				<input type="file" alt="workout routine" name="image" />
-			</div>
-			<div class="input-group">
-				<label for="workout">Workout</label>
-				<WorkoutSelectMulti />
-				<div class="fullWidth">
-					<NewWorkoutModalFormOpenButton />
-				</div>
-			</div>
-			<div class="fullWidth flex-column button-div">
-				<button class="button primary" type="submit">Submit</button>
-			</div>
-		</form>
-	</fieldset>
+		</div>
+		<div class="fullWidth flex-column button-div">
+			<button class="button primary" type="submit">Submit</button>
+		</div>
+	</FormGrid>
 </div>
 
 <style>

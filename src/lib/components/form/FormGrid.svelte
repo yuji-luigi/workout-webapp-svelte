@@ -4,26 +4,19 @@
 	import InputGrid from '../input/InputGrid.svelte';
 	import NewWorkoutModalFormOpenButton from '../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
 
-	let loading = false;
-	function handleArrayFormData(form_data: FormData) {}
-	async function handleSubmit(event: SubmitEvent) {
+	export let loading = false;
+	export let handleSubmit: (event: SubmitEvent) => void;
+	async function onsubmit(event: SubmitEvent) {
 		loading = true;
-		const form_data = new FormData(event.target as HTMLFormElement);
-		const dto = handle_array_form_data(form_data);
-		console.log(dto);
+		handleSubmit(event);
 		await sleep(2000);
 		loading = false;
 	}
 </script>
 
 <fieldset disabled={loading} aria-busy={loading}>
-	<form on:submit={handleSubmit}>
-		<InputGrid label="TEST" name="name1" />
-		<InputGrid label="TEST2" name="name2" />
-		<InputGrid label="TEST3" name="name3" />
-		<div class="fullWidth flex-column button-div">
-			<button class="button primary" type="submit">Submit</button>
-		</div>
+	<form on:submit={onsubmit}>
+		<slot />
 	</form>
 </fieldset>
 
@@ -52,13 +45,5 @@
 			max-width: 400px;
 			margin-inline: auto;
 		}
-	}
-	.fullWidth {
-		grid-column: 1/-1;
-	}
-
-	.button {
-		width: unset;
-		margin-left: auto;
 	}
 </style>

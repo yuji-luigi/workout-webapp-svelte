@@ -4,21 +4,21 @@
 -->
 <script lang="ts">
 	import type { InputType } from '../../../types/input-type';
+	import InputGroupGrid from './InputGroupGrid.svelte';
 	export let label: string;
 	export let name: string;
-	export let type: InputType | null | undefined = 'text';
+	export let type: InputType | 'textarea' | null | undefined = 'text';
 	export let className: string = '';
 </script>
 
-<div class={`input-group ${className}`}>
-	<label for={name}>{label}</label>
-	<input {name} {type} />
-</div>
+<InputGroupGrid {label}>
+	<input slot="input" {name} {type} />
+</InputGroupGrid>
 
 <style>
 	.input-group {
 		display: grid;
-		grid-column: 1/-1;
+		grid-column: span 2;
 		gap: 0.5rem;
 		grid-template-columns: subgrid;
 		grid-auto-flow: dense;
@@ -26,6 +26,7 @@
 		justify-items: end;
 		@container (max-width: 600px) {
 			&.input-group {
+				display: none;
 				gap: 0.25rem;
 				justify-items: start;
 				grid-column: 1/-1;
