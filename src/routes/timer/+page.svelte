@@ -2,7 +2,7 @@
 	import type { PageLoad } from './$types';
 	export const prerender = true;
 	export let data;
-	import GradientButton from '../../lib/components/GradientButton.svelte';
+	import GradientButton from '../../lib/components/gradient-buttons/GradientButton.svelte';
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import ExerciseCard from '../../lib/components/card/exercise-card/ExerciseCard.svelte';
 	import TimerCard from '../../lib/components/card/cards/TimerCard.svelte';

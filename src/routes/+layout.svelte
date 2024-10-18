@@ -3,6 +3,7 @@
 	import '../style/app.css';
 	import '../style/component.css';
 	import '../style/utility.css';
+	import '../style/animation.css';
 	import DialogGlobal from '../lib/components/dialog/global/DialogGlobal.svelte';
 	import VideoHero from '../lib/components/hero/video-hero/VideoHero.svelte';
 	import SubHeader from '../lib/components/sub-header/SubHeader.svelte';

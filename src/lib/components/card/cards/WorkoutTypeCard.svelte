@@ -52,7 +52,7 @@
 		background-size: cover; /* Ensure the image covers the card */
 		background-position: center;
 		transition: height 1.5s;
-		color: var(--text-color-primary);
+		color: var(--text-color-primary-white);
 		&[data-active='true'] {
 			/* position: fixed;
 			top: 50%;

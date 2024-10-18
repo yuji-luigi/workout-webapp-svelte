@@ -1,0 +1,33 @@
+@property --rotate {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --scale-up-hover: scale(1.1);
+  --scale-down-hover: scale(0.98);
+}
+
+/* svelte does not support has selector? */
+.gcss_sidenav_hover .gcss_sidenav_hover_item {
+  transition: 0.3s ease-in-out;
+}
+
+.gcss_sidenav_hover:has(.gcss_sidenav_hover_item:hover) .gcss_sidenav_hover_item:not(:hover) {
+  opacity: 0.7;
+  transform: var(--scale-down-hover);
+}
+
+.gcss_sidenav_hover .gcss_sidenav_hover_item:hover {
+  transform: var(--scale-up-hover);
+  position: relative;
+}
+
+
+
+@keyframes rotate {
+  to {
+    --rotate: 360deg;
+  }
+}

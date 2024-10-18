@@ -63,7 +63,7 @@
 	}
 	.hero-content-container {
 		display: flex;
-		color: var(--text-color-primary);
+		color: var(--text-color-primary-white);
 		flex-direction: column;
 		width: 100%;
 		height: 100%;

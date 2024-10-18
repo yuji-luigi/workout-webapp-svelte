@@ -55,15 +55,14 @@
 
   --vertical-menu-width: 350px;
 
-  --accent-color: #964734;
 
   --card-radius: 0.5rem;
 
   --button-radius: 0.5rem;
 
-  --text-color-primary: #dcf0fa;
-  --text-color-dark: var(--bg-800);
-  /* --text-color-primary: #398bea; */
+  --text-color-primary-white: #dcf0fa;
+  --text-color-primary-black: var(--bg-800);
+  /* --text-color-primary-white: #398bea; */
   /* --text-color-light: var(--fg-color-dark); */
   --hero-padding: 2rem 4rem;
 
@@ -80,6 +79,8 @@
   --color-primary-600: oklch(55.58% 0.1097 203.42);
   --color-primary-700: oklch(45.58% 0.1097 203.42);
   --color-primary-800: oklch(35.58% 0.1097 203.42);
+
+  --accent-color: #964734;
 
   /* --color-primary: oklch(65.58% 0.1281 77.66);
 
@@ -131,9 +132,10 @@
 }
 
 body {
+  --bg-color: light-dark(var(--bg-light), var(--bg-dark));
   background-color: light-dart(var(--bg-light), var(--bg-dark));
   /* background-color: red; */
-  color: light-dark(var(--text-color-dark), var(--text-color-primary));
+  color: light-dark(var(--text-color-primary-black), var(--text-color-primary-white));
   font-size: var(--font-size-md);
   --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
   --color-primary: light-dark(var(--color-primary-200), var(--color-primary-500));
@@ -201,3 +203,26 @@ fieldset[aria-busy="true"] {
     cursor: progress
   }
 }
+
+
+/* 
+.conic_fancy_wrapper {
+  --rotate: 0deg;
+  position: relative;
+  background: red;
+
+  & .conic_fancy {
+    position: absolute;
+    inset: 0;
+
+    & :before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: conic-gradient(from var(--rotate),
+          transparent 0%,
+          white 5%,
+          transparent 10%);
+    }
+  }
+} */
