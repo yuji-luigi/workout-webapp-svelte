@@ -1,13 +1,25 @@
 <script lang="ts">
-	let checkbox: HTMLInputElement;
+	import { onMount } from 'svelte';
+
+	let theme: 'dark' | 'light' | undefined = $state(undefined);
+
 	function handleThemeChange() {
-		console.log(checkbox.checked);
-		document.body.classList.toggle('dark');
+		theme = theme === 'dark' ? 'light' : 'dark';
 	}
+	function getSystemTheme() {
+		// Retrieves the system preference for light or dark mode
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		return prefersDark ? 'dark' : 'light';
+	}
+	onMount(() => {
+		theme = getSystemTheme();
+		console.log('themeo', theme);
+		console.log('theme', theme);
+	});
 </script>
 
-<div>
-	<input bind:this={checkbox} type="checkbox" class="checkbox" on:change={handleThemeChange} />
+<div data-theme={theme}>
+	<input checked={theme === 'dark'} type="checkbox" class="checkbox" onchange={handleThemeChange} />
 	<label for="checkbox" class="checkbox-label">
 		<i class="fas fa-moon"></i>
 		<i class="fas fa-sun"></i>

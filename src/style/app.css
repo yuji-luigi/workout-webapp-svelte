@@ -7,6 +7,17 @@
   box-sizing: border-box;
 }
 
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+}
+
+
 :root {
 
   --gray-50: oklch(100% 0 253.06);
@@ -138,14 +149,17 @@
   }
 }
 
-body.dark {
+body:has([data-theme="dark"]) {
   color-scheme: dark;
+}
+
+body:has([data-theme="light"]) {
+  color-scheme: light;
 }
 
 body {
   --bg-color: light-dark(var(--bg-light), var(--bg-dark));
   background-color: var(--bg-color);
-  /* background-color: red; */
   color: light-dark(var(--text-color-black), var(--text-color-white));
   font-size: var(--font-size-md);
   --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
