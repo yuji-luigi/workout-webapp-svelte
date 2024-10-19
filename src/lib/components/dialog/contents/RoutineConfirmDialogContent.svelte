@@ -103,7 +103,7 @@
 			height: var(--size);
 			font-size: var(--font-size-lg);
 			border-radius: 900px;
-			color: var(--text-color-primary-black);
+			color: var(--text-color-black);
 		}
 	}
 	.actions {

@@ -26,6 +26,7 @@
   /* --bg-dark: linear-gradient(#003135, #024950); */
   /* --bg-dark: black; */
   /* --bg-dark: #0FA4AF; */
+
   --bg-dark: oklch(17.43% 0.005 196.72);
   --bg-light: oklch(98.14% 0.0342 99.83);
 
@@ -60,9 +61,7 @@
 
   --button-radius: 0.5rem;
 
-  --text-color-primary-white: #dcf0fa;
-  --text-color-primary-black: var(--bg-800);
-  /* --text-color-primary-white: #398bea; */
+  /* --text-color-white: #398bea; */
   /* --text-color-light: var(--fg-color-dark); */
   --hero-padding: 2rem 4rem;
 
@@ -114,6 +113,13 @@
   --font-size-md: 1.25rem;
   --font-size-lg: 1.5rem;
 
+
+  --text-color-white: #dcf0fa;
+  --text-color-accent: var(--bg-800);
+
+  --text-color-black: var(--gray-700);
+
+
   color-scheme: light dark;
 
 }
@@ -135,7 +141,7 @@ body {
   --bg-color: light-dark(var(--bg-light), var(--bg-dark));
   background-color: light-dart(var(--bg-light), var(--bg-dark));
   /* background-color: red; */
-  color: light-dark(var(--text-color-primary-black), var(--text-color-primary-white));
+  color: light-dark(var(--text-color-black), var(--text-color-white));
   font-size: var(--font-size-md);
   --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
   --color-primary: light-dark(var(--color-primary-200), var(--color-primary-500));

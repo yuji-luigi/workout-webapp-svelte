@@ -91,7 +91,7 @@
 		);
 		text-decoration: none;
 		font-size: 25px;
-		color: var(--text-color-primary-white);
+		color: var(--text-color-white);
 		display: block;
 		position: relative;
 		padding-block: 0.5rem;
@@ -144,11 +144,11 @@
 		right: 1rem;
 		font-size: 46px;
 		margin-left: 50px;
-		color: var(--text-color-primary-white);
+		color: var(--text-color-white);
 		transition: 0.3s ease-in-out;
 		&:hover {
-			background-color: var(--text-color-primary-white);
-			color: var(--text-color-primary-black);
+			background-color: var(--text-color-white);
+			color: var(--text-color-black);
 		}
 	}
 	/* 

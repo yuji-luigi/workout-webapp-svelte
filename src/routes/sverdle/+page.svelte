@@ -208,7 +208,7 @@
 	}
 
 	.how-to-play {
-		color: var(--text-color-primary-white);
+		color: var(--text-color-white);
 	}
 
 	.how-to-play::before {
@@ -220,7 +220,7 @@
 		height: 1em;
 		padding: 0.2em;
 		line-height: 1;
-		border: 1.5px solid var(--text-color-primary-white);
+		border: 1.5px solid var(--text-color-white);
 		border-radius: 50%;
 		text-align: center;
 		margin: 0 0.5em 0 0;
@@ -289,7 +289,7 @@
 	}
 
 	.selected {
-		outline: 2px solid var(--color-theme-1);
+		outline: 2px solid var(--text-color-black);
 	}
 
 	.controls {
@@ -340,7 +340,7 @@
 	}
 
 	.keyboard button:focus {
-		background: var(--color-theme-1);
+		background: var(--text-color-black);
 		color: white;
 		outline: none;
 	}
@@ -378,7 +378,7 @@
 
 	.restart:focus,
 	.restart:hover {
-		background: var(--color-theme-1);
+		background: var(--text-color-black);
 		color: white;
 		outline: none;
 	}

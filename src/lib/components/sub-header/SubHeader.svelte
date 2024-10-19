@@ -34,11 +34,11 @@
 	<div class="flex-row icons-white">
 		<div class="corner">
 			<a target="_blank" href="https://github.com/yuji-luigi">
-				<GithubSvg color="var(--text-color-primary-white)" />
+				<GithubSvg color="var(--text-color-white)" />
 			</a>
 		</div>
 		<div class="corner">
-			<HamburgerMenu color="var(--text-color-primary-white)" />
+			<HamburgerMenu color="var(--text-color-white)" />
 		</div>
 	</div>
 </header>
@@ -118,7 +118,7 @@
 		top: 0;
 		left: calc(50% - var(--size));
 		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--text-color-primary-white);
+		border-top: var(--size) solid var(--text-color-white);
 	}
 
 	nav a {
@@ -126,7 +126,7 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 0.5rem;
-		color: var(--text-color-primary-white);
+		color: var(--text-color-white);
 		font-weight: 700;
 		font-size: var(--font-size-sm);
 		text-transform: uppercase;
@@ -136,6 +136,6 @@
 	}
 
 	a:hover {
-		color: var(--color-theme-1);
+		color: var(--text-color-black);
 	}
 </style>

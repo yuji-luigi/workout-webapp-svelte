@@ -60,7 +60,7 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 0.5rem;
-		color: var(--text-color-primary-white);
+		color: var(--text-color-white);
 		font-weight: 700;
 		font-size: 0.8rem;
 		text-transform: uppercase;

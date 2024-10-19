@@ -97,7 +97,7 @@
 		width: 100%;
 		height: 100%;
 		font-weight: 400;
-		color: var(--color-theme-1);
+		color: var(--text-color-black);
 		font-size: var(--font-size-lg);
 		align-items: center;
 		justify-content: center;

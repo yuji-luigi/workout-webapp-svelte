@@ -54,7 +54,7 @@ class of the component*/
 			height: calc(var(--font-size-scoped) + 1rem);
 			font-size: var(--font-size-scoped);
 			border-radius: 900px;
-			color: var(--text-color-primary-black);
+			color: var(--text-color-black);
 		}
 	}
 	h4 {
