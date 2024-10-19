@@ -6,6 +6,7 @@
 	import HamburgerSvg from '../icons/svgs/HamburgerSvg.svelte';
 	import GithubSvg from '../icons/svgs/GithubSvg.svelte';
 	import HamburgerMenu from './HamburgerMenu.svelte';
+	import ThemeSwitch from '../ThemeSwitch.svelte';
 </script>
 
 <header>
@@ -32,6 +33,9 @@
 	</nav>
 
 	<div class="flex-row icons-white">
+		<div class="corner">
+			<ThemeSwitch />
+		</div>
 		<div class="corner">
 			<a target="_blank" href="https://github.com/yuji-luigi">
 				<GithubSvg color="var(--text-color-white)" />
