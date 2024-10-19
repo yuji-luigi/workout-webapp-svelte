@@ -73,7 +73,7 @@
 		overflow-x: hidden;
 		transition: 0.5s;
 		padding-top: 60px;
-		transition: transform 1.5s ease-in-out;
+		transition: transform 0.5s ease-in-out;
 		z-index: 1000;
 		&[data-open='true'] {
 			transform: translate(0);
@@ -96,25 +96,6 @@
 		position: relative;
 		padding-block: 0.5rem;
 		overflow: hidden;
-		/* &:hover {
-			&:before,
-			&:after {
-				content: '';
-				position: absolute;
-
-				width: var(--ani-width);
-				height: 1px;
-				background: var(--linea-g);
-				animation: slideLeft 1s infinite;
-			}
-			&:after {
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				animation-direction: reverse;
-				animation-delay: -1.25s;
-			}
-		} */
 	}
 	.gcss_sidenav_hover_item:hover {
 		transform: unset;
