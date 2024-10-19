@@ -5,7 +5,8 @@
 	import ErrorDialogContent from '../dialog/contents/ErrorDialogContent.svelte';
 	export let DialogContentComponent: new (...args: any) => SvelteComponent;
 	export let dialogContentProps: any = undefined;
-	function handleOpenDialog() {
+	function handleOpenDialog(e: MouseEvent) {
+		e.stopImmediatePropagation();
 		if (!DialogContentComponent) {
 			openDialog({
 				componentInDialog: {
@@ -23,4 +24,4 @@
 	}
 </script>
 
-<button class="button primary" type="button" on:click={handleOpenDialog}><slot /></button>
+<div role="button" tabindex="0" on:keydown={null} on:click={handleOpenDialog}><slot /></div>

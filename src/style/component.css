@@ -92,11 +92,10 @@ dialog {
 
 
 .button.primary {
-  background: var(--color-primary);
+  background: light-dark(var(--text-color-black), var(--color-primary));
   /* background: transparent; */
-  border: 1.5px solid var(--color-primary);
   /* color: var(--color-primary-400); */
-  color: var(--text-color-light);
+  color: var(--text-color-white);
 
   &:hover {
     background: light-dark(var(--color-primary-100), var(--color-primary-400));

@@ -13,4 +13,4 @@
 	}
 </script>
 
-<OpenDialogButton DialogContentComponent={WorkoutForm}>Create new workout</OpenDialogButton>
+<OpenDialogButton DialogContentComponent={WorkoutForm}><slot /></OpenDialogButton>

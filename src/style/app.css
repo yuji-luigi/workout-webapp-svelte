@@ -160,7 +160,8 @@ body:has([data-theme="light"]) {
 body {
   --bg-color: light-dark(var(--bg-light), var(--bg-dark));
   background-color: var(--bg-color);
-  color: light-dark(var(--text-color-black), var(--text-color-white));
+  --text-color: light-dark(var(--text-color-black), var(--text-color-white));
+  color: var(--text-color);
   font-size: var(--font-size-md);
   --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
   --color-primary: light-dark(var(--color-primary-200), var(--color-primary-500));
