@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { sleep } from '../../../helpers/sleep';
-	import type { Option } from '../../../../types/form/option';
+	import { sleep } from '../../../../helpers/sleep';
+	import type { Option } from '../../../../../types/form/option';
 	export let loading = true;
 	export let name;
 

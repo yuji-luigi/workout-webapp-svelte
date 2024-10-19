@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { sleep } from '../../helpers/sleep';
-	import SelectInputSingle from '../input/select-input/SelectInputSingle.svelte';
+	import InputGrid from '../input/InputGrid.svelte';
+	import SelectInputSingle from '../input/select-input/base/SelectInputSingle.svelte';
+	import SelectWithFetch from '../input/select-input/SelectWithFetch.svelte';
+	import FormGrid from './FormGrid.svelte';
 	let loading = false;
 
 	async function handleSubmit(event: SubmitEvent) {
@@ -21,48 +24,39 @@
 
 <div class="container">
 	<h3 class="title">Create new workout</h3>
-	<fieldset disabled={loading} aria-busy={loading}>
-		<form on:submit={handleSubmit}>
-			<div class="input-group">
-				<label for="name">Name</label>
-				<input name="exercise.name" type="text" />
-			</div>
-			<div class="input-group">
-				<label for="name">Description</label>
-				<textarea name="exercise.name" />
-			</div>
-			<div class="input-group">
-				<label for="name">Slug</label>
-				<input name="slug_routine" type="text" />
-			</div>
-			<div class="input-group">
-				<label for="name">Type of workout?</label>
-				<SelectInputSingle
-					name="slug_routine"
-					loading={false}
-					options={[
-						{ value: 0, label: 'HIIT' },
-						{ value: 1, label: 'reps and sets' }
-					]}
-				/>
-			</div>
+	<FormGrid {handleSubmit} {loading}>
+		<InputGrid label="Exercise name" name="name" type="text" />
 
-			<div class="input-group">
-				<label for="name">How many sets?</label>
-				<input type="number" alt="workout routine" name="n_set" />
-			</div>
-			<div class="input-group">
-				<label for="name">Rest time(sec)</label>
-				<input type="number" name="timer.seconds_rest" />
-			</div>
-			<div class="input-group">
-				<label for="name">Active time(sec)</label>
-				<input type="number" name="timer.seconds_active" />
-			</div>
+		<InputGrid label="Description" name="slug" type="text" />
+		<InputGrid label="Slug" name="slug" type="text" />
+		<SelectWithFetch name="workout_type" label="Type of workout" />
+		<div class="input-group">
+			<label for="name">Type of workout?</label>
+			<SelectInputSingle
+				name="slug_routine"
+				loading={false}
+				options={[
+					{ value: 0, label: 'HIIT' },
+					{ value: 1, label: 'reps and sets' }
+				]}
+			/>
+		</div>
 
-			<button type="submit">Submit</button>
-		</form>
-	</fieldset>
+		<div class="input-group">
+			<label for="name">How many sets?</label>
+			<input type="number" alt="workout routine" name="n_set" />
+		</div>
+		<div class="input-group">
+			<label for="name">Rest time(sec)</label>
+			<input type="number" name="timer.seconds_rest" />
+		</div>
+		<div class="input-group">
+			<label for="name">Active time(sec)</label>
+			<input type="number" name="timer.seconds_active" />
+		</div>
+
+		<button type="submit">Submit</button>
+	</FormGrid>
 </div>
 
 <style>
@@ -85,22 +79,6 @@
 	input,
 	textarea {
 		width: 100%;
-	}
-
-	form {
-		max-width: var(--max-width);
-		display: grid;
-		grid-template-columns: repeat(2, auto 1fr);
-		gap: 1rem;
-	}
-
-	.input-group {
-		display: grid;
-		grid-column: span 2;
-		grid-template-columns: subgrid;
-		grid-auto-flow: dense;
-		align-items: baseline;
-		justify-items: end;
 	}
 
 	@container (max-width: 600px) {

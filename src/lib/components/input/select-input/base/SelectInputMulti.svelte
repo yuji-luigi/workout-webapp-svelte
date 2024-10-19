@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import Chip from '$lib/components/chip/Chip.svelte';
 	import type { Option } from '$types/form/option';
-
+	export let className: string = '';
 	export let loading = true;
 	export let name;
 	let open = false;
@@ -74,14 +74,14 @@
 	});
 </script>
 
-<div class="select-container" bind:this={selectContainer}>
+<div class={`${className} select-container`} bind:this={selectContainer}>
 	<!-- <input type="text" on:focus={handleOnfocus} readonly placeholder="Select options" /> -->
 	<div
 		role="button"
 		tabindex="0"
 		on:click={handleOnfocus}
 		on:keydown={null}
-		class="input"
+		class={`input flex-row ${className}`}
 		on:focus={handleOnfocus}
 	>
 		{#if selectedOptions.length === 0}
@@ -92,6 +92,7 @@
 				<Chip data_set_key={option.value.toString()}>{option.label}</Chip>
 			{/each}
 		</div>
+		<slot name="endComponent" />
 	</div>
 	<div data-open={open} class="custom-select">
 		{#if loading}
@@ -128,6 +129,9 @@
 	.select-container {
 		width: 100%;
 		position: relative;
+	}
+	.input.flex-row {
+		align-items: center;
 	}
 
 	.custom-select {
