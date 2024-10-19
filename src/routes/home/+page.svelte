@@ -10,7 +10,7 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 <VideoHero videoSrc="/videos/cover/running.mp4">
-	<slot slot="top-right">
+	<div slot="top-right">
 		<HeroTextBlock>
 			<div>
 				<h2 class="title">Welcome to our fitness community</h2>
@@ -20,7 +20,7 @@
 				</p>
 			</div>
 		</HeroTextBlock>
-	</slot>
+	</div>
 
 	<slot slot="bottom-left">
 		<h2 class="title">Train with us</h2>

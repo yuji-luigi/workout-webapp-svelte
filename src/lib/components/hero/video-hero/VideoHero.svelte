@@ -8,12 +8,12 @@
 		<source src={videoSrc} type="video/mp4" />
 	</video>
 	<div class="hero-content-container">
-		<!-- <div class="hero-content-top-right">
+		<div class="hero-content-top-right">
 			<slot name="top-right">
 				<h1 class="title">Fallback title</h1>
 				<p>Fallback content is shown here</p>
 			</slot>
-		</div> -->
+		</div>
 		<div class="hero-content-bottom-left">
 			<slot name="bottom-left">
 				<h2 class="title">Fallback title</h2>
@@ -71,6 +71,7 @@
 		left: 0;
 		position: absolute;
 		padding: 2rem var(--padding-inline-main);
+		padding-top: calc(var(--sub-header-height) + 2rem);
 		z-index: 1;
 	}
 	.hero-content-bottom-left {
