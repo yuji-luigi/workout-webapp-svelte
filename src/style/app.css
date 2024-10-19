@@ -29,7 +29,7 @@
   /* --bg-dark: #0FA4AF; */
 
   --bg-dark: oklch(17.43% 0.005 196.72);
-  --bg-light: oklch(98.14% 0.0342 99.83);
+  --bg-light: #fefefe;
 
   --bg-light-100: oklch(98.14% 0.0342 99.83);
   --bg-light-200: oklch(88.14% 0.0342 99.83);
@@ -138,15 +138,20 @@
   }
 }
 
+body.dark {
+  color-scheme: dark;
+}
+
 body {
   --bg-color: light-dark(var(--bg-light), var(--bg-dark));
-  background-color: light-dart(var(--bg-light), var(--bg-dark));
+  background-color: var(--bg-color);
   /* background-color: red; */
   color: light-dark(var(--text-color-black), var(--text-color-white));
   font-size: var(--font-size-md);
   --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
   --color-primary: light-dark(var(--color-primary-200), var(--color-primary-500));
 }
+
 
 main {
   &:not(:has(.video-hero)) {

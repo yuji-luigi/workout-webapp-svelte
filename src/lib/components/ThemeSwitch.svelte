@@ -1,6 +1,7 @@
 <script lang="ts">
 	let checkbox: HTMLInputElement;
 	function handleThemeChange() {
+		console.log(checkbox.checked);
 		document.body.classList.toggle('dark');
 	}
 </script>
@@ -15,9 +16,14 @@
 </div>
 
 <style>
+	div {
+		position: relative;
+	}
 	.checkbox {
 		opacity: 0;
+		inset: 0;
 		position: absolute;
+		z-index: 1;
 	}
 
 	.checkbox-label {

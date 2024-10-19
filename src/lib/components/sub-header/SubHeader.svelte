@@ -73,8 +73,11 @@
 
 	.flex-row {
 		grid-column: 3; /* Place the nav in the center */
-		gap: 0.5rem;
 		place-self: end;
+	}
+	.flex-row.icons-white {
+		gap: 1rem;
+		margin-left: 1rem;
 	}
 	.corner {
 		display: flex;
