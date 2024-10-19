@@ -1,8 +1,8 @@
 export function createQueryParams(
 	queryInObject: Record<string, string | number | string[] | number[]> | undefined
-): string | null {
+): string {
 	if (!queryInObject) {
-		return null;
+		return '';
 	}
 	const searchParams = new URLSearchParams();
 	for (const [key, value] of Object.entries(queryInObject)) {
