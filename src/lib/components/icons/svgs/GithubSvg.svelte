@@ -2,7 +2,7 @@
 	export let color: string = 'rgba(0, 0, 0, 0.7);';
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 30 30">
+<svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 30 30">
 	<path
 		fill-rule="evenodd"
 		clip-rule="evenodd"

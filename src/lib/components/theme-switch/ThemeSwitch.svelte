@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import MoonIcon from './MoonIcon.svelte';
+	import SunIcon from './SunIcon.svelte';
 
 	let theme: 'dark' | 'light' | undefined = $state(undefined);
 
@@ -13,16 +15,14 @@
 	}
 	onMount(() => {
 		theme = getSystemTheme();
-		console.log('themeo', theme);
-		console.log('theme', theme);
 	});
 </script>
 
 <div data-theme={theme}>
 	<input checked={theme === 'dark'} type="checkbox" class="checkbox" onchange={handleThemeChange} />
 	<label for="checkbox" class="checkbox-label">
-		<i class="fas fa-moon"></i>
-		<i class="fas fa-sun"></i>
+		<MoonIcon />
+		<SunIcon />
 		<span class="ball"></span>
 	</label>
 </div>

@@ -19,7 +19,7 @@
 
 <style>
 	svg {
-		--size: var(--sub-header-height);
+		--size-svg: var(--sub-header-height);
 		height: calc(var(--size-svg) + 12px);
 		width: calc(var(--size-svg) + 12px);
 	}

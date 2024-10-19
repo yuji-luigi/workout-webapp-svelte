@@ -6,7 +6,7 @@
 	import HamburgerSvg from '../icons/svgs/HamburgerSvg.svelte';
 	import GithubSvg from '../icons/svgs/GithubSvg.svelte';
 	import HamburgerMenu from './HamburgerMenu.svelte';
-	import ThemeSwitch from '../ThemeSwitch.svelte';
+	import ThemeSwitch from '../theme-switch/ThemeSwitch.svelte';
 </script>
 
 <header>

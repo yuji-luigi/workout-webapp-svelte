@@ -231,6 +231,16 @@ fieldset[aria-busy="true"] {
 }
 
 
+.icon-svg {
+  width: 36px;
+  height: 36px;
+}
+
+.icon-svg-sm {
+  width: 16px;
+  height: 16px;
+}
+
 /* 
 .conic_fancy_wrapper {
   --rotate: 0deg;
