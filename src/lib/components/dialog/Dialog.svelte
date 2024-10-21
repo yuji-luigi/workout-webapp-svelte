@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
 	export let dialog: HTMLDialogElement;
 </script>
 
@@ -11,6 +12,8 @@
 <style>
 	dialog {
 		max-width: 600px;
-		border: none;
+	}
+	.card {
+		padding: 0;
 	}
 </style>

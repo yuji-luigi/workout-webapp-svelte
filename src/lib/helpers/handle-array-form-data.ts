@@ -1,4 +1,4 @@
-export function handle_array_form_data(form_data: FormData) {
+export function createFormDataToObject(form_data: FormData) {
 	return form_data
 		.entries()
 		.reduce<

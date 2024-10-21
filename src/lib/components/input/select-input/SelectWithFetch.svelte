@@ -14,7 +14,7 @@
 		endpoint: string;
 		options?: any[];
 		loading?: boolean;
-		fetchOptions: {
+		fetchOptions?: {
 			params: Record<string, string>;
 		};
 	} = $props();
@@ -26,7 +26,7 @@
 			return;
 		}
 
-		const query = createQueryParams(props.fetchOptions.params);
+		const query = createQueryParams(props.fetchOptions?.params);
 		const response = await fetch(endpoint + query);
 		options = await response.json();
 		loading = false;

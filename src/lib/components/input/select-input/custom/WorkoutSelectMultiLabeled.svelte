@@ -30,8 +30,8 @@
 	<slot slot="input">
 		<SelectInputMulti className="fullWidth" {name} {options} {loading}>
 			<slot slot="endComponent">
-				<button class="endComponent_span primary button">
-					<NewWorkoutModalFormOpenButton type="button">+New</NewWorkoutModalFormOpenButton>
+				<button type="button" class="endComponent_span primary button">
+					<NewWorkoutModalFormOpenButton>+New</NewWorkoutModalFormOpenButton>
 				</button>
 			</slot>
 		</SelectInputMulti>

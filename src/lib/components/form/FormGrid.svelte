@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { handle_array_form_data } from '../../helpers/handle-array-form-data';
+	import { createFormDataToObject } from '../../helpers/handle-array-form-data';
 	import { sleep } from '../../helpers/sleep';
 	import InputGrid from '../input/InputGrid.svelte';
 	import NewWorkoutModalFormOpenButton from '../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';

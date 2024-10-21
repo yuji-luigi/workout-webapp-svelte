@@ -3,5 +3,6 @@ interface WorkoutType {
 	id: number; // primary key
 	slug: string;
 	name: string;
+	image_url?: string;
 	description: string;
 }

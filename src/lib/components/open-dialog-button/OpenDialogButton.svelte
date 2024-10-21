@@ -3,6 +3,7 @@
 	import { openDialog } from '../../store/dialog-store';
 	import WorkoutForm from '../form/WorkoutForm.svelte';
 	import ErrorDialogContent from '../dialog/contents/ErrorDialogContent.svelte';
+	5;
 	export let DialogContentComponent: new (...args: any) => SvelteComponent;
 	export let dialogContentProps: any = undefined;
 	function handleOpenDialog(e: MouseEvent) {

@@ -68,7 +68,7 @@
 	</div>
 </div>
 <div class="actions flex-row sm-column">
-	<button class="button">Back</button>
+	<button class="button" on:click={closeDialog}>Back</button>
 	<button on:click={handlePush} class="button">Confirm</button>
 </div>
 

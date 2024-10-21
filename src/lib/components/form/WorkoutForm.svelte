@@ -1,10 +1,17 @@
 <script lang="ts">
+	import { workout_types } from '../../data/ts/workout_type';
 	import { sleep } from '../../helpers/sleep';
 	import InputGrid from '../input/InputGrid.svelte';
 	import SelectInputSingle from '../input/select-input/base/SelectInputSingle.svelte';
+	import SelectSingleGrid from '../input/select-input/SelectSingleGrid.svelte';
 	import SelectWithFetch from '../input/select-input/SelectWithFetch.svelte';
+	import SelectTiles from '../input/select-input/tile/SelectTiles.svelte';
 	import FormGrid from './FormGrid.svelte';
 	let loading = false;
+	const types = [
+		{ value: 0, label: 'HIIT' },
+		{ value: 1, label: 'reps and sets' }
+	];
 
 	async function handleSubmit(event: SubmitEvent) {
 		loading = true;
@@ -25,27 +32,18 @@
 <div class="container">
 	<h3 class="title">Create new workout</h3>
 	<FormGrid {handleSubmit} {loading}>
-		<InputGrid label="Exercise name" name="name" type="text" />
-
-		<InputGrid label="Description" name="slug" type="text" />
+		<InputGrid label="Exercise name" name="name_exercise" type="text" />
+		<InputGrid label="Description" name="description_exercise" type="text" />
 		<InputGrid label="Slug" name="slug" type="text" />
-		<SelectWithFetch name="workout_type" label="Type of workout" />
-		<div class="input-group">
-			<label for="name">Type of workout?</label>
-			<SelectInputSingle
-				name="slug_routine"
-				loading={false}
-				options={[
-					{ value: 0, label: 'HIIT' },
-					{ value: 1, label: 'reps and sets' }
-				]}
-			/>
-		</div>
-
-		<div class="input-group">
-			<label for="name">How many sets?</label>
-			<input type="number" alt="workout routine" name="n_set" />
-		</div>
+		<SelectSingleGrid name="name_workout_type" options={types} label="Type of workout" />
+		<SelectTiles
+			options={workout_types.map((type) => ({
+				...type,
+				label: type.name,
+				value: type.id
+			}))}
+			name="workout_type"
+		/>
 		<div class="input-group">
 			<label for="name">Rest time(sec)</label>
 			<input type="number" name="timer.seconds_rest" />

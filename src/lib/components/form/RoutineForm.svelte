@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { handle_array_form_data } from '../../helpers/handle-array-form-data';
+	import { createFormDataToObject } from '../../helpers/handle-array-form-data';
 	import { sleep } from '../../helpers/sleep';
 	import InputGrid from '../input/InputGrid.svelte';
 	import WorkoutSelectMulti from '../input/select-input/custom/WorkoutSelectMultiLabeled.svelte';
@@ -12,7 +12,7 @@
 	async function handleSubmit(event: SubmitEvent) {
 		loading = true;
 		const form_data = new FormData(event.target as HTMLFormElement);
-		const dto = handle_array_form_data(form_data);
+		const dto = createFormDataToObject(form_data);
 		console.log(dto);
 		await sleep(2000);
 		loading = false;
