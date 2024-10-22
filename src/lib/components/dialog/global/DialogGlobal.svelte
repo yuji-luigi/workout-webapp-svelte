@@ -11,7 +11,7 @@
 		if (dialog.classList.contains('fade-in')) {
 			return;
 		}
-		dialog.classList.remove('fade-out');
+		dialog.classList.remove('closing');
 		dialog.removeEventListener('transitionend', closeModal);
 		dialog.close();
 	};
@@ -23,7 +23,7 @@
 				async (e) => {
 					if (e.target === dialog) {
 						dialog.classList.remove('fade-in');
-						dialog.classList.add('fade-out');
+						dialog.classList.add('closing');
 					}
 				},
 				true

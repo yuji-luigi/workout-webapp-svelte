@@ -45,7 +45,7 @@
   }
 }
 
-dialog.fade-out {
+dialog.closing {
   transform: translate(0, 100%);
 }
 
