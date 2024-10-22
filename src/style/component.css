@@ -41,25 +41,23 @@
 
 @starting-style {
   dialog {
-    opacity: 0;
     transform: translate(0, 100%);
   }
+}
 
-
+dialog.fade-out {
+  transform: translate(0, 100%);
 }
 
 
-
-
-dialog,
+/* dialog, */
 dialog[open]::backdrop {
-  visibility: hidden;
+  background-color: light-dark(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.1));
   opacity: 0;
   transition: visibility 0s linear 0.5s, opacity 0.5s linear;
 }
 
 dialog[open].fade-in::backdrop {
-  transition-delay: 0s;
   background-color: light-dark(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.1));
 }
 
@@ -67,10 +65,11 @@ dialog[open].fade-in,
 dialog[open].fade-in::backdrop {
   opacity: 1;
   visibility: visible;
+
 }
 
 dialog::backdrop {
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(1.5px);
 }
 
 
