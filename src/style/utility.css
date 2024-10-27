@@ -34,3 +34,11 @@
   /* TODO: IMPLEMENT CSS */
   padding-inline: var(--padding-inline-main);
 }
+
+.display-none {
+  display: none !important;
+}
+
+.visibly-hidden {
+  visibility: hidden !important;
+}

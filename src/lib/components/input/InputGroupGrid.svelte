@@ -1,11 +1,22 @@
 <script lang="ts">
-	export let label: string;
-	export let className: string = '';
+	import type { Snippet } from 'svelte';
+
+	let {
+		className = '',
+		label,
+		input,
+		hidden = false
+	}: {
+		hidden?: boolean;
+		input?: Snippet;
+		className?: string;
+		label?: string;
+	} = $props();
 </script>
 
 <div class={`input-group ${className}`}>
-	<label for="name">{label}</label>
-	<slot name="input" />
+	<label {hidden} for="name">{label}</label>
+	{@render input?.()}
 </div>
 
 <style>
@@ -20,11 +31,6 @@
 	}
 
 	@container (max-width: 600px) {
-		form {
-			grid-template-columns: 1fr;
-			max-width: 400px;
-			margin-inline: auto;
-		}
 		.input-group {
 			gap: 0.25rem;
 			justify-items: start;

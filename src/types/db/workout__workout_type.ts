@@ -2,5 +2,5 @@
 export interface Workout__Workout_type {
 	id: number; // primary key
 	id_workout: number; // Foreign key to Workout
-	id_workout_type: number; // Foreign key to Workout type
+	workout_type_id: number; // Foreign key to Workout type
 }

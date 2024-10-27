@@ -42,7 +42,8 @@
       "name": "Chrome/Node",
       "configurations": [
         "server-side",
-        "1.client-side debug"
+        "1.client-side debug",
+        "run-ws"
       ],
       "stopAll": true
     }

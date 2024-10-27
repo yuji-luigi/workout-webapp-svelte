@@ -1,16 +1,16 @@
 [
 	{
 		"id": 1,
-		"id_exercise": 1,
-		"id_created_by": 1
+		"exercise_id": 1,
+		"created_by_id": 1
 	},
 	{
 		"id": 2,
-		"id_exercise": 2
+		"exercise_id": 2
 	},
 	{
 		"id": 3,
 		"id_timer": 2,
-		"id_exercise": 3
+		"exercise_id": 3
 	}
 ]

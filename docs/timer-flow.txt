@@ -31,7 +31,7 @@ Choose timer.
   Problem seconds field is int it should not be a tuple
 
 <Example Abs>
-  starts timer and only countdown. finish and start countdown again. Timer is array of object {name, description, id_exercise, seconds}
+  starts timer and only countdown. finish and start countdown again. Timer is array of object {name, description, exercise_id, seconds}
     name: timer.secondsActive + timer.secondsRest
   Problem seconds field is int it should not be a tuple
 

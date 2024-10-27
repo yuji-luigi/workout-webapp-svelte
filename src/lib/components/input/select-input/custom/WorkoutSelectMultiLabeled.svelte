@@ -5,45 +5,44 @@
 	import type { Option } from '../../../../../types/form/option';
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
 	import NewWorkoutModalFormOpenButton from '../../../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
-	export let loading = true;
-	export let name = 'workouts';
-	export let label = 'Workouts';
-	export let className: string = '';
-
-	let options: Option[] = [];
-	onMount(async () => {
-		await sleep(1000);
-		options = [
-			{ value: 1, label: 'Workout 1' },
-			{ value: 2, label: 'Workout 2' },
-			{ value: 3, label: 'Workout 3' },
-			{ value: 4, label: 'Workout 4' },
-			{ value: 5, label: 'Workout 5' },
-			{ value: 6, label: 'Workout 6' },
-			{ value: 7, label: 'Workout 7' }
-		];
+	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
+	let createdWorkout = null;
+	let {
+		loading,
+		name,
+		label,
+		className
+	}: {
+		loading?: boolean;
+		name?: string;
+		label?: string;
+		className?: string;
+	} = $props();
+	let options: Option[] = $state([]);
+	const socket = new WebSocket('ws://localhost:1234');
+	socket.addEventListener('open', async () => {
+		console.log('connected');
+		await sleep(500);
+		console.log(db_state.workouts);
+		options = db_state.workouts.map((workout) => {
+			return {
+				value: workout.id,
+				label: workout.exercise_name
+			};
+		});
 		loading = false;
 	});
 </script>
 
 <InputGroupGrid {label} {className}>
-	<slot slot="input">
+	{#snippet input()}
 		<SelectInputMulti className="fullWidth" {name} {options} {loading}>
-			<slot slot="endComponent">
-				<button type="button" class="endComponent_span primary button">
-					<NewWorkoutModalFormOpenButton>+New</NewWorkoutModalFormOpenButton>
-				</button>
-			</slot>
+			{#snippet endComponent()}
+				<NewWorkoutModalFormOpenButton {createdWorkout}>+New</NewWorkoutModalFormOpenButton>
+			{/snippet}
 		</SelectInputMulti>
-	</slot>
+	{/snippet}
 </InputGroupGrid>
 
 <style>
-	button {
-		margin-left: auto;
-	}
-	.endComponent_span {
-		padding: 0.25rem 0.5rem;
-		border-radius: 3rem;
-	}
 </style>

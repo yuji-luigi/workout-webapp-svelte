@@ -1,5 +1,5 @@
 export function createConnected() {
-	let connected = $state(0);
+	let connected = $state(false);
 
 	return {
 		get value() {

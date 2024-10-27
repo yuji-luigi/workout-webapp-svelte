@@ -5,4 +5,7 @@ interface WorkoutType {
 	name: string;
 	image_url?: string;
 	description: string;
+	repeat: boolean;
+	useActiveTime: boolean;
+	useRestTime: boolean;
 }

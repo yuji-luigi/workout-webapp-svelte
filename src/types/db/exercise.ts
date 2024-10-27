@@ -1,7 +1,7 @@
-// Type for Set table
+/** Primitive collection (no join needed) */
 export interface Exercise {
 	id: number; // primary key
-	name: number; // Foreign key to Timer
+	name: string; // Foreign key to Timer
 	slug: string;
 	description: string;
 }

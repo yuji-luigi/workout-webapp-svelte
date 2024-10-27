@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte';
 	import { openDialog } from '../../store/dialog-store';
-	import WorkoutForm from '../form/WorkoutForm.svelte';
+	import WorkoutForm from '../form/workout-form/WorkoutForm.svelte';
 	import ErrorDialogContent from '../dialog/contents/ErrorDialogContent.svelte';
 	5;
 	export let DialogContentComponent: new (...args: any) => SvelteComponent;

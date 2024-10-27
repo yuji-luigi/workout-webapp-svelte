@@ -4,20 +4,20 @@
 		"slug": "first-test-routine",
 		"name": "first test routine",
 		"description": "The test",
-		"id_created_by": 1
+		"created_by_id": 1
 	},
 	{
 		"id": 3,
 		"slug": "second-test-routine",
 		"name": "second test routine",
 		"description": "The test",
-		"id_created_by": 1
+		"created_by_id": 1
 	},
 	{
 		"id": 4,
 		"slug": "third-test-routine",
 		"name": "Third test routine",
 		"description": "The test",
-		"id_created_by": 1
+		"created_by_id": 1
 	}
 ]

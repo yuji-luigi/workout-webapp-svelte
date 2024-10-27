@@ -2,7 +2,7 @@
 	{
 		"id": 1,
 		"id_workout": "1",
-		"id_workout_type": "1"
+		"workout_type_id": "1"
 	},
 	{
 		"id": 2,

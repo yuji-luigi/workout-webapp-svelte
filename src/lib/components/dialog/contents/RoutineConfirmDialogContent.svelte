@@ -33,10 +33,10 @@
 		// routine.workout_flows.forEach((workout_flow: WorkoutFlow, iwf: number) => {
 		// 	workout_sets.forEach((set: Workout_set, iws: number) => {
 		// 		const _workout: Workout = workouts.find(
-		// 			(workout: Workout) => workout.id_exercise === set.id_workout
+		// 			(workout: Workout) => workout.exercise_id === set.id_workout
 		// 		);
 		// 		const _exercise = exercises.find(
-		// 			(exercise: Exercise) => exercise.id === _workout.id_exercise
+		// 			(exercise: Exercise) => exercise.id === _workout.exercise_id
 		// 		);
 		// 		const _timer = timers.find((timer: Timer) => timer.id === set.id_timer);
 

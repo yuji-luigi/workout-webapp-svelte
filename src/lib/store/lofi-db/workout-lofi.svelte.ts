@@ -1,44 +1,47 @@
-// This is where most of the interesting stuff lives
-
-import { IndexeddbPersistence } from 'y-indexeddb';
-import { WebsocketProvider } from 'y-websocket';
-
 import * as Y from 'yjs';
-import type { Workout } from '../../../types/db/workout';
+import type { Exercise } from '../../../types/db/exercise';
+import { TypedYMap } from './typed-Ymap';
+import type { WorkoutJoined } from '../../../types/db/workout';
+import { IndexeddbPersistence } from 'y-indexeddb';
+import { get } from 'svelte/store';
 
-const DB_NAME = 'myDB';
 const ydoc = new Y.Doc();
-const roomName = DB_NAME;
-const indexeddbProvider = new IndexeddbPersistence(roomName, ydoc);
-// Connect to the WebSocket server
-const provider = new WebsocketProvider(
-	'ws://localhost:1234', // WebSocket server URL
-	'my-yjs-room', // Room name or document ID
-	ydoc
-);
+const persistence = new IndexeddbPersistence('my-yjs-doc', ydoc);
 
 // Initialize counter
-export const yWorkout = ydoc.getMap<Workout>('workout');
-export const yRoutine = ydoc.getMap('routine');
+export const workoutsY = ydoc.getArray<WorkoutJoined>('workouts');
+export const exercisesY = ydoc.getArray<Exercise>('exercises');
 
 async function create_app_state() {
-	// On create get the value from yWorkout or create one
-	let workoutLocal = $state(yWorkout.get('value'));
-
-	//
-	yWorkout.observeDeep(() => {
-		workoutLocal = yWorkout.get('value');
+	persistence.whenSynced.catch((error) => {
+		throw new Error('IndexedDB not supported');
 	});
+	let _workouts = $state(workoutsY.toArray());
+	let _exercises = $state(exercisesY.toArray());
 
-	indexeddbProvider.whenSynced.then(() => {
-		workoutLocal = yWorkout.get('value');
+	workoutsY.observeDeep(() => {
+		_workouts = workoutsY.toArray();
+	});
+	exercisesY.observeDeep(() => {
+		_exercises = exercisesY.toArray();
 	});
 
 	return {
-		get workoutLocal() {
-			return workoutLocal;
+		// for Map it was working the setter but for Array to discover yet
+		// set workouts(params: Y.Array<WorkoutJoined>) {
+		// 	exercisesY.('workouts', params);
+		// },
+		get workouts() {
+			return _workouts || [];
+		},
+		// for Map it was working the setter but for Array to discover yet
+		// set exercises(params: Y.Array<Exercise>) {
+		// 	yMap.set('exercises', params);
+		// },
+		get exercises() {
+			return _exercises || [];
 		}
 	};
 }
 
-export const workout_state = await create_app_state();
+export const db_state = await create_app_state();

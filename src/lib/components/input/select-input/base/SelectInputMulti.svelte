@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount, onDestroy, type Snippet } from 'svelte';
 	import Chip from '$lib/components/chip/Chip.svelte';
 	import type { Option } from '$types/form/option';
 	export let className: string = '';
 	export let loading = true;
 	export let name;
+	export let endComponent: Snippet | null;
 	let open = false;
 	export let options: Option[] = [];
 	// they are the same the values are the mapped values of selectedOptions to avoid mapping again
 	let selectedOptions: Option[] = [];
 	let selectedValues: string[] = [];
-
 	let selectElement: HTMLSelectElement;
 	let selectContainer: HTMLDivElement;
 
@@ -30,6 +30,7 @@
 		if (event.target instanceof HTMLElement) {
 			const chip = event.target.closest('.chip');
 			if (chip) {
+				event.stopImmediatePropagation();
 				const key = chip.getAttribute('data-key');
 				selectedOptions = selectedOptions.filter((option) => option.value.toString() !== key);
 				selectedValues = selectedOptions.map((option) => option.value.toString());
@@ -47,8 +48,13 @@
 	}
 
 	// Open the dropdown when focusing the input
-	function handleOnfocus(_: FocusEvent) {
-		open = true;
+	function handleOnfocus(event: FocusEvent) {
+		if (
+			event.target instanceof HTMLElement &&
+			event.target.className.includes('select-input-div')
+		) {
+			open = !open;
+		}
 	}
 
 	// Close the dropdown if clicked outside the component
@@ -81,8 +87,7 @@
 		tabindex="0"
 		on:click={handleOnfocus}
 		on:keydown={null}
-		class={`input flex-row ${className}`}
-		on:focus={handleOnfocus}
+		class={`input flex-row select-input-div ${className}`}
 	>
 		{#if selectedOptions.length === 0}
 			Select options
@@ -92,7 +97,7 @@
 				<Chip data_set_key={option.value.toString()}>{option.label}</Chip>
 			{/each}
 		</div>
-		<slot name="endComponent" />
+		{@render endComponent?.()}
 	</div>
 	<div data-open={open} class="custom-select">
 		{#if loading}
@@ -151,7 +156,6 @@
 	.checkbox-label {
 		display: flex;
 		align-items: center;
-		margin-bottom: 0.5rem;
 	}
 
 	input[type='checkbox'] {

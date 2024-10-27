@@ -1,21 +1,23 @@
 // Type for Workout table
 export interface Workout {
 	id: number; // primary key
-	id_exercise: number; // Foreign key to Exercise
-	id_created_by: number;
-	id_workout_type: number; // Foreign key to Workout_Workout_type
+	exercise_id: number; // Foreign key to Exercise
+	created_by_id: number;
+	workout_type_id: number; // Foreign key to Workout_Workout_type
 }
 
 export interface WorkoutJoined {
 	id: number;
 	slug: string;
-	id_exercise: number;
-	id_workout_type: number;
-	name_exercise: string;
-	description_exercise: string;
+	exercise_id: number;
+	exercise_name: string;
+	workout_type_id: number;
+	exercise_description: string;
 	name_workout_type: string; // tabata, hiit, reps_and_sets, ... etc
-	name: string;
 	workout_type: string;
-	id_created_by: number;
-	name_created_by: string;
+	repeat: boolean;
+	useActiveTime: boolean;
+	useRestTime: boolean;
+	created_by_id: number;
+	created_by_name: string;
 }

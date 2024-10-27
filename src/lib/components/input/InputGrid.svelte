@@ -5,12 +5,25 @@
 <script lang="ts">
 	import type { InputType } from '../../../types/input-type';
 	import InputGroupGrid from './InputGroupGrid.svelte';
-	export let label: string;
-	export let name: string;
-	export let type: InputType | 'textarea' | null | undefined = 'text';
-	export let className: string = '';
+
+	let {
+		label,
+		name,
+		type,
+		className,
+		...other
+	}: {
+		label: string;
+		name: string;
+		type: InputType | 'textarea' | null | undefined;
+		className?: string;
+		hidden?: boolean;
+		value?: string | number;
+	} = $props();
 </script>
 
-<InputGroupGrid {label} {className}>
-	<input slot="input" {name} {type} />
+<InputGroupGrid {label} {className} hidden={other.hidden}>
+	{#snippet input()}
+		<input {name} {type} {...other} />
+	{/snippet}
 </InputGroupGrid>

@@ -5,12 +5,11 @@
 	import InputGrid from '../../lib/components/input/InputGrid.svelte';
 	import { createFormDataToObject } from '../../lib/helpers/handle-array-form-data';
 	import { sleep } from '../../lib/helpers/sleep';
-	import { workout_state, yWorkout } from '../../lib/store/lofi-db/workout-lofi.svelte';
+	import { db_state } from '../../lib/store/lofi-db/workout-lofi.svelte';
 	import { createConnected } from '../../lib/store/socket-store.svelte';
 	import type { Workout } from '../../types/db/workout';
 	const connected = createConnected();
 	const socket = new WebSocket('ws://localhost:1234');
-	yWorkout;
 	// Just to toggle the red green status emoji
 	socket?.addEventListener('open', () => connected.setConnected(true));
 	socket?.addEventListener('close', () => connected.setConnected(false));
@@ -20,7 +19,6 @@
 		e.preventDefault();
 		const formData = new FormData(e.target as HTMLFormElement);
 		const data = createFormDataToObject(formData);
-		yWorkout.set('value', data as any as Workout); // no type guard...
 		await sleep(2000);
 	}
 	// Tells YJS to update the counter
@@ -41,9 +39,8 @@
 </FormGrid>
 
 <input bind:this={inputEl} type="text" />
-{workout_state.workoutLocal?.name}
 <pre>
-  {JSON.stringify(workout_state.workoutLocal || '', null, 2)}
+  {JSON.stringify(db_state.workoutLocal || '', null, 4)}
 </pre>
 <p>
 	Websocket connection status: {connected.value ? '🟢' : '🔴'}
