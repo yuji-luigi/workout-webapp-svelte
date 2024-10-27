@@ -5,11 +5,15 @@
 	import NewWorkoutModalFormOpenButton from '../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
 
 	export let loading = false;
-	export let handleSubmit: (event: SubmitEvent) => void;
+	export let handleSubmit: (event: SubmitEvent) => Promise<void>;
 	async function onsubmit(event: SubmitEvent) {
-		loading = true;
-		handleSubmit(event);
-		await sleep(2000);
+		try {
+			loading = true;
+			await handleSubmit(event);
+			await sleep(2000);
+		} catch (error) {
+			throw new Error(error);
+		}
 		loading = false;
 	}
 </script>

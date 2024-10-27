@@ -112,6 +112,7 @@
 		{#each options as option}
 			<label class="checkbox-label">
 				<input
+					class="select-checkbox"
 					type="checkbox"
 					value={option.value}
 					checked={selectedValues.includes(String(option.value))}
@@ -123,7 +124,7 @@
 	</div>
 
 	<!-- Hidden select element for form submission -->
-	<select {name} multiple bind:this={selectElement} hidden>
+	<select class="workouts-select" {name} multiple bind:this={selectElement} hidden>
 		{#each options as option}
 			<option value={option.value}>{option.label}</option>
 		{/each}

@@ -21,9 +21,7 @@
 	let options: Option[] = $state([]);
 	const socket = new WebSocket('ws://localhost:1234');
 	socket.addEventListener('open', async () => {
-		console.log('connected');
 		await sleep(500);
-		console.log(db_state.workouts);
 		options = db_state.workouts.map((workout) => {
 			return {
 				value: workout.id,
@@ -31,6 +29,17 @@
 			};
 		});
 		loading = false;
+	});
+	$effect(() => {
+		options = db_state.workouts.map((workout) => {
+			return {
+				value: workout.id,
+				label: workout.exercise_name
+			};
+		});
+		return () => {
+			socket.close();
+		};
 	});
 </script>
 

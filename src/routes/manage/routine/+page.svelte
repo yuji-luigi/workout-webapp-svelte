@@ -1,6 +1,6 @@
 <script lang="ts">
 	import FormGrid from '../../../lib/components/form/FormGrid.svelte';
-	import RoutineForm from '../../../lib/components/form/RoutineForm.svelte';
+	import RoutineForm from '../../../lib/components/form/routine-form/RoutineForm.svelte';
 	import InputGrid from '../../../lib/components/input/InputGrid.svelte';
 	import { createFormDataToObject } from '../../../lib/helpers/handle-array-form-data';
 	import { sleep } from '../../../lib/helpers/sleep';

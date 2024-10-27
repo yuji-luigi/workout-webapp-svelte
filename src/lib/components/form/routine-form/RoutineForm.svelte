@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { createFormDataToObject } from '../../helpers/handle-array-form-data';
-	import { sleep } from '../../helpers/sleep';
-	import InputGrid from '../input/InputGrid.svelte';
-	import WorkoutSelectMulti from '../input/select-input/custom/WorkoutSelectMultiLabeled.svelte';
-	import SelectMultiGrid from '../input/select-input/SelectMultiGrid.svelte';
-	import NewWorkoutModalFormOpenButton from '../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
-	import FormGrid from './FormGrid.svelte';
+	import { createFormDataToObject } from '../../../helpers/handle-array-form-data';
+	import { sleep } from '../../../helpers/sleep';
+	import InputGrid from '../../input/InputGrid.svelte';
+	import WorkoutSelectMulti from '../../input/select-input/custom/WorkoutSelectMultiLabeled.svelte';
+	import SelectMultiGrid from '../../input/select-input/SelectMultiGrid.svelte';
+	import NewWorkoutModalFormOpenButton from '../../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
+	import FormGrid from '../FormGrid.svelte';
+	import WorkoutSetsInput from './WorkoutSetsInput.svelte';
 
 	let loading = false;
 	function handleArrayFormData(form_data: FormData) {}
@@ -28,6 +29,7 @@
 		<InputGrid label="Image" name="image" type="file" />
 
 		<WorkoutSelectMulti />
+		<WorkoutSetsInput />
 
 		<div class="fullWidth flex-column button-div">
 			<button class="button" type="submit">Submit</button>

@@ -38,10 +38,7 @@
 
 <div class="container">
 	<h3 class="title">Create new workout</h3>
-	<pre>
-   workouts: {JSON.stringify(db_state.workouts || 'no data', null, 2)}
-    exercises: {JSON.stringify(db_state.exercises || 'no data', null, 2)}
-   </pre>
+
 	<FormGrid {handleSubmit} {loading}>
 		<InputGrid
 			label="Id"
