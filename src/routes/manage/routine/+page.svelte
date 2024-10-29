@@ -4,6 +4,7 @@
 	import InputGrid from '../../../lib/components/input/InputGrid.svelte';
 	import { createFormDataToObject } from '../../../lib/helpers/handle-array-form-data';
 	import { sleep } from '../../../lib/helpers/sleep';
+	import { db_state, routinesY } from '../../../lib/store/lofi-db/workout-lofi.svelte';
 	let loading = false;
 	async function handleSubmit(event: SubmitEvent) {
 		loading = true;
@@ -16,6 +17,20 @@
 </script>
 
 <RoutineForm />
+<table>
+	<tbody>
+		<tr>
+			<th>name</th>
+			<th>id</th>
+		</tr>
+		{#each db_state.routines as routine}
+			<tr>
+				<td>{routine.exercise_name}</td>
+				<td>{routine.id}</td>
+			</tr>
+		{/each}
+	</tbody>
+</table>
 
 <style>
 </style>

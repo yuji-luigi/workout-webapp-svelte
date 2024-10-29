@@ -7,7 +7,9 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
+		interface PageParams {
+			collection: 'my_collection';
+		}
 	}
 }
-
 export {};

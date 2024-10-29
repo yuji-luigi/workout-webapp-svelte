@@ -10,5 +10,8 @@ interface Routine {
 }
 
 interface RoutineJoined extends Routine {
+	name: string;
+	description: string;
+	image_url;
 	workouts: WorkoutJoined[];
 }

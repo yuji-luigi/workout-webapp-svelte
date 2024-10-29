@@ -3,19 +3,20 @@
 	import InputGroupGrid from '../../input/InputGroupGrid.svelte';
 	let { className = '', name = '', type = 'number', ...other } = $props();
 	let selectedWorkouts = [];
+	let selectEls: HTMLInputElement[] | undefined;
 	function handleSelectChange(event: Event) {
 		const target = event.target as HTMLSelectElement;
 		selectedWorkouts = Array.from(target.selectedOptions).map((option) => option.value);
-		console.log('Updated selected workouts:', selectedWorkouts);
 	}
 	onMount(() => {
-		const selectEl = document.querySelectorAll('input.select-checkbox') as HTMLInputElement[];
-		console.log('selectEl:', selectEl);
-		selectEl.forEach((el) => addEventListener('', handleSelectChange));
+		selectEls = document.querySelectorAll('input.select-checkbox') as unknown as
+			| HTMLInputElement[]
+			| undefined;
+		selectEls?.forEach((el) => addEventListener('', handleSelectChange));
 	});
 	onDestroy(() => {
 		// Remove the event listener when the component is destroyed
-		selectElement.removeEventListener('change', handleSelectChange);
+		selectEls?.forEach((el) => el.removeEventListener('change', handleSelectChange));
 	});
 </script>
 
