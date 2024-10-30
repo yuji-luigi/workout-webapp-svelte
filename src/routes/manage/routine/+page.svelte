@@ -17,20 +17,6 @@
 </script>
 
 <RoutineForm />
-<table>
-	<tbody>
-		<tr>
-			<th>name</th>
-			<th>id</th>
-		</tr>
-		{#each db_state.routines as routine}
-			<tr>
-				<td>{routine.exercise_name}</td>
-				<td>{routine.id}</td>
-			</tr>
-		{/each}
-	</tbody>
-</table>
 
 <style>
 </style>

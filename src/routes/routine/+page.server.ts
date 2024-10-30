@@ -1,9 +1,12 @@
 import { json } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import * as jsons from '$lib/data/json';
 
 export const load: PageServerLoad = async ({ fetch }) => {
-	const rawRoutines = await fetch('/src/data/routine.json');
-	const routines = await rawRoutines.json();
-
-	return { routines };
+	try {
+		return { routines: jsons.routines };
+	} catch (err) {
+		console.error(err);
+		return { routines: [] };
+	}
 };

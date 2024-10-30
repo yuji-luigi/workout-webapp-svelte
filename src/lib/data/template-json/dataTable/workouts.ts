@@ -1,4 +1,6 @@
-export const workoutTable = [
+import type { FormTableField } from '../../../../types/form/table-def';
+
+export const workoutFormTable: FormTableField[] = [
 	{
 		name: 'id',
 		label: 'ID',
@@ -7,37 +9,49 @@ export const workoutTable = [
 	{
 		name: 'slug',
 		label: 'Slug',
-		type: 'text'
+		type: 'text',
+		tableConfig: {
+			hidden: true
+		}
 	},
 	{
 		name: 'exercise_id',
 		label: 'Exercise ID',
-		type: 'number'
+		type: 'number',
+		tableConfig: {
+			hidden: true
+		}
 	},
 	{
 		name: 'exercise_name',
-		label: 'Exercise Name',
+		label: 'Name',
 		type: 'text'
 	},
 	{
 		name: 'workout_type_id',
 		label: 'Workout Type ID',
-		type: 'number'
+		type: 'number',
+		tableConfig: {
+			hidden: true
+		}
 	},
 	{
 		name: 'exercise_description',
-		label: 'Exercise Description',
+		label: 'Description',
 		type: 'text'
 	},
 	{
 		name: 'name_workout_type',
-		label: 'Workout Type Name',
+		label: 'Workout Type',
 		type: 'text'
 	},
 	{
 		name: 'workout_type',
 		label: 'Workout Type',
-		type: 'text'
+		type: 'text',
+		tableConfig: {
+			hidden: true
+		}
 	},
 	{
 		name: 'repeat',
@@ -47,17 +61,26 @@ export const workoutTable = [
 	{
 		name: 'useActiveTime',
 		label: 'Use Active Time',
-		type: 'boolean'
+		type: 'boolean',
+		tableConfig: {
+			hidden: true
+		}
 	},
 	{
 		name: 'useRestTime',
 		label: 'Use Rest Time',
-		type: 'boolean'
+		type: 'boolean',
+		tableConfig: {
+			hidden: true
+		}
 	},
 	{
 		name: 'created_by_id',
 		label: 'Created By ID',
-		type: 'number'
+		type: 'number',
+		tableConfig: {
+			hidden: true
+		}
 	},
 	{
 		name: 'created_by_name',

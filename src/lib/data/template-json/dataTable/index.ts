@@ -1,1 +1,1 @@
-export { workoutTable as workout } from './workouts';
+export { workoutFormTable as workout } from './workouts';
