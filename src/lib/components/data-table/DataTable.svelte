@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FormTableField } from '../../../types/form/table-def';
+	import type { FormTableField } from '../../../types/form/form-table-field';
 
 	let {
 		list,

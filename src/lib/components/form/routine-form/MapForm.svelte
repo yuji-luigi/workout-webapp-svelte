@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { FormTableField } from '../../../../types/form/table-def';
+	import type { FormTableField } from '../../../../types/form/form-table-field';
 	import { createFormDataToObject } from '../../../helpers/handle-array-form-data';
 	import { sleep } from '../../../helpers/sleep';
-	import InputController from '../../input/InputController.svelte';
+	import InputController from '../../input/input-controller/InputController.svelte';
 	import FormGrid from '../FormGrid.svelte';
 
 	let { formTableFields }: { formTableFields: FormTableField[] } = $props();

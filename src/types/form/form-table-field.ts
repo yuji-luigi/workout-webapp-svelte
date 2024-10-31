@@ -5,7 +5,7 @@ export type FormTableField = {
 	label: string;
 	multiple?: boolean;
 	/** shared type with table cell and input. inputConfig field and tableConfig for specific setting for each view*/
-	type: 'text' | 'number' | 'boolean';
+	type: InputType;
 	/** only for select kinds with static options */
 	options?: Option[];
 	formFieldConfig?: InputConfig;
@@ -25,7 +25,8 @@ type InputType =
 	| 'text'
 	| 'number'
 	| 'boolean'
-	| 'select'
+	| 'select-single'
+	| 'multi-select'
 	| 'static-select'
 	| 'radio'
 	| 'checkbox'
@@ -40,3 +41,7 @@ type InputType =
 	| 'tel'
 	| 'url'
 	| 'textarea';
+
+export function isInputKey(key: string): key is InputKey {
+	return key in Inputs;
+}

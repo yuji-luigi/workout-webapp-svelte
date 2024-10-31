@@ -1,4 +1,4 @@
-import type { FormTableField } from '../../../../types/form/table-def';
+import type { FormTableField } from '../../../../types/form/form-table-field';
 
 export const workoutFormTable: FormTableField[] = [
 	{
