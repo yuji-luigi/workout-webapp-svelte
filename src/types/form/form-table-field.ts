@@ -11,6 +11,7 @@ export type FormTableField = {
 	options?: Option[];
 	formFieldConfig?: InputConfig;
 	tableConfig?: InputConfig;
+	hidden?: boolean; // hidden in table + form
 	// only when type is 'id-input'
 	collection?: Collection; //! can be circular dependency. watch out
 };

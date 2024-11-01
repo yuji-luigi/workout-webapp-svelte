@@ -1,10 +1,10 @@
 <script lang="ts">
-	import FormGrid from '../../../lib/components/form/FormGrid.svelte';
-	import RoutineForm from '../../../lib/components/form/routine-form/RoutineForm.svelte';
-	import InputGrid from '../../../lib/components/input/InputGrid.svelte';
-	import { createFormDataToObject } from '../../../lib/helpers/handle-array-form-data';
-	import { sleep } from '../../../lib/helpers/sleep';
-	import { db_state, routinesY } from '../../../lib/store/lofi-db/workout-lofi.svelte';
+	import FormGrid from '$lib/components/form/FormGrid.svelte';
+	import RoutineForm from '$lib/components/form/routine-form/RoutineForm.svelte';
+	import InputGrid from '$lib/components/input/InputGrid.svelte';
+	import { createFormDataToObject } from '$lib/helpers/handle-array-form-data';
+	import { sleep } from '$lib/helpers/sleep';
+	import { db_state, routinesY } from '$lib/store/lofi-db/workout-lofi.svelte';
 	let loading = false;
 	async function handleSubmit(event: SubmitEvent) {
 		loading = true;

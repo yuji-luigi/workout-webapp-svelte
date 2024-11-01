@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { createFormDataToObject } from '../../../helpers/handle-array-form-data';
-	import { sleep } from '../../../helpers/sleep';
-	import InputGrid from '../../input/InputGrid.svelte';
-	import WorkoutSelectMulti from '../../input/select-input/custom/WorkoutSelectMultiLabeled.svelte';
-	import SelectMultiGrid from '../../input/select-input/SelectMultiGrid.svelte';
-	import NewWorkoutModalFormOpenButton from '../../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
-	import FormGrid from '../FormGrid.svelte';
+	import { createFormDataToObject } from '$lib/helpers/handle-array-form-data';
+	import { sleep } from '$lib/helpers/sleep';
+	import InputGrid from '$lib/components/input/InputGrid.svelte';
+	import WorkoutSelectMulti from '$lib/components/input/select-input/custom/WorkoutSelectMultiLabeled.svelte';
+	import FormGrid from '$lib/components/form/FormGrid.svelte';
 	import WorkoutSetsInput from './WorkoutSetsInput.svelte';
 
 	let loading = false;

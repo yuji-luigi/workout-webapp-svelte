@@ -10,14 +10,14 @@
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "bundler",
-    "paths": {
-      "$types/*": [
-        "./src/types/*"
-      ], // Add the alias for TypeScript to recognize it
-      "$lib/*": [
-        "./src/lib/*"
-      ]
-    }
+    // "paths": {
+    //   "$types/*": [
+    //     "./src/types/*"
+    //   ], // Add the alias for TypeScript to recognize it
+    //   "$lib/*": [
+    //     "./src/lib/*"
+    //   ]
+    // }
   }
   // Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
   // except $lib which is handled by https://kit.svelte.dev/docs/configuration#files

@@ -3,6 +3,7 @@
 	import type { WorkoutJoined } from '../../../types/db/workout';
 	import { handleOpenDialog } from '../dialog/helper/handleOpenDialog';
 	import WorkoutForm from '../form/workout-form/WorkoutForm.svelte';
+	import { closeDialog } from '../../store/dialog-store';
 	let { createdWorkout, children }: { createdWorkout: null | WorkoutJoined; children?: any } =
 		$props();
 </script>
@@ -11,7 +12,12 @@
 	type="button"
 	onclick={(e) =>
 		handleOpenDialog(e, {
-			DialogContentComponent: WorkoutForm
+			DialogContentComponent: WorkoutForm,
+			dialogContentProps: {
+				onSubmitCallback: (data: any) => {
+					closeDialog();
+				}
+			}
 		})}
 	class="button primary"
 >

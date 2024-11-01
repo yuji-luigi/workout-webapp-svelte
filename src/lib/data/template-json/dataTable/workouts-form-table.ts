@@ -19,6 +19,7 @@ export const workoutFormTable: FormTableField[] = [
 		label: 'Exercise ID',
 		type: 'id-input',
 		collection: 'exercise',
+		hidden: true,
 		tableConfig: {
 			hidden: true
 		}

@@ -1,17 +1,25 @@
 <script lang="ts">
+	import type { ResolveFn } from 'vite';
 	import type { WorkoutJoined } from '../../../../types/db/workout';
 	import { workout_types } from '../../../data/ts/workout_type';
 	import { sleep } from '../../../helpers/sleep';
 	import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
 	// import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
 	import InputGrid from '../../input/InputGrid.svelte';
-	import SelectInputSingle from '../../input/select-input/base/SelectInputSingle.svelte';
-	import SelectSingleGrid from '../../input/select-input/SelectSingleGrid.svelte';
-	import SelectWithFetch from '../../input/select-input/SelectWithFetch.svelte';
 	import SelectTiles from '../../input/select-input/tile/SelectTiles.svelte';
 	import FormGrid from '../FormGrid.svelte';
-	import { handleSaveWorkoutLocally, type WorkoutFormData } from './saveJoinedWorkout.svelte';
+	import { handleSaveWorkoutLocally } from './saveJoinedWorkout.svelte';
+	let {
+		onSubmitCallback,
+		resolve,
+		reject
+	}: {
+		resolve?: (param: any) => void;
+		reject?: (param: any) => void;
+		onSubmitCallback?: (formData: FormData) => void;
+	} = $props() as any;
 	let loading = false;
+
 	const types = [
 		{ value: 0, label: 'HIIT' },
 		{ value: 1, label: 'reps and sets' }
@@ -21,17 +29,19 @@
 		console.log('connected');
 	});
 	// save exercise + timer + joined workout
-	async function handleSubmit(event: SubmitEvent) {
+	async function handleSubmit(event: SubmitEvent & { target: HTMLFormElement }) {
 		loading = true;
 		const formData = new FormData(event.target as HTMLFormElement);
 		const data = Object.fromEntries(formData.entries()) as unknown as WorkoutJoined;
-
 		try {
+			console.log(data);
 			handleSaveWorkoutLocally(data);
-		} catch (error) {
+			await sleep(750);
+			event.target?.reset();
+			onSubmitCallback && onSubmitCallback(data);
+		} catch (error: any) {
 			throw new Error(error);
 		}
-		await sleep(2000);
 		loading = false;
 	}
 </script>

@@ -221,6 +221,8 @@ input, textarea, select, div.input {
     outline: none;
     border: 1px solid var(--accent-color);
   }
+
+
 }
 
 /* Chrome, Safari, Edge, Opera */
