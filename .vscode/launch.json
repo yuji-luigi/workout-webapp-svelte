@@ -30,12 +30,12 @@
       "request": "launch",
       "command": "npm run dev"
     },
-    {
-      "name": "run-ws",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "npx y-websocket-server"
-    },
+    // {
+    //   "name": "run-ws",
+    //   "type": "node-terminal",
+    //   "request": "launch",
+    //   "command": "npx y-websocket-server"
+    // },
   ],
   "compounds": [
     {
@@ -43,8 +43,8 @@
       "configurations": [
         "server-side",
         "1.client-side debug",
-        "run-ws"
       ],
+      "preLaunchTask": "npx run websocket",
       "stopAll": true
     }
   ]

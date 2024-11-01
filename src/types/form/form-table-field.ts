@@ -1,3 +1,4 @@
+import type { Collection } from '../db/collections';
 import type { Option } from './option';
 
 export type FormTableField = {
@@ -10,6 +11,8 @@ export type FormTableField = {
 	options?: Option[];
 	formFieldConfig?: InputConfig;
 	tableConfig?: InputConfig;
+	// only when type is 'id-input'
+	collection?: Collection; //! can be circular dependency. watch out
 };
 
 export type InputConfig = {
@@ -20,6 +23,8 @@ export type TableConfig = {
 	type?: string;
 	hidden?: boolean;
 };
+
+type SharedInputType = InputType | 'id-input';
 
 type InputType =
 	| 'text'
@@ -40,7 +45,9 @@ type InputType =
 	| 'email'
 	| 'tel'
 	| 'url'
-	| 'textarea';
+	| 'textarea'
+	// can be only for input
+	| 'id-input';
 
 export function isInputKey(key: string): key is InputKey {
 	return key in Inputs;

@@ -7,11 +7,13 @@ import { get } from 'svelte/store';
 import type { Collection } from '../../../types/db/collections';
 
 export const db_state_fields = ['routines', 'workouts', 'exercises'] as const;
+
 export const db_state_enum = {
 	workout: 'workouts',
 	exercise: 'exercises',
 	routine: 'routines'
 } as const;
+
 export type DBStateField = (typeof db_state_fields)[number];
 
 const ydoc = new Y.Doc();

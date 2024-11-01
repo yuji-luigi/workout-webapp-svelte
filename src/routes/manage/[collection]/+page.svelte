@@ -11,7 +11,7 @@
 	} from '../../../lib/store/lofi-db/workout-lofi.svelte';
 	import type { Collection } from '../../../types/db/collections';
 	import DataTable from '../../../lib/components/data-table/DataTable.svelte';
-	import MapForm from '../../../lib/components/form/routine-form/MapForm.svelte';
+	import MapForm from '../../../lib/components/form/routine-form/JsonForm.svelte';
 	let loading = false;
 	const collectionP = $page.params.collection as Collection;
 	// TODO: type the page.params.collection

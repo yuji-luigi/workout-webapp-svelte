@@ -1,7 +1,7 @@
 export const collections = [
-	'workout'
-	// 'exercise',
-	// 'routine',
+	'workout',
+	'exercise',
+	'routine'
 	// 'workout_type',
 	// 'workout_workout_type',
 	// 'timer'

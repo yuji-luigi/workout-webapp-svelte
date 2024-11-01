@@ -6,6 +6,12 @@
       "label": "npm run dev",
       "command": "npm run dev",
       "isBackground": true
+    },
+    {
+      "type": "shell",
+      "label": "npx run websocket",
+      "command": "npx y-websocket-server",
+      "isBackground": true
     }
   ]
 }
