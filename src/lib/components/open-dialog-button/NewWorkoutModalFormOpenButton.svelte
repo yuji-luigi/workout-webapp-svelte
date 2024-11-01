@@ -19,7 +19,7 @@
 				}
 			}
 		})}
-	class="button primary"
+	class="button"
 >
 	{@render children?.()}</button
 >
