@@ -7,6 +7,7 @@
 	import WorkoutSetsInput from './WorkoutSetsInput.svelte';
 
 	let loading = false;
+	const form_id = 'routine-form';
 	function handleArrayFormData(form_data: FormData) {}
 	async function handleSubmit(event: SubmitEvent) {
 		loading = true;
@@ -20,14 +21,14 @@
 
 <div class="container">
 	<h3>Create a new routine</h3>
-	<FormGrid {handleSubmit} {loading}>
+	<FormGrid {handleSubmit} {loading} {form_id}>
 		<InputGrid label="Name of the routine" name="name" type="text" />
 		<InputGrid label="Slug of the routine(shown in url)" name="slug" type="text" />
 		<InputGrid label="Description" name="description" type="text" />
 		<InputGrid label="Image" name="image" type="file" />
 
 		<WorkoutSelectMulti name="workouts" label="workouts" />
-		<WorkoutSetsInput />
+		<WorkoutSetsInput {form_id} />
 
 		<div class="fullWidth flex-column button-div">
 			<button class="button" type="submit">Submit</button>

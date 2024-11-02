@@ -16,7 +16,6 @@
 
 	function toggleSelection(selected: Option) {
 		const { value } = selected;
-
 		if (selectedValues.includes(String(value))) {
 			selectedOptions = selectedOptions.filter((selected) => selected.value !== value);
 		} else {

@@ -20,7 +20,6 @@
 		hidden?: boolean;
 		value?: string | number;
 	} = $props();
-	console.log('InputGrid', { label, name, type, className, other });
 </script>
 
 <InputGroupGrid {label} {className} hidden={other.hidden}>

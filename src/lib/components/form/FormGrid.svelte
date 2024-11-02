@@ -5,12 +5,14 @@
 		loading,
 		className,
 		handleSubmit,
-		children
+		children,
+		form_id = ''
 	}: {
 		loading?: boolean;
 		className?: string | undefined;
 		handleSubmit?: (event: SubmitEvent) => Promise<void>;
 		children?: any;
+		form_id?: string;
 	} = $props();
 	async function onsubmit(event: SubmitEvent) {
 		try {
@@ -26,9 +28,15 @@
 
 <div class={className}>
 	<fieldset disabled={loading} aria-busy={loading}>
-		<form {onsubmit}>
-			{@render children?.()}
-		</form>
+		{#if form_id}
+			<form id={form_id} {onsubmit}>
+				{@render children?.()}
+			</form>
+		{:else}
+			<form {onsubmit}>
+				{@render children?.()}
+			</form>
+		{/if}
 	</fieldset>
 </div>
 

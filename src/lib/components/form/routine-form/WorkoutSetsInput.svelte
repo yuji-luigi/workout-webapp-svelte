@@ -1,27 +1,37 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import InputGroupGrid from '../../input/InputGroupGrid.svelte';
-	let { className = '', name = '', type = 'number', ...other } = $props();
-	let selectedWorkouts = [];
-	let selectEls: HTMLInputElement[] | undefined;
-	function handleSelectChange(event: Event) {
-		const target = event.target as HTMLSelectElement;
-		selectedWorkouts = Array.from(target.selectedOptions).map((option) => option.value);
-	}
+	import { createFormDataToObject } from '../../../helpers/handle-array-form-data';
+	import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
+	import type { RoutineJoined } from '../../../../types/db/routine';
+	import type { WorkoutJoined } from '../../../../types/db/workout';
+	let {
+		className = '',
+		name = '',
+		type = 'number',
+		form_id,
+		...other
+	}: {
+		className?: string;
+		name?: string;
+		type?: string;
+		form_id: string;
+	} = $props();
+	const { workouts } = db_state;
+	let selected_workouts: WorkoutJoined[] = $state([]);
 	onMount(() => {
-		selectEls = document.querySelectorAll('input.select-checkbox') as unknown as
-			| HTMLInputElement[]
-			| undefined;
-		selectEls?.forEach((el) => addEventListener('', handleSelectChange));
-	});
-	onDestroy(() => {
-		// Remove the event listener when the component is destroyed
-		selectEls?.forEach((el) => el.removeEventListener('change', handleSelectChange));
+		const form = document.getElementById(form_id) as HTMLFormElement;
+		form?.addEventListener('input', (e) => {
+			const form_data = new FormData(form);
+			const dto = createFormDataToObject(form_data) as any;
+			selected_workouts = workouts.filter((workout: WorkoutJoined) =>
+				dto.workouts.includes(workout.id)
+			);
+			console.log(selected_workouts.map((a) => a.exercise_name));
+		});
 	});
 </script>
 
-<InputGroupGrid label="Timer setting for workouts" {className} hidden={false}>
-	{#snippet input()}
-		<input {name} {type} {...other} />
-	{/snippet}
-</InputGroupGrid>
+{#each selected_workouts as workout (workout.id)}
+	{workout.exercise_name}
+{/each}
