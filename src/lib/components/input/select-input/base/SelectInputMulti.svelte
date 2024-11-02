@@ -51,7 +51,8 @@
 	function handleOnfocus(event: FocusEvent) {
 		if (
 			event.target instanceof HTMLElement &&
-			event.target.className.includes('select-input-div')
+			(event.target.className.includes('select-input-div') ||
+				event.target.parentElement?.classList.contains('select-input-div'))
 		) {
 			open = !open;
 		}
