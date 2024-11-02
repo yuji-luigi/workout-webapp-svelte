@@ -16,13 +16,14 @@
 
 	function toggleSelection(selected: Option) {
 		const { value } = selected;
+		//TODO: SEE  if all of these lines are necessary.
 		if (selectedValues.includes(String(value))) {
 			selectedOptions = selectedOptions.filter((selected) => selected.value !== value);
 		} else {
 			selectedOptions = [...selectedOptions, selected];
 		}
 		selectedValues = selectedOptions.map((selected) => selected.value.toString());
-		updateSelectOptions();
+		updateSelectOptions(); // TODO:  See if necessary
 	}
 
 	function removeSelectOption(event: MouseEvent) {
@@ -30,7 +31,7 @@
 			const chip = event.target.closest('.chip');
 			if (chip) {
 				event.stopImmediatePropagation();
-				const key = chip.getAttribute('data-key'); // key is the value of the option.
+				const key = chip.getAttribute('data-key'); // key is the value of the option. data-key is in the chip component
 				// selectedOptions = selectedOptions.filter((option) => option.value.toString() !== key);
 				// selectedValues = selectedOptions.map((option) => option.value.toString());
 				// updateSelectOptions();
