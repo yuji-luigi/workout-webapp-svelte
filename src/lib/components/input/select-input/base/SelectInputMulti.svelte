@@ -30,10 +30,24 @@
 			const chip = event.target.closest('.chip');
 			if (chip) {
 				event.stopImmediatePropagation();
-				const key = chip.getAttribute('data-key');
-				selectedOptions = selectedOptions.filter((option) => option.value.toString() !== key);
-				selectedValues = selectedOptions.map((option) => option.value.toString());
-				updateSelectOptions();
+				const key = chip.getAttribute('data-key'); // key is the value of the option.
+				// selectedOptions = selectedOptions.filter((option) => option.value.toString() !== key);
+				// selectedValues = selectedOptions.map((option) => option.value.toString());
+				// updateSelectOptions();
+				// from here I am trying to trigger the form input event to update the selected_workouts in the form.
+				const checkbox = document.querySelector(
+					`.select-checkbox[value="${key}"]`
+				) as HTMLInputElement;
+				if (checkbox) {
+					// Uncheck the checkbox
+					checkbox.checked = false;
+					// Optionally, you might want to trigger a change event as well
+					const changeEvent = new Event('change', { bubbles: true });
+					checkbox.dispatchEvent(changeEvent);
+					// Create and dispatch the input event
+					const inputEvent = new Event('input', { bubbles: true });
+					checkbox.dispatchEvent(inputEvent);
+				}
 			}
 		}
 	}

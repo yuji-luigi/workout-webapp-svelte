@@ -29,10 +29,6 @@
 
 		<WorkoutSelectMulti name="workouts" label="workouts" />
 		<WorkoutSetsInput {form_id} />
-
-		<div class="fullWidth flex-column button-div">
-			<button class="button" type="submit">Submit</button>
-		</div>
 	</FormGrid>
 </div>
 

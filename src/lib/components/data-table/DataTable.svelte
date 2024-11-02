@@ -8,7 +8,6 @@
 		list: any[];
 		formTableFields: FormTableField[];
 	} = $props();
-	console.log({ list });
 </script>
 
 <table>
