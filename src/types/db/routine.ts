@@ -1,7 +1,8 @@
 import type { WorkoutJoined } from './workout';
+import type { WorkoutSetJoined } from './workout-set';
 
 // Type for Routine table
-interface Routine {
+export interface Routine {
 	id: number; // primary key
 	slug: string;
 	name: string;
@@ -9,9 +10,9 @@ interface Routine {
 	image?: string;
 }
 
-interface RoutineJoined extends Routine {
+export interface RoutineJoined extends Routine {
 	name: string;
 	description: string;
-	image_url;
-	workouts: WorkoutJoined[];
+	sets: WorkoutSetJoined[];
+	image_url?: string;
 }

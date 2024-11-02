@@ -6,6 +6,7 @@ interface WorkoutType {
 	image_url?: string;
 	description: string;
 	repeat: boolean;
+	// these two can make some complexity
 	useActiveTime: boolean;
 	useRestTime: boolean;
 }

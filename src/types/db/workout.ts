@@ -16,8 +16,25 @@ export interface WorkoutJoined {
 	name_workout_type: string; // tabata, hiit, reps_and_sets, ... etc
 	workout_type: string;
 	repeat: boolean;
-	useActiveTime: boolean;
-	useRestTime: boolean;
 	created_by_id: number;
 	created_by_name: string;
 }
+
+/**
+ * example
+ * exercise is the smallest unit of exercise.
+ *
+ * can be
+ * 1. wide hollow pullup
+ * 2. wide arched pullup
+ * 3. narrow hollow pullup
+ * 4. narrow arched pullup
+ * ...etc, with description
+ * Workout is a exercise with type of workout.
+ * example.
+ * 1. wide hollow pullup amrap
+ * 2. wide arched pullup HIIT
+ * 3. narrow hollow pullup reps_and_sets
+ * 4. narrow arched pullup  reps_and_sets
+ *
+ * */
