@@ -27,8 +27,7 @@
 		<InputGrid label="Description" name="description" type="text" />
 		<InputGrid label="Image" name="image" type="file" />
 
-		<WorkoutSelectMulti name="workouts" label="workouts" />
-		<WorkoutSetsInput {form_id} />
+		<WorkoutSelectMulti name="workouts" label="workouts" {form_id} />
 	</FormGrid>
 </div>
 

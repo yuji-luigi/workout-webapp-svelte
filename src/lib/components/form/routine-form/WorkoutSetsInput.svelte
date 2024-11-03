@@ -41,7 +41,7 @@
 		});
 		selected_workouts = _selected_workouts;
 		console.log({
-			dto: dto.workouts,
+			dto,
 			_selected_workouts,
 			workoutDB: workouts
 		});
@@ -57,7 +57,60 @@
 	});
 </script>
 
-<button onclick={increment} type="button">clicked {count}</button>
-{#each selected_workouts as workout (workout.id)}
-	<InputGrid label={workout.exercise_name} name="sets" type="number" />
-{/each}
+<!-- should include: 
+1. n_sets
+2. seconds_active
+3. seconds_rest 
+-->
+<div class="subgrid">
+	{#each selected_workouts as workout, index}
+		<span class="exercise-name">{workout.exercise_name} {index}</span>
+		<div class="input-group">
+			n_sets
+			<input name={`sets`} />
+		</div>
+		<div class="input-group">
+			seconds_active
+			<div>seconds active</div>
+		</div>
+		<div class="input-group">
+			seconds_rest
+			<div>seconds rest</div>
+		</div>
+		<div class="input-group">
+			n_sets
+			<div>sets count</div>
+		</div>
+	{/each}
+</div>
+
+<style>
+	.subgrid {
+		border: black 1px solid;
+		grid-column: span 2;
+		display: grid;
+		grid-template-columns: subgrid;
+		gap: var(--spacing-md);
+	}
+	.exercise-name {
+		grid-column: 1/-1;
+		text-align: center;
+	}
+	.input-group {
+		display: grid;
+		grid-column: span 2;
+		gap: 0.5rem;
+		grid-template-columns: subgrid;
+		grid-auto-flow: dense;
+		align-items: baseline;
+		justify-items: end;
+	}
+
+	@container (max-width: 600px) {
+		.input-group {
+			gap: 0.25rem;
+			justify-items: start;
+			grid-column: 1/-1;
+		}
+	}
+</style>

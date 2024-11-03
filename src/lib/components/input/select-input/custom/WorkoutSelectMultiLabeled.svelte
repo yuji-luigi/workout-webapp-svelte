@@ -6,17 +6,20 @@
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
 	import NewWorkoutModalFormOpenButton from '../../../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
 	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import WorkoutSetsInput from '../../../form/routine-form/WorkoutSetsInput.svelte';
 	let createdWorkout = null;
 	let {
 		loading,
 		name,
 		label,
-		className
+		className,
+		form_id
 	}: {
 		loading?: boolean;
 		name?: string;
 		label?: string;
 		className?: string;
+		form_id: string;
 	} = $props();
 	let options: Option[] = $state([]);
 	const socket = new WebSocket('ws://localhost:1234');
@@ -42,6 +45,8 @@
 				<NewWorkoutModalFormOpenButton {createdWorkout}>+New</NewWorkoutModalFormOpenButton>
 			{/snippet}
 		</SelectInputMulti>
+
+		<WorkoutSetsInput {form_id} />
 	{/snippet}
 </InputGroupGrid>
 

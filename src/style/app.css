@@ -131,7 +131,7 @@
 
   --text-color-black: var(--gray-700);
 
-
+  --spacing-md: 1rem;
   color-scheme: light dark;
 
 }

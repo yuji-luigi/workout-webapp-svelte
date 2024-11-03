@@ -155,18 +155,22 @@
 		align-items: center;
 	}
 
+	/* TODO: transition to optimize(no height. use transform or opacity) */
 	.custom-select {
-		height: 0;
+		display: flex;
+		max-height: 0;
+		flex-direction: column;
 		overflow: hidden;
 		background-color: var(--fg-color);
+		position: absolute;
+		width: 100%;
+		/* transition: max-height 1.3s ease-in-out; */
 	}
 	.custom-select[data-open='true'] {
-		display: flex;
-		transition: height 1.3s ease-in-out;
-		flex-direction: column;
 		padding: 1rem;
+		transition: max-height 1.3s ease-in-out;
 		border-radius: 4px;
-		height: auto;
+		max-height: 600px;
 	}
 
 	.checkbox-label {
