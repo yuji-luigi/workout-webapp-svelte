@@ -4,7 +4,7 @@
 	import '../style/component.css';
 	import '../style/utility.css';
 	import '../style/animation.css';
-	import DialogGlobal from '../lib/components/dialog/global/DialogGlobal.svelte';
+	import DialogGlobalSingleton from '../lib/components/dialog/global/DialogGlobalSingleton.svelte';
 	import VideoHero from '../lib/components/hero/video-hero/VideoHero.svelte';
 	import SubHeader from '../lib/components/sub-header/SubHeader.svelte';
 	import Footer from '../lib/components/Footer.svelte';
@@ -20,7 +20,7 @@
 
 	<Footer />
 </div>
-<DialogGlobal />
+<DialogGlobalSingleton />
 
 <style>
 	.app {

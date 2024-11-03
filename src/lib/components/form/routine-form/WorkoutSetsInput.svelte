@@ -5,6 +5,11 @@
 	import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
 	import InputGrid from '../../input/InputGrid.svelte';
 	import { sleep } from '../../../helpers/sleep';
+	import { openDialog } from '../../../store/dialog-store';
+	import VideoHero from '../../hero/video-hero/VideoHero.svelte';
+	import DialogGlobalSingleton from '../../dialog/global/DialogGlobalSingleton.svelte';
+	import Dialog from '../../dialog/Dialog.svelte';
+	import DialogGeneric from '../../dialog/global/DialogGeneric.svelte';
 	let {
 		className = '',
 		name = '',
@@ -18,11 +23,8 @@
 		form_id: string;
 	} = $props();
 	let { workouts } = db_state;
-	let count = $state(0);
-	function increment() {
-		console.log('increment');
-		count += 1;
-	}
+	let dialog: HTMLDialogElement | undefined = $state();
+	let isOpen = $state(false);
 	let selected_workouts: WorkoutJoined[] = $state([]);
 	let formEl: HTMLFormElement | undefined = $state();
 
@@ -51,66 +53,78 @@
 	});
 	onMount(() => {
 		formEl = document.getElementById(form_id) as HTMLFormElement;
-		console.log({ formEl });
-
 		formEl?.addEventListener('input', handleSetSelectedWorkouts);
 	});
+	function openConfig() {
+		console.log({ isOpen });
+		isOpen = true;
+		console.log('openConfig');
+	}
+	$effect(() => {
+		console.log({ isOpen });
+	});
 </script>
+
+<div class="full-width flex-row">
+	<button onclick={openConfig} type="button" class="button primary">configure sets</button>
+</div>
 
 <!-- should include: 
 1. n_sets
 2. seconds_active
 3. seconds_rest 
 -->
-<div class="subgrid">
-	{#each selected_workouts as workout, index}
-		<span class="exercise-name">{workout.exercise_name} {index}</span>
-		<div class="input-group">
-			n_sets
-			<input name={`sets`} />
-		</div>
-		<div class="input-group">
-			seconds_active
-			<div>seconds active</div>
-		</div>
-		<div class="input-group">
-			seconds_rest
-			<div>seconds rest</div>
-		</div>
-		<div class="input-group">
-			n_sets
-			<div>sets count</div>
-		</div>
-	{/each}
-</div>
+<!-- <dialog bind:this={dialog}>content</dialog> -->
+
+<DialogGeneric bind:isOpen bind:dialog>
+	<h2 class="title">Sets and rest time</h2>
+	<section class="grid">
+		{#each selected_workouts as workout, index}
+			<h2 class="exercise-name">{workout.exercise_name}</h2>
+			<div class="input-section">
+				<div class="input-group">
+					<span> n.sets </span>
+					<span> + </span>
+					<span> 5 </span>
+					<span> - </span>
+				</div>
+				<div class="input-group">
+					<span> n.sets </span>
+					<span> + </span>
+					<span> 5 </span>
+					<span> - </span>
+				</div>
+				<div class="input-group">
+					<span> n.sets </span>
+					<span> + </span>
+					<span> 5 </span>
+					<span> - </span>
+				</div>
+			</div>
+		{/each}
+	</section>
+</DialogGeneric>
 
 <style>
-	.subgrid {
-		border: black 1px solid;
-		grid-column: span 2;
-		display: grid;
-		grid-template-columns: subgrid;
-		gap: var(--spacing-md);
+	button {
+		margin-left: auto;
 	}
-	.exercise-name {
-		grid-column: 1/-1;
+	.title {
+		margin-bottom: 1rem;
 		text-align: center;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-lg);
+	}
+	.input-section {
+		display: grid;
+		gap: var(--spacing-sm);
 	}
 	.input-group {
 		display: grid;
-		grid-column: span 2;
-		gap: 0.5rem;
-		grid-template-columns: subgrid;
-		grid-auto-flow: dense;
-		align-items: baseline;
-		justify-items: end;
-	}
-
-	@container (max-width: 600px) {
-		.input-group {
-			gap: 0.25rem;
-			justify-items: start;
-			grid-column: 1/-1;
-		}
+		grid-template-columns: repeat(4, 1fr);
+		font-size: var(--font-size-md);
 	}
 </style>

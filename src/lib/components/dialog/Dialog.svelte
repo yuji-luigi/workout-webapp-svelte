@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	export let dialog: HTMLDialogElement;
+	let {
+		dialog = $bindable(),
+		children
+	}: {
+		children: any;
+		dialog: HTMLDialogElement | undefined;
+	} = $props();
 </script>
 
 <dialog class="dialog card" bind:this={dialog}>
 	<div class="dialog-container">
-		<slot />
+		{@render children?.()}
 	</div>
 </dialog>
 
