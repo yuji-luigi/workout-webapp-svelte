@@ -1,15 +1,8 @@
 <script lang="ts">
-	import { ContentFormat } from 'yjs';
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
-	import TimeCounter from '../../../time-counter/TimeCounter.svelte';
-	import Counter from '../../../Counter.svelte';
-	import ClickableDiv from '../../../ClickableDiv.svelte';
 	import { openDialog } from '../../../../store/global-dialog-store';
-	import WorkoutCounterInput from './WorkoutCounterInput.svelte';
-	import CountDialog from '../../../dialog/count-dialog/CountDialog.svelte';
 	import { countDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
-	import VideoHero from '../../../hero/video-hero/VideoHero.svelte';
-	import CountInput from '../../../counter/CountInput.svelte';
+	import WorkoutCounterInput from './WorkoutCounterInput.svelte';
 	let {
 		workout,
 		index,
@@ -36,6 +29,7 @@
 			componentInDialog
 		});
 	}
+	console.log({ workout });
 </script>
 
 <h2 class="exercise-name">{workout.exercise_name}</h2>

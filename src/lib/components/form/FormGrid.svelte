@@ -18,13 +18,14 @@
 		children?: any;
 		form_id?: string;
 	} = $props();
+
 	async function onsubmit(event: SubmitEvent) {
 		try {
 			loading = true;
 			const form_data = new FormData(event.target as HTMLFormElement);
 			const submitPayload = parseFormDataToObjects(form_data);
 			await handleSubmit?.(submitPayload);
-			await sleep(2000);
+			await sleep(1000);
 		} catch (error: any) {
 			throw new Error(error);
 		}
@@ -42,7 +43,7 @@
 				.map((field) => field.name)
 				.toArray() || [];
 		formEl?.addEventListener('input', async (event) => {
-			await sleep(200);
+			await sleep(200); // wait for the input to finish
 			const form_data = new FormData(formEl);
 			const dto = parseFormDataToObjects(form_data, multiNames);
 			setForm(form_id, dto);

@@ -11,14 +11,7 @@
 
 	let loading = false;
 	const form_id = 'routine-form';
-	// async function handleSubmit(event: SubmitEvent) {
-	// 	loading = true;
-	// 	const form_data = new FormData(event.target as HTMLFormElement);
-	// 	const submitPayload = parseFormDataToObjects(form_data);
-	// 	console.log({ submitPayload });
-	// 	await sleep(200);
-	// 	loading = false;
-	// }
+
 	async function handleSubmit(payload: Record<string, any>) {
 		loading = true;
 		console.log({ payload });

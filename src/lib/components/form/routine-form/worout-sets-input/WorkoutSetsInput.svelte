@@ -14,6 +14,7 @@
 	import TimeCounter from '../../../time-counter/TimeCounter.svelte';
 	import WorkoutCounter from './WorkoutCounterInputSection.svelte';
 	import CountDialog from '../../../dialog/count-dialog/CountDialog.svelte';
+	import { getForm } from '../../../../store/form-store.svelte';
 	let {
 		className = '',
 		name = '',
@@ -35,17 +36,31 @@
 
 	async function handleSetSelectedWorkouts(_?: Event) {
 		await sleep(10); // get the latest form data
-		const form_data = new FormData(formEl);
-		const dto = handleArrayFormData(form_data) as any;
-		const _selected_workouts = workouts.filter((workout: WorkoutJoined) => {
-			if (Array.isArray(dto.workouts)) {
-				return dto.workouts.includes(workout.id);
-			} else {
-				return dto.workouts === workout.id;
-			}
-		});
-		selected_workouts = _selected_workouts;
+		// const form_data = new FormData(formEl);
+		// const dto = handleArrayFormData(form_data) as any;
+		// const _selected_workouts = workouts.filter((workout: WorkoutJoined) => {
+		// 	if (Array.isArray(dto.workouts)) {
+		// 		return dto.workouts.includes(workout.id);
+		// 	} else {
+		// 		return dto.workouts === workout.id;
+		// 	}
+		// });
+		selected_workouts = getForm(form_id)?.workouts || [];
+		console.log({ selected_workouts });
 	}
+	// async function handleSetSelectedWorkouts(_?: Event) {
+	// 	await sleep(10); // get the latest form data
+	// 	const form_data = new FormData(formEl);
+	// 	const dto = handleArrayFormData(form_data) as any;
+	// 	const _selected_workouts = workouts.filter((workout: WorkoutJoined) => {
+	// 		if (Array.isArray(dto.workouts)) {
+	// 			return dto.workouts.includes(workout.id);
+	// 		} else {
+	// 			return dto.workouts === workout.id;
+	// 		}
+	// 	});
+	// 	selected_workouts = _selected_workouts;
+	// }
 	$effect(() => {
 		workouts = db_state.workouts;
 	});

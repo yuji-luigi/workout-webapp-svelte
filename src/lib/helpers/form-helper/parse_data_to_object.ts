@@ -9,17 +9,23 @@ workouts[1].name: string
 workouts[1].description: string
 */
 
+import { isJsonString } from './isJsonString';
+
 export function parseFormDataToObjects(formData: FormData, multiNames: string[] = []) {
 	const entries = Array.from(formData.entries());
 	const data: Record<string, any> = {};
 
 	// Iterate through form entries and build a structured object
-	for (const [key, value] of entries) {
+	for (const [key, _value] of entries) {
 		const keys = key.split(/[\[\]\.]+/).filter(Boolean);
+		let value = structuredClone(_value);
 		let current = data;
 
 		for (let i = 0; i < keys.length; i++) {
 			const part = keys[i];
+			if (i === keys.length - 1 && isJsonString(value)) {
+				value = JSON.parse(value);
+			}
 
 			// need to specify the case of  multi select.
 			// if the same key is passed and the i length is the last one and there is already a value present, then push the value to the array.
@@ -27,7 +33,7 @@ export function parseFormDataToObjects(formData: FormData, multiNames: string[] 
 				if (Array.isArray(current[part])) {
 					current[part].push(value);
 				} else {
-					current[part] = [current[part], value];
+					current[part] = [value];
 				}
 				continue;
 			}
