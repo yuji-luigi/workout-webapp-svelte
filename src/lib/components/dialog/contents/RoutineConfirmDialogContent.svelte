@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { closeDialog } from '../../../store/dialog-store';
+	import { closeDialog } from '../../../store/global-dialog-store';
 	import type { Workout } from '../../../../types/db/workout';
 	import type { Exercise } from '../../../../types/db/exercise';
 	import { createQueryParams } from '../../../helpers/search-params/createQueryParams';

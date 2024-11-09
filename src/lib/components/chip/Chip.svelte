@@ -1,10 +1,17 @@
 <script lang="ts">
-	export let data_set_key: string = '';
-	export let cursor: string = 'pointer';
+	let {
+		data_set_key = '',
+		cursor = 'pointer',
+		children
+	}: {
+		data_set_key?: string | number;
+		cursor?: string;
+		children?: any;
+	} = $props();
 </script>
 
 <div data-key={data_set_key} class="chip" style={`--cursor: ${cursor}`}>
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>

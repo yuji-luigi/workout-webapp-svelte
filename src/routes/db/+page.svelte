@@ -3,7 +3,7 @@
 	import { json } from '@sveltejs/kit';
 	import FormGrid from '../../lib/components/form/FormGrid.svelte';
 	import InputGrid from '../../lib/components/input/InputGrid.svelte';
-	import { createFormDataToObject } from '../../lib/helpers/handle-array-form-data';
+	import { handleArrayFormData } from '../../lib/helpers/form-helper/handle-array-form-data';
 	import { sleep } from '../../lib/helpers/sleep';
 	import { db_state } from '../../lib/store/lofi-db/workout-lofi.svelte';
 	import { createConnected } from '../../lib/store/socket-store.svelte';
@@ -18,7 +18,7 @@
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
 		const formData = new FormData(e.target as HTMLFormElement);
-		const data = createFormDataToObject(formData);
+		const data = handleArrayFormData(formData);
 		await sleep(2000);
 	}
 	// Tells YJS to update the counter

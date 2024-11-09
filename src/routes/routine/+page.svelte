@@ -2,7 +2,7 @@
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import RoutineCard from '../../lib/components/card/cards/RoutineCard.svelte';
 	import RoutineConfirmDialogContent from '../../lib/components/dialog/contents/RoutineConfirmDialogContent.svelte';
-	import { openDialog } from '../../lib/store/dialog-store';
+	import { openDialog } from '../../lib/store/global-dialog-store';
 
 	let cardGrid: HTMLDivElement;
 	export let data;

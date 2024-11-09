@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dialogStore, openDialog } from '../../../store/dialog-store';
+	import { dialogStore, openDialog } from '../../../store/global-dialog-store';
 
 	import ExerciseCardModalContent from './ExerciseCardModalContent.svelte';
 	type Exercise = {

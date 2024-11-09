@@ -37,7 +37,7 @@
 				// updateSelectOptions();
 				// from here I am trying to trigger the form input event to update the selected_workouts in the form.
 				const checkbox = document.querySelector(
-					`.select-checkbox[value="${key}"]`
+					`.select-checkbox[data-key="${key}"]`
 				) as HTMLInputElement;
 				if (checkbox) {
 					// Uncheck the checkbox
@@ -108,8 +108,8 @@
 			Select options
 		{/if}
 		<div class="chips-container">
-			{#each selectedOptions as option}
-				<Chip data_set_key={option.value.toString()}>{option.label}</Chip>
+			{#each selectedOptions as option, index}
+				<Chip data_set_key={option.id}>{option.label}</Chip>
 			{/each}
 		</div>
 		{@render endComponent?.()}
@@ -124,12 +124,14 @@
 		{/if}
 
 		<!-- Render checkboxes for each option -->
-		{#each options as option}
+
+		{#each options as option, index}
 			<label class="checkbox-label">
 				<input
 					class="select-checkbox"
 					type="checkbox"
 					value={option.value}
+					data-key={option.id || option.value}
 					checked={selectedValues.includes(String(option.value))}
 					on:change={() => toggleSelection(option)}
 				/>
@@ -137,7 +139,7 @@
 			</label>
 		{/each}
 	</div>
-
+	<!-- No more select use only the checkbox input with index in square brackets. must be used with the parseFormDataToObjects function in this case -->
 	<!-- Hidden select element for form submission -->
 	<select class="workouts-select" {name} multiple bind:this={selectElement} hidden>
 		{#each options as option}
@@ -159,6 +161,7 @@
 	.custom-select {
 		display: flex;
 		max-height: 0;
+		gap: 0.25rem;
 		flex-direction: column;
 		overflow: hidden;
 		background-color: var(--fg-color);

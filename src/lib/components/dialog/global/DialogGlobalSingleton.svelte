@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { closeDialog, dialogStore, type DialogStore } from '../../../store/dialog-store';
+	import { closeDialog, dialogStore, type DialogStore } from '../../../store/global-dialog-store';
 	import Dialog from '../Dialog.svelte';
 	import { sleep } from '../../../helpers/sleep';
 	let dialog: HTMLDialogElement;
@@ -16,18 +16,34 @@
 		dialog.close();
 	};
 
+	function handleCloseAnimation() {
+		if (dialog) {
+			dialog.classList.remove('fade-in');
+			dialog.classList.add('closing');
+		}
+	}
+
 	onMount(() => {
 		dialog &&
 			dialog.addEventListener(
 				'click',
 				async (e) => {
 					if (e.target === dialog) {
-						dialog.classList.remove('fade-in');
-						dialog.classList.add('closing');
+						handleCloseAnimation();
 					}
 				},
 				true
 			);
+		dialog.addEventListener(
+			'keydown',
+			async (e) => {
+				if (e.key === 'Escape') {
+					e.preventDefault();
+					handleCloseAnimation();
+				}
+			},
+			true
+		);
 	});
 	$: {
 		if (dialog && $dialogStore.isOpen) {
@@ -38,7 +54,6 @@
 		if (dialog && !$dialogStore.isOpen) {
 			dialog.close();
 		}
-		// dialog && ($dialogStore.isOpen ? dialog.showModal() : dialog.close());
 	}
 </script>
 

@@ -1,22 +1,15 @@
 <script lang="ts">
 	import { spring } from 'svelte/motion';
 
-	let {
-		count = $bindable(),
-		max,
-		min = 0,
-		unit
-	}: {
-		count: number;
-		max?: number | undefined;
-		min?: number;
-		unit?: string | undefined;
-	} = $props();
+	export let count = 0;
+	export let unit = '';
+	export let min: number | undefined = undefined;
+	export let max: number | undefined = undefined;
+
 	const displayed_count = spring();
-	let offset = $state(displayed_count.set(count));
-	$effect(() => {
-		offset = modulo($displayed_count, 1);
-	});
+	$: displayed_count.set(count);
+	$: offset = modulo($displayed_count, 1);
+
 	function modulo(n: number, m: number) {
 		// handle negative numbers
 		return ((n % m) + m) % m;
@@ -25,8 +18,7 @@
 
 <div class="counter">
 	<button
-		class="button primary"
-		onclick={() => (min || min === 0 ? count <= min && min : (count -= 1))}
+		on:click={() => (min || min === 0 ? count <= min && min : (count -= 1))}
 		aria-label="Decrease the counter by one"
 	>
 		<svg aria-hidden="true" viewBox="0 0 1 1">
@@ -42,7 +34,7 @@
 	</div>
 
 	<button
-		onclick={() => {
+		on:click={() => {
 			count = max !== undefined && max !== null ? (count >= max ? max : count + 1) : count + 1;
 		}}
 		aria-label="Increase the counter by one"
@@ -54,6 +46,9 @@
 </div>
 
 <style>
+	:root {
+		/* --font-size-lg: 9.25 rem; */
+	}
 	.counter {
 		display: flex;
 		border-top: 1px solid rgba(0, 0, 0, 0.1);

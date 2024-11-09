@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { closeDialog } from '../../store/dialog-store';
+	import { closeDialog } from '../../store/global-dialog-store';
 
 	type ActionProps = {
 		text: string;

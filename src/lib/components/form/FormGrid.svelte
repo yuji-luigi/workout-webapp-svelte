@@ -1,35 +1,61 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { sleep } from '../../helpers/sleep';
+	import { handleArrayFormData } from '../../helpers/form-helper/handle-array-form-data';
+	import { parseFormDataToObjects } from '../../helpers/form-helper/parse_data_to_object';
+	import { resetForm, setForm } from '../../store/form-store.svelte';
 
 	let {
 		loading,
 		className,
 		handleSubmit,
 		children,
-		form_id = ''
+		form_id = 'id_null'
 	}: {
 		loading?: boolean;
 		className?: string | undefined;
-		handleSubmit?: (event: SubmitEvent) => Promise<void>;
+		handleSubmit?: (event: Record<string, any>) => Promise<void>;
 		children?: any;
 		form_id?: string;
 	} = $props();
 	async function onsubmit(event: SubmitEvent) {
 		try {
 			loading = true;
-			await handleSubmit?.(event);
+			const form_data = new FormData(event.target as HTMLFormElement);
+			const submitPayload = parseFormDataToObjects(form_data);
+			await handleSubmit?.(submitPayload);
 			await sleep(2000);
 		} catch (error: any) {
 			throw new Error(error);
 		}
 		loading = false;
 	}
+	let formEl: HTMLFormElement | undefined = $state();
+
+	onMount(() => {
+		const multiSelects = formEl?.querySelectorAll('select[multiple]') as
+			| NodeListOf<HTMLSelectElement>
+			| undefined;
+		const multiNames =
+			multiSelects
+				?.values()
+				.map((field) => field.name)
+				.toArray() || [];
+		formEl?.addEventListener('input', async (event) => {
+			await sleep(200);
+			const form_data = new FormData(formEl);
+			const dto = parseFormDataToObjects(form_data, multiNames);
+			setForm(form_id, dto);
+		});
+
+		return () => resetForm();
+	});
 </script>
 
 <div class={className}>
 	<fieldset disabled={loading} aria-busy={loading}>
 		{#if form_id}
-			<form id={form_id} {onsubmit}>
+			<form bind:this={formEl} id={form_id} {onsubmit}>
 				{@render children?.()}
 			</form>
 		{:else}

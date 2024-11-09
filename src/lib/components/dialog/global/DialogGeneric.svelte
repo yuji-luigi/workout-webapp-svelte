@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { dialogStore } from '../../../store/dialog-store';
+	import { onDestroy, onMount } from 'svelte';
+	import { dialogStore } from '../../../store/global-dialog-store';
 	import Dialog from '../Dialog.svelte';
 	let {
 		children,
-		dialog = $bindable(),
 		isOpen = $bindable()
 	}: {
 		isOpen: boolean;
 		children: any;
-		dialog: HTMLDialogElement | undefined;
 	} = $props();
+	let dialog: HTMLDialogElement | undefined = $state();
 
 	const closeModal = () => {
 		if (!dialog) return;
@@ -22,15 +21,29 @@
 		dialog.close();
 		isOpen = false;
 	};
+	function handleCloseAnimation() {
+		if (dialog) {
+			dialog.classList.remove('fade-in');
+			dialog.classList.add('closing');
+		}
+	}
+	function handleEsc(e: KeyboardEvent) {
+		console.log(isOpen);
+		if (e.key === 'Escape') {
+			e.preventDefault();
+
+			handleCloseAnimation();
+		}
+	}
 
 	onMount(() => {
+		dialog?.addEventListener('keydown', handleEsc);
 		dialog &&
 			dialog.addEventListener(
 				'click',
-				async (e) => {
+				async (e: MouseEvent) => {
 					if (e.target === dialog) {
-						dialog.classList.remove('fade-in');
-						dialog.classList.add('closing');
+						handleCloseAnimation();
 					}
 				},
 				true
@@ -46,6 +59,9 @@
 		if (dialog && !isOpen) {
 			dialog.close();
 		}
+	});
+	onDestroy(() => {
+		document.removeEventListener('keydown', handleEsc);
 	});
 </script>
 

@@ -6,7 +6,7 @@
 	import type { Timer } from '../../../types/db/timer';
 	import { goto } from '$app/navigation';
 	import CountInput from '../../../lib/components/counter/CountInput.svelte';
-	import { openDialog } from '../../../lib/store/dialog-store';
+	import { openDialog } from '../../../lib/store/global-dialog-store';
 	let count = 0;
 
 	let reps = 0;

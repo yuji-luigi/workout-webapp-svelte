@@ -6,7 +6,7 @@
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
 	import NewWorkoutModalFormOpenButton from '../../../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
 	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
-	import WorkoutSetsInput from '../../../form/routine-form/WorkoutSetsInput.svelte';
+	import WorkoutSetsInput from '../../../form/routine-form/worout-sets-input/WorkoutSetsInput.svelte';
 	let createdWorkout = null;
 	let {
 		loading,
@@ -27,7 +27,9 @@
 	$effect(() => {
 		options = db_state.workouts.map((workout) => {
 			return {
-				value: workout.id,
+				// value: workout.id,
+				id: workout.id,
+				value: JSON.stringify(workout),
 				label: workout.exercise_name
 			};
 		});

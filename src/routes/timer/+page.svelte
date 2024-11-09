@@ -2,7 +2,7 @@
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import WorkoutTypeCard from '../../lib/components/card/cards/WorkoutTypeCard.svelte';
 	import WorkoutConfirmDialogContent from '../../lib/components/dialog/contents/WorkoutConfirmDialogContent.svelte';
-	import { openDialog } from '../../lib/store/dialog-store';
+	import { openDialog } from '../../lib/store/global-dialog-store';
 
 	let cardGrid: HTMLDivElement;
 	export let data: any;

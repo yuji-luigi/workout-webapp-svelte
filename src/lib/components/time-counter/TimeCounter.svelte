@@ -1,16 +1,27 @@
 <script lang="ts">
+	import { countDialogStates } from '../dialog/count-dialog/count-dialog-states.svelte';
 	import NumberInput from './NumberInput.svelte';
 
-	export let count = 0;
-	export let max: number | undefined;
-	export let min = 0;
-	export let unit;
+	let {
+		max,
+		min = 0,
+		unit
+	}: {
+		max?: number | undefined;
+		min?: number;
+		unit?: string | undefined;
+	} = $props();
+	let count = $state(countDialogStates.count);
+	$effect(() => {
+		countDialogStates.count = count;
+	});
 </script>
 
 <div class="counter">
 	<button
 		class="button"
-		on:click={() => {
+		type="button"
+		onclick={() => {
 			if (count > min) {
 				count--;
 			}
@@ -18,15 +29,12 @@
 	>
 	<h4>
 		{unit ? unit + ': ' : ''}
-		<NumberInput />
-		<NumberInput />
-		:
-		<NumberInput />
-		<NumberInput />
+		{count}
 	</h4>
 	<button
 		class="button"
-		on:click={() => {
+		type="button"
+		onclick={() => {
 			if (max && count >= max) {
 				return;
 			}
