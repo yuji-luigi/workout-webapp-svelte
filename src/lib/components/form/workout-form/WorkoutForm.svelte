@@ -16,29 +16,28 @@
 	}: {
 		resolve?: (param: any) => void;
 		reject?: (param: any) => void;
-		onSubmitCallback?: (formData: FormData) => void;
+		onSubmitCallback?: (formData: any) => void;
 	} = $props() as any;
-	let loading = false;
+	let loading = $state(false);
 
-	const types = [
-		{ value: 0, label: 'HIIT' },
-		{ value: 1, label: 'reps and sets' }
-	];
 	const socket = new WebSocket('ws://localhost:1234');
 	socket.addEventListener('open', () => {
 		console.log('connected');
 	});
 	// save exercise + timer + joined workout
-	async function handleSubmit(event: SubmitEvent & { target: HTMLFormElement }) {
+	async function handleSubmit(
+		payload: Record<string, any>,
+		event: SubmitEvent & { target: HTMLFormElement }
+	) {
 		loading = true;
-		const formData = new FormData(event.target as HTMLFormElement);
-		const data = Object.fromEntries(formData.entries()) as unknown as WorkoutJoined;
+		// const formData = new FormData(event.target as HTMLFormElement);
+		// const data = Object.fromEntries(formData.entries()) as unknown as WorkoutJoined;
 		try {
-			console.log(data);
-			handleSaveWorkoutLocally(data);
+			console.log(payload);
+			handleSaveWorkoutLocally(payload as WorkoutJoined);
 			await sleep(750);
 			event.target?.reset();
-			onSubmitCallback && onSubmitCallback(data);
+			onSubmitCallback && onSubmitCallback(payload);
 		} catch (error: any) {
 			throw new Error(error);
 		}
@@ -93,28 +92,15 @@
 	.container {
 		container-type: inline-size;
 	}
-	fieldset {
-		border: none;
-		border-radius: 5px;
-		padding: 1rem;
-		transition: opacity 0.3s ease-in-out;
-		&[disabled] {
-			opacity: 0.5;
-		}
-	}
 
 	label {
 		white-space: nowrap;
 	}
-	input,
-	textarea {
+	input {
 		width: 100%;
 	}
 
 	@container (max-width: 600px) {
-		form {
-			grid-template-columns: 1fr;
-		}
 		.input-group {
 			gap: 0.25rem;
 			justify-items: start;

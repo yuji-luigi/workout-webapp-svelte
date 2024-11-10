@@ -1,20 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
-	import { handleArrayFormData } from '../../../../helpers/form-helper/handle-array-form-data';
-	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
-	import InputGrid from '../../../input/InputGrid.svelte';
 	import { sleep } from '../../../../helpers/sleep';
-	import { openDialog } from '../../../../store/global-dialog-store';
-	import VideoHero from '../../../hero/video-hero/VideoHero.svelte';
-	import DialogGlobalSingleton from '../../../dialog/global/DialogGlobalSingleton.svelte';
-	import Dialog from '../../../dialog/Dialog.svelte';
-	import DialogGeneric from '../../../dialog/global/DialogGeneric.svelte';
-	import NumberInput from '../../../time-counter/NumberInput.svelte';
-	import TimeCounter from '../../../time-counter/TimeCounter.svelte';
-	import WorkoutCounter from './WorkoutCounterInputSection.svelte';
-	import CountDialog from '../../../dialog/count-dialog/CountDialog.svelte';
 	import { getForm } from '../../../../store/form-store.svelte';
+	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import CountDialog from '../../../dialog/count-dialog/CountDialog.svelte';
+	import DialogGeneric from '../../../dialog/global/DialogGeneric.svelte';
+	import WorkoutCounter from './WorkoutCounterInputSection.svelte';
 	let {
 		className = '',
 		name = '',
@@ -46,7 +38,6 @@
 		// 	}
 		// });
 		selected_workouts = getForm(form_id)?.workouts || [];
-		console.log({ selected_workouts });
 	}
 	// async function handleSetSelectedWorkouts(_?: Event) {
 	// 	await sleep(10); // get the latest form data
@@ -93,7 +84,7 @@
 	<h2 class="title">Sets and rest time</h2>
 	<section class="grid">
 		{#each selected_workouts as workout, index}
-			<WorkoutCounter bind:isOpenCounterModal {workout} {index} />
+			<WorkoutCounter bind:isOpenCounterModal {workout} {index} {form_id} />
 		{/each}
 	</section>
 	<CountDialog bind:isOpen={isOpenCounterModal} />

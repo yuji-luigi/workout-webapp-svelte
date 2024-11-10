@@ -8,6 +8,8 @@
 	}: {
 		isOpen: boolean;
 	} = $props();
+	let states = $state(countDialogStates().states);
+	let content = $state(countDialogStates().content);
 </script>
 
 <!-- 
@@ -18,7 +20,9 @@ child component is fully customizable. but alway use "count" bindable.
   -->
 <DialogGeneric bind:isOpen>
 	<!-- specific contents here -->
-	{@render countDialogStates.content?.({ count: 0 })}
+	{@render states.content?.()}
+	{states.test}
+	<!-- <TimeCounter /> -->
 	<!-- specific contents end -->
 	<!-- specific actions here -->
 	<!-- {@render countDialogStates.actions?.()} -->

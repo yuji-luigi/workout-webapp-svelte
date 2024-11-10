@@ -13,6 +13,7 @@ export interface WorkoutJoined {
 	exercise_name: string;
 	workout_type_id: number;
 	exercise_description: string;
+	image_url?: string;
 	name_workout_type: string; // tabata, hiit, reps_and_sets, ... etc
 	workout_type: string;
 	repeat: boolean;

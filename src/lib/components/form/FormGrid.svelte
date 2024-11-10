@@ -14,17 +14,20 @@
 	}: {
 		loading?: boolean;
 		className?: string | undefined;
-		handleSubmit?: (event: Record<string, any>) => Promise<void>;
+		handleSubmit?: (
+			payload: Record<string, any>,
+			event: SubmitEvent & { target: HTMLFormElement }
+		) => Promise<void>;
 		children?: any;
 		form_id?: string;
 	} = $props();
 
-	async function onsubmit(event: SubmitEvent) {
+	async function onsubmit(event: SubmitEvent & { target: HTMLFormElement }) {
 		try {
 			loading = true;
 			const form_data = new FormData(event.target as HTMLFormElement);
 			const submitPayload = parseFormDataToObjects(form_data);
-			await handleSubmit?.(submitPayload);
+			await handleSubmit?.(submitPayload, event);
 			await sleep(1000);
 		} catch (error: any) {
 			throw new Error(error);

@@ -23,6 +23,7 @@ export function exerciseFactory(workoutDto: WorkoutJoined) {
 		id: workoutDto.exercise_id,
 		name: workoutDto.exercise_name,
 		slug: workoutDto.slug,
-		description: workoutDto.exercise_description
+		description: workoutDto.exercise_description,
+		image_url: workoutDto.image_url
 	};
 }

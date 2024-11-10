@@ -1,22 +1,26 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { openDialog } from '../../../../store/global-dialog-store';
 	import { countDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
 	import WorkoutCounterInput from './WorkoutCounterInput.svelte';
+	import { getForm } from '../../../../store/form-store.svelte';
 	let {
 		workout,
 		index,
+		form_id,
 		isOpenCounterModal = $bindable()
 	}: {
 		workout: WorkoutJoined;
 		index: number;
+		form_id: string;
 		isOpenCounterModal: boolean;
 	} = $props();
-	let count = $state(0);
+	let el: HTMLDivElement | undefined = $state();
 	let n_sets = $state(1);
-	let dialog: HTMLDialogElement | undefined = $state();
 	let seconds_rest = $state(0);
-	let seconds_active = $state(0);
+	let formData = $state(getForm(form_id));
+
 	$effect(() => {
 		n_sets = countDialogStates.count;
 	});
@@ -29,13 +33,12 @@
 			componentInDialog
 		});
 	}
-	console.log({ workout });
 </script>
 
 <h2 class="exercise-name">{workout.exercise_name}</h2>
-<div class="input-section">
-	<WorkoutCounterInput {n_sets} bind:isOpenCounterModal />
-	<WorkoutCounterInput bind:isOpenCounterModal {seconds_rest} />
+<div bind:this={el} class="input-section">
+	<WorkoutCounterInput bind:isOpenCounterModal {workout} />
+	<!-- <WorkoutCounterInput bind:isOpenCounterModal {seconds_rest} /> -->
 	<!-- <button type="button" class="input-group">
 		{n_sets}
 		<span> Sets </span>

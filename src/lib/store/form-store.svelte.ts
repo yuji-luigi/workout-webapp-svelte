@@ -1,7 +1,6 @@
 let formContext = $state<Record<string, any>>({});
 
 export const getForm = (form_id: string) => {
-	console.log('formContext[form_id]:', formContext[form_id]);
 	return formContext[form_id];
 };
 

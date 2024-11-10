@@ -8,5 +8,5 @@ export interface Exercise {
 	name: string; // Foreign key to Timer
 	slug: string;
 	description: string;
-	image_url: string;
+	image_url?: string;
 }
