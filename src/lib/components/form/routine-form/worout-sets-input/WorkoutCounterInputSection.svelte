@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { openDialog } from '../../../../store/global-dialog-store';
-	import { countDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
+	import { createDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
 	import WorkoutCounterInput from './WorkoutCounterInput.svelte';
 	import { getForm } from '../../../../store/form-store.svelte';
 	let {
@@ -22,7 +22,7 @@
 	let formData = $state(getForm(form_id));
 
 	$effect(() => {
-		n_sets = countDialogStates.count;
+		n_sets = createDialogStates.count;
 	});
 	function handleOpenModal({
 		componentInDialog

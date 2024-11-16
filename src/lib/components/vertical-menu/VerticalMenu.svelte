@@ -9,6 +9,10 @@
 	import GradientButton from '../gradient-buttons/GradientButton.svelte';
 	import ConicButton from '../gradient-buttons/ConicButton.svelte';
 	import ConicDiv from '../gradient-buttons/ConicDiv.svelte';
+	import MainNav from '../nav/MainNav.svelte';
+	import type { NavItem } from '../../../types/nav-item-type';
+	import { verticalNavList } from '../../data/nav-data/vertical-nav-list';
+	import { mainNavList } from '../../data/nav-data';
 	let verticalMenuParams: DrawerStore;
 	verticalMenuStore.subscribe((value) => (verticalMenuParams = value));
 
@@ -21,34 +25,40 @@
 	onMount(() => {
 		verticalMenuOverlayElement.addEventListener('click', closeVerticalMenu);
 	});
-	const navlist = [
-		{
-			label: 'Create Routine',
-			href: '/manage/routine'
-		},
-		{
-			label: 'Create Workout',
-			href: '/manage/workout'
-		},
-		{
-			label: 'Create Exercise',
-			href: '/manage/exercise'
-		}
-	];
+
 	$: {
 		verticalMenuParams = $verticalMenuStore;
 	}
 </script>
 
-<div id="mySidenav" class="sidenav gcss_sidenav_hover" data-open={verticalMenuParams.isOpen}>
+<div class="drawer-side-nav gcss_sidenav_hover" data-open={verticalMenuParams.isOpen}>
 	<button class="closebtn" on:click={closeVerticalMenu}>&times;</button>
-	{#each navlist as { label, href }}
-		<ConicDiv>
-			<a class="relative_text gcss_sidenav_hover_item" on:click={closeVerticalMenu} {href}
-				>{label}</a
-			>
-		</ConicDiv>
-	{/each}
+	<section class="nav-section">
+		<div class="">
+			<h4 class="drawer-side-nav-section-title mobile-view">Main</h4>
+			<div class="mobile-view main-nav nav-list">
+				{#each mainNavList as { label, href }}
+					<ConicDiv>
+						<a class="relative_text gcss_sidenav_hover_item" on:click={closeVerticalMenu} {href}
+							>{label}</a
+						>
+					</ConicDiv>
+				{/each}
+			</div>
+		</div>
+		<div class="list-section">
+			<h4 class="drawer-side-nav-section-title mobile-view">management</h4>
+			<div class="nav-list">
+				{#each verticalNavList as { label, href }}
+					<ConicDiv>
+						<a class="relative_text gcss_sidenav_hover_item" on:click={closeVerticalMenu} {href}
+							>{label}</a
+						>
+					</ConicDiv>
+				{/each}
+			</div>
+		</div>
+	</section>
 </div>
 <div
 	bind:this={verticalMenuOverlayElement}
@@ -57,11 +67,11 @@
 ></div>
 
 <style>
-	.sidenav {
+	.drawer-side-nav {
 		display: grid;
 		justify-content: start;
 		align-content: start;
-		padding: 1rem 3rem;
+		padding: 1rem 2rem;
 		height: calc(100% - var(--sub-header-height));
 		width: var(--vertical-menu-width);
 		transform: translate(100%);
@@ -75,12 +85,22 @@
 		padding-top: 60px;
 		transition: transform 0.5s ease-in-out;
 		z-index: 1000;
+		color: var(--text-color-white);
 		&[data-open='true'] {
 			transform: translate(0);
 		}
 	}
-
-	.sidenav a {
+	.nav-section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-md);
+	}
+	.drawer-side-nav-section-title {
+		font-size: var(--font-size-sm);
+		color: var(--text-color-white);
+		opacity: 0.7;
+	}
+	.drawer-side-nav a {
 		--ani-width: 100%;
 		--linea-g: linear-gradient(
 			90deg,
@@ -90,7 +110,7 @@
 			rgba(2, 0, 36, 1) 100%
 		);
 		text-decoration: none;
-		font-size: 25px;
+		/* font-size: 25px; */
 		color: var(--text-color-white);
 		display: block;
 		position: relative;
@@ -102,6 +122,7 @@
 	}
 	.relative_text {
 		position: relative;
+		font-size: var(--font-size-md);
 	}
 
 	@keyframes slideLeft {
@@ -113,7 +134,7 @@
 		}
 	}
 
-	.sidenav .closebtn {
+	.drawer-side-nav .closebtn {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -132,10 +153,6 @@
 			color: var(--text-color-black);
 		}
 	}
-	/* 
-	.sidenav a:hover {
-		color: #f1f1f1;
-	} */
 
 	.overlay {
 		position: absolute;
@@ -159,12 +176,17 @@
 			opacity 0.5s ease-in-out,
 			visibility 0s; /* Remove the delay for visibility */
 	}
+	@media (min-width: 768px) {
+		.mobile-view {
+			display: none;
+		}
+	}
 
 	@media screen and (max-height: 450px) {
-		.sidenav {
+		.drawer-side-nav {
 			padding-top: 15px;
 		}
-		.sidenav a {
+		.drawer-side-nav a {
 			font-size: 18px;
 		}
 	}

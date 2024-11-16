@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
+	import { sleep } from '../../../../helpers/sleep';
 	import { openDialog } from '../../../../store/global-dialog-store';
-	import { countDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
+	import { createDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
 	import VideoHero from '../../../hero/video-hero/VideoHero.svelte';
 	import TimeCounter from '../../../time-counter/TimeCounter.svelte';
 	let {
@@ -13,21 +14,16 @@
 	} = $props();
 
 	let n_sets = $state(1);
-	let dialogStates = $state(countDialogStates().states);
-</script>
-
-<button
-	type="button"
-	class="input-group"
-	onclick={() => {
+	let dialogStates = createDialogStates().states;
+	async function onclick() {
 		dialogStates.content = TimeCounter as any;
 		dialogStates.test = workout.exercise_name;
-		console.log(dialogStates.test);
-		// dialogStates.actions = null;
-		// dialogStates.setDataById({ id: workout.id, data: { n_sets } });
+		await sleep(100);
 		isOpenCounterModal = true;
-	}}
->
+	}
+</script>
+
+<button type="button" class="input-group" {onclick}>
 	{n_sets}
 	<span> Sets</span>
 </button>

@@ -1,37 +1,15 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
-	import hamburger from '$lib/images/icons/menu-hamburger.svg';
-	import HamburgerSvg from '../icons/svgs/HamburgerSvg.svelte';
 	import GithubSvg from '../icons/svgs/GithubSvg.svelte';
-	import HamburgerMenu from './HamburgerMenu.svelte';
+	import MainNav from '../nav/MainNav.svelte';
 	import ThemeSwitch from '../theme-switch/ThemeSwitch.svelte';
+	import HamburgerMenu from './HamburgerMenu.svelte';
 </script>
 
 <header>
-	<nav>
-		<ul>
-			<li aria-current={$page.url.pathname === '/home' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-
-			<li aria-current={$page.url.pathname.startsWith('/follow-along') ? 'page' : undefined}>
-				<a href="/follow-along">Follow along</a>
-			</li>
-
-			<li aria-current={$page.url.pathname.startsWith('/workout') ? 'page' : undefined}>
-				<a href="/workout">Workouts</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/timer') ? 'page' : undefined}>
-				<a href="/timer">Timers</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/routine') ? 'page' : undefined}>
-				<a href="/routine">Routines</a>
-			</li>
-		</ul>
-	</nav>
-
+	<div class="main-nav-wrapper">
+		<MainNav />
+	</div>
 	<div class="flex-row icons-white">
 		<div class="corner">
 			<ThemeSwitch />
@@ -71,6 +49,12 @@
 		}
 	}
 
+	@media (max-width: 768px) {
+		.main-nav-wrapper {
+			display: none;
+		}
+	}
+
 	.flex-row {
 		grid-column: 3; /* Place the nav in the center */
 		place-self: end;
@@ -87,8 +71,7 @@
 		height: var(--sub-header-height);
 	}
 
-	.corner a,
-	nav {
+	.corner a {
 		display: flex;
 		grid-column: 2; /* Place the nav in the center */
 		justify-content: center;
@@ -96,50 +79,6 @@
 		position: relative;
 		/* --background: rgba(255, 255, 255, 0.7); */
 		/* --background: var(--fg-color-dark); */
-	}
-
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: var(--sub-header-height);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--text-color-white);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 0.5rem;
-		color: var(--text-color-white);
-		font-weight: 700;
-		font-size: var(--font-size-sm);
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
 	}
 
 	a:hover {

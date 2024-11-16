@@ -1,15 +1,15 @@
 <script lang="ts">
 	import TimeCounter from '../../time-counter/TimeCounter.svelte';
 	import DialogGeneric from '../global/DialogGeneric.svelte';
-	import { countDialogStates } from './count-dialog-states.svelte';
+	import { createDialogStates } from './count-dialog-states.svelte';
 
 	let {
 		isOpen = $bindable()
 	}: {
 		isOpen: boolean;
 	} = $props();
-	let states = $state(countDialogStates().states);
-	let content = $state(countDialogStates().content);
+	let states = $state(createDialogStates().states);
+	let content = $state(createDialogStates().content);
 </script>
 
 <!-- 
@@ -20,11 +20,18 @@ child component is fully customizable. but alway use "count" bindable.
   -->
 <DialogGeneric bind:isOpen>
 	<!-- specific contents here -->
-	{@render states.content?.()}
+	{@render states.content?.({})}
 	{states.test}
+	<button
+		type="button"
+		onclick={() => {
+			states.content = TimeCounter;
+			states.test = 'jjj';
+		}}>click me</button
+	>
 	<!-- <TimeCounter /> -->
 	<!-- specific contents end -->
 	<!-- specific actions here -->
-	<!-- {@render countDialogStates.actions?.()} -->
+	<!-- {@render createDialogStates.actions?.()} -->
 	<!-- specific actions end -->
 </DialogGeneric>

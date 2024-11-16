@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { countDialogStates } from '../dialog/count-dialog/count-dialog-states.svelte';
+	import { createDialogStates } from '../dialog/count-dialog/count-dialog-states.svelte';
 	import NumberInput from './NumberInput.svelte';
 
 	let {
@@ -11,10 +11,7 @@
 		min?: number;
 		unit?: string | undefined;
 	} = $props();
-	let count = $state(countDialogStates.count);
-	$effect(() => {
-		countDialogStates.count = count;
-	});
+	let count = $state(0);
 </script>
 
 <div class="counter">
