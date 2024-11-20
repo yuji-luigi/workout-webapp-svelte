@@ -1,15 +1,15 @@
 <script lang="ts">
-	let {
-		max,
-		min = 0,
-		unit,
-		count = $bindable(1)
-	}: {
-		max?: number | undefined;
-		min?: number;
-		unit?: string | undefined;
-		count?: number;
-	} = $props();
+	import { onMount } from 'svelte';
+	import { getForm } from '../../store/form-store.svelte';
+	import { counterDialogStates } from '../dialog/count-dialog/count-dialog-states.svelte';
+	const data = counterDialogStates.data;
+	let count = 0;
+	let min = 0;
+	let max = 0;
+	let unit = '';
+	onMount(() => {
+		console.log(data);
+	});
 	// in case of the sets input.
 	// I want to change the form value by on change the count.
 	// 1. Get correct form: can be form id to get the correct form form DOM

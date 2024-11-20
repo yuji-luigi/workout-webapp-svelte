@@ -31,10 +31,10 @@
 	}
 </script>
 
-<div class="drawer-side-nav gcss_sidenav_hover" data-open={verticalMenuParams.isOpen}>
+<div class="drawer-side-nav" data-open={verticalMenuParams.isOpen}>
 	<button class="closebtn" on:click={closeVerticalMenu}>&times;</button>
 	<section class="nav-section">
-		<div class="">
+		<div class="gcss_sidenav_hover">
 			<h4 class="drawer-side-nav-section-title mobile-view">Main</h4>
 			<div class="mobile-view main-nav nav-list">
 				{#each mainNavList as { label, href }}
@@ -46,7 +46,7 @@
 				{/each}
 			</div>
 		</div>
-		<div class="list-section">
+		<div class="list-section gcss_sidenav_hover">
 			<h4 class="drawer-side-nav-section-title mobile-view">management</h4>
 			<div class="nav-list">
 				{#each verticalNavList as { label, href }}

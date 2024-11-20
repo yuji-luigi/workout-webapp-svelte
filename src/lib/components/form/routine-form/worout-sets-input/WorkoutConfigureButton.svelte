@@ -6,7 +6,7 @@
 	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
 	import CountDialog from '../../../dialog/count-dialog/CountDialog.svelte';
 	import DialogGeneric from '../../../dialog/global/DialogGeneric.svelte';
-	import WorkoutCounter from './WorkoutCounterInputSection.svelte';
+	import WorkoutConfigRows from './WorkoutConfigRows.svelte';
 	let {
 		className = '',
 		name = '',
@@ -27,31 +27,11 @@
 	let formEl: HTMLFormElement | undefined = $state();
 
 	async function handleSetSelectedWorkouts(_?: Event) {
-		await sleep(10); // get the latest form data
-		// const form_data = new FormData(formEl);
-		// const dto = handleArrayFormData(form_data) as any;
-		// const _selected_workouts = workouts.filter((workout: WorkoutJoined) => {
-		// 	if (Array.isArray(dto.workouts)) {
-		// 		return dto.workouts.includes(workout.id);
-		// 	} else {
-		// 		return dto.workouts === workout.id;
-		// 	}
-		// });
+		await sleep(10);
+
 		selected_workouts = getForm(form_id)?.workouts || [];
 	}
-	// async function handleSetSelectedWorkouts(_?: Event) {
-	// 	await sleep(10); // get the latest form data
-	// 	const form_data = new FormData(formEl);
-	// 	const dto = handleArrayFormData(form_data) as any;
-	// 	const _selected_workouts = workouts.filter((workout: WorkoutJoined) => {
-	// 		if (Array.isArray(dto.workouts)) {
-	// 			return dto.workouts.includes(workout.id);
-	// 		} else {
-	// 			return dto.workouts === workout.id;
-	// 		}
-	// 	});
-	// 	selected_workouts = _selected_workouts;
-	// }
+
 	$effect(() => {
 		workouts = db_state.workouts;
 	});
@@ -65,9 +45,6 @@
 		await handleSetSelectedWorkouts();
 		isOpen = true;
 	}
-	// $effect(() => {
-	// 	// console.log({ isOpen });
-	// });
 </script>
 
 <div class="full-width flex-row">
@@ -84,10 +61,10 @@
 	<h2 class="title">Sets and rest time</h2>
 	<section class="grid">
 		{#each selected_workouts as workout, index}
-			<WorkoutCounter bind:isOpenCounterModal {workout} {index} {form_id} />
+			<WorkoutConfigRows {workout} {index} {form_id} />
 		{/each}
 	</section>
-	<CountDialog bind:isOpen={isOpenCounterModal} />
+	<CountDialog />
 </DialogGeneric>
 
 <style>

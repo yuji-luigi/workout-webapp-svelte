@@ -1,30 +1,34 @@
 <script lang="ts">
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { sleep } from '../../../../helpers/sleep';
-	import { openDialog } from '../../../../store/global-dialog-store';
-	import { createDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
-	import VideoHero from '../../../hero/video-hero/VideoHero.svelte';
+	import { getForm } from '../../../../store/form-store.svelte';
+	import { counterDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
 	import TimeCounter from '../../../time-counter/TimeCounter.svelte';
+	import TimeCounterInForm from '../../../time-counter/TimeCounterInForm.svelte';
 	let {
-		isOpenCounterModal = $bindable(),
-		workout
+		workout,
+		index,
+		form_id
 	}: {
+		index: number;
+		form_id: string;
 		workout: WorkoutJoined;
-		isOpenCounterModal: boolean;
 	} = $props();
 
 	let n_sets = $state(1);
-	let dialogStates = createDialogStates().states;
+
 	async function onclick() {
-		dialogStates.content = TimeCounter as any;
-		dialogStates.test = workout.exercise_name;
+		const form = getForm(form_id);
+		counterDialogStates.content = TimeCounterInForm as any;
+		counterDialogStates.form_id;
+		counterDialogStates.data.count = n_sets;
 		await sleep(100);
-		isOpenCounterModal = true;
+		counterDialogStates.isOpen = true;
 	}
 </script>
 
-<button type="button" class="input-group" {onclick}>
-	{n_sets}
+<button type="button" class="input-group">
+	<input value={n_sets} type="text" />
 	<span> Sets</span>
 </button>
 
@@ -39,5 +43,10 @@
 		font-size: var(--font-size-md);
 		justify-items: end;
 		cursor: pointer;
+	}
+	input {
+		width: 3rem;
+		text-align: center;
+		border: none;
 	}
 </style>

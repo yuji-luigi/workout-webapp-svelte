@@ -28,7 +28,6 @@
 		}
 	}
 	function handleEsc(e: KeyboardEvent) {
-		console.log(isOpen);
 		if (e.key === 'Escape') {
 			e.preventDefault();
 

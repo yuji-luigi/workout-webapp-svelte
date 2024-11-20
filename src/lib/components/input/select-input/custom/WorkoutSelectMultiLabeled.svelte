@@ -6,7 +6,7 @@
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
 	import NewWorkoutModalFormOpenButton from '../../../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
 	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
-	import WorkoutSetsInput from '../../../form/routine-form/worout-sets-input/WorkoutSetsInput.svelte';
+	import WorkoutConfigureButton from '../../../form/routine-form/worout-sets-input/WorkoutConfigureButton.svelte';
 	let createdWorkout = null;
 	let {
 		loading,
@@ -47,8 +47,7 @@
 				<NewWorkoutModalFormOpenButton {createdWorkout}>+New</NewWorkoutModalFormOpenButton>
 			{/snippet}
 		</SelectInputMulti>
-
-		<WorkoutSetsInput {form_id} />
+		<WorkoutConfigureButton {form_id} />
 	{/snippet}
 </InputGroupGrid>
 

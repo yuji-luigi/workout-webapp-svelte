@@ -1,13 +1,8 @@
 <script lang="ts">
-	import { handleArrayFormData } from '$lib/helpers/form-helper/handle-array-form-data';
-	import { sleep } from '$lib/helpers/sleep';
+	import FormGrid from '$lib/components/form/FormGrid.svelte';
 	import InputGrid from '$lib/components/input/InputGrid.svelte';
 	import WorkoutSelectMulti from '$lib/components/input/select-input/custom/WorkoutSelectMultiLabeled.svelte';
-	import FormGrid from '$lib/components/form/FormGrid.svelte';
-	import WorkoutSetsInput from './worout-sets-input/WorkoutSetsInput.svelte';
-	import { setNestedValue } from '../../../helpers/form-helper/set_nested_value';
-	import { parseFormDataToObjects } from '../../../helpers/form-helper/parse_data_to_object';
-	import { getForm } from '../../../store/form-store.svelte';
+	import { sleep } from '$lib/helpers/sleep';
 
 	let loading = false;
 	const form_id = 'routine-form';
@@ -23,12 +18,6 @@
 <div class="container">
 	<h3>Create a new routine</h3>
 	<FormGrid {handleSubmit} {loading} {form_id}>
-		<InputGrid label="user first name" name="user[0].first_name" type="text" />
-		<InputGrid label="user last name" name="user[0].last_name" type="text" />
-		<InputGrid label="user first name" name="user[1].first_name" type="text" />
-		<InputGrid label="user last name" name="user[1].last_name" type="text" />
-		<InputGrid label="user city in address" name="user.address.city" type="text" />
-
 		<InputGrid label="Name of the routine" name="name" type="text" />
 		<InputGrid label="Slug of the routine(shown in url)" name="slug" type="text" />
 		<InputGrid label="Description" name="description" type="text" />
