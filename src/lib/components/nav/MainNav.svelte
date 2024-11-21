@@ -7,7 +7,7 @@
 	<ul>
 		{#each mainNavList as { label, href }}
 			<li aria-current={$page.url.pathname === href ? 'page' : undefined}>
-				<a href="/">{label}</a>
+				<a {href}>{label}</a>
 			</li>
 		{/each}
 	</ul>
@@ -16,7 +16,6 @@
 <style>
 	nav {
 		display: flex;
-		grid-column: 2; /* Place the nav in the center */
 		justify-content: center;
 		flex-grow: 1; /* Make the nav take up available space */
 		position: relative;

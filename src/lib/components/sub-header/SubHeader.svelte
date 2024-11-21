@@ -49,6 +49,10 @@
 		}
 	}
 
+	.main-nav-wrapper {
+		grid-column: 2; /* Place the nav in the center */
+	}
+
 	@media (max-width: 768px) {
 		.main-nav-wrapper {
 			display: none;
