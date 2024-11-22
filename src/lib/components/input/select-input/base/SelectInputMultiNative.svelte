@@ -1,3 +1,11 @@
+<!--
+@component
+- this multi select heavily uses the input with checkbox for select. but the order of selected element isx not ordered by selected order. instead ordered by the array of options. so Not being used anymore. leave here for some kind of documentation.
+@example
+```svelte
+<Repeat text="Repeat this" numberOfTimes={3} />
+```
+-->
 <script lang="ts">
 	import { onMount, onDestroy, type Snippet } from 'svelte';
 	import Chip from '$lib/components/chip/Chip.svelte';
@@ -100,8 +108,8 @@
 	<div
 		role="button"
 		tabindex="0"
-		onclick={handleOnfocus}
-		onkeydown={null}
+		on:click={handleOnfocus}
+		on:keydown={null}
 		class={`input flex-row select-input-div ${className}`}
 	>
 		{#if selectedOptions.length === 0}
@@ -126,17 +134,17 @@
 		<!-- Render checkboxes for each option -->
 
 		{#each options as option, index}
-			<div
-				role="button"
-				class="select-checkbox"
-				data-key={option.id || option.value}
-				data-checked={selectedValues.includes(String(option.value))}
-				onclick={() => toggleSelection(option)}
-				tabindex={index}
-				onkeydown={null}
-			>
+			<label class="checkbox-label">
+				<input
+					class="select-checkbox"
+					type="checkbox"
+					value={option.value}
+					data-key={option.id || option.value}
+					checked={selectedValues.includes(String(option.value))}
+					on:change={() => toggleSelection(option)}
+				/>
 				{option.label}
-			</div>
+			</label>
 		{/each}
 	</div>
 	<!-- No more select use only the checkbox input with index in square brackets. must be used with the parseFormDataToObjects function in this case -->
@@ -161,7 +169,7 @@
 	.custom-select {
 		display: flex;
 		max-height: 0;
-		/* gap: 0.25rem; */
+		gap: 0.25rem;
 		flex-direction: column;
 		overflow: hidden;
 		background-color: var(--fg-color);
@@ -170,7 +178,7 @@
 		/* transition: max-height 1.3s ease-in-out; */
 	}
 	.custom-select[data-open='true'] {
-		/* padding: 1rem; */
+		padding: 1rem;
 		transition: max-height 1.3s ease-in-out;
 		border-radius: 4px;
 		max-height: 600px;
@@ -181,15 +189,11 @@
 		align-items: center;
 	}
 
-	.select-checkbox {
-		padding-inline: 1rem;
-		padding-block: 0.5rem;
-		cursor: pointer;
-		&[data-checked='true'] {
-			background-color: var(--color-primary);
-			color: var(--color-text-white);
-		}
+	input[type='checkbox'] {
+		margin-right: 0.5rem;
+		flex: 0;
 	}
+
 	.chips-container {
 		display: flex;
 		flex-wrap: wrap;
