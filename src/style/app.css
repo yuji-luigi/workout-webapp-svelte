@@ -120,10 +120,10 @@
   --padding-inline-header: 2rem;
 
 
-  --font-size-xs: 0.65rem;
+  --font-size-xs: 0.75rem;
   --font-size-sm: 0.85rem;
-  --font-size-md: 1.25rem;
-  --font-size-lg: 1.5rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
 
 
   --text-color-white: #dcf0fa;
@@ -141,11 +141,9 @@
 
 @media (max-width: 768px) {
   :root {
-
-
-    --font-size-xs: 0.55rem;
+    --font-size-xs: 0.65rem;
     --font-size-sm: 0.75rem;
-    --font-size-md: 1rem;
+    --font-size-md: 0.95rem;
     --font-size-lg: 1.2rem;
     --padding-inline-main: 1.5rem;
     /* Smaller value for screens smaller than 768px */
@@ -205,7 +203,7 @@ img {
 }
 
 .input-group {
-  font-size: var(--font-size-sm);
+  /* font-size: var(--font-size-md); */
 }
 
 textarea {
