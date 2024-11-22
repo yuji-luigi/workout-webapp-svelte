@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { openDialog } from '../../../../store/global-dialog-store';
-	import WorkoutCounterInput from './WorkoutCounterInput.svelte';
+	import WorkoutSetInput from './WorkoutSetInput.svelte';
+	import WorkoutTimeInput from './WorkoutTimeInput.svelte';
 	let {
 		workout,
 		index,
@@ -16,9 +17,10 @@
 
 <h2 class="exercise-name">{workout.exercise_name}</h2>
 <div bind:this={el} class="input-section">
-	<WorkoutCounterInput {index} {workout} {form_id} />
-	<WorkoutCounterInput {index} {workout} {form_id} />
-	<WorkoutCounterInput {index} {workout} {form_id} />
+	<WorkoutSetInput {index} {workout} {form_id} />
+	<WorkoutTimeInput {index} {workout} {form_id} name={`workouts[${index}].timer_seconds_active`} />
+	<WorkoutTimeInput {index} {workout} {form_id} name={`workouts[${index}].timer_seconds_rest`} />
+	<button>submit</button>
 </div>
 
 <style>
