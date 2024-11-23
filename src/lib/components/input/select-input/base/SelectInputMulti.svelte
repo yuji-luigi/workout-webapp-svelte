@@ -1,29 +1,53 @@
 <script lang="ts">
-	import { onMount, onDestroy, type Snippet } from 'svelte';
+	import {
+		onMount,
+		onDestroy,
+		type Snippet,
+		getContext,
+		hasContext,
+		getAllContexts,
+		setContext
+	} from 'svelte';
 	import Chip from '$lib/components/chip/Chip.svelte';
 	import type { Option } from '$types/form/option';
-	export let className: string = '';
-	export let loading = true;
-	export let name;
-	export let endComponent: Snippet | null;
-	let open = false;
-	export let options: Option[] = [];
+	import { getForm, setForm } from '../../../../store/form-store.svelte';
+	import { sleep } from '../../../../helpers/sleep';
+	import ChipInput from '../../../chip/ChipInput.svelte';
+
+	let {
+		className,
+		loading = false,
+		name,
+		endComponent,
+		options
+	}: {
+		className: string;
+		loading: boolean;
+		name: string;
+		endComponent: Snippet | null;
+		options: Option[];
+	} = $props();
+	let open = $state(false);
+	const form_id = getContext('form_id') as string;
 	// they are the same the values are the mapped values of selectedOptions to avoid mapping again
-	let selectedOptions: Option[] = [];
-	let selectedValues: string[] = [];
+	let selectedOptions: Option[] = $state([]);
+	let selectedValues: string[] = $state([]);
 	let selectElement: HTMLSelectElement;
 	let selectContainer: HTMLDivElement;
+	let form = $state(getForm(getContext('form_id')));
 
-	function toggleSelection(selected: Option) {
+	async function toggleSelection(selected: Option) {
 		const { value } = selected;
-		//TODO: SEE  if all of these lines are necessary.
 		if (selectedValues.includes(String(value))) {
 			selectedOptions = selectedOptions.filter((selected) => selected.value !== value);
 		} else {
 			selectedOptions = [...selectedOptions, selected];
 		}
+		console.log(selectedOptions);
 		selectedValues = selectedOptions.map((selected) => selected.value.toString());
 		updateSelectOptions(); // TODO:  See if necessary
+		setForm(form_id, { ...Object(form), [name]: selectedValues });
+		const formEl = document.getElementById(form_id) as HTMLFormElement;
 	}
 
 	function removeSelectOption(event: MouseEvent) {
@@ -93,6 +117,9 @@
 			document.removeEventListener('click', handleClickOutside);
 		}
 	});
+	$effect(() => {
+		form = getForm('routine-form');
+	});
 </script>
 
 <div class={`${className} select-container`} bind:this={selectContainer}>
@@ -109,7 +136,11 @@
 		{/if}
 		<div class="chips-container">
 			{#each selectedOptions as option, index}
-				<Chip data_set_key={option.id}>{option.label}</Chip>
+				<ChipInput
+					value={option.value.toString()}
+					name={`${name}[${index}]`}
+					data_set_key={option.id}>{option.label}</ChipInput
+				>
 			{/each}
 		</div>
 		{@render endComponent?.()}
@@ -141,11 +172,11 @@
 	</div>
 	<!-- No more select use only the checkbox input with index in square brackets. must be used with the parseFormDataToObjects function in this case -->
 	<!-- Hidden select element for form submission -->
-	<select class="workouts-select" {name} multiple bind:this={selectElement} hidden>
+	<!-- <select class="workouts-select" {name} multiple bind:this={selectElement} hidden>
 		{#each options as option}
 			<option value={option.value}>{option.label}</option>
 		{/each}
-	</select>
+	</select> -->
 </div>
 
 <style>

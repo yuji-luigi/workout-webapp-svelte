@@ -3,6 +3,7 @@
 	import InputGrid from '$lib/components/input/InputGrid.svelte';
 	import WorkoutSelectMulti from '$lib/components/input/select-input/custom/WorkoutSelectMultiLabeled.svelte';
 	import { sleep } from '$lib/helpers/sleep';
+	import { setContext } from 'svelte';
 
 	let loading = false;
 	const form_id = 'routine-form';
@@ -22,8 +23,7 @@
 		<InputGrid label="Slug of the routine(shown in url)" name="slug" type="text" />
 		<InputGrid label="Description" name="description" type="text" />
 		<InputGrid label="Image" name="image" type="file" />
-
-		<WorkoutSelectMulti name="workouts" label="workouts" {form_id} />
+		<WorkoutSelectMulti name="workouts" label="workouts" />
 		<button class="button primary">submit</button>
 	</FormGrid>
 </div>

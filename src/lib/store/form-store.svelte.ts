@@ -1,4 +1,4 @@
-let formContext = $state<Record<string, any>>({});
+let formContext = $state<Record<string, any>>({ initial: 'initial' });
 
 export const getForm = (form_id: string) => {
 	return formContext[form_id];

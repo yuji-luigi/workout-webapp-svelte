@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { sleep } from '../../helpers/sleep';
-	import { handleArrayFormData } from '../../helpers/form-helper/handle-array-form-data';
+	import { getContext, onMount } from 'svelte';
 	import { parseFormDataToObjects } from '../../helpers/form-helper/parse_data_to_object';
-	import { resetForm, setForm } from '../../store/form-store.svelte';
+	import { sleep } from '../../helpers/sleep';
+	import { getForm, resetForm, setForm } from '../../store/form-store.svelte';
+	import FormContext from './FormContext.svelte';
 
 	let {
 		loading,
@@ -21,12 +21,14 @@
 		children?: any;
 		form_id?: string;
 	} = $props();
+	let multiNames: string[] = [];
+	let form = $state(getForm(form_id));
 
 	async function onsubmit(event: SubmitEvent & { target: HTMLFormElement }) {
 		try {
 			loading = true;
 			const form_data = new FormData(event.target as HTMLFormElement);
-			const submitPayload = parseFormDataToObjects(form_data);
+			const submitPayload = parseFormDataToObjects(form_data, multiNames);
 			await handleSubmit?.(submitPayload, event);
 			await sleep(1000);
 		} catch (error: any) {
@@ -40,7 +42,7 @@
 		const multiSelects = formEl?.querySelectorAll('select[multiple]') as
 			| NodeListOf<HTMLSelectElement>
 			| undefined;
-		const multiNames =
+		multiNames =
 			multiSelects
 				?.values()
 				.map((field) => field.name)
@@ -51,24 +53,33 @@
 			const dto = parseFormDataToObjects(form_data, multiNames);
 			setForm(form_id, dto);
 		});
-
 		return () => resetForm();
+	});
+
+	$effect(() => {
+		form = getForm(form_id);
 	});
 </script>
 
-<div class={className}>
-	<fieldset disabled={loading} aria-busy={loading}>
-		{#if form_id}
-			<form bind:this={formEl} id={form_id} {onsubmit}>
-				{@render children?.()}
-			</form>
-		{:else}
-			<form {onsubmit}>
-				{@render children?.()}
-			</form>
-		{/if}
-	</fieldset>
-</div>
+<FormContext {form_id}>
+	<div class={className}>
+		<fieldset disabled={loading} aria-busy={loading}>
+			{#if form_id}
+				<form bind:this={formEl} id={form_id} {onsubmit}>
+					{@render children?.()}
+				</form>
+			{:else}
+				<form {onsubmit}>
+					{@render children?.()}
+				</form>
+			{/if}
+		</fieldset>
+	</div>
+	<pre>
+  	form: {JSON.stringify(form, null, 2)}
+
+  </pre>
+</FormContext>
 
 <style>
 	fieldset {

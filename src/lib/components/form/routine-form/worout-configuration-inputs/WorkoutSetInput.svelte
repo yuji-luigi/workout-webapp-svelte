@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getContext } from 'svelte';
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { sleep } from '../../../../helpers/sleep';
 	import { getForm } from '../../../../store/form-store.svelte';
@@ -16,11 +17,10 @@
 	} = $props();
 
 	let n_sets = $state(1);
-
+	let form = getContext('form');
 	async function onclick() {
-		const form = getForm(form_id);
 		counterDialogStates.content = TimeCounterInForm as any;
-		counterDialogStates.form_id;
+		// counterDialogStates.form_id;
 		counterDialogStates.data.count = n_sets;
 		await sleep(100);
 		counterDialogStates.isOpen = true;

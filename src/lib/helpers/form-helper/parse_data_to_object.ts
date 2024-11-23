@@ -29,11 +29,19 @@ export function parseFormDataToObjects(formData: FormData, multiNames: string[] 
 
 			// need to specify the case of  multi select.
 			// if the same key is passed and the i length is the last one and there is already a value present, then push the value to the array.
-			if (i === keys.length - 1 && (current[part] || multiNames.includes(part))) {
+			if (i === keys.length - 1 && /* current[part] || */ multiNames.includes(part)) {
 				if (Array.isArray(current[part])) {
 					current[part].push(value);
 				} else {
 					current[part] = [value];
+				}
+				continue;
+			}
+			if (i === keys.length - 1 && !multiNames.includes(part) && current[part]) {
+				if (Array.isArray(current[part])) {
+					current[part].push(value);
+				} else {
+					current[part] = value;
 				}
 				continue;
 			}
