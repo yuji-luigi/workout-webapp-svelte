@@ -31,7 +31,7 @@
 	const form_id = getContext('form_id') as string;
 	// they are the same the values are the mapped values of selectedOptions to avoid mapping again
 	let selectedOptions: Option[] = $state([]);
-	// let selectedValues: string[] = $state([]);
+	let selectedValues: string[] = $state([]);
 	let selectElement: HTMLSelectElement;
 	let selectContainer: HTMLDivElement;
 	let form = $state(getForm(getContext('form_id')));
@@ -39,14 +39,16 @@
 	/** handle select from dropdown */
 	async function toggleSelection(selected: Option) {
 		const { value } = selected;
-
-		console.log(value);
-		if (selectedOptions.map((option) => option.value.toString()).includes(String(value))) {
+		if (selectedValues.includes(String(value))) {
 			selectedOptions = selectedOptions.filter((selected) => selected.value !== value);
 		} else {
 			selectedOptions = [...selectedOptions, selected];
 		}
-		updateFormBySelectedOptionsState();
+		console.log(selectedOptions);
+		selectedValues = selectedOptions.map((selected) => selected.value.toString());
+		updateSelectOptions(); // TODO:  See if necessary
+		setForm(form_id, { ...Object(form), [name]: selectedValues });
+		const formEl = document.getElementById(form_id) as HTMLFormElement;
 	}
 
 	/** onClick the chip in fake select input box */
@@ -55,18 +57,34 @@
 			const chip = event.target.closest('.chip');
 			if (chip) {
 				event.stopImmediatePropagation();
-				const key = chip.getAttribute('data-key');
-				selectedOptions = selectedOptions.filter(
-					(option) => option.id.toString() !== key?.toString()
-				);
-				updateFormBySelectedOptionsState();
+				const key = chip.getAttribute('data-key'); // key is the value of the option. data-key is in the chip component
+				// selectedOptions = selectedOptions.filter((option) => option.value.toString() !== key);
+				// selectedValues = selectedOptions.map((option) => option.value.toString());
+				// updateSelectOptions();
+				// from here I am trying to trigger the form input event to update the selected_workouts in the form.
+				const selectedChipElement = document.querySelector(
+					`.select-checkbox[data-key="${key}"]`
+				) as HTMLInputElement;
+				if (selectedChipElement) {
+					// Uncheck the selectedChipElement
+					selectedChipElement.checked = false;
+					// Optionally, you might want to trigger a change event as well
+					const changeEvent = new Event('change', { bubbles: true });
+					selectedChipElement.dispatchEvent(changeEvent);
+					// Create and dispatch the input event
+					const inputEvent = new Event('input', { bubbles: true });
+					selectedChipElement.dispatchEvent(inputEvent);
+				}
 			}
 		}
 	}
 
-	function updateFormBySelectedOptionsState() {
-		const formEl = document.getElementById(form_id) as HTMLFormElement;
-		formEl.dispatchEvent(new Event('input'));
+	function updateSelectOptions() {
+		if (selectElement) {
+			Array.from(selectElement.options).forEach((option) => {
+				option.selected = selectedValues.includes(option.value);
+			});
+		}
 	}
 
 	// Open the dropdown when focusing the input
@@ -145,9 +163,7 @@
 				role="button"
 				class="select-checkbox"
 				data-key={option.id || option.value}
-				data-checked={selectedOptions
-					.map((option) => option.value.toString())
-					.includes(String(option.value))}
+				data-checked={selectedValues.includes(String(option.value))}
 				onclick={() => toggleSelection(option)}
 				tabindex={index}
 				onkeydown={null}
@@ -159,10 +175,10 @@
 	<!-- No more select use only the checkbox input with index in square brackets. must be used with the parseFormDataToObjects function in this case -->
 	<!-- Hidden select element for form submission -->
 	<!-- <select class="workouts-select" {name} multiple bind:this={selectElement} hidden>
-      {#each options as option}
-        <option value={option.value}>{option.label}</option>
-      {/each}
-    </select> -->
+		{#each options as option}
+			<option value={option.value}>{option.label}</option>
+		{/each}
+	</select> -->
 </div>
 
 <style>
