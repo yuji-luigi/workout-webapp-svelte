@@ -28,18 +28,17 @@
 
 	async function handleSetSelectedWorkouts(_?: Event) {
 		await sleep(10);
-
 		selected_workouts = getForm(form_id)?.workouts || [];
 	}
 
 	$effect(() => {
 		workouts = db_state.workouts;
+		selected_workouts = getForm(form_id)?.workouts || [];
 	});
+
 	onMount(() => {
 		formEl = document.getElementById(form_id) as HTMLFormElement;
 		formEl?.addEventListener('input', handleSetSelectedWorkouts);
-		// update the selected workouts onSav(dev) also.
-		handleSetSelectedWorkouts();
 	});
 	async function openConfig() {
 		await handleSetSelectedWorkouts();
@@ -60,7 +59,7 @@
 <DialogGeneric bind:isOpen>
 	<h2 class="title">Sets and rest time</h2>
 	<section class="grid">
-		{#each selected_workouts as workout, index}
+		{#each selected_workouts.filter((selected) => !!selected.id) as workout, index}
 			<WorkoutConfigRows {workout} {index} {form_id} />
 		{/each}
 	</section>

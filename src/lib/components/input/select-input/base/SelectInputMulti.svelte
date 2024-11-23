@@ -39,8 +39,6 @@
 	/** handle select from dropdown */
 	async function toggleSelection(selected: Option) {
 		const { value } = selected;
-
-		console.log(value);
 		if (selectedOptions.map((option) => option.value.toString()).includes(String(value))) {
 			selectedOptions = selectedOptions.filter((selected) => selected.value !== value);
 		} else {
@@ -64,7 +62,7 @@
 		}
 	}
 
-	function updateFormBySelectedOptionsState() {
+	async function updateFormBySelectedOptionsState() {
 		const formEl = document.getElementById(form_id) as HTMLFormElement;
 		formEl.dispatchEvent(new Event('input'));
 	}
