@@ -8,7 +8,9 @@
 	import InputGrid from '../../input/InputGrid.svelte';
 	import SelectTiles from '../../input/select-input/tile/SelectTiles.svelte';
 	import FormGrid from '../FormGrid.svelte';
-	import { handleSaveWorkoutLocally } from './saveJoinedWorkout.svelte';
+	import { handleSaveWorkoutLocally, type WorkoutFormData } from './saveJoinedWorkout.svelte';
+	import { workoutFormTable } from '../../../data/template-json/dataTable/workouts-form-table';
+	import JsonForm from '../JsonForm.svelte';
 	let {
 		onSubmitCallback,
 		resolve,
@@ -26,15 +28,15 @@
 	});
 	// save exercise + timer + joined workout
 	async function handleSubmit(
-		payload: Record<string, any>,
-		event: SubmitEvent & { target: HTMLFormElement }
+		event: SubmitEvent & { target: HTMLFormElement },
+		payload: Record<string, any>
 	) {
 		loading = true;
 		// const formData = new FormData(event.target as HTMLFormElement);
 		// const data = Object.fromEntries(formData.entries()) as unknown as WorkoutJoined;
 		try {
 			console.log(payload);
-			handleSaveWorkoutLocally(payload as WorkoutJoined);
+			handleSaveWorkoutLocally(payload as WorkoutFormData);
 			await sleep(750);
 			event.target?.reset();
 			onSubmitCallback && onSubmitCallback(payload);
@@ -47,7 +49,7 @@
 
 <div class="container">
 	<h3 class="title">Create new workout</h3>
-
+	<!-- 
 	<FormGrid {handleSubmit} {loading}>
 		<InputGrid
 			label="Id"
@@ -75,17 +77,9 @@
 			}))}
 			name="workout_type_id"
 		/>
-		<div class="input-group">
-			<label for="name">Rest time(sec)</label>
-			<input min="0" type="number" name="timer_seconds_rest" />
-		</div>
-		<div class="input-group">
-			<label for="name">Active time(sec)</label>
-			<input min="0" type="number" name="timer_seconds_active" />
-		</div>
-
 		<button type="submit">Submit</button>
-	</FormGrid>
+	</FormGrid> -->
+	<JsonForm formTableFields={workoutFormTable} className="container" {handleSubmit} />
 </div>
 
 <style>

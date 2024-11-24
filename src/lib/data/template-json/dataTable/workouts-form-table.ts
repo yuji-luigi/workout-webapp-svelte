@@ -1,43 +1,36 @@
+import type { WorkoutJoined } from '../../../../types/db/workout';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
-export const workoutFormTable: FormTableField[] = [
+export const workoutFormTable: (FormTableField & { name: keyof WorkoutJoined })[] = [
 	{
 		name: 'id',
 		label: 'ID',
-		type: 'number',
-		hidden: true
+		type: 'id-input',
+		collection: 'workout',
+		formFieldConfig: { hidden: true }
+	},
+	{
+		name: 'exercise_name',
+		label: 'Exercise name',
+		type: 'text'
 	},
 	{
 		name: 'slug',
 		label: 'Slug',
-		type: 'text',
-		tableConfig: {
-			hidden: true
-		}
+		type: 'text'
 	},
 	{
 		name: 'exercise_id',
 		label: 'Exercise ID',
 		type: 'id-input',
 		collection: 'exercise',
-		hidden: true,
-		tableConfig: {
-			hidden: true
-		}
-	},
-	{
-		name: 'exercise_name',
-		label: 'Name',
-		type: 'text'
+		formFieldConfig: { hidden: true }
 	},
 	{
 		name: 'workout_type_id',
 		label: 'Workout Type ID',
 		type: 'number',
-		hidden: true,
-		tableConfig: {
-			hidden: true
-		}
+		formFieldConfig: { hidden: true }
 	},
 	{
 		name: 'exercise_description',
@@ -45,50 +38,38 @@ export const workoutFormTable: FormTableField[] = [
 		type: 'text'
 	},
 	{
-		name: 'name_workout_type',
+		name: 'workout_type_name',
 		label: 'Workout Type',
 		type: 'text'
 	},
+
+	// {
+	// 	name: 'repeat',
+	// 	label: 'Repeat',
+	// 	type: 'boolean'
+	// },
 	{
-		name: 'workout_type',
-		label: 'Workout Type',
-		type: 'text',
-		tableConfig: {
-			hidden: true
-		}
+		name: 'use_active_time',
+		label: 'Use Active Time',
+		type: 'boolean',
+		formFieldConfig: { hidden: true }
 	},
 	{
-		name: 'repeat',
-		label: 'Repeat',
-		type: 'boolean'
+		name: 'use_active_time',
+		label: 'Use Rest Time',
+		type: 'boolean',
+		formFieldConfig: { hidden: true }
 	},
-	// {
-	// 	name: 'use_active_time',
-	// 	label: 'Use Active Time',
-	// 	type: 'boolean',
-	// 	tableConfig: {
-	// 		hidden: true
-	// 	}
-	// },
-	// {
-	// 	name: 'use_active_time',
-	// 	label: 'Use Rest Time',
-	// 	type: 'boolean',
-	// 	tableConfig: {
-	// 		hidden: true
-	// 	}
-	// },
 	{
 		name: 'created_by_id',
 		label: 'Created By ID',
 		type: 'number',
-		tableConfig: {
-			hidden: true
-		}
+		formFieldConfig: { hidden: true }
 	},
 	{
 		name: 'created_by_name',
 		label: 'Created By Name',
+		formFieldConfig: { hidden: true },
 		type: 'text'
 	}
 ];

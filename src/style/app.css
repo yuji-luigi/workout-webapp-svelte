@@ -202,9 +202,7 @@ img {
   object-fit: cover;
 }
 
-.input-group {
-  /* font-size: var(--font-size-md); */
-}
+
 
 textarea {
   resize: none;

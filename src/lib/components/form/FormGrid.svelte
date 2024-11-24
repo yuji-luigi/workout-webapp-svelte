@@ -4,6 +4,7 @@
 	import { sleep } from '../../helpers/sleep';
 	import { getForm, resetForm, setForm } from '../../store/form-store.svelte';
 	import FormContext from './FormContext.svelte';
+	import type { EventHandler } from 'svelte/elements';
 
 	let {
 		loading,
@@ -15,8 +16,8 @@
 		loading?: boolean;
 		className?: string | undefined;
 		handleSubmit?: (
-			payload: Record<string, any>,
-			event: SubmitEvent & { target: HTMLFormElement }
+			event: SubmitEvent & { target: HTMLFormElement },
+			payload: Record<string, any>
 		) => Promise<void>;
 		children?: any;
 		form_id?: string;
@@ -24,12 +25,14 @@
 	let multiNames: string[] = [];
 	let form = $state(getForm(form_id));
 
-	async function onsubmit(event: SubmitEvent & { target: HTMLFormElement }) {
+	// handle shape of the form data. creates js object and array from form data and pass it to the handleSubmit function above root form
+	async function onsubmit(event: any) {
 		try {
+			if (!event || !event.target) return;
 			loading = true;
 			const form_data = new FormData(event.target as HTMLFormElement);
 			const submitPayload = parseFormDataToObjects(form_data, multiNames);
-			await handleSubmit?.(submitPayload, event);
+			await handleSubmit?.(event, submitPayload);
 			await sleep(1000);
 		} catch (error: any) {
 			throw new Error(error);

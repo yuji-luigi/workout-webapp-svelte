@@ -6,20 +6,30 @@
 	import { excludeFormHidden } from './filterInputs';
 	import FormGrid from './FormGrid.svelte';
 
-	let { formTableFields, className }: { formTableFields: FormTableField[]; className?: string } =
-		$props();
+	let {
+		formTableFields,
+		className,
+		handleSubmit
+	}: {
+		formTableFields: FormTableField[];
+		className?: string;
+		handleSubmit: (
+			event: SubmitEvent & { target: HTMLFormElement },
+			payload: Record<string, any>
+		) => Promise<void>;
+	} = $props();
 	let loading = false;
-	async function handleSubmit(event: SubmitEvent) {
-		loading = true;
-		const form_data = new FormData(event.target as HTMLFormElement);
-		const dto = handleArrayFormData(form_data);
-		console.log(dto);
-		await sleep(500);
-		loading = false;
-	}
+	// async function handleSubmit(event: SubmitEvent. payload: Record<string, any>) {
+	// 	// loading = true;
+	// 	// const form_data = new FormData(event.target as HTMLFormElement);
+	// 	// const dto = handleArrayFormData(form_data);
+	// 	// console.log(dto);
+	// 	// await sleep(500);
+	// 	// loading = false;
+	// }
 </script>
 
-<FormGrid {handleSubmit} {loading} {className}>
+<FormGrid {handleSubmit} {loading} {className} form_id="workout_form">
 	{#each formTableFields.filter(excludeFormHidden) as formTableField}
 		<InputController {formTableField} />
 	{/each}

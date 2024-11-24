@@ -11,6 +11,7 @@
 	if (isInputKey(formTableField.type)) {
 		Input = Inputs[formTableField.type];
 	}
+	const { formFieldConfig, ...other } = formTableField;
 </script>
 
-<Input {...formTableField} />
+<Input {...other} {...formFieldConfig} />

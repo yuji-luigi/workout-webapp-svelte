@@ -29,6 +29,10 @@
 		align-items: baseline;
 		justify-items: end;
 	}
+	.input-group:has([hidden]) {
+		background: green;
+		display: none;
+	}
 
 	@container (max-width: 600px) {
 		.input-group {
