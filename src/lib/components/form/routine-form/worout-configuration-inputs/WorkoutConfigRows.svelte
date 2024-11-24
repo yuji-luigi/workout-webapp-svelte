@@ -20,17 +20,19 @@
 		handleDestroyInput();
 	});
 	let el: HTMLDivElement | undefined = $state();
+	const preName = `workouts[${index}]`;
 </script>
 
 <h2 class="exercise-name">{workout.exercise_name}</h2>
 <div bind:this={el} class="input-section">
+	<WorkoutSetInput name={preName + '.n_set'} />
 	{#if workout.use_active_time}
 		<WorkoutTimeInput
 			label="workout time"
 			{index}
 			{workout}
 			{form_id}
-			name={`workouts[${index}].timer_seconds_active`}
+			name={preName + '.timer_seconds_active'}
 		/>
 	{/if}
 	{#if workout.use_rest_time}
@@ -39,10 +41,9 @@
 			{index}
 			{workout}
 			{form_id}
-			name={`workouts[${index}].timer_seconds_rest`}
+			name={preName + '.timer_seconds_rest'}
 		/>
 	{/if}
-	<button>submit</button>
 </div>
 
 <style>

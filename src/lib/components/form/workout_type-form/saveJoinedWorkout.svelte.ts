@@ -10,7 +10,7 @@ export type WorkoutFormData = {
 	exercise_name: string;
 	slug: string;
 	description: string;
-	workout_type: WorkoutType;
+	workout_type_name: string;
 };
 
 export function handleSaveWorkoutLocally(workoutDto: WorkoutFormData) {
@@ -31,15 +31,13 @@ export function exerciseFactory(workoutDto: WorkoutFormData) {
 }
 
 export function workoutJoinedFactory(workoutDto: WorkoutFormData): WorkoutJoined {
-	const { use_rest_time, use_active_time, name: workout_type_name } = workoutDto.workout_type;
-	const name = `${workoutDto.exercise_name} - ${workout_type_name}`;
+	const { use_rest_time, use_active_time } = getWorkoutType(workoutDto.workout_type_name);
 	return {
 		...workoutDto,
-		name,
+		workout_type_id: 0,
 		exercise_description: '',
 		use_active_time,
 		use_rest_time,
-		workout_type_name,
 		created_by_id: 0,
 		created_by_name: 'hardcoded user: TODO: get from store'
 	};

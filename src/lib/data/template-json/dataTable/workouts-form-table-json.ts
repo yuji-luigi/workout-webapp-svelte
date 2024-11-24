@@ -26,28 +26,20 @@ export const workoutFormTable: (FormTableField & { name: keyof WorkoutJoined })[
 		collection: 'exercise',
 		formFieldConfig: { hidden: true }
 	},
-	{
-		name: 'workout_type_id',
-		label: 'Workout Type ID',
-		type: 'number',
-		formFieldConfig: { hidden: true }
-	},
+
 	{
 		name: 'exercise_description',
 		label: 'Description',
 		type: 'text'
 	},
+
 	{
-		name: 'workout_type_name',
-		label: 'Workout Type',
-		type: 'text'
+		name: 'workout_type',
+		label: 'Workout Type Select',
+		type: 'select-single',
+		collection: 'workout_type'
 	},
 
-	// {
-	// 	name: 'repeat',
-	// 	label: 'Repeat',
-	// 	type: 'boolean'
-	// },
 	{
 		name: 'use_active_time',
 		label: 'Use Active Time',

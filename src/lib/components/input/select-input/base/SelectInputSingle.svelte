@@ -27,7 +27,7 @@
 		<option disabled selected hidden>please select...</option>
 	{/if}
 	{#each options as option}
-		<option value={option.value}>{option.label}</option>
+		<option selected={option.value === selectedOption} value={option.value}>{option.label}</option>
 	{/each}
 	{#if loading}
 		<option>Loading...</option>

@@ -9,7 +9,7 @@
 	import SelectTiles from '../../input/select-input/tile/SelectTiles.svelte';
 	import FormGrid from '../FormGrid.svelte';
 	import { handleSaveWorkoutLocally, type WorkoutFormData } from './saveJoinedWorkout.svelte';
-	import { workoutFormTable } from '../../../data/template-json/dataTable/workouts-form-table';
+	import { workoutFormTable } from '../../../data/template-json/dataTable/workouts-form-table-json';
 	import JsonForm from '../JsonForm.svelte';
 	let {
 		onSubmitCallback,

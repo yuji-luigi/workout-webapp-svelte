@@ -5,6 +5,7 @@ import type { WorkoutJoined } from '../../../types/db/workout';
 import { IndexeddbPersistence } from 'y-indexeddb';
 import { get } from 'svelte/store';
 import type { Collection } from '../../../types/db/collections';
+import type { RoutineJoined } from '../../../types/db/routine';
 
 export const db_state_fields = ['routines', 'workouts', 'exercises'] as const;
 
@@ -23,6 +24,7 @@ const persistence = new IndexeddbPersistence('my-yjs-doc', ydoc);
 export const routinesY = ydoc.getArray<RoutineJoined>('routines');
 export const workoutsY = ydoc.getArray<WorkoutJoined>('workouts');
 export const exercisesY = ydoc.getArray<Exercise>('exercises');
+export const workout_typeY = ydoc.getArray<WorkoutType>('workout_types');
 
 async function create_app_state() {
 	persistence.whenSynced.catch((error) => {
@@ -31,6 +33,7 @@ async function create_app_state() {
 	let _workouts = $state(workoutsY.toArray());
 	let _exercises = $state(exercisesY.toArray());
 	let _routines = $state(routinesY.toArray());
+	let _workout_types = $state(workout_typeY.toArray());
 
 	workoutsY.observeDeep(() => {
 		_workouts = workoutsY.toArray();
@@ -40,6 +43,9 @@ async function create_app_state() {
 	});
 	routinesY.observeDeep(() => {
 		_routines = routinesY.toArray();
+	});
+	workout_typeY.observeDeep(() => {
+		_workout_types = workout_typeY.toArray();
 	});
 
 	return {
@@ -59,6 +65,9 @@ async function create_app_state() {
 		// },
 		get exercises() {
 			return _exercises || [];
+		},
+		get workout_types() {
+			return _workout_types || [];
 		}
 	};
 }
@@ -74,5 +83,8 @@ export const db_state_getter = {
 	},
 	get exercise() {
 		return db_state.exercises;
+	},
+	get workout_type() {
+		return db_state.workout_types;
 	}
 };

@@ -6,15 +6,7 @@
 	import { counterDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
 	import TimeCounter from '../../../time-counter/TimeCounter.svelte';
 	import TimeCounterInForm from '../../../time-counter/TimeCounterInForm.svelte';
-	let {
-		workout,
-		index,
-		form_id
-	}: {
-		index: number;
-		form_id: string;
-		workout: WorkoutJoined;
-	} = $props();
+	let { name }: { name: string } = $props();
 
 	let n_sets = $state(1);
 	let form = getContext('form');
@@ -28,7 +20,7 @@
 </script>
 
 <button type="button" class="input-group">
-	<input value={n_sets} type="text" />
+	<input value={n_sets} type="text" {name} />
 	<span> Sets</span>
 </button>
 

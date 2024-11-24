@@ -10,6 +10,10 @@ export const verticalNavList: NavItem[] = [
 		href: '/manage/workout'
 	},
 	{
+		label: 'Create Workout type',
+		href: '/manage/workout_type'
+	},
+	{
 		label: 'Create Exercise',
 		href: '/manage/exercise'
 	}

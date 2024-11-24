@@ -10,11 +10,13 @@ export interface WorkoutJoined {
 	id: number;
 	slug: string;
 	exercise_id: number;
+	/** should be created at the creation of the workout */
+	name: string;
 	exercise_name: string;
-	workout_type_id: number;
+	workout_type: WorkoutType;
 	exercise_description: string;
 	image_url?: string;
-	workout_type_name: 'tabata' | 'hiit' | 'reps_and_sets';
+	workout_type_name: string;
 	use_active_time: boolean;
 	use_rest_time: boolean;
 	// repeat: boolean;

@@ -7,6 +7,6 @@ interface WorkoutType {
 	description: string;
 	repeat: boolean;
 	// these two can make some complexity
-	useActiveTime: boolean;
-	useRestTime: boolean;
+	use_active_time: boolean;
+	use_rest_time: boolean;
 }
