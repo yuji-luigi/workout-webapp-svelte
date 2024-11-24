@@ -1,17 +1,24 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { openDialog } from '../../../../store/global-dialog-store';
 	import WorkoutSetInput from './WorkoutSetInput.svelte';
 	import WorkoutTimeInput from './WorkoutTimeInput.svelte';
+	import { sleep } from '../../../../helpers/sleep';
 	let {
 		workout,
 		index,
-		form_id
+		form_id,
+		handleDestroyInput
 	}: {
 		workout: WorkoutJoined;
 		index: number;
 		form_id: string;
+		handleDestroyInput: () => void;
 	} = $props();
+	onDestroy(() => {
+		handleDestroyInput();
+	});
 	let el: HTMLDivElement | undefined = $state();
 </script>
 

@@ -26,7 +26,13 @@
 	let selected_workouts: WorkoutJoined[] = $state([]);
 	let formEl: HTMLFormElement | undefined = $state();
 
-	async function handleSetSelectedWorkouts(_?: Event) {
+	const inputEvent = new Event('input');
+
+	function dispatchInputEvent() {
+		formEl?.dispatchEvent(inputEvent);
+	}
+
+	async function handleSetSelectedWorkouts(_?: any) {
 		await sleep(10);
 		selected_workouts = getForm(form_id)?.workouts || [];
 	}
@@ -60,7 +66,7 @@
 	<h2 class="title">Sets and rest time</h2>
 	<section class="grid">
 		{#each selected_workouts.filter((selected) => !!selected.id) as workout, index}
-			<WorkoutConfigRows {workout} {index} {form_id} />
+			<WorkoutConfigRows handleDestroyInput={dispatchInputEvent} {workout} {index} {form_id} />
 		{/each}
 	</section>
 	<CountDialog />
