@@ -4,7 +4,8 @@ export const workoutFormTable: FormTableField[] = [
 	{
 		name: 'id',
 		label: 'ID',
-		type: 'number'
+		type: 'number',
+		hidden: true
 	},
 	{
 		name: 'slug',
@@ -33,6 +34,7 @@ export const workoutFormTable: FormTableField[] = [
 		name: 'workout_type_id',
 		label: 'Workout Type ID',
 		type: 'number',
+		hidden: true,
 		tableConfig: {
 			hidden: true
 		}
@@ -60,22 +62,22 @@ export const workoutFormTable: FormTableField[] = [
 		label: 'Repeat',
 		type: 'boolean'
 	},
-	{
-		name: 'useActiveTime',
-		label: 'Use Active Time',
-		type: 'boolean',
-		tableConfig: {
-			hidden: true
-		}
-	},
-	{
-		name: 'useRestTime',
-		label: 'Use Rest Time',
-		type: 'boolean',
-		tableConfig: {
-			hidden: true
-		}
-	},
+	// {
+	// 	name: 'use_active_time',
+	// 	label: 'Use Active Time',
+	// 	type: 'boolean',
+	// 	tableConfig: {
+	// 		hidden: true
+	// 	}
+	// },
+	// {
+	// 	name: 'use_active_time',
+	// 	label: 'Use Rest Time',
+	// 	type: 'boolean',
+	// 	tableConfig: {
+	// 		hidden: true
+	// 	}
+	// },
 	{
 		name: 'created_by_id',
 		label: 'Created By ID',
