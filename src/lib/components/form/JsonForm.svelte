@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { FormTableField } from '../../../../types/form/form-table-field';
-	import { handleArrayFormData } from '../../../helpers/form-helper/handle-array-form-data';
-	import { sleep } from '../../../helpers/sleep';
-	import InputController from '../../input/input-controller/InputController.svelte';
-	import FormGrid from '../FormGrid.svelte';
+	import type { FormTableField } from '../../../types/form/form-table-field';
+	import { handleArrayFormData } from '../../helpers/form-helper/handle-array-form-data';
+	import { sleep } from '../../helpers/sleep';
+	import InputController from '../input/input-controller/InputController.svelte';
+	import { excludeFormHidden } from './filterInputs';
+	import FormGrid from './FormGrid.svelte';
 
 	let { formTableFields, className }: { formTableFields: FormTableField[]; className?: string } =
 		$props();
@@ -19,7 +20,7 @@
 </script>
 
 <FormGrid {handleSubmit} {loading} {className}>
-	{#each formTableFields as formTableField}
+	{#each formTableFields.filter(excludeFormHidden) as formTableField}
 		<InputController {formTableField} />
 	{/each}
 
