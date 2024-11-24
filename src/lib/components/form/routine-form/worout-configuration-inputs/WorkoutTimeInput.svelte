@@ -9,12 +9,14 @@
 		workout,
 		index,
 		form_id,
+		label,
 		name
 	}: {
 		index: number;
 		form_id: string;
 		workout: WorkoutJoined;
 		name: string;
+		label: string;
 	} = $props();
 
 	let time = $state(1);
@@ -22,7 +24,7 @@
 
 <button type="button" class="input-group">
 	<input value={time} {name} type="text" />
-	<span> Sets</span>
+	<span> {label}</span>
 </button>
 
 <style>

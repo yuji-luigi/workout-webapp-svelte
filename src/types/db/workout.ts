@@ -15,7 +15,9 @@ export interface WorkoutJoined {
 	exercise_description: string;
 	image_url?: string;
 	name_workout_type: string; // tabata, hiit, reps_and_sets, ... etc
-	workout_type: string;
+	workout_type: 'tabata' | 'hiit' | 'reps_and_sets';
+	use_active_time: boolean;
+	use_rest_time: boolean;
 	repeat: boolean;
 	created_by_id: number;
 	created_by_name: string;
