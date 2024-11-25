@@ -34,13 +34,6 @@ export const workoutFormTable: (FormTableField & { name: keyof WorkoutJoined })[
 	},
 
 	{
-		name: 'workout_type',
-		label: 'Workout Type Select',
-		type: 'select-single',
-		collection: 'workout_type'
-	},
-
-	{
 		name: 'use_active_time',
 		label: 'Use Active Time',
 		type: 'boolean',
