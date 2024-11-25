@@ -4,3 +4,4 @@ export { default as 'multi-select' } from '../select-input/SelectSingleGrid.svel
 export { default as 'id-input' } from '../IdInputGrid.svelte';
 export { default as 'boolean' } from '../Boolean.svelte';
 export { default as 'switch' } from '../Switch.svelte';
+export { default as 'image' } from '../ImageInputGrid.svelte';

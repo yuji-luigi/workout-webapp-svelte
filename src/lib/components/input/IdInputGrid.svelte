@@ -26,12 +26,14 @@
 		hidden?: boolean;
 		value?: string | number;
 	} = $props();
-	console.log(collection);
+
 	let id = $state(db_state_getter[collection]?.length + 1);
+
 	onMount(() => {
 		id = db_state_getter[collection]?.length + 1;
-		console.log(collection);
-		console.log(db_state_getter[collection]);
+	});
+	$effect(() => {
+		id = db_state_getter[collection]?.length + 1;
 	});
 </script>
 

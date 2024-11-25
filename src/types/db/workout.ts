@@ -19,7 +19,6 @@ export interface WorkoutJoined {
 	workout_type_name: string;
 	use_active_time: boolean;
 	use_rest_time: boolean;
-	// repeat: boolean;
 	created_by_id: number;
 	created_by_name: string;
 }

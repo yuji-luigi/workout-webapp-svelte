@@ -1,16 +1,9 @@
 <script lang="ts">
-	import type { ResolveFn } from 'vite';
-	import type { WorkoutJoined } from '../../../../types/db/workout';
-	import { workout_types } from '../../../data/ts/workout_type';
 	import { sleep } from '../../../helpers/sleep';
-	import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
 	// import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
-	import InputGrid from '../../input/InputGrid.svelte';
-	import SelectTiles from '../../input/select-input/tile/SelectTiles.svelte';
-	import FormGrid from '../FormGrid.svelte';
-	import { handleSaveWorkoutLocally, type WorkoutFormData } from './saveJoinedWorkout.svelte';
 	import { workoutFormTable } from '../../../data/template-json/dataTable/workouts-form-table-json';
 	import JsonForm from '../JsonForm.svelte';
+	import { handleSaveWorkoutLocally, type WorkoutFormData } from './saveJoinedWorkout.svelte';
 	let {
 		onSubmitCallback,
 		resolve,

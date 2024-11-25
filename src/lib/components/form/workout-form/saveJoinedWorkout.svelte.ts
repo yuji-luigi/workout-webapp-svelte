@@ -30,6 +30,7 @@ export function exerciseFactory(workoutDto: WorkoutFormData) {
 	};
 }
 
+/** workoutDto has exercise and workout_type */
 export function workoutJoinedFactory(workoutDto: WorkoutFormData): WorkoutJoined {
 	const { use_rest_time, use_active_time, name: workout_type_name } = workoutDto.workout_type;
 	const name = `${workoutDto.exercise_name} - ${workout_type_name}`;

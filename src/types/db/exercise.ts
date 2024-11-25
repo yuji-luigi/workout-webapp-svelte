@@ -1,3 +1,5 @@
+import type { FileDB } from './file-db';
+
 /**
  * Primitive collection (no join needed)
  * GLOBALLY create exercise with name REST.
@@ -8,5 +10,5 @@ export interface Exercise {
 	name: string; // Foreign key to Timer
 	slug: string;
 	description: string;
-	image_url?: string;
+	image?: FileDB | number | File;
 }
