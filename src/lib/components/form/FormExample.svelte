@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { exampleFormTemplate } from '../../data/template-json/example-template';
-	import { handleArrayFormData } from '../../helpers/form-helper/handle-array-form-data';
 	import { sleep } from '../../helpers/sleep';
 	import InputGrid from '../input/InputGrid.svelte';
-	import NewWorkoutModalFormOpenButton from '../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
 
 	let loading = false;
 	function handleArrayFormData(form_data: FormData) {}

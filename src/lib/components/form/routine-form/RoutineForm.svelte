@@ -1,7 +1,7 @@
 <script lang="ts">
 	import FormGrid from '$lib/components/form/FormGrid.svelte';
 	import InputGrid from '$lib/components/input/InputGrid.svelte';
-	import WorkoutSelectMulti from '$lib/components/input/select-input/custom/WorkoutSelectMultiLabeled.svelte';
+	import ExerciseSelectMulti from '$lib/components/input/select-input/custom/ExerciseSelectMultiLabeled.svelte';
 	import { sleep } from '$lib/helpers/sleep';
 	import { setContext } from 'svelte';
 
@@ -23,7 +23,7 @@
 		<InputGrid label="Slug of the routine(shown in url)" name="slug" type="text" />
 		<InputGrid label="Description" name="description" type="text" />
 		<InputGrid label="Image" name="image" type="file" />
-		<WorkoutSelectMulti name="workouts" label="workouts" />
+		<ExerciseSelectMulti name="exercises" label="exercises" />
 		<button class="button primary">submit</button>
 	</FormGrid>
 </div>

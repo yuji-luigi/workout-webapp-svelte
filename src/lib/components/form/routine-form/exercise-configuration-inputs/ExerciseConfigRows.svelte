@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { openDialog } from '../../../../store/global-dialog-store';
-	import WorkoutSetInput from './WorkoutSetInput.svelte';
-	import WorkoutTimeInput from './WorkoutTimeInput.svelte';
+	import WorkoutSetInput from './ExerciseSetInput.svelte';
+	import WorkoutTimeInput from './ExerciseTimeInput.svelte';
 	import { sleep } from '../../../../helpers/sleep';
+	import type { Exercise } from '../../../../../types/db/exercise';
 	let {
-		workout,
+		exercise,
 		index,
 		form_id,
 		handleDestroyInput
 	}: {
-		workout: WorkoutJoined;
+		exercise: Exercise;
 		index: number;
 		form_id: string;
 		handleDestroyInput: () => void;
@@ -23,27 +23,27 @@
 	const preName = `workouts[${index}]`;
 </script>
 
-<h2 class="exercise-name">{workout.exercise_name}</h2>
+<h2 class="exercise-name">{exercise.name}</h2>
 <div bind:this={el} class="input-section">
 	<WorkoutSetInput name={preName + '.n_set'} />
-	{#if workout.use_active_time}
+	<!-- {#if exercise.use_active_time}
 		<WorkoutTimeInput
-			label="workout time"
+			label="exercise time"
 			{index}
-			{workout}
+			{exercise}
 			{form_id}
 			name={preName + '.timer_seconds_active'}
 		/>
-	{/if}
-	{#if workout.use_rest_time}
+	{/if} -->
+	<!-- {#if exercise.use_rest_time}
 		<WorkoutTimeInput
 			label="rest time"
 			{index}
-			{workout}
+			{exercise}
 			{form_id}
 			name={preName + '.timer_seconds_rest'}
 		/>
-	{/if}
+	{/if} -->
 </div>
 
 <style>

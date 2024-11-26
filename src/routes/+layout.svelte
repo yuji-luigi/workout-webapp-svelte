@@ -9,6 +9,11 @@
 	import SubHeader from '../lib/components/sub-header/SubHeader.svelte';
 	import Footer from '../lib/components/Footer.svelte';
 	import VerticalMenu from '../lib/components/vertical-menu/VerticalMenu.svelte';
+	import { onDestroy } from 'svelte';
+	const socket = new WebSocket('ws://localhost:1234');
+	onDestroy(() => {
+		socket.close();
+	});
 </script>
 
 <div class="app">

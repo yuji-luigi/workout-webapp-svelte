@@ -4,14 +4,14 @@
 	import SelectInputMulti from '../base/SelectInputMulti.svelte';
 	import type { Option } from '../../../../../types/form/option';
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
-	import NewWorkoutModalFormOpenButton from '../../../open-dialog-button/NewWorkoutModalFormOpenButton.svelte';
+	import NewExerciseModalFormOpenButton from '../../../open-dialog-button/NewExerciseModalFormOpenButton.svelte';
 	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
-	import WorkoutConfigureButton from '../../../form/routine-form/worout-configuration-inputs/WorkoutConfigureButton.svelte';
+	import ExerciseConfigureButton from '../../../form/routine-form/exercise-configuration-inputs/ExerciseConfigureButton.svelte';
 	import { getForm } from '../../../../store/form-store.svelte';
 	import { get } from 'svelte/store';
 	let createdWorkout = null;
 	let {
-		loading,
+		loading = true,
 		name = 'workouts',
 		label,
 		className
@@ -28,12 +28,12 @@
 	const form_id = getContext('form_id') as string;
 	let form = $state(getForm(form_id));
 	$effect(() => {
-		options = db_state.workouts.map((workout) => {
+		options = db_state.exercises.map((exercise) => {
 			return {
-				// value: workout.id,
-				id: workout.id,
-				value: JSON.stringify(workout),
-				label: workout.exercise_name
+				// value: exercise.id,
+				id: exercise.id,
+				value: JSON.stringify(exercise),
+				label: exercise.name
 			};
 		});
 		loading = false;
@@ -50,10 +50,10 @@
 	{#snippet input()}
 		<SelectInputMulti className="fullWidth" {name} {options} {loading}>
 			{#snippet endComponent()}
-				<NewWorkoutModalFormOpenButton {createdWorkout}>+New</NewWorkoutModalFormOpenButton>
+				<NewExerciseModalFormOpenButton {createdWorkout}>+New</NewExerciseModalFormOpenButton>
 			{/snippet}
 		</SelectInputMulti>
-		<WorkoutConfigureButton {form_id} />
+		<ExerciseConfigureButton {form_id} />
 	{/snippet}
 </InputGroupGrid>
 

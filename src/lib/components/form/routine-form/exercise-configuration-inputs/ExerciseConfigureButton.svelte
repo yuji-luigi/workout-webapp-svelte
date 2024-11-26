@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { sleep } from '../../../../helpers/sleep';
 	import { getForm } from '../../../../store/form-store.svelte';
 	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
 	import CountDialog from '../../../dialog/count-dialog/CountDialog.svelte';
 	import DialogGeneric from '../../../dialog/global/DialogGeneric.svelte';
-	import WorkoutConfigRows from './WorkoutConfigRows.svelte';
+	import ExerciseConfigRows from './ExerciseConfigRows.svelte';
+	import type { Exercise } from '../../../../../types/db/exercise';
 	let {
 		className = '',
 		name = '',
@@ -19,11 +19,11 @@
 		type?: string;
 		form_id: string;
 	} = $props();
-	let { workouts } = db_state;
+	let { exercises } = db_state;
 	let dialog: HTMLDialogElement | undefined = $state();
 	let isOpen = $state(false);
 	let isOpenCounterModal = $state(false);
-	let selected_workouts: WorkoutJoined[] = $state([]);
+	let selected_exercises: Exercise[] = $state([]);
 	let formEl: HTMLFormElement | undefined = $state();
 
 	const inputEvent = new Event('input');
@@ -34,12 +34,12 @@
 
 	async function handleSetSelectedWorkouts(_?: any) {
 		await sleep(10);
-		selected_workouts = getForm(form_id)?.workouts || [];
+		selected_exercises = getForm(form_id)?.exercises || [];
 	}
 
 	$effect(() => {
-		workouts = db_state.workouts;
-		selected_workouts = getForm(form_id)?.workouts || [];
+		exercises = db_state.exercises;
+		selected_exercises = getForm(form_id)?.exercises || [];
 	});
 
 	onMount(() => {
@@ -65,8 +65,8 @@
 <DialogGeneric bind:isOpen>
 	<h2 class="title">Sets and rest time</h2>
 	<section class="grid">
-		{#each selected_workouts.filter((selected) => !!selected.id) as workout, index}
-			<WorkoutConfigRows handleDestroyInput={dispatchInputEvent} {workout} {index} {form_id} />
+		{#each selected_exercises.filter((selected) => !!selected.id) as exercise, index}
+			<ExerciseConfigRows handleDestroyInput={dispatchInputEvent} {exercise} {index} {form_id} />
 		{/each}
 	</section>
 	<CountDialog />
