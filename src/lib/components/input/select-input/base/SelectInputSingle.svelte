@@ -45,7 +45,4 @@
 		border-radius: 4px;
 		min-height: 2.5rem;
 	}
-	select[multiple] {
-		height: auto; /* Allow the select to expand with multiple options */
-	}
 </style>

@@ -18,9 +18,9 @@
 		...others
 	}: {
 		className?: string;
-		options: Option[];
+		options?: Option[];
 		input?: any;
-	} & FormTableField = $props();
+	} & Omit<FormTableField, 'type'> = $props();
 	let options = $state(_options);
 	let loading = $state(true);
 	onMount(() => {

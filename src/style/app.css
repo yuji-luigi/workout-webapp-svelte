@@ -208,6 +208,13 @@ textarea {
   resize: none;
 }
 
+select {
+  appearance: none;
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
+}
 
 input, textarea, select, div.input {
   width: 100%;
