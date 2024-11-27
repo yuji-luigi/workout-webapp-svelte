@@ -19,10 +19,10 @@
 	}
 </script>
 
-<button type="button" class="input-group">
+<div class="input-group">
 	<input value={n_sets} type="text" {name} />
 	<span> Sets</span>
-</button>
+</div>
 
 <style>
 	.input-group {

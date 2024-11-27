@@ -89,13 +89,4 @@
 			gap: var(--spacing-sm);
 		}
 	}
-	.input-section {
-		display: grid;
-		gap: var(--spacing-sm);
-	}
-	.input-group {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		font-size: var(--font-size-md);
-	}
 </style>

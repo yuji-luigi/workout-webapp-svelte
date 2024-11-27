@@ -1,20 +1,18 @@
 <script lang="ts">
+	import type { Exercise } from '../../../../../types/db/exercise';
 	import type { WorkoutJoined } from '../../../../../types/db/workout';
 	import { sleep } from '../../../../helpers/sleep';
 	import { getForm } from '../../../../store/form-store.svelte';
 	import { counterDialogStates } from '../../../dialog/count-dialog/count-dialog-states.svelte';
 	import TimeCounter from '../../../time-counter/TimeCounter.svelte';
 	import TimeCounterInForm from '../../../time-counter/TimeCounterInForm.svelte';
+	import type { exercise } from '../../form-by-collection';
 	let {
-		workout,
-		index,
-		form_id,
 		label,
 		name
 	}: {
 		index: number;
 		form_id: string;
-		workout: WorkoutJoined;
 		name: string;
 		label: string;
 	} = $props();

@@ -5,6 +5,8 @@
 	import WorkoutTimeInput from './ExerciseTimeInput.svelte';
 	import { sleep } from '../../../../helpers/sleep';
 	import type { Exercise } from '../../../../../types/db/exercise';
+	import SelectSingleGrid from '../../../input/select-input/SelectSingleGrid.svelte';
+	import SelectInputSingle from '../../../input/select-input/base/SelectInputSingle.svelte';
 	let {
 		exercise,
 		index,
@@ -20,30 +22,26 @@
 		handleDestroyInput();
 	});
 	let el: HTMLDivElement | undefined = $state();
-	const preName = `workouts[${index}]`;
+	const preName = `exercises[${index}]`;
 </script>
 
 <h2 class="exercise-name">{exercise.name}</h2>
 <div bind:this={el} class="input-section">
+	<SelectSingleGrid name="" collection="workout_type" label="Workout type" />
+	<SelectInputSingle name="" collection="workout_type" label="Workout type" />
+
 	<WorkoutSetInput name={preName + '.n_set'} />
-	<!-- {#if exercise.use_active_time}
-		<WorkoutTimeInput
-			label="exercise time"
-			{index}
-			{exercise}
-			{form_id}
-			name={preName + '.timer_seconds_active'}
-		/>
-	{/if} -->
-	<!-- {#if exercise.use_rest_time}
-		<WorkoutTimeInput
-			label="rest time"
-			{index}
-			{exercise}
-			{form_id}
-			name={preName + '.timer_seconds_rest'}
-		/>
-	{/if} -->
+	<!-- {#if exercise.use_active_time} -->
+	<WorkoutTimeInput
+		label="workout time"
+		{index}
+		{form_id}
+		name={preName + '.timer_seconds_active'}
+	/>
+	<!-- {/if} -->
+	<!-- {#if exercise.use_rest_time} -->
+	<WorkoutTimeInput label="rest time" {index} {form_id} name={preName + '.timer_seconds_rest'} />
+	<!-- {/if} -->
 </div>
 
 <style>
