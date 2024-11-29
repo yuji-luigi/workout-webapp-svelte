@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { Exercise } from '../../../../../types/db/exercise';
 	import { sleep } from '../../../../helpers/sleep';
 	import { getForm } from '../../../../store/form-store.svelte';
 	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
-	import CountDialog from '../../../dialog/count-dialog/CountDialog.svelte';
 	import DialogGeneric from '../../../dialog/global/DialogGeneric.svelte';
 	import ExerciseConfigRows from './ExerciseConfigRows.svelte';
-	import type { Exercise } from '../../../../../types/db/exercise';
 	let {
 		className = '',
 		name = '',
@@ -69,7 +68,6 @@
 			<ExerciseConfigRows handleDestroyInput={dispatchInputEvent} {exercise} {index} {form_id} />
 		{/each}
 	</section>
-	<CountDialog />
 </DialogGeneric>
 
 <style>
@@ -82,7 +80,7 @@
 	}
 	.grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr auto;
 		gap: var(--spacing-lg);
 		@media (max-width: 768px) {
 			grid-template-columns: 1fr;
