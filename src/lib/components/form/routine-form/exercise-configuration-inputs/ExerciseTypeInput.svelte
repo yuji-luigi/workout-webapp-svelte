@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { formatTime } from '../../../../helpers/formatTime';
+	import SelectInputSingle from '../../../input/select-input/base/SelectInputSingle.svelte';
+	import SelectSingleGrid from '../../../input/select-input/SelectSingleGrid.svelte';
+
 	let {
 		label,
 		name
@@ -11,15 +13,18 @@
 	} = $props();
 
 	let time = $state(1);
-	let display = $state('none');
-	$effect(() => {
-		display = formatTime(time);
-	});
 </script>
 
 <div class="input-group">
-	<input value={time} {name} type="number" hidden />
-	<input value={display} {name} type="text" />
+	<div class="test">
+		<SelectInputSingle
+			borderFocus="none"
+			{name}
+			textAlign="end"
+			collection="workout_type"
+			label="Exercise"
+		/>
+	</div>
 	<span> {label}</span>
 </div>
 
@@ -35,9 +40,7 @@
 		justify-items: end;
 		cursor: pointer;
 	}
-	input {
-		width: 3rem;
-		text-align: center;
-		border: none;
+	.test {
+		margin-left: auto;
 	}
 </style>

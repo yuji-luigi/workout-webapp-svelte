@@ -7,6 +7,7 @@
 	import type { Exercise } from '../../../../../types/db/exercise';
 	import SelectSingleGrid from '../../../input/select-input/SelectSingleGrid.svelte';
 	import SelectInputSingle from '../../../input/select-input/base/SelectInputSingle.svelte';
+	import ExerciseTypeInput from './ExerciseTypeInput.svelte';
 	let {
 		exercise,
 		index,
@@ -27,8 +28,7 @@
 
 <h2 class="exercise-name">{exercise.name}</h2>
 <div bind:this={el} class="input-section">
-	<SelectSingleGrid name="" collection="workout_type" label="Workout type" />
-	<SelectInputSingle name="" collection="workout_type" label="Workout type" />
+	<ExerciseTypeInput {index} {form_id} name={preName + '.type'} label="workout type" />
 
 	<WorkoutSetInput name={preName + '.n_set'} />
 	<!-- {#if exercise.use_active_time} -->

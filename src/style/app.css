@@ -209,6 +209,7 @@ textarea {
 }
 
 select {
+  cursor: pointer;
   appearance: none;
   -moz-appearance: none;
   /* Firefox */

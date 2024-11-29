@@ -1,4 +1,3 @@
-import type { WorkoutJoined } from './workout';
 import type { WorkoutSetJoined } from './workout-set';
 
 // Type for Routine table
