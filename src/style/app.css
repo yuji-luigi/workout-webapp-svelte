@@ -229,8 +229,8 @@ input, textarea, select, div.input {
     border: 1px solid var(--accent-color);
   }
 
-
 }
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

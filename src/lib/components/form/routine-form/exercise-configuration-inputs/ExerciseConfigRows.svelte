@@ -28,7 +28,13 @@
 
 <h2 class="exercise-name">{exercise.name}</h2>
 <div bind:this={el} class="input-section">
-	<ExerciseTypeInput {index} {form_id} name={preName + '.type'} label="workout type" />
+	<ExerciseTypeInput
+		{index}
+		{form_id}
+		name={preName + '.type'}
+		label="workout type"
+		className="border-none border-focus-none"
+	/>
 
 	<WorkoutSetInput name={preName + '.n_set'} />
 	<!-- {#if exercise.use_active_time} -->

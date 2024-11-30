@@ -1,5 +1,4 @@
-import type { Exercise } from '../../../../types/db/exercise';
-import type { WorkoutJoined } from '../../../../types/db/workout';
+import type { Exercise, ExerciseJoined } from '../../../../types/db/exercise';
 import { db_state, exercisesY, workoutsY } from '../../../store/lofi-db/workout-lofi.svelte';
 
 export type WorkoutFormData = {
@@ -30,7 +29,7 @@ export function exerciseFactory(workoutDto: WorkoutFormData) {
 	};
 }
 
-export function workoutJoinedFactory(workoutDto: WorkoutFormData): WorkoutJoined {
+export function workoutJoinedFactory(workoutDto: WorkoutFormData): ExerciseJoined {
 	const { use_rest_time, use_active_time } = getWorkoutType(workoutDto.workout_type_name);
 	return {
 		...workoutDto,

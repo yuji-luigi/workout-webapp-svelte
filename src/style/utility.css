@@ -47,3 +47,13 @@
   width: 100%;
   grid-column: 1 / -1;
 }
+
+.border-none {
+  border: none;
+}
+
+select.border-focus-none, input.border-focus-none {
+  &:focus {
+    border: none;
+  }
+}

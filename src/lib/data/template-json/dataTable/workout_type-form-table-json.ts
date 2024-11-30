@@ -1,4 +1,3 @@
-import type { WorkoutJoined } from '../../../../types/db/workout';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
 export const workoutTypeFormTable: (FormTableField & { name: keyof WorkoutType })[] = [

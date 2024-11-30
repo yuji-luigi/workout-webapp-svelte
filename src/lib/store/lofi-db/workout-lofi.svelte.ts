@@ -1,7 +1,6 @@
 import * as Y from 'yjs';
-import type { Exercise } from '../../../types/db/exercise';
+import type { Exercise, ExerciseJoined } from '../../../types/db/exercise';
 import { TypedYMap } from './typed-Ymap';
-import type { WorkoutJoined } from '../../../types/db/workout';
 import { IndexeddbPersistence } from 'y-indexeddb';
 import { get } from 'svelte/store';
 import type { Collection } from '../../../types/db/collections';
@@ -22,7 +21,7 @@ const persistence = new IndexeddbPersistence('my-yjs-doc', ydoc);
 
 // Initialize counter
 export const routinesY = ydoc.getArray<RoutineJoined>('routines');
-export const workoutsY = ydoc.getArray<WorkoutJoined>('workouts');
+export const workoutsY = ydoc.getArray<ExerciseJoined>('workouts');
 export const exercisesY = ydoc.getArray<Exercise>('exercises');
 export const workout_typeY = ydoc.getArray<WorkoutType>('workout_types');
 
@@ -50,7 +49,7 @@ async function create_app_state() {
 
 	return {
 		// for Map it was working the setter but for Array to discover yet
-		// set workouts(params: Y.Array<WorkoutJoined>) {
+		// set workouts(params: Y.Array<>) {
 		// 	exercisesY.('workouts', params);
 		// },
 		get routines() {

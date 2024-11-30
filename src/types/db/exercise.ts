@@ -12,3 +12,8 @@ export interface Exercise {
 	description: string;
 	image?: FileDB | number | File;
 }
+
+export interface ExerciseJoined extends Exercise {
+	created_by_id: number;
+	created_by_name: string;
+}

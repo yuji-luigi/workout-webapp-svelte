@@ -4,12 +4,14 @@
 
 	let {
 		label,
-		name
+		name,
+		className
 	}: {
 		index: number;
 		form_id: string;
 		name: string;
 		label: string;
+		className?: string;
 	} = $props();
 
 	let time = $state(1);
@@ -20,9 +22,11 @@
 		<SelectInputSingle
 			borderFocus="none"
 			{name}
+			{className}
 			textAlign="end"
 			collection="workout_type"
 			label="Exercise"
+			border="none"
 		/>
 	</div>
 	<span> {label}</span>

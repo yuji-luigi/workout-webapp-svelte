@@ -1,6 +1,4 @@
 import * as Y from 'yjs';
-import type { WorkoutJoined } from '../../../types/db/workout';
-import type { Exercise } from '../../../types/db/exercise';
 
 // Define the schema for your YDB keys and values
 

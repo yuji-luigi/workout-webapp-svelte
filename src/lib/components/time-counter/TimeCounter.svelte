@@ -13,10 +13,10 @@
 	// in case of the sets input.
 	// I want to change the form value by on change the count.
 	// 1. Get correct form: can be form id to get the correct form form DOM
-	// 2. correct index of the workout to mutate the form.workouts:WorkoutJoined[index] index workout should be updated to
+	// 2. correct index of the workout to mutate the form.workouts:ExerciseJoined[index] index workout should be updated to
 	// shape of the workouts[]
 	/* 	{
-      ...WorkoutJoined, 
+      ...ExerciseJoined, 
       n_sets: number, 
       seconds_rest: number, 
       seconds_active: number

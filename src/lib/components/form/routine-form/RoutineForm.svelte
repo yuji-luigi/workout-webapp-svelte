@@ -4,6 +4,8 @@
 	import ExerciseSelectMulti from '$lib/components/input/select-input/custom/ExerciseSelectMultiLabeled.svelte';
 	import { sleep } from '$lib/helpers/sleep';
 	import { setContext } from 'svelte';
+	import SelectInputSingle from '../../input/select-input/base/SelectInputSingle.svelte';
+	import SelectSingleGrid from '../../input/select-input/SelectSingleGrid.svelte';
 
 	let loading = false;
 	const form_id = 'routine-form';
@@ -17,9 +19,10 @@
 </script>
 
 <div class="container">
-	<h3>Create a new routine</h3>
+	<h3>Create a new workout</h3>
 	<FormGrid {handleSubmit} {loading} {form_id}>
 		<InputGrid label="Name of the routine" name="name" type="text" />
+		<SelectSingleGrid label="type of the workout" name="type" collection="workout_type" />
 		<InputGrid label="Slug of the routine(shown in url)" name="slug" type="text" />
 		<InputGrid label="Description" name="description" type="text" />
 		<InputGrid label="Image" name="image" type="file" />
@@ -33,26 +36,6 @@
 		white-space: nowrap;
 	}
 
-	.input-group {
-		display: grid;
-		grid-column: span 2;
-		gap: 0.5rem;
-		grid-template-columns: subgrid;
-		grid-auto-flow: dense;
-		align-items: baseline;
-		justify-items: end;
-	}
-
-	@container (max-width: 600px) {
-		.input-group {
-			gap: 0.25rem;
-			justify-items: start;
-			grid-column: 1/-1;
-		}
-	}
-	.fullWidth {
-		grid-column: 1/-1;
-	}
 	.button {
 		width: unset;
 		margin-left: auto;

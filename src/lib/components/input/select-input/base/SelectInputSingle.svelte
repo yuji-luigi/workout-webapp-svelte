@@ -15,6 +15,7 @@
 		width = '100%',
 		textAlign,
 		borderFocus,
+		border,
 		...others
 	}: {
 		className?: string;
@@ -23,6 +24,7 @@
 		width?: string;
 		textAlign?: string;
 		borderFocus?: string;
+		border?: string;
 	} & Omit<FormTableField, 'type'> = $props();
 
 	// Handle changes to the select
@@ -43,7 +45,7 @@
 		}
 		loading = false;
 	});
-
+	console.log(others);
 	function handleSelect(
 		event: Event & {
 			currentTarget: EventTarget & HTMLSelectElement;
@@ -58,13 +60,15 @@
 </script>
 
 <select
-	style={`--width:${width}; --text-align:${textAlign}; --border-focus:${borderFocus}`}
+	style={`--width:${width}; --text-align:${textAlign}; --border-focus:${borderFocus} --border:${border}`}
 	{name}
+	placeholder="select option"
 	onchange={handleSelect}
+	class={className}
+	bind:value={selectedOption}
+	{...others}
 >
-	{#if !!_options.length}
-		<option disabled selected hidden>please select...</option>
-	{/if}
+	<option hidden disabled value="">--Please choose an option--</option>
 	{#each _options as option}
 		<option selected={option.value === selectedOption} value={option.value}>{option.label}</option>
 	{/each}
@@ -78,15 +82,10 @@
 
 <style>
 	select {
-		--border: none;
 		width: var(--width, 100%);
 		text-align: var(--text-align);
 		padding: 0.5rem;
-		border: var(--border, 1px solid #ccc);
 		border-radius: 4px;
 		min-height: 2.5rem;
-		&:focus {
-			border: var(--border-focus, 1px solid var(--accent-color));
-		}
 	}
 </style>

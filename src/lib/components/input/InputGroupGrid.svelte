@@ -14,7 +14,7 @@
 	} = $props();
 </script>
 
-<div class={`input-group ${className}`}>
+<div class={`input-group ${className} ${hidden ? 'input-group-hidden' : ''}`}>
 	<label {hidden} for="name">{label}</label>
 	{@render input?.()}
 </div>
@@ -29,8 +29,7 @@
 		align-items: baseline;
 		justify-items: end;
 	}
-	.input-group:has([hidden]) {
-		background: green;
+	.input-group-hidden {
 		display: none;
 	}
 

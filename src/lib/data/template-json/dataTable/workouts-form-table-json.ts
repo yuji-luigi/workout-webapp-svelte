@@ -1,7 +1,7 @@
-import type { WorkoutJoined } from '../../../../types/db/workout';
+import type { ExerciseJoined } from '../../../../types/db/exercise';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
-export const workoutFormTable: (FormTableField & { name: keyof WorkoutJoined })[] = [
+export const workoutFormTable: (FormTableField & { name: keyof ExerciseJoined })[] = [
 	{
 		name: 'id',
 		label: 'ID',

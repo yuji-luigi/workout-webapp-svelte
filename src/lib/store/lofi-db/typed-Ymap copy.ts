@@ -2,7 +2,7 @@ import * as Y from 'yjs';
 
 // Define the schema for your YDB keys and values
 interface YDBSchema {
-	workouts: Y.Array<WorkoutJoined>;
+	workouts: Y.Array<ExerciseJoined>;
 	exercises: Y.Array<Exercise>;
 }
 
@@ -51,15 +51,13 @@ export class TypedYMap<T> {
 
 // Accessing the typed map
 // const map = ytDoc.getMap('workouts'); // Returns TypedYMap<YDBSchema>
-// const workouts = map.get('workouts'); // Type is Y.Array<WorkoutJoined> | undefined
 
 // import * as Y from 'yjs';
-import type { WorkoutJoined } from '../../../types/db/workout';
-import type { Exercise } from '../../../types/db/exercise';
+import type { Exercise, ExerciseJoined } from '../../../types/db/exercise';
 
 // Define the schema for your YDB keys and values
 interface YDBSchema {
-	workouts: Y.Array<WorkoutJoined>;
+	workouts: Y.Array<ExerciseJoined>;
 	exercises: Y.Array<Exercise>;
 }
 
@@ -102,4 +100,4 @@ const typedYDoc = new TypedYDoc<YDBSchema>();
 
 // Accessing the typed map
 const workoutsMap = typedYDoc.getTypedMap('workouts'); // Returns TypedYMap<YDBSchema>
-const workoutArray = workoutsMap.get('workouts'); // Type is Y.Array<WorkoutJoined> | undefined
+const workoutArray = workoutsMap.get('workouts'); // Type is Y.Array<ExerciseJoined> | undefined
