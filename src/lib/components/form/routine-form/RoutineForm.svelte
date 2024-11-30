@@ -22,7 +22,12 @@
 	<h3>Create a new workout</h3>
 	<FormGrid {handleSubmit} {loading} {form_id}>
 		<InputGrid label="Name of the routine" name="name" type="text" />
-		<SelectSingleGrid label="type of the workout" name="type" collection="workout_type" />
+		<SelectSingleGrid
+			label="type of the workout"
+			name="type"
+			placeholder="Please select type of workout"
+			collection="workout_type"
+		/>
 		<InputGrid label="Slug of the routine(shown in url)" name="slug" type="text" />
 		<InputGrid label="Description" name="description" type="text" />
 		<InputGrid label="Image" name="image" type="file" />

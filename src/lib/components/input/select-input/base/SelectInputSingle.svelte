@@ -5,6 +5,8 @@
 	import type { FormTableField } from '../../../../../types/form/form-table-field';
 	import type { Collection } from '../../../../../types/db/collections';
 	import { db_state_getter } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { isRedirect } from '@sveltejs/kit';
+	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
 	let {
 		label,
 		className,
@@ -14,8 +16,7 @@
 		name,
 		width = '100%',
 		textAlign,
-		borderFocus,
-		border,
+		placeholder,
 		...others
 	}: {
 		className?: string;
@@ -23,9 +24,9 @@
 		input?: any;
 		width?: string;
 		textAlign?: string;
-		borderFocus?: string;
-		border?: string;
 	} & Omit<FormTableField, 'type'> = $props();
+	const socketStates = createWebsocketStates();
+	socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
 
 	// Handle changes to the select
 	let selectedOption = $state('');
@@ -43,40 +44,43 @@
 				};
 			});
 		}
-		loading = false;
 	});
-	console.log(others);
-	function handleSelect(
-		event: Event & {
-			currentTarget: EventTarget & HTMLSelectElement;
+	$effect(() => {
+		if (socketStates.globalWebSocket) {
+			if (collection) {
+				_options = db_state_getter[collection as Collection].map((data) => {
+					return {
+						// value: workout.id,
+						id: data.id,
+						value: JSON.stringify(data),
+						label: data.name
+					};
+				});
+			}
+			loading = false;
 		}
-	) {
-		if (event.currentTarget.value === selectedOption) {
-			selectedOption = '';
-			return;
-		}
-		selectedOption = event.currentTarget.value;
-	}
+	});
 </script>
 
 <select
-	style={`--width:${width}; --text-align:${textAlign}; --border-focus:${borderFocus} --border:${border}`}
+	style={`--width:${width}; --text-align:${textAlign};`}
 	{name}
 	placeholder="select option"
-	onchange={handleSelect}
 	class={className}
 	bind:value={selectedOption}
 	{...others}
 >
-	<option hidden disabled value="">--Please choose an option--</option>
+	{#if !loading && _options.length === 0}
+		<option hidden value="">No options found...</option>
+	{:else}
+		<option hidden value="">{placeholder}</option>
+	{/if}
+
 	{#each _options as option}
 		<option selected={option.value === selectedOption} value={option.value}>{option.label}</option>
 	{/each}
 	{#if loading}
 		<option>Loading...</option>
-	{/if}
-	{#if !loading && _options.length === 0}
-		<option disabled selected hidden>No options found...</option>
 	{/if}
 </select>
 

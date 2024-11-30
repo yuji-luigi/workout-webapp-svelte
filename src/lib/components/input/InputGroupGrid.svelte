@@ -5,17 +5,19 @@
 		className = '',
 		label,
 		input,
-		hidden = false
+		hidden = false,
+		name
 	}: {
 		hidden?: boolean;
 		input?: Snippet;
 		className?: string;
 		label?: string;
+		name: string;
 	} = $props();
 </script>
 
 <div class={`input-group ${className} ${hidden ? 'input-group-hidden' : ''}`}>
-	<label {hidden} for="name">{label}</label>
+	<label {hidden} for={name}>{label}</label>
 	{@render input?.()}
 </div>
 

@@ -13,6 +13,7 @@
 		className,
 		options,
 		input,
+		placeholder,
 		...others
 	}: {
 		className?: string;
@@ -21,8 +22,8 @@
 	} & Omit<FormTableField, 'type'> = $props();
 </script>
 
-<InputGroupGrid {className} {...others}>
+<InputGroupGrid {className} {name} {...others}>
 	{#snippet input()}
-		<SelectInputSingle {options} {name} {...others} />
+		<SelectInputSingle {placeholder} {options} {name} {...others} />
 	{/snippet}
 </InputGroupGrid>

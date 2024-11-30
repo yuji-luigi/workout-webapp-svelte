@@ -46,7 +46,7 @@
 	});
 </script>
 
-<InputGroupGrid {label} {className}>
+<InputGroupGrid {label} {className} {name}>
 	{#snippet input()}
 		<SelectInputMulti className="fullWidth" {name} {options} {loading}>
 			{#snippet endComponent()}

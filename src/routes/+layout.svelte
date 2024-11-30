@@ -10,9 +10,11 @@
 	import Footer from '../lib/components/Footer.svelte';
 	import VerticalMenu from '../lib/components/vertical-menu/VerticalMenu.svelte';
 	import { onDestroy } from 'svelte';
-	const socket = new WebSocket('ws://localhost:1234');
+	import { createWebsocketStates } from '../lib/store/socket-store.svelte';
+	const socketStates = createWebsocketStates();
+	socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
 	onDestroy(() => {
-		socket.close();
+		socketStates.globalWebSocket?.close();
 	});
 </script>
 

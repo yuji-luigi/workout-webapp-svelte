@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import { openDialog } from '../../../../store/global-dialog-store';
+	import type { Exercise } from '../../../../../types/db/exercise';
 	import WorkoutSetInput from './ExerciseSetInput.svelte';
 	import WorkoutTimeInput from './ExerciseTimeInput.svelte';
-	import { sleep } from '../../../../helpers/sleep';
-	import type { Exercise } from '../../../../../types/db/exercise';
-	import SelectSingleGrid from '../../../input/select-input/SelectSingleGrid.svelte';
-	import SelectInputSingle from '../../../input/select-input/base/SelectInputSingle.svelte';
 	import ExerciseTypeInput from './ExerciseTypeInput.svelte';
+	import { getForm } from '../../../../store/form-store.svelte';
 	let {
 		exercise,
 		index,
@@ -24,29 +21,31 @@
 	});
 	let el: HTMLDivElement | undefined = $state();
 	const preName = `exercises[${index}]`;
+	let form = getForm(form_id);
+	$effect(() => {
+		form = getForm(form_id);
+		console.log('form', form);
+	});
 </script>
 
 <h2 class="exercise-name">{exercise.name}</h2>
 <div bind:this={el} class="input-section">
-	<ExerciseTypeInput
-		{index}
-		{form_id}
-		name={preName + '.type'}
-		label="workout type"
-		className="border-none border-focus-none"
-	/>
-
 	<WorkoutSetInput name={preName + '.n_set'} />
 	<!-- {#if exercise.use_active_time} -->
-	<WorkoutTimeInput
-		label="workout time"
-		{index}
-		{form_id}
-		name={preName + '.timer_seconds_active'}
-	/>
+	{#if form.type?.use_active_time}
+		<WorkoutTimeInput
+			label="workout time"
+			{index}
+			{form_id}
+			name={preName + '.timer_seconds_active'}
+		/>
+	{/if}
 	<!-- {/if} -->
 	<!-- {#if exercise.use_rest_time} -->
-	<WorkoutTimeInput label="rest time" {index} {form_id} name={preName + '.timer_seconds_rest'} />
+	{#if form.type?.use_rest_time}
+		<WorkoutTimeInput label="rest time" {index} {form_id} name={preName + '.timer_seconds_rest'} />
+	{/if}
+
 	<!-- {/if} -->
 </div>
 

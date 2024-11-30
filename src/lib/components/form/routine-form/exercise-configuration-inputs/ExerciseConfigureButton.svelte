@@ -7,21 +7,13 @@
 	import DialogGeneric from '../../../dialog/global/DialogGeneric.svelte';
 	import ExerciseConfigRows from './ExerciseConfigRows.svelte';
 	let {
-		className = '',
-		name = '',
-		type = 'number',
-		form_id,
-		...other
+		form_id
 	}: {
-		className?: string;
-		name?: string;
-		type?: string;
+		/** not necessary since we have form context*/
 		form_id: string;
 	} = $props();
 	let { exercises } = db_state;
-	let dialog: HTMLDialogElement | undefined = $state();
 	let isOpen = $state(false);
-	let isOpenCounterModal = $state(false);
 	let selected_exercises: Exercise[] = $state([]);
 	let formEl: HTMLFormElement | undefined = $state();
 
@@ -55,12 +47,6 @@
 	<button onclick={openConfig} type="button" class="button primary">configure sets</button>
 </div>
 
-<!-- should include: 
-1. n_sets
-2. seconds_active
-3. seconds_rest 
--->
-<!-- <dialog bind:this={dialog}>content</dialog> -->
 <DialogGeneric bind:isOpen>
 	<h2 class="title">Sets and rest time</h2>
 	<section class="grid">

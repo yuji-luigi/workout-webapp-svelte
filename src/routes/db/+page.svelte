@@ -6,9 +6,9 @@
 	import { handleArrayFormData } from '../../lib/helpers/form-helper/handle-array-form-data';
 	import { sleep } from '../../lib/helpers/sleep';
 	import { db_state } from '../../lib/store/lofi-db/workout-lofi.svelte';
-	import { createConnected } from '../../lib/store/socket-store.svelte';
+	import { createWebsocketStates } from '../../lib/store/socket-store.svelte';
 	import type { Workout } from '../../types/db/workout';
-	const connected = createConnected();
+	const connected = createWebsocketStates();
 	const socket = new WebSocket('ws://localhost:1234');
 	// Just to toggle the red green status emoji
 	socket?.addEventListener('open', () => connected.setConnected(true));

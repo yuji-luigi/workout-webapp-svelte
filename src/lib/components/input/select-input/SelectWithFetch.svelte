@@ -33,4 +33,4 @@
 	});
 </script>
 
-<SelectInputMulti {...props} {options} {loading} />
+<SelectInputMulti {...props} {options} {name} {loading} />

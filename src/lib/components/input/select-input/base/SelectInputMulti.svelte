@@ -21,10 +21,10 @@
 		endComponent,
 		options
 	}: {
-		className: string;
-		loading: boolean;
+		className?: string;
+		loading?: boolean;
 		name: string;
-		endComponent: Snippet | null;
+		endComponent?: Snippet | null;
 		options: Option[];
 	} = $props();
 	let open = $state(false);
