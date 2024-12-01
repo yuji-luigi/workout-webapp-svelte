@@ -73,7 +73,7 @@
 	{#if !loading && _options.length === 0}
 		<option hidden value="">No options found...</option>
 	{:else}
-		<option hidden value="">{placeholder}</option>
+		<option disabled value="">{placeholder}</option>
 	{/if}
 
 	{#each _options as option}
