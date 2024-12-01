@@ -27,7 +27,6 @@
 	) {
 		loading = true;
 		try {
-			console.log(payload);
 			exercisesY.push([payload as Exercise]);
 			await sleep(750);
 			event.target?.reset();
@@ -40,8 +39,7 @@
 </script>
 
 <div class="container">
-	<h3 class="title">Create new workout</h3>
-
+	<h3 class="title">Create new exercise</h3>
 	<JsonForm formTableFields={exerciseFormTableJson} className="container" {handleSubmit} />
 </div>
 
