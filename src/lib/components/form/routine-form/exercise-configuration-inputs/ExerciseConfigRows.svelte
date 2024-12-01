@@ -21,7 +21,7 @@
 	});
 	let el: HTMLDivElement | undefined = $state();
 	const preName = `exercises[${index}]`;
-	let form = getForm(form_id);
+	let form = $state(getForm(form_id));
 	$effect(() => {
 		form = getForm(form_id);
 		console.log('form', form);
