@@ -1,96 +1,46 @@
 <script lang="ts">
-	import { sleep } from '../../../helpers/sleep';
-	// import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
-	import { workoutFormTable } from '../../../data/template-json/dataTable/workouts-form-table-json';
-	import JsonForm from '../JsonForm.svelte';
-	import { handleSaveWorkoutLocally, type WorkoutFormData } from './saveJoinedWorkout.svelte';
-	let {
-		onSubmitCallback,
-		resolve,
-		reject
-	}: {
-		resolve?: (param: any) => void;
-		reject?: (param: any) => void;
-		onSubmitCallback?: (formData: any) => void;
-	} = $props() as any;
-	let loading = $state(false);
+	import FormGrid from '$lib/components/form/FormGrid.svelte';
+	import InputGrid from '$lib/components/input/InputGrid.svelte';
+	import ExerciseSelectMulti from '$lib/components/input/select-input/custom/ExerciseSelectMultiLabeled.svelte';
+	import { sleep } from '$lib/helpers/sleep';
+	import { setContext } from 'svelte';
+	import SelectInputSingle from '../../input/select-input/base/SelectInputSingle.svelte';
+	import SelectSingleGrid from '../../input/select-input/SelectSingleGrid.svelte';
 
-	const socket = new WebSocket('ws://localhost:1234');
-	socket.addEventListener('open', () => {
-		console.log('connected');
-	});
-	// save exercise + timer + joined workout
-	async function handleSubmit(
-		event: SubmitEvent & { target: HTMLFormElement },
-		payload: Record<string, any>
-	) {
+	let loading = false;
+	const form_id = 'routine-form';
+
+	async function handleSubmit(payload: Record<string, any>) {
 		loading = true;
-		// const formData = new FormData(event.target as HTMLFormElement);
-		try {
-			console.log(payload);
-			handleSaveWorkoutLocally(payload as WorkoutFormData);
-			await sleep(750);
-			event.target?.reset();
-			onSubmitCallback && onSubmitCallback(payload);
-		} catch (error: any) {
-			throw new Error(error);
-		}
+		console.log({ payload });
+		await sleep(200);
 		loading = false;
 	}
 </script>
 
 <div class="container">
-	<h3 class="title">Create new workout</h3>
-	<!-- 
-	<FormGrid {handleSubmit} {loading}>
-		<InputGrid
-			label="Id"
-			name="exercise_id"
-			type="hidden"
-			value={db_state.exercises?.length ? db_state.exercises?.length + 1 : 1}
-			className="display-none"
-			hidden
+	<h3>Create a new workout</h3>
+	<FormGrid {handleSubmit} {loading} {form_id}>
+		<InputGrid label="Name of the routine" name="name" type="text" />
+		<SelectSingleGrid
+			label="type of the workout"
+			name="type"
+			placeholder="Workout type"
+			collection="workout_type"
 		/>
-		<InputGrid
-			label="Id"
-			name="id"
-			type="hidden"
-			className="display-none"
-			value={db_state.workouts?.length ? db_state.workouts?.length + 1 : 1}
-		/>
-		<InputGrid label="Exercise name" name="exercise_name" type="text" />
-		<InputGrid label="Description" name="exercise_description" type="text" />
-		<InputGrid label="Slug" name="slug" type="text" />
-		<SelectTiles
-			options={workout_types.map((type) => ({
-				...type,
-				label: type.name,
-				value: type.id
-			}))}
-			name="workout_type_id"
-		/>
-		<button type="submit">Submit</button>
-	</FormGrid> -->
-	<JsonForm formTableFields={workoutFormTable} className="container" {handleSubmit} />
+		<InputGrid label="Slug of the routine(shown in url)" name="slug" type="text" />
+		<InputGrid label="Description" name="description" type="text" />
+		<InputGrid label="Image" name="image" type="file" />
+		<ExerciseSelectMulti name="exercises" label="exercises" />
+		<button class="button primary">submit</button>
+	</FormGrid>
 </div>
 
 <style>
-	.container {
-		container-type: inline-size;
-	}
-
-	label {
-		white-space: nowrap;
-	}
-	input {
-		width: 100%;
-	}
-
-	@container (max-width: 600px) {
-		.input-group {
-			gap: 0.25rem;
-			justify-items: start;
-			grid-column: 1/-1;
-		}
+	.button {
+		width: unset;
+		margin-left: auto;
+		grid-column: -1 / 1;
+		margin-block: auto;
 	}
 </style>
