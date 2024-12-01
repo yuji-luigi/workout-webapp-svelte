@@ -9,20 +9,20 @@
 			title: 'Create timer',
 			description:
 				'Simple! Just create timer for single workout to routine just like a timer app. You can share it or you can use the other user created timer.',
-			img: '/src/lib/images/placeholder/placeholder-nike-card1.jpg'
+			img: '/images/placeholder/placeholder-nike-card1.jpg'
 		},
 		{
 			title: 'Save records and progress',
 			description:
 				'You can also share these information with the community. You can also follow along with workout videos and track your progress. Or even by geologically. So you can influence others and motivate each other.',
 
-			img: '/src/lib/images/placeholder/placeholder-nike-card-3.jpg'
+			img: '/images/placeholder/placeholder-nike-card-3.jpg'
 		},
 		{
 			title: 'Create your own workout plans',
 			description:
 				'You can create your own plan. Then you can make it as a subscription plan. So you can earn money by sharing your workout plan. You can also follow along with workout videos and track your progress.',
-			img: '/src/lib/images/placeholder/placeholder-nike-card-2.jpg'
+			img: '/images/placeholder/placeholder-nike-card-2.jpg'
 		}
 	];
 </script>
