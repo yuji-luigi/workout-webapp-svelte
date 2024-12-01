@@ -4,6 +4,8 @@
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,
+    "target": "ES2022", // or "ESNext"
+    "module": "ESNext",
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
