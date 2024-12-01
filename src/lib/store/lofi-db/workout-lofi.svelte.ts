@@ -48,20 +48,13 @@ async function create_app_state() {
 	});
 
 	return {
-		// for Map it was working the setter but for Array to discover yet
-		// set workouts(params: Y.Array<>) {
-		// 	exercisesY.('workouts', params);
-		// },
 		get routines() {
 			return _routines || [];
 		},
 		get workouts() {
 			return _workouts || [];
 		},
-		// for Map it was working the setter but for Array to discover yet
-		// set exercises(params: Y.Array<Exercise>) {
-		// 	yMap.set('exercises', params);
-		// },
+
 		get exercises() {
 			return _exercises || [];
 		},

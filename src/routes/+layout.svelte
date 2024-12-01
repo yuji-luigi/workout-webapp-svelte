@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../style/timer.css';
 	import '../style/app.css';
 	import '../style/component.css';
@@ -9,10 +9,25 @@
 	import SubHeader from '../lib/components/sub-header/SubHeader.svelte';
 	import Footer from '../lib/components/Footer.svelte';
 	import VerticalMenu from '../lib/components/vertical-menu/VerticalMenu.svelte';
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { createWebsocketStates } from '../lib/store/socket-store.svelte';
+	import type { Snippet } from 'svelte';
+	// import { workoutsY } from '../lib/store/lofi-db/workout-lofi.svelte';
+	import { seedLocalDB } from '../lib/store/lofi-db/seedDb';
+
+	let { children }: { children: Snippet } = $props();
 	const socketStates = createWebsocketStates();
-	socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
+	onMount(() => {
+		socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
+	});
+	$effect(() => {
+		socketStates.globalWebSocket?.addEventListener('open', () => {
+			console.log('connected');
+		});
+		if (socketStates.isConnected) {
+			seedLocalDB();
+		}
+	});
 	onDestroy(() => {
 		socketStates.globalWebSocket?.close();
 	});
@@ -22,7 +37,7 @@
 	<SubHeader />
 	<VerticalMenu />
 	<main>
-		<slot />
+		{@render children()}
 	</main>
 
 	<Footer />

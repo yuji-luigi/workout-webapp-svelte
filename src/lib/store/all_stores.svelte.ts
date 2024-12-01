@@ -10,7 +10,7 @@ const ydoc = new Y.Doc();
 const roomName = DB_NAME;
 const indexeddbProvider = new IndexeddbPersistence(roomName, ydoc);
 // Connect to the WebSocket server
-const provider = new WebsocketProvider(
+new WebsocketProvider(
 	'ws://localhost:1234', // WebSocket server URL
 	'my-yjs-room', // Room name or document ID
 	ydoc
