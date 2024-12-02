@@ -1,13 +1,13 @@
 import type { Exercise } from '../../../../types/db/exercise';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
-export const exerciseFormTableJson: (FormTableField & { name: keyof Exercise })[] = [
+export const exerciseFormTableJson: FormTableField[] = [
 	{
 		name: 'id',
 		label: 'ID',
-		type: 'id-input',
-		collection: 'exercise',
-		formFieldConfig: { hidden: true }
+		type: 'id-input'
+		// collection: 'exercise',
+		// formFieldConfig: { hidden: true }
 	},
 	{
 		name: 'name',
@@ -17,7 +17,8 @@ export const exerciseFormTableJson: (FormTableField & { name: keyof Exercise })[
 	{
 		name: 'slug',
 		label: 'Slug',
-		type: 'text'
+		type: 'slug',
+		from: 'name'
 	},
 	{
 		name: 'description',
