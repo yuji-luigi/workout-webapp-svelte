@@ -1,12 +1,12 @@
 import type { Collection } from '../db/collections';
 import type { Option } from './option';
 
-export type FormTableField = {
+export type BaseFormTableField = {
 	name: string;
 	label: string;
 	multiple?: boolean;
 	/** shared type with table cell and input. inputConfig field and tableConfig for specific setting for each view*/
-	type: InputType;
+	type: InputType; // Exclude 'slug' from BaseFormTableField
 	/** only for select kinds with static options */
 	options?: Option[];
 	formFieldConfig?: InputConfig;
@@ -16,6 +16,15 @@ export type FormTableField = {
 	// only when type is 'id-input'
 	collection?: Collection; //! can be circular dependency. watch out
 };
+
+export type SlugFormTableField = {
+	name: string;
+	label: string;
+	type: 'slug'; // Explicitly 'slug'
+	from: string; // 'from' is required
+};
+
+export type FormTableField = BaseFormTableField | SlugFormTableField;
 
 export type InputConfig = {
 	type?: InputType;
@@ -30,6 +39,7 @@ type SharedInputType = InputType | 'id-input';
 
 type InputType =
 	| 'text'
+	// | 'slug'
 	| 'number'
 	| 'boolean'
 	| 'select-single'
@@ -51,6 +61,21 @@ type InputType =
 	// can be only for input
 	| 'id-input';
 
+type InputKey = keyof FormTableField;
+
+// TODO: eliminate this function
 export function isInputKey(key: string): key is InputKey {
-	return key in Inputs;
+	return [
+		'name',
+		'label',
+		'multiple',
+		'type',
+		'options',
+		'formFieldConfig',
+		'tableConfig',
+		'placeholder',
+		'hidden',
+		'collection',
+		'from'
+	].includes(key);
 }
