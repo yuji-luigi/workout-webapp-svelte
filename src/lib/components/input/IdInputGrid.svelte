@@ -31,21 +31,13 @@
 	let id = $state(0);
 	let time = $state(0);
 
-	onMount(() => {
-		id = db_state_getter[collection]?.length + 1;
-		setInterval(() => {
-			time++;
-			// id = db_state_getter[collection]?.length + 1;
-		}, 1000);
-	});
 	$effect(() => {
 		id = db_state_getter[collection]?.length + 1;
-		// TODO: why need to do this...? resulting in re-rendering 4 times
 		id;
 	});
 </script>
 
-<InputGroupGrid {label} {className} hidden={other.hidden}>
+<InputGroupGrid {label} {className} {name} hidden={other.hidden}>
 	{#snippet input()}
 		<input {name} {type} bind:value={id} {...other} />
 	{/snippet}

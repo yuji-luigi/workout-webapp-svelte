@@ -19,14 +19,15 @@
 	const socketStates = createWebsocketStates();
 	onMount(() => {
 		socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
-	});
-	$effect(() => {
 		socketStates.globalWebSocket?.addEventListener('open', () => {
 			console.log('connected');
-		});
-		if (socketStates.isConnected) {
 			seedLocalDB();
-		}
+		});
+	});
+	$effect(() => {
+		// if (socketStates.isConnected) {
+		// 	seedLocalDB();
+		// }
 	});
 	onDestroy(() => {
 		socketStates.globalWebSocket?.close();

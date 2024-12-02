@@ -5,9 +5,9 @@ export const exerciseFormTableJson: FormTableField[] = [
 	{
 		name: 'id',
 		label: 'ID',
-		type: 'id-input'
-		// collection: 'exercise',
-		// formFieldConfig: { hidden: true }
+		type: 'id-input',
+		collection: 'exercise',
+		formFieldConfig: { hidden: true }
 	},
 	{
 		name: 'name',
@@ -18,7 +18,10 @@ export const exerciseFormTableJson: FormTableField[] = [
 		name: 'slug',
 		label: 'Slug',
 		type: 'slug',
-		from: 'name'
+		from: 'name',
+		formFieldConfig: {
+			hidden: true
+		}
 	},
 	{
 		name: 'description',

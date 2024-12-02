@@ -17,7 +17,7 @@ export const db_state_enum = {
 export type DBStateField = (typeof db_state_fields)[number];
 
 const ydoc = new Y.Doc();
-const persistence = new IndexeddbPersistence('my-yjs-doc', ydoc);
+export const persistenceWorkoutDB = new IndexeddbPersistence('my-yjs-doc', ydoc);
 
 // Initialize counter
 export const routinesY = ydoc.getArray<RoutineJoined>('routines');
@@ -26,7 +26,7 @@ export const exercisesY = ydoc.getArray<Exercise>('exercises');
 export const workout_typeY = ydoc.getArray<WorkoutType>('workout_types');
 
 async function create_app_state() {
-	persistence.whenSynced.catch((error) => {
+	persistenceWorkoutDB.whenSynced.catch((error) => {
 		throw new Error('IndexedDB not supported');
 	});
 	let _workouts = $state(workoutsY.toArray());

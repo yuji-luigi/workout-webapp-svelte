@@ -5,3 +5,4 @@ export { default as 'id-input' } from '../IdInputGrid.svelte';
 export { default as 'boolean' } from '../Boolean.svelte';
 export { default as 'switch' } from '../Switch.svelte';
 export { default as 'image' } from '../ImageInputGrid.svelte';
+export { default as 'slug' } from '../SlugInput.svelte';

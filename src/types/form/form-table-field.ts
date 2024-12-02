@@ -22,7 +22,7 @@ export type SlugFormTableField = {
 	label: string;
 	type: 'slug'; // Explicitly 'slug'
 	from: string; // 'from' is required
-};
+} & Omit<BaseFormTableField, 'type'>;
 
 export type FormTableField = BaseFormTableField | SlugFormTableField;
 
@@ -35,11 +35,8 @@ export type TableConfig = {
 	hidden?: boolean;
 };
 
-type SharedInputType = InputType | 'id-input';
-
 type InputType =
 	| 'text'
-	// | 'slug'
 	| 'number'
 	| 'boolean'
 	| 'select-single'

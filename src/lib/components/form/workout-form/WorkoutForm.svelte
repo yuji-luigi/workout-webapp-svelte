@@ -28,7 +28,7 @@
 			placeholder="Workout type"
 			collection="workout_type"
 		/>
-		<InputGrid label="Slug of the routine(shown in url)" name="slug" type="text" />
+		<InputGrid label="Slug of the routine(shown in url)" type="slug" from="name" />
 		<InputGrid label="Description" name="description" type="text" />
 		<InputGrid label="Image" name="image" type="file" />
 		<ExerciseSelectMulti name="exercises" label="exercises" />
