@@ -3,15 +3,16 @@
 	import type { Option } from '../../../../types/form/option';
 	import InputGroupGrid from '../InputGroupGrid.svelte';
 	import SelectInputMulti from './base/SelectInputMulti.svelte';
+	import type { FormTableField } from '../../../../types/form/form-table-field';
 
 	let {
 		className,
 		label,
-		name
-	}: {
+		name,
+		...other
+	}: FormTableField & {
 		name: string;
 		label: string;
-		options: Option[];
 		className?: string;
 		input: Snippet;
 		loading: boolean;
@@ -20,6 +21,6 @@
 
 <InputGroupGrid {className} {label} {name}>
 	{#snippet input()}
-		<SelectInputMulti {name} options={[]} />
+		<SelectInputMulti {name} {...other} />
 	{/snippet}
 </InputGroupGrid>

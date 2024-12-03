@@ -79,4 +79,4 @@ export const db_state_getter = {
 	get workout_type() {
 		return db_state.workout_types;
 	}
-};
+} as const;

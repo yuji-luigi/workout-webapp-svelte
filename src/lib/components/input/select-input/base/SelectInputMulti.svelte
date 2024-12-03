@@ -13,29 +13,63 @@
 	import { getForm, setForm } from '../../../../store/form-store.svelte';
 	import { sleep } from '../../../../helpers/sleep';
 	import ChipInput from '../../../chip/ChipInput.svelte';
+	import type { FormTableField } from '../../../../../types/form/form-table-field';
+	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
+	import { db_state_getter } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import type { Collection } from '../../../../../types/db/collections';
 
 	let {
 		className,
 		loading = false,
 		name,
 		endComponent,
-		options
-	}: {
+		options = [],
+		collection
+	}: FormTableField & {
 		className?: string;
 		loading?: boolean;
 		name: string;
 		endComponent?: Snippet | null;
-		options: Option[];
 	} = $props();
 	let open = $state(false);
+	let _options = $state(options);
 	const form_id = getContext('form_id') as string;
+	console.log(collection);
 	// they are the same the values are the mapped values of selectedOptions to avoid mapping again
 	let selectedOptions: Option[] = $state([]);
 	// let selectedValues: string[] = $state([]);
 	let selectElement: HTMLSelectElement;
 	let selectContainer: HTMLDivElement;
 	let form = $state(getForm(getContext('form_id')));
+	const socketStates = createWebsocketStates();
 
+	onMount(() => {
+		if (collection) {
+			_options = db_state_getter[collection as Collection].map((data) => {
+				return {
+					// value: workout.id,
+					id: data.id,
+					value: JSON.stringify(data),
+					label: data.name
+				};
+			});
+		}
+	});
+	$effect(() => {
+		if (socketStates.globalWebSocket) {
+			if (collection) {
+				_options = db_state_getter[collection as Collection].map((data) => {
+					return {
+						// value: workout.id,
+						id: data.id,
+						value: JSON.stringify(data),
+						label: data.name
+					};
+				});
+			}
+			loading = false;
+		}
+	});
 	/** handle select from dropdown */
 	async function toggleSelection(selected: Option) {
 		const { value } = selected;
@@ -133,13 +167,13 @@
 			<p>Loading...</p>
 		{/if}
 
-		{#if !loading && options.length === 0}
+		{#if !loading && _options.length === 0}
 			<p>No options found...</p>
 		{/if}
 
 		<!-- Render checkboxes for each option -->
 
-		{#each options as option, index}
+		{#each _options as option, index}
 			<div
 				role="button"
 				class="select-checkbox"
