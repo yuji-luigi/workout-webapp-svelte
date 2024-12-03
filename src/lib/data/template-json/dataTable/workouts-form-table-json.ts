@@ -1,7 +1,8 @@
 import type { ExerciseJoined } from '../../../../types/db/exercise';
+import type { Workout } from '../../../../types/db/workout';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
-export const workoutFormTable: (FormTableField & { name: keyof ExerciseJoined })[] = [
+export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 	{
 		name: 'id',
 		label: 'ID',
@@ -10,51 +11,32 @@ export const workoutFormTable: (FormTableField & { name: keyof ExerciseJoined })
 		formFieldConfig: { hidden: true }
 	},
 	{
-		name: 'exercise_name',
-		label: 'Exercise name',
+		name: 'name',
+		label: 'Name of the workout',
 		type: 'text'
 	},
 	{
 		name: 'slug',
-		label: 'Slug',
-		type: 'text'
+		label: 'slug',
+		type: 'slug',
+		from: 'name'
 	},
 	{
-		name: 'exercise_id',
-		label: 'Exercise ID',
-		type: 'id-input',
-		collection: 'exercise',
-		formFieldConfig: { hidden: true }
-	},
-
-	{
-		name: 'exercise_description',
+		name: 'description',
 		label: 'Description',
 		type: 'text'
 	},
+	{
+		name: 'exercises',
+		label: 'Exercises',
+		collection: 'exercise',
+		type: 'multi-select'
+	},
 
 	{
-		name: 'use_active_time',
-		label: 'Use Active Time',
-		type: 'boolean',
-		formFieldConfig: { hidden: true }
-	},
-	{
-		name: 'use_active_time',
-		label: 'Use Rest Time',
-		type: 'boolean',
-		formFieldConfig: { hidden: true }
-	},
-	{
-		name: 'created_by_id',
+		name: 'created_by',
 		label: 'Created By ID',
 		type: 'number',
 		formFieldConfig: { hidden: true }
-	},
-	{
-		name: 'created_by_name',
-		label: 'Created By Name',
-		formFieldConfig: { hidden: true },
-		type: 'text'
 	}
 ];

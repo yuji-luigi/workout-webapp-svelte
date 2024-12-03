@@ -3,14 +3,18 @@
 	import InputGrid from '$lib/components/input/InputGrid.svelte';
 	import ExerciseSelectMulti from '$lib/components/input/select-input/custom/ExerciseSelectMultiLabeled.svelte';
 	import { sleep } from '$lib/helpers/sleep';
-	import { setContext } from 'svelte';
-	import SelectInputSingle from '../../input/select-input/base/SelectInputSingle.svelte';
 	import SelectSingleGrid from '../../input/select-input/SelectSingleGrid.svelte';
+	import { workoutFormTable } from '../../../data/template-json/dataTable/workouts-form-table-json';
+	import JsonForm from '../JsonForm.svelte';
+	import { json } from '@sveltejs/kit';
 
 	let loading = false;
 	const form_id = 'routine-form';
 
-	async function handleSubmit(payload: Record<string, any>) {
+	async function handleSubmit(
+		event: SubmitEvent & { target: HTMLFormElement },
+		payload: Record<string, any>
+	) {
 		loading = true;
 		console.log({ payload });
 		await sleep(200);
@@ -20,6 +24,8 @@
 
 <div class="container">
 	<h3>Create a new workout</h3>
+	<JsonForm formTableFields={workoutFormTable} {handleSubmit} />
+
 	<FormGrid {handleSubmit} {loading} {form_id}>
 		<InputGrid label="Name of the routine" name="name" type="text" />
 		<SelectSingleGrid

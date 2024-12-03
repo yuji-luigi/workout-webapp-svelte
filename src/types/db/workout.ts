@@ -1,11 +1,15 @@
 import type { ExerciseJoined } from './exercise';
+import type { FileDB } from './file-db';
 
 // Type for Workout table
 // workout has list of exercises with timer values.
 export interface Workout {
-	id: number; // primary key
+	id: number | string; // primary key
 	name: string;
+	slug: string;
 	type: WorkoutType;
+	description: string;
+	image: FileDB;
 	exercises: (ExerciseJoined & {
 		seconds_rest: number;
 		seconds_active: number;
@@ -13,7 +17,11 @@ export interface Workout {
 		n_sets: number;
 		rep_range: string;
 	})[];
-	created_by_id: number;
+	created_by: number;
+}
+
+export interface WorkoutJoined extends Workout {
+	created_by_name: string;
 }
 /**
  * HIIT WORKOUT

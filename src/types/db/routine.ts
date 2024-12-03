@@ -7,6 +7,8 @@ export interface Routine {
 	name: string;
 	description: string;
 	image?: string;
+	workout_type: WorkoutType;
+	created_by: number | string;
 }
 
 export interface RoutineJoined extends Routine {

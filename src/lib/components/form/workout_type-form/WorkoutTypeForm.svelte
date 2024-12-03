@@ -5,10 +5,10 @@
 	import { workoutTypeFormTable } from '../../../data/template-json/dataTable/workout_type-form-table-json';
 	import JsonForm from '../JsonForm.svelte';
 
-	const socket = new WebSocket('ws://localhost:1234');
-	socket.addEventListener('open', () => {
-		console.log('connected');
-	});
+	// const socket = new WebSocket('ws://localhost:1234');
+	// socket.addEventListener('open', () => {
+	// 	console.log('connected');
+	// });
 	// save exercise + timer + joined workout
 	async function handleSubmit(
 		event: SubmitEvent & { target: HTMLFormElement },

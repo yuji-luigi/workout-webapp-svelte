@@ -10,9 +10,8 @@
 	let loading = false;
 	let collectionP = $state($page.params.collection) as Collection;
 	let FormByCollection = $state(formByCollection[collectionP] || JsonForm);
-	// TODO: type the page.params.collection
-	let list = $state(db_state_getter[collectionP]);
-	const formTableFields = AllFormTableFields[collectionP];
+  let list = $state(db_state_getter[collectionP]);
+  const formTableFields = AllFormTableFields[collectionP];
 	$effect(() => {
 		collectionP = $page.params.collection as Collection;
 		list = db_state_getter[collectionP];
