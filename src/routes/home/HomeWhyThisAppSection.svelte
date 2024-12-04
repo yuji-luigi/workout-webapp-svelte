@@ -84,9 +84,6 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 1rem;
-		& img {
-			height: 600px;
-		}
 	}
 	.flex-column {
 		gap: 0.5rem;
