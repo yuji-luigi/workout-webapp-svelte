@@ -19,7 +19,8 @@ export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 		name: 'slug',
 		label: 'slug',
 		type: 'slug',
-		from: 'name'
+		from: 'name',
+		formFieldConfig: { hidden: true }
 	},
 	{
 		name: 'description',
@@ -27,10 +28,21 @@ export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 		type: 'text'
 	},
 	{
+		name: 'type',
+		label: 'Workout Type',
+		collection: 'workout_type',
+		type: 'select-single'
+	},
+	{
 		name: 'exercises',
 		label: 'Exercises',
 		collection: 'exercise',
 		type: 'multi-select'
+	},
+	{
+		name: 'image',
+		label: 'Image',
+		type: 'image'
 	},
 
 	{
