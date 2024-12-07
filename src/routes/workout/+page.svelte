@@ -11,15 +11,18 @@
 	let workouts: Workout[] = $state([]);
 	onMount(async () => {
 		if (wsStates.isConnected) {
-			const { db_state, persistenceWorkoutDB } = await import(
+			const { db_state: db_state_dynamic, persistenceWorkoutDB } = await import(
 				'../../lib/store/lofi-db/workout-lofi.svelte'
 			);
 			await persistenceWorkoutDB.whenSynced;
+			db_state = db_state_dynamic;
 			workouts = db_state.workouts;
 		}
 	});
 	$effect(() => {
-		workouts = db_state?.workouts;
+		if (db_state.workouts) {
+			workouts = db_state.workouts;
+		}
 	});
 </script>
 
