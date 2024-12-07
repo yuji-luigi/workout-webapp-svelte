@@ -1,19 +1,25 @@
 <script lang="ts">
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import { onMount } from 'svelte';
-	import ExerciseCard from '../../lib/components/card/exercise-card/ExerciseCard.svelte';
+	import WorkoutCard from '../../lib/components/card/workout-card/WorkoutCard.svelte';
 	import { createWebsocketStates } from '../../lib/store/socket-store.svelte';
 	import type { Workout } from '../../types/db/workout';
-	import AddNewCard from '../../lib/components/card/exercise-card/AddNewCard.svelte';
+	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
+	import { clientImport } from '../../lib/helpers/dynamic-import';
 	let wsStates = createWebsocketStates();
-
+	let db_state = $state<any>();
 	let workouts: Workout[] = $state([]);
 	onMount(async () => {
 		if (wsStates.isConnected) {
-			const { db_state } = await import('../../lib/store/lofi-db/workout-lofi.svelte');
+			const { db_state, persistenceWorkoutDB } = await import(
+				'../../lib/store/lofi-db/workout-lofi.svelte'
+			);
+			await persistenceWorkoutDB.whenSynced;
 			workouts = db_state.workouts;
-			console.log('workouts', workouts);
 		}
+	});
+	$effect(() => {
+		workouts = db_state?.workouts;
 	});
 </script>
 
@@ -31,7 +37,7 @@
 	<h1>Workout timers</h1>
 	<div class="card-grid">
 		{#each workouts as workout}
-			<ExerciseCard {workout} />
+			<WorkoutCard {workout} />
 		{/each}
 		<AddNewCard collection="workout" />
 	</div>

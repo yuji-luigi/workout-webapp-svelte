@@ -1,15 +1,17 @@
 <script lang="ts">
 	import type { Workout } from '../../../../types/db/workout';
+	import { createRandomImage } from '../../../images/random-images';
 	import { dialogStore, openDialog } from '../../../store/global-dialog-store';
 
-	import ExerciseCardModalContent from './ExerciseCardModalContent.svelte';
+	import WorkoutCardModalContent from './WorkoutCardModalContent.svelte';
 
 	let { workout }: { workout: Workout } = $props();
 
 	const handleOpenDialog = () => {
+		console.log('workout', workout);
 		openDialog({
 			componentInDialog: {
-				component: ExerciseCardModalContent,
+				component: WorkoutCardModalContent,
 				props: { workout }
 			}
 		});
@@ -22,7 +24,7 @@
 	class="card"
 	onkeydown={(e) => null}
 	onclick={handleOpenDialog}
-	style={`--image-url:${workout.image}`}
+	style={`--image-url:url(${createRandomImage()})`}
 >
 	<!-- <img alt="workout" src="https://picsum.photos/410/300" /> -->
 	<div class="info">

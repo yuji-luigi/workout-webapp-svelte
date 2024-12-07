@@ -1,12 +1,10 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { Collection } from '../../../../types/db/collections';
-	import type { Workout } from '../../../../types/db/workout';
-	import { dialogStore, openDialog } from '../../../store/global-dialog-store';
+	import { openDialog } from '../../../store/global-dialog-store';
+
 	let { collection }: { collection: Collection } = $props();
 	let FormByCollection = $state<any>(null);
-	import ExerciseCardModalContent from './ExerciseCardModalContent.svelte';
-	import { onMount } from 'svelte';
-
 	onMount(() => {
 		import('$lib/components/form/form-by-collection').then((module) => {
 			FormByCollection = module[collection];

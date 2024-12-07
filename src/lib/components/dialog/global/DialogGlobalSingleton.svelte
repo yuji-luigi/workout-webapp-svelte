@@ -3,11 +3,12 @@
 	import { closeDialog, dialogStore, type DialogStore } from '../../../store/global-dialog-store';
 	import Dialog from '../Dialog.svelte';
 	import { sleep } from '../../../helpers/sleep';
-	let dialog: HTMLDialogElement;
-	let dialogStoreParams: DialogStore;
+	let dialog: HTMLDialogElement | null = $state(null);
+	let dialogStoreParams: DialogStore | any = $state(null);
 	dialogStore.subscribe((value) => (dialogStoreParams = value));
 
 	const closeModal = () => {
+		if (!dialog) return;
 		if (dialog.classList.contains('fade-in')) {
 			return;
 		}
@@ -24,6 +25,7 @@
 	}
 
 	onMount(() => {
+		if (!dialog) return;
 		dialog &&
 			dialog.addEventListener(
 				'click',
@@ -45,7 +47,7 @@
 			true
 		);
 	});
-	$: {
+	$effect(() => {
 		if (dialog && $dialogStore.isOpen) {
 			dialog.showModal();
 			dialog.classList.add('fade-in');
@@ -54,7 +56,7 @@
 		if (dialog && !$dialogStore.isOpen) {
 			dialog.close();
 		}
-	}
+	});
 </script>
 
 <Dialog maxWidth="xl" bind:dialog>

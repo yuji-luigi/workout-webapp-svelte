@@ -6,13 +6,13 @@ export async function seedLocalDB() {
 	const { persistenceWorkoutDB, db_state, workout_typeY, exercisesY } = await import(
 		'./workout-lofi.svelte'
 	);
-	await persistenceWorkoutDB.whenSynced;
+	await persistenceWorkoutDB?.whenSynced;
 	const { workout_types, exercises } = db_state;
 	if (workout_types.length === 0) {
 		workout_typeY.push([...defaultWorkoutTypes]);
 	}
 	if (exercises.length === 0) {
-		exercisesY.push([...calisthenicExercises]);
+		exercisesY?.push([...calisthenicExercises]);
 	}
 }
 

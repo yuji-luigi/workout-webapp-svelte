@@ -7,6 +7,8 @@
 	import { workoutFormTable } from '../../../data/template-json/dataTable/workouts-form-table-json';
 	import JsonForm from '../JsonForm.svelte';
 	import { json } from '@sveltejs/kit';
+	import { workoutsY } from '../../../store/lofi-db/workout-lofi.svelte';
+	import type { Workout } from '../../../../types/db/workout';
 
 	let loading = false;
 	const form_id = 'routine-form';
@@ -16,7 +18,7 @@
 		payload: Record<string, any>
 	) {
 		loading = true;
-		console.log({ payload });
+		workoutsY.push([payload as Workout]);
 		await sleep(200);
 		loading = false;
 	}

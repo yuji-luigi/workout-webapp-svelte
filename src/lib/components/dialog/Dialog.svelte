@@ -6,7 +6,7 @@
 	}: {
 		maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
 		children: any;
-		dialog: HTMLDialogElement | undefined;
+		dialog: HTMLDialogElement | undefined | null;
 	} = $props();
 	const maxWidths = {
 		sm: '400px',
