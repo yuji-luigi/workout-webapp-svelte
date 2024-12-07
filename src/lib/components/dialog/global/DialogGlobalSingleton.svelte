@@ -57,7 +57,7 @@
 	}
 </script>
 
-<Dialog bind:dialog>
+<Dialog maxWidth="xl" bind:dialog>
 	<div>
 		{#if dialogStoreParams?.componentInDialog}
 			<svelte:component

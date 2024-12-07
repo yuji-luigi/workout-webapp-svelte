@@ -1,21 +1,24 @@
 <script lang="ts">
-	import type { PageLoad } from './$types';
-	export const prerender = true;
-	export let data;
-	import GradientButton from '../../lib/components/gradient-buttons/GradientButton.svelte';
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
+	import { onMount } from 'svelte';
 	import ExerciseCard from '../../lib/components/card/exercise-card/ExerciseCard.svelte';
+	import { createWebsocketStates } from '../../lib/store/socket-store.svelte';
+	import type { Workout } from '../../types/db/workout';
+	import AddNewCard from '../../lib/components/card/exercise-card/AddNewCard.svelte';
+	let wsStates = createWebsocketStates();
 
-	export let exercises: Array<{
-		id: number;
-		name: string;
-		description: string;
-		image: string;
-	}>; // Adjust the type as needed
+	let workouts: Workout[] = $state([]);
+	onMount(async () => {
+		if (wsStates.isConnected) {
+			const { db_state } = await import('../../lib/store/lofi-db/workout-lofi.svelte');
+			workouts = db_state.workouts;
+			console.log('workouts', workouts);
+		}
+	});
 </script>
 
 <svelte:head>
-	<title>Exercises</title>
+	<title>Workouts</title>
 	<meta name="description" content="Exercise list page" />
 </svelte:head>
 <VideoHero
@@ -25,11 +28,12 @@
 />
 
 <div class="stretch-container flex-column">
-	<h1>Exercises</h1>
+	<h1>Workout timers</h1>
 	<div class="card-grid">
-		{#each data.exercises as exercise}
-			<ExerciseCard {exercise} />
+		{#each workouts as workout}
+			<ExerciseCard {workout} />
 		{/each}
+		<AddNewCard collection="workout" />
 	</div>
 </div>
 

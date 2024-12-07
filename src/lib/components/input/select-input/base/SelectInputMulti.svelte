@@ -34,7 +34,6 @@
 	let open = $state(false);
 	let _options = $state(options);
 	const form_id = getContext('form_id') as string;
-	console.log(collection);
 	// they are the same the values are the mapped values of selectedOptions to avoid mapping again
 	let selectedOptions: Option[] = $state([]);
 	// let selectedValues: string[] = $state([]);

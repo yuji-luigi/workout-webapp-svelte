@@ -1,36 +1,36 @@
 <script lang="ts">
+	import type { Collection } from '../../../../types/db/collections';
 	import type { Workout } from '../../../../types/db/workout';
 	import { dialogStore, openDialog } from '../../../store/global-dialog-store';
-
+	let { collection }: { collection: Collection } = $props();
+	let FormByCollection = $state<any>(null);
 	import ExerciseCardModalContent from './ExerciseCardModalContent.svelte';
+	import { onMount } from 'svelte';
 
-	let { workout }: { workout: Workout } = $props();
+	onMount(() => {
+		import('$lib/components/form/form-by-collection').then((module) => {
+			FormByCollection = module[collection];
+		});
+	});
+
+	$effect(() => {
+		console.log('FormByCollection', FormByCollection);
+	});
 
 	const handleOpenDialog = () => {
 		openDialog({
 			componentInDialog: {
-				component: ExerciseCardModalContent,
-				props: { workout }
+				component: FormByCollection,
+				props: {}
 			}
 		});
 	};
 </script>
 
-<div
-	role="button"
-	tabindex="-1"
-	class="card"
-	onkeydown={(e) => null}
-	onclick={handleOpenDialog}
-	style={`--image-url:${workout.image}`}
->
-	<!-- <img alt="workout" src="https://picsum.photos/410/300" /> -->
-	<div class="info">
-		<h4>{workout.name}</h4>
-		<p class="description">
-			{workout.description}
-		</p>
-	</div>
+<div role="button" tabindex="-1" class="card" onkeydown={(e) => null} onclick={handleOpenDialog}>
+	<h4 class="title">+</h4>
+	<div class="info"></div>
+	<div class="description">Add new exercise</div>
 	<!-- <button on:click={handleOpenDialog} class="read-more">Read more</button> -->
 </div>
 
@@ -43,25 +43,33 @@
 		gap: 0.25rem;
 		cursor: pointer;
 		gap: 0.75rem;
+		position: relative;
 		background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)),
 			var(--image-url, url('https://picsum.photos/410/300'));
 		/* url('https://picsum.photos/410/300'); */
 		background-size: cover; /* Ensure the image covers the card */
 		background-position: center;
 	}
+
 	.info {
-		margin-top: auto;
+		margin: auto;
 	}
+
+	.title {
+		font-size: 9rem;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
 	.description {
+		margin-top: auto;
 		text-overflow: ellipsis;
 		overflow: hidden;
 		display: -webkit-box; /* Add this */
 		-webkit-line-clamp: 3; /* Add this */
+		line-clamp: 3;
 		-webkit-box-orient: vertical; /* Add this */
-	}
-	.read-more {
-		border: none;
-		background-color: transparent;
-		margin: auto 0 0 auto;
 	}
 </style>

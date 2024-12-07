@@ -53,7 +53,7 @@
 	.flex-row {
 		gap: var(--gap);
 	}
-	.counter {
+	/* .counter {
 		display: grid;
 		place-self: center;
 		place-items: center;
@@ -67,7 +67,7 @@
 			border-radius: 900px;
 			color: var(--text-color-black);
 		}
-	}
+	} */
 	.actions {
 		margin-top: 1rem;
 	}

@@ -26,7 +26,7 @@
 		textAlign?: string;
 	} & Omit<FormTableField, 'type'> = $props();
 	const socketStates = createWebsocketStates();
-	socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
+	// socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
 
 	// Handle changes to the select
 	let selectedOption = $state('');
@@ -43,14 +43,16 @@
 					label: data.name
 				};
 			});
+			if (socketStates.isConnected) {
+				loading = false;
+			}
 		}
 	});
 	$effect(() => {
-		if (socketStates.globalWebSocket) {
+		if (socketStates.isConnected) {
 			if (collection) {
 				_options = db_state_getter[collection as Collection].map((data) => {
 					return {
-						// value: workout.id,
 						id: data.id,
 						value: JSON.stringify(data),
 						label: data.name

@@ -26,7 +26,7 @@
 	<h3>Create a new workout</h3>
 	<JsonForm formTableFields={workoutFormTable} {handleSubmit} />
 
-	<FormGrid {handleSubmit} {loading} {form_id}>
+	<!-- <FormGrid {handleSubmit} {loading} {form_id}>
 		<InputGrid label="Name of the routine" name="name" type="text" />
 		<SelectSingleGrid
 			label="type of the workout"
@@ -39,7 +39,7 @@
 		<InputGrid label="Image" name="image" type="file" />
 		<ExerciseSelectMulti name="exercises" label="exercises" />
 		<button class="button primary">submit</button>
-	</FormGrid>
+	</FormGrid> -->
 </div>
 
 <style>

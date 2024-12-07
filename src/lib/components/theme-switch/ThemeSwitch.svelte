@@ -51,14 +51,6 @@
 		align-items: center;
 	}
 
-	.fa-moon {
-		color: #f1c40f;
-	}
-
-	.fa-sun {
-		color: #f39c12;
-	}
-
 	.checkbox-label .ball {
 		background-color: #fff;
 		width: 22px;

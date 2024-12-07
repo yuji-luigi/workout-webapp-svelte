@@ -5,6 +5,7 @@ import { IndexeddbPersistence } from 'y-indexeddb';
 import { get } from 'svelte/store';
 import type { Collection } from '../../../types/db/collections';
 import type { RoutineJoined } from '../../../types/db/routine';
+import type { Workout } from '../../../types/db/workout';
 
 export const db_state_fields = ['routines', 'workouts', 'exercises'] as const;
 
@@ -21,7 +22,7 @@ export const persistenceWorkoutDB = new IndexeddbPersistence('my-yjs-doc', ydoc)
 
 // Initialize counter
 export const routinesY = ydoc.getArray<RoutineJoined>('routines');
-export const workoutsY = ydoc.getArray<ExerciseJoined>('workouts');
+export const workoutsY = ydoc.getArray<Workout>('workouts');
 export const exercisesY = ydoc.getArray<Exercise>('exercises');
 export const workout_typeY = ydoc.getArray<WorkoutType>('workout_types');
 

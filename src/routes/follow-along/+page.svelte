@@ -1,15 +1,7 @@
 <script lang="ts">
 	export const prerender = true;
-	export let data;
 
 	import Youtube from '../../lib/components/Youtube.svelte';
-
-	export let exercises: Array<{
-		id: number;
-		name: string;
-		description: string;
-		image: string;
-	}>; // Adjust the type as needed
 
 	let youtubeVideos = [
 		{

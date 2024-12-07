@@ -1,6 +1,7 @@
+let connected = $state(false);
+let globalWebSocket = $state<WebSocket | null>(null);
+
 export function createWebsocketStates() {
-	let connected = $state(false);
-	let globalWebSocket = $state<WebSocket | null>(null);
 	return {
 		get isConnected() {
 			return connected;
