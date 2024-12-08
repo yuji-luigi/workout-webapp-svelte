@@ -1,18 +1,13 @@
 <script lang="ts">
-	import FormGrid from '$lib/components/form/FormGrid.svelte';
-	import InputGrid from '$lib/components/input/InputGrid.svelte';
-	import ExerciseSelectMulti from '$lib/components/input/select-input/custom/ExerciseSelectMultiLabeled.svelte';
+	import { workoutFormTable } from '$lib/data/template-json/dataTable/workouts-form-table-json';
 	import { sleep } from '$lib/helpers/sleep';
-	import SelectSingleGrid from '../../input/select-input/SelectSingleGrid.svelte';
-	import { workoutFormTable } from '../../../data/template-json/dataTable/workouts-form-table-json';
-	import JsonForm from '../JsonForm.svelte';
-	import { json } from '@sveltejs/kit';
-	import { workoutsY } from '../../../store/lofi-db/workout-lofi.svelte';
-	import type { Workout } from '../../../../types/db/workout';
+	import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
+	import type { Workout } from '$types/db/workout';
+	import JsonForm from '../../JsonForm.svelte';
 
 	let loading = false;
 	const form_id = 'routine-form';
-
+	const workoutsY = lofi_db.workoutsY;
 	async function handleSubmit(
 		event: SubmitEvent & { target: HTMLFormElement },
 		payload: Record<string, any>

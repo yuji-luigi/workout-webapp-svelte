@@ -1,8 +1,8 @@
 <script lang="ts">
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
-	import RoutineCard from '../../lib/components/card/cards/RoutineCard.svelte';
-	import RoutineConfirmDialogContent from '../../lib/components/dialog/contents/RoutineConfirmDialogContent.svelte';
-	import { openDialog } from '../../lib/store/global-dialog-store';
+	import RoutineCard from '$lib/components/card/cards/RoutineCard.svelte';
+	import RoutineConfirmDialogContent from '$lib/components/dialog/contents/RoutineConfirmDialogContent.svelte';
+	import { openDialog } from '$lib/store/global-dialog-store';
 
 	let cardGrid: HTMLDivElement;
 	export let data;
@@ -47,7 +47,7 @@
 		class="card-grid"
 	>
 		{#each routines as routine, index}
-			<RoutineCard {routine} active={routine.active} {index} />
+			<RoutineCard {routine} active={false} {index} />
 		{/each}
 		<!-- {#each timers as timer, index}
 			<TimerCard {timer} active={timer.active} {index} />

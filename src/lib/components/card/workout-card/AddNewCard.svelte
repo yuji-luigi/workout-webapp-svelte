@@ -11,9 +11,7 @@
 		});
 	});
 
-	$effect(() => {
-		console.log('FormByCollection', FormByCollection);
-	});
+	$effect(() => {});
 
 	const handleOpenDialog = () => {
 		openDialog({

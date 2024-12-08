@@ -5,7 +5,7 @@
 	import type { Option } from '../../../../../types/form/option';
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
 	import NewExerciseModalFormOpenButton from '../../../open-dialog-button/NewExerciseModalFormOpenButton.svelte';
-	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
 	import ExerciseConfigureButton from '../../../form/workout-form/exercise-configuration-inputs/ExerciseConfigureButton.svelte';
 	import { getForm } from '../../../../store/form-store.svelte';
 	import { get } from 'svelte/store';
@@ -28,7 +28,7 @@
 	const form_id = getContext('form_id') as string;
 	let form = $state(getForm(form_id));
 	$effect(() => {
-		options = db_state.exercises.map((exercise) => {
+		options = lofi_db.db_state.exercises.map((exercise) => {
 			return {
 				// value: exercise.id,
 				id: exercise.id,

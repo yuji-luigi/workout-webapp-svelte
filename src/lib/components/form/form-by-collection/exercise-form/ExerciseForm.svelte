@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { sleep } from '../../../helpers/sleep';
-	// import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
-	import { exerciseFormTableJson } from '../../../data/template-json/dataTable';
-	import JsonForm from '../JsonForm.svelte';
-	import type { Exercise } from '../../../../types/db/exercise';
-	import { exercisesY } from '../../../store/lofi-db/workout-lofi.svelte';
+	import { sleep } from '$lib/helpers/sleep';
+
+	import type { Exercise } from '$types/db/exercise';
+	import { exerciseFormTableJson } from '$lib/data/template-json/dataTable';
+	import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
+	import JsonForm from '$lib/components/form/JsonForm.svelte';
 	let {
 		onSubmitCallback,
 		resolve,
@@ -27,7 +27,7 @@
 	) {
 		loading = true;
 		try {
-			exercisesY.push([payload as Exercise]);
+			lofi_db.exercisesY.push([payload as Exercise]);
 			await sleep(750);
 			event.target?.reset();
 			onSubmitCallback && onSubmitCallback(payload);

@@ -7,7 +7,7 @@
 	import { onMount } from 'svelte';
 	import type { Collection } from '../../../types/db/collections';
 	import type { InputType } from '../../../types/input-type';
-	import { db_state, db_state_getter } from '../../store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../store/lofi-db/workout-lofi.svelte';
 	import InputGroupGrid from './InputGroupGrid.svelte';
 	import { sleep } from '../../helpers/sleep';
 
@@ -32,8 +32,9 @@
 	let time = $state(0);
 
 	$effect(() => {
-		id = db_state_getter[collection]?.length + 1;
-		id;
+		if (lofi_db.db_state_getter[collection]) {
+			id = lofi_db.db_state_getter[collection]?.length + 1;
+		}
 	});
 </script>
 

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { sleep } from '../../../helpers/sleep';
-	import { workout_typeY } from '../../../store/lofi-db/workout-lofi.svelte';
-	// import { db_state } from '../../../store/lofi-db/workout-lofi.svelte';
-	import { workoutTypeFormTable } from '../../../data/template-json/dataTable/workout_type-form-table-json';
-	import JsonForm from '../JsonForm.svelte';
+	import { sleep } from '$lib/helpers/sleep';
+	import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
+	// import { db_state } from '$lib/store/lofi-db/workout-lofi.svelte';
+	import { workoutTypeFormTable } from '$lib/data/template-json/dataTable/workout_type-form-table-json';
+	import JsonForm from '$lib/components/form/JsonForm.svelte';
 
 	// const socket = new WebSocket('ws://localhost:1234');
 	// socket.addEventListener('open', () => {
@@ -17,7 +17,7 @@
 		// const formData = new FormData(event.target as HTMLFormElement);
 		try {
 			console.log(payload);
-			workout_typeY.push([payload as WorkoutType]);
+			lofi_db.workout_typeY.push([payload as WorkoutType]);
 
 			await sleep(750);
 			event.target?.reset();

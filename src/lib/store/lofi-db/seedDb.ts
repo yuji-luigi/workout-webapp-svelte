@@ -1,11 +1,10 @@
 // import { exercisesY, workout_typeY } from './workout-lofi.svelte';
 
 import type { Exercise } from '../../../types/db/exercise';
+import { lofi_db } from './workout-lofi.svelte';
+const { persistenceWorkoutDB, db_state, workout_typeY, exercisesY } = lofi_db;
 
 export async function seedLocalDB() {
-	const { persistenceWorkoutDB, db_state, workout_typeY, exercisesY } = await import(
-		'./workout-lofi.svelte'
-	);
 	await persistenceWorkoutDB?.whenSynced;
 	const { workout_types, exercises } = db_state;
 	if (workout_types.length === 0) {

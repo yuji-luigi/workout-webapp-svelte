@@ -1,12 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import type { FormTableField } from '../../../../types/form/form-table-field';
 	import type { Option } from '../../../../types/form/option';
-	import type { InputType } from '../../../../types/input-type';
 	import InputGroupGrid from '../InputGroupGrid.svelte';
 	import SelectInputSingle from './base/SelectInputSingle.svelte';
-	import type { Collection } from '../../../../types/db/collections';
-	import { db_state, db_state_getter } from '../../../store/lofi-db/workout-lofi.svelte';
 	('');
 	let {
 		name,

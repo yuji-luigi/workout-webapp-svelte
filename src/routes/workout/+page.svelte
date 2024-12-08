@@ -1,24 +1,13 @@
 <script lang="ts">
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
-	import { onMount } from 'svelte';
-	import WorkoutCard from '../../lib/components/card/workout-card/WorkoutCard.svelte';
-	import { createWebsocketStates } from '../../lib/store/socket-store.svelte';
-	import type { Workout } from '../../types/db/workout';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
-	import { clientImport } from '../../lib/helpers/dynamic-import';
-	let wsStates = createWebsocketStates();
-	let db_state = $state<any>();
+	import WorkoutCard from '../../lib/components/card/workout-card/WorkoutCard.svelte';
+	import { lofi_db } from '../../lib/store/lofi-db/workout-lofi.svelte';
+	import type { Workout } from '../../types/db/workout';
+
+	let db_state = $state<any>(lofi_db?.db_state);
 	let workouts: Workout[] = $state([]);
-	onMount(async () => {
-		if (wsStates.isConnected) {
-			const { db_state: db_state_dynamic, persistenceWorkoutDB } = await import(
-				'../../lib/store/lofi-db/workout-lofi.svelte'
-			);
-			await persistenceWorkoutDB.whenSynced;
-			db_state = db_state_dynamic;
-			workouts = db_state.workouts;
-		}
-	});
+
 	$effect(() => {
 		if (db_state.workouts) {
 			workouts = db_state.workouts;

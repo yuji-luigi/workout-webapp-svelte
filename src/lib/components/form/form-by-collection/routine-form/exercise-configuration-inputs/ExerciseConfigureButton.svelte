@@ -3,7 +3,7 @@
 	import type { Exercise } from '../../../../../types/db/exercise';
 	import { sleep } from '../../../../helpers/sleep';
 	import { getForm } from '../../../../store/form-store.svelte';
-	import { db_state } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
 	import DialogGeneric from '../../../dialog/global/DialogGeneric.svelte';
 	import ExerciseConfigRows from './ExerciseConfigRows.svelte';
 	let {
@@ -12,7 +12,7 @@
 		/** not necessary since we have form context*/
 		form_id: string;
 	} = $props();
-	let { exercises } = db_state;
+	let { exercises } = lofi_db.db_state;
 	let isOpen = $state(false);
 	let selected_exercises: Exercise[] = $state([]);
 	let formEl: HTMLFormElement | undefined = $state();
@@ -29,7 +29,7 @@
 	}
 
 	$effect(() => {
-		exercises = db_state.exercises;
+		exercises = lofi_db.db_state.exercises;
 		selected_exercises = getForm(form_id)?.exercises || [];
 	});
 

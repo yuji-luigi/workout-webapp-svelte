@@ -15,7 +15,7 @@
 	import ChipInput from '../../../chip/ChipInput.svelte';
 	import type { FormTableField } from '../../../../../types/form/form-table-field';
 	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
-	import { db_state_getter } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
 	import type { Collection } from '../../../../../types/db/collections';
 
 	let {
@@ -42,32 +42,33 @@
 	let form = $state(getForm(getContext('form_id')));
 	const socketStates = createWebsocketStates();
 
-	onMount(() => {
-		if (collection) {
-			_options = db_state_getter[collection as Collection].map((data) => {
-				return {
-					// value: workout.id,
-					id: data.id,
-					value: JSON.stringify(data),
-					label: data.name
-				};
-			});
-		}
-	});
+	// onMount(() => {
+	// 	if (collection) {
+	// 		_options = db_state_getter[collection as Collection].map((data) => {
+	// 			return {
+	// 				// value: workout.id,
+	// 				id: data.id,
+	// 				value: JSON.stringify(data),
+	// 				label: data.name
+	// 			};
+	// 		});
+	// 	}
+	// });
 	$effect(() => {
-		if (socketStates.globalWebSocket) {
-			if (collection) {
-				_options = db_state_getter[collection as Collection].map((data) => {
+		// if (socketStates.globalWebSocket) {
+		if (collection) {
+			_options =
+				lofi_db?.db_state_getter[collection as Collection]?.map((data) => {
 					return {
 						// value: workout.id,
 						id: data.id,
 						value: JSON.stringify(data),
 						label: data.name
 					};
-				});
-			}
-			loading = false;
+				}) || [];
 		}
+		loading = false;
+		// }
 	});
 	/** handle select from dropdown */
 	async function toggleSelection(selected: Option) {
