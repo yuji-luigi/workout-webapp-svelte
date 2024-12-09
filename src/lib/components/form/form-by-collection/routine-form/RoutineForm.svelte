@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { workoutFormTable } from '$lib/data/template-json/dataTable/workouts-form-table-json';
 	import { sleep } from '$lib/helpers/sleep';
 	import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
 	import type { Workout } from '$types/db/workout';
+	import { routineFormTableJson } from '../../../../data/template-json/dataTable/routine-form-table-json';
 	import JsonForm from '../../JsonForm.svelte';
 
 	let loading = false;
@@ -20,8 +20,8 @@
 </script>
 
 <div class="container">
-	<h3>Create a new workout</h3>
-	<JsonForm formTableFields={workoutFormTable} {handleSubmit} />
+	<h3>Create a new Routine/Workout</h3>
+	<JsonForm form_id="routine_form" formTableFields={routineFormTableJson} {handleSubmit} />
 
 	<!-- <FormGrid {handleSubmit} {loading} {form_id}>
 		<InputGrid label="Name of the routine" name="name" type="text" />

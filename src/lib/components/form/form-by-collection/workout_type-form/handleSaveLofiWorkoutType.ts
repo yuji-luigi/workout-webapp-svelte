@@ -1,5 +1,5 @@
-import type { Exercise, ExerciseJoined } from '../../../../types/db/exercise';
-import { lofi_db } from '../../../store/lofi-db/workout-lofi.svelte';
+import type { Exercise, ExerciseJoined } from '$types/db/exercise';
+import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
 
 export type WorkoutFormData = {
 	exercise_id: any;

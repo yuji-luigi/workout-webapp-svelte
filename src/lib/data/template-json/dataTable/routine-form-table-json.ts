@@ -3,7 +3,7 @@ import type { RoutineJoined } from '../../../../types/db/routine';
 import type { Workout } from '../../../../types/db/workout';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
-export const workoutFormTable: (FormTableField & { name: keyof RoutineJoined })[] = [
+export const routineFormTableJson: (FormTableField & { name: keyof RoutineJoined })[] = [
 	{
 		name: 'id',
 		label: 'ID',

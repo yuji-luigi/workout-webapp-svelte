@@ -113,13 +113,13 @@ dialog {
 
 
 .button.primary {
-  background: light-dark(var(--text-color-black), var(--color-primary));
+  background: var(--color-primary);
   /* background: transparent; */
   /* color: var(--color-primary-400); */
   color: var(--text-color-white);
 
   &:hover {
-    background: light-dark(var(--color-primary-100), var(--color-primary-400));
+    background: light-dark(var(--color-primary-700), var(--color-primary-400));
   }
 
   &:active {

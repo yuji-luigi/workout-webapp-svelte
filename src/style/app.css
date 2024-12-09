@@ -165,7 +165,7 @@ body {
   color: var(--text-color);
   font-size: var(--font-size-md);
   --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
-  --color-primary: light-dark(var(--color-primary-200), var(--color-primary-500));
+  --color-primary: light-dark(var(--color-primary-500), var(--color-primary-500));
 }
 
 

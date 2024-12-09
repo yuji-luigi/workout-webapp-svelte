@@ -13,11 +13,11 @@
 <div
 	bind:this={cardEl}
 	data-active={active}
+	data-id={routine.id}
 	role="button"
 	tabindex="-1"
-	class="card"
+	class="card selection-card"
 	on:keydown={(e) => null}
-	data-index={index}
 	style={var_image_url}
 >
 	<div class="info">

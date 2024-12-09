@@ -1,5 +1,5 @@
 export { workoutFormTable as workout } from './workouts-form-table-json';
-export { workoutFormTable as routine } from './workouts-form-table-json';
+export { routineFormTableJson as routine } from './routine-form-table-json';
 export {
 	exerciseFormTableJson as exercise,
 	exerciseFormTableJson

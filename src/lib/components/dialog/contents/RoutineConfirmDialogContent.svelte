@@ -4,6 +4,8 @@
 	import type { Workout } from '../../../../types/db/workout';
 	import type { Exercise } from '../../../../types/db/exercise';
 	import { createQueryParams } from '../../../helpers/search-params/createQueryParams';
+	import type { Routine } from '../../../../types/db/routine';
+	import type { Workout_set } from '../../../../types/db/workout-set';
 
 	export let routine: Routine;
 	let _routine: Routine & { workout_flows: WorkoutFlow[] };

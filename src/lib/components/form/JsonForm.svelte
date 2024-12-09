@@ -9,10 +9,12 @@
 	let {
 		formTableFields,
 		className,
-		handleSubmit
+		handleSubmit,
+		form_id = 'not_set_form_id'
 	}: {
 		formTableFields: FormTableField[];
 		className?: string;
+		form_id?: string;
 		handleSubmit: (
 			event: SubmitEvent & { target: HTMLFormElement },
 			payload: Record<string, any>
@@ -29,7 +31,7 @@
 	// }
 </script>
 
-<FormGrid {handleSubmit} {loading} {className} form_id="workout_form">
+<FormGrid {handleSubmit} {loading} {className} {form_id}>
 	{#each formTableFields.filter(excludeFormHidden) as formTableField}
 		<InputController {formTableField} />
 	{/each}

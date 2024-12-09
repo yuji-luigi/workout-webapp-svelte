@@ -2,16 +2,10 @@
 	import { onMount } from 'svelte';
 	import type { Collection } from '../../../../types/db/collections';
 	import { openDialog } from '../../../store/global-dialog-store';
+	import * as formsByCollection from '$lib/components/form/form-by-collection';
 
 	let { collection }: { collection: Collection } = $props();
-	let FormByCollection = $state<any>(null);
-	onMount(() => {
-		import('$lib/components/form/form-by-collection').then((module) => {
-			FormByCollection = module[collection];
-		});
-	});
-
-	$effect(() => {});
+	let FormByCollection = formsByCollection[collection];
 
 	const handleOpenDialog = () => {
 		openDialog({
