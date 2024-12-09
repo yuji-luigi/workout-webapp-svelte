@@ -70,6 +70,7 @@
 		loading = false;
 		// }
 	});
+	console.log(_options);
 	/** handle select from dropdown */
 	async function toggleSelection(selected: Option) {
 		const { value } = selected;
@@ -88,10 +89,9 @@
 			if (chip) {
 				event.stopImmediatePropagation();
 				const key = chip.getAttribute('data-key');
-				selectedOptions = selectedOptions.filter((option) => {
-					console.log({ option, key });
-					option.id.toString() !== key?.toString();
-				});
+				selectedOptions = selectedOptions.filter(
+					(option) => option.id.toString() !== key?.toString()
+				);
 				updateFormBySelectedOptionsState();
 			}
 		}
