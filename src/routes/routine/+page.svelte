@@ -5,10 +5,11 @@
 	import { openDialog } from '$lib/store/global-dialog-store';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
 	import { collections } from '../../types/db/collections';
-
+	import { lofi_db } from '../../lib/store/lofi-db/workout-lofi.svelte';
+	import type { RoutineJoined } from '../../types/db/routine';
 	let cardGrid: HTMLDivElement;
-	export let data;
-	const { routines } = data;
+	let db_state = $state(lofi_db.db_state);
+	let routines: RoutineJoined[] = $state([]);
 	// Adjust the type as needed
 	//click event type
 	function handleClick(e: MouseEvent) {
@@ -26,6 +27,11 @@
 			});
 		}
 	}
+	$effect(() => {
+		if (db_state.routines.length) {
+			routines = db_state.routines;
+		}
+	});
 </script>
 
 <svelte:head>
@@ -47,8 +53,8 @@
 		role="button"
 		tabindex="0"
 		bind:this={cardGrid}
-		on:click={handleClick}
-		on:keydown={null}
+		onclick={handleClick}
+		onkeydown={null}
 		class="card-grid"
 	>
 		{#each routines as routine, index}

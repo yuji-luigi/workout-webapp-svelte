@@ -17,6 +17,7 @@
 	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
 	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
 	import type { Collection } from '../../../../../types/db/collections';
+	import Portal from '../../../Portal.svelte';
 
 	let {
 		className,
@@ -162,6 +163,7 @@
 		</div>
 		{@render endComponent?.()}
 	</div>
+
 	<div data-open={open} class="custom-select">
 		{#if loading}
 			<p>Loading...</p>
@@ -176,6 +178,7 @@
 		{#each _options as option, index}
 			<div
 				role="button"
+				id="popover_multiselections"
 				class="select-checkbox"
 				data-key={option.id || option.value}
 				data-checked={selectedOptions

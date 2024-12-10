@@ -16,6 +16,7 @@ So store only form id to extract the form data from the store.
 	} = $props();
 	// TODO: watch leave it here for now
 	setContext('form_id', form_id);
+	setContext('is_debug_form', false);
 	// setContext('form', data);
 	$effect(() => {
 		return () => {

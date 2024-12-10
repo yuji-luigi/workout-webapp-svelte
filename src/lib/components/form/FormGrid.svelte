@@ -24,6 +24,7 @@
 	} = $props();
 	let multiNames: string[] = [];
 	let form = $state(getForm(form_id));
+	let isDebugForm = getContext('is_debug_form');
 
 	// handle shape of the form data. creates js object and array from form data and pass it to the handleSubmit function above root form
 	async function onsubmit(event: any) {
@@ -78,10 +79,11 @@
 			{/if}
 		</fieldset>
 	</div>
-	<pre>
-  	form: {JSON.stringify(form, null, 2)}
-
-  </pre>
+	{#if isDebugForm}
+		<pre>
+      form: {JSON.stringify(form, null, 2)}
+    </pre>
+	{/if}
 </FormContext>
 
 <style>
