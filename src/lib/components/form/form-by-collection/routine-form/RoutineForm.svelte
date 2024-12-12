@@ -4,6 +4,7 @@
 	import type { Workout } from '$types/db/workout';
 	import type { RoutineJoined } from '../../../../../types/db/routine';
 	import { routineFormTableJson } from '../../../../data/template-json/dataTable/routine-form-table-json';
+	import { validateForm } from '../../../../helpers/form-helper/form_validator';
 	import JsonForm from '../../JsonForm.svelte';
 
 	let loading = false;
@@ -13,12 +14,16 @@
 		event: SubmitEvent & { target: HTMLFormElement },
 		payload: Record<string, any>
 	) {
-		loading = true;
-		console.log(lofi_db.db_state.routines);
-		console.log(payload);
-		routinesY.push([payload as RoutineJoined]);
-		await sleep(200);
-		loading = false;
+		try {
+			loading = true;
+			const errors = validateForm(payload, routineFormTableJson);
+
+			routinesY.push([payload as RoutineJoined]);
+			await sleep(200);
+			loading = false;
+		} catch (error: any) {
+			console.error(error);
+		}
 	}
 </script>
 

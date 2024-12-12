@@ -8,19 +8,23 @@ export const routineFormTableJson: (FormTableField & { name: keyof RoutineJoined
 		name: 'id',
 		label: 'ID',
 		type: 'id-input',
-		collection: 'workout',
+		collection: 'routine',
+		required: true,
 		formFieldConfig: { hidden: true }
 	},
 	{
 		name: 'name',
 		label: 'Name of the routine/workout',
-		type: 'text'
+		type: 'text',
+		required: true
 	},
 	{
 		name: 'slug',
 		label: 'slug',
 		type: 'slug',
 		from: 'name',
+		required: true,
+
 		formFieldConfig: { hidden: true }
 	},
 	{
@@ -33,6 +37,8 @@ export const routineFormTableJson: (FormTableField & { name: keyof RoutineJoined
 		name: 'workouts',
 		label: 'Workouts',
 		collection: 'exercise',
+		required: true,
+
 		type: 'multi-select'
 	},
 	{

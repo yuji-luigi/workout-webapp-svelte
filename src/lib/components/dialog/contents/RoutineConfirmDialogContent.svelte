@@ -7,54 +7,56 @@
 	import type { Routine } from '../../../../types/db/routine';
 	import type { Workout_set } from '../../../../types/db/workout-set';
 
-	export let routine: Routine;
-	let _routine: Routine & { workout_flows: WorkoutFlow[] };
-	onMount(async function join_routine() {
-		const flow_params = createQueryParams({ id_routine: routine.id });
-		const raw_flows = await fetch(`../../api/workout_flow${flow_params}`);
-		const _flows = await raw_flows.json();
-		const fl_promises = _flows.map(async (flow: WorkoutFlow) => {
-			const _flow: WorkoutFlow & { workout_sets?: Workout_set[] } = flow;
-			const ws_params = createQueryParams({ id: flow.id_workout_set });
-			const raw_sets = await fetch(`../../api/workout_set/${ws_params}`);
-			const _sets = await raw_sets.json();
-			_flow.workout_sets = _sets;
-			return flow;
-		});
-		const flows = (await Promise.all(fl_promises)) as WorkoutFlow[];
-		console.log(flows);
-		const raw_workouts = await fetch('../../api/workout');
-		// const raw_exercises = await fetch('../../api/exercise');
-		// const raw__workout_sets = await fetch('../../api/workout_set');
-		// const raw_timers = await fetch('../../api/timer');
-		// const timers = await raw_timers.json();
-		// const exercises = await raw_exercises.json();
-		// const workouts = await raw_workouts.json();
-		// const workout_sets = await raw__workout_sets.json();
+	let { routine }: { routine: Routine } = $props();
+	// let _routine: Routine & { workout_flows: WorkoutFlow[] };
 
-		// routine.workout_flows.forEach((workout_flow: WorkoutFlow, iwf: number) => {
-		// 	workout_sets.forEach((set: Workout_set, iws: number) => {
-		// 		const _workout: Workout = workouts.find(
-		// 			(workout: Workout) => workout.exercise_id === set.id_workout
-		// 		);
-		// 		const _exercise = exercises.find(
-		// 			(exercise: Exercise) => exercise.id === _workout.exercise_id
-		// 		);
-		// 		const _timer = timers.find((timer: Timer) => timer.id === set.id_timer);
+	// onMount(async function join_routine() {
+	// 	const flow_params = createQueryParams({ id_routine: routine.id });
+	// 	const raw_flows = await fetch(`../../api/workout_flow${flow_params}`);
+	// 	const _flows = await raw_flows.json();
+	// 	const fl_promises = _flows.map(async (flow: WorkoutFlow) => {
+	// 		const _flow: WorkoutFlow & { workout_sets?: Workout_set[] } = flow;
+	// 		const ws_params = createQueryParams({ id: flow.id_workout_set });
+	// 		const raw_sets = await fetch(`../../api/workout_set/${ws_params}`);
+	// 		const _sets = await raw_sets.json();
+	// 		_flow.workout_sets = _sets;
+	// 		return flow;
+	// 	});
 
-		// 		if (!routine.workout_flows[iwf].workout_sets) {
-		// 			routine.workout_flows[iwf].workout_sets = [];
-		// 		}
-		// 		routine.workout_flows[iwf].workout_sets[iws] = {
-		// 			...workout_sets[iws],
-		// 			name: _exercise.name,
-		// 			timer: _timer
-		// 		};
+	// 	const flows = (await Promise.all(fl_promises)) as WorkoutFlow[];
+	// 	console.log(flows);
+	// 	const raw_workouts = await fetch('../../api/workout');
+	// const raw_exercises = await fetch('../../api/exercise');
+	// const raw__workout_sets = await fetch('../../api/workout_set');
+	// const raw_timers = await fetch('../../api/timer');
+	// const timers = await raw_timers.json();
+	// const exercises = await raw_exercises.json();
+	// const workouts = await raw_workouts.json();
+	// const workout_sets = await raw__workout_sets.json();
 
-		// 		//  set.id === routine.workout_flows[iwf].id_workout_set;
-		// 	});
-		// });
-	});
+	// routine.workout_flows.forEach((workout_flow: WorkoutFlow, iwf: number) => {
+	// 	workout_sets.forEach((set: Workout_set, iws: number) => {
+	// 		const _workout: Workout = workouts.find(
+	// 			(workout: Workout) => workout.exercise_id === set.id_workout
+	// 		);
+	// 		const _exercise = exercises.find(
+	// 			(exercise: Exercise) => exercise.id === _workout.exercise_id
+	// 		);
+	// 		const _timer = timers.find((timer: Timer) => timer.id === set.id_timer);
+
+	// 		if (!routine.workout_flows[iwf].workout_sets) {
+	// 			routine.workout_flows[iwf].workout_sets = [];
+	// 		}
+	// 	// 		routine.workout_flows[iwf].workout_sets[iws] = {
+	// 	// 			...workout_sets[iws],
+	// 	// 			name: _exercise.name,
+	// 	// 			timer: _timer
+	// 	// 		};
+
+	// 	// 		//  set.id === routine.workout_flows[iwf].id_workout_set;
+	// 	// 	});
+	// 	// });
+	// });
 
 	function handlePush() {
 		closeDialog();
@@ -63,15 +65,15 @@
 
 <div class="contents">
 	<img src={''} alt="" height="300px" />
-	<h5>{routine.name}</h5>
+	<h5>{routine?.name}</h5>
 
 	<div class="counter-section">
-		<h4>{routine.description}</h4>
+		<h4>{routine?.description}</h4>
 	</div>
 </div>
 <div class="actions flex-row sm-column">
-	<button class="button" on:click={closeDialog}>Back</button>
-	<button on:click={handlePush} class="button">Confirm</button>
+	<button class="button" onclick={closeDialog}>Back</button>
+	<button onclick={handlePush} class="button">Confirm</button>
 </div>
 
 <style>

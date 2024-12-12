@@ -7,6 +7,7 @@
 	import { collections } from '../../types/db/collections';
 	import { lofi_db } from '../../lib/store/lofi-db/workout-lofi.svelte';
 	import type { RoutineJoined } from '../../types/db/routine';
+	import { createRandomImage } from '../../lib/images/random-images';
 	let cardGrid: HTMLDivElement;
 	let db_state = $state(lofi_db.db_state);
 	let routines: RoutineJoined[] = $state([]);
@@ -17,11 +18,11 @@
 		if (cardEl) {
 			// target gets to active state.
 			cardEl.dataset.active = 'true';
-			const routine = routines[Number(cardEl.dataset.index)];
+			const routine = routines.find((r) => r.id.toString() === cardEl.dataset.id);
 			// open global dialog with the target routine data
 			openDialog({
 				componentInDialog: {
-					component: RoutineConfirmDialogContent,
+					component: RoutineConfirmDialogContent as any,
 					props: { routine }
 				}
 			});
@@ -58,12 +59,9 @@
 		class="card-grid"
 	>
 		{#each routines as routine, index}
-			<RoutineCard {routine} active={false} {index} />
+			<RoutineCard {routine} active={false} {index} --image-url={`url(${createRandomImage()})`} />
 		{/each}
 		<AddNewCard collection="routine" />
-		<!-- {#each timers as timer, index}
-			<TimerCard {timer} active={timer.active} {index} />
-		{/each} -->
 	</div>
 </div>
 

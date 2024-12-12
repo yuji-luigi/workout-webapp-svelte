@@ -5,6 +5,7 @@ export type BaseFormTableField = {
 	name: string;
 	label: string;
 	multiple?: boolean;
+	required?: boolean;
 	/** shared type with table cell and input. inputConfig field and tableConfig for specific setting for each view*/
 	type: InputType; // Exclude 'slug' from BaseFormTableField
 	/** only for select kinds with static options */

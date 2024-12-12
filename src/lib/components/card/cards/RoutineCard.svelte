@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Routine } from '../../../../types/db/routine';
+
 	export let index: number;
 	export let routine: Routine;
 	export let active = false;
@@ -18,7 +20,6 @@
 	tabindex="-1"
 	class="card selection-card"
 	on:keydown={(e) => null}
-	style={var_image_url}
 >
 	<div class="info">
 		<h4>{routine.name}</h4>
@@ -41,7 +42,7 @@
 				transparent,
 				light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5))
 			),
-			var(--image-url, url('https://picsum.photos/410/300'));
+			var(--image-url, 'https://picsum.photos/410/300');
 		background-size: cover; /* Ensure the image covers the card */
 		background-position: center;
 		transition: height 1.5s;
