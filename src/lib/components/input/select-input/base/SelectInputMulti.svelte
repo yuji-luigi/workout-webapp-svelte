@@ -7,6 +7,7 @@
 	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
 	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
 	import ChipInput from '../../../chip/ChipInput.svelte';
+	import { resetErrorSpan } from '../../../../helpers/form-helper/setFormErrors';
 
 	let {
 		className,
@@ -54,7 +55,7 @@
 
 	/** handle select from dropdown */
 	async function toggleSelection(selected: Option) {
-		if (errorSpanEl) errorSpanEl.textContent = '';
+		if (errorSpanEl) resetErrorSpan(errorSpanEl);
 		const { value } = selected;
 		if (selectedOptions.map((option) => option.value.toString()).includes(String(value))) {
 			selectedOptions = selectedOptions.filter((selected) => selected.value !== value);

@@ -217,6 +217,14 @@ select {
   /* Safari and Chrome */
 }
 
+.input-error-container:has([data-has-error="true"]) {
+  input, textarea, select, div.input {
+    border: 1px solid red;
+    /* background-color: #ffe6e6; */
+  }
+}
+
+
 input, textarea, select, div.input {
   width: 100%;
   background-color: light-dark(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01));
@@ -228,6 +236,7 @@ input, textarea, select, div.input {
     outline: none;
     border: 1px solid var(--accent-color);
   }
+
 
 }
 
@@ -245,6 +254,8 @@ input[type=number] {
 }
 
 fieldset[aria-busy="true"] {
+
+
   & .form-button {
     opacity: 0.5;
     filter: grayscale(1);
