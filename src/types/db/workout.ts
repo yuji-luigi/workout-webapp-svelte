@@ -6,8 +6,8 @@ import type { FileDB } from './file-db';
  */
 export interface Workout {
 	id: number | string; // primary key
-	// name: string;
-	// slug: string;
+	name: string;
+	slug: string;
 	type: WorkoutType;
 	// description: string;
 	// image: FileDB;
@@ -15,8 +15,8 @@ export interface Workout {
 	 * you can set timer values whether here or exercise level. not both.
 	 * get seconds_rest and seconds_active from here and set to each exercise, in iteration set if seconds_rest and seconds_active in exercise or workout level to handle priority.
 	 * */
-	seconds_rest: number;
-	seconds_active: number;
+	seconds_rest?: number;
+	seconds_active?: number;
 	/** usually one exercise but user can customize workout to be one super-set or big-set or etc. */
 	exercises: (ExerciseJoined & {
 		seconds_rest: number;

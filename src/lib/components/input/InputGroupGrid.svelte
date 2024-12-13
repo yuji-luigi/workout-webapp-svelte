@@ -45,7 +45,7 @@
 
 	.error {
 		margin-left: auto;
-		color: red;
+		color: #ff3f4d;
 	}
 
 	@container (max-width: 600px) {

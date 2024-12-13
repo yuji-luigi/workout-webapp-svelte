@@ -219,7 +219,8 @@ select {
 
 .input-error-container:has([data-has-error="true"]) {
   input, textarea, select, div.input {
-    border: 1px solid red;
+    border: 1px solid #FF3F4D;
+    color: #FF3F4D;
     /* background-color: #ffe6e6; */
   }
 }

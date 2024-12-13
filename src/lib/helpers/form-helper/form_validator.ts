@@ -30,5 +30,6 @@ export function validateForm(data: any, formTableJson: FormTableField[], form: H
 	});
 	if (Object.keys(errors).length === 0) return null;
 	setFormErrors(errors, form);
+	console.error('form errors', errors);
 	throw new Error('Form validation failed');
 }

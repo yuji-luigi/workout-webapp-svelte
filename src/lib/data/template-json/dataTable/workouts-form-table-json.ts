@@ -8,20 +8,23 @@ export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 		label: 'ID',
 		type: 'id-input',
 		collection: 'workout',
+		required: true,
 		formFieldConfig: { hidden: true }
 	},
-	// {
-	// 	name: 'name',
-	// 	label: 'Name of the workout',
-	// 	type: 'text'
-	// },
-	// {
-	// 	name: 'slug',
-	// 	label: 'slug',
-	// 	type: 'slug',
-	// 	from: 'name',
-	// 	formFieldConfig: { hidden: true }
-	// },
+	{
+		name: 'name',
+		label: 'Name of the workout',
+		type: 'text',
+		required: true
+	},
+	{
+		name: 'slug',
+		label: 'slug',
+		type: 'slug',
+		from: 'name',
+		formFieldConfig: { hidden: true },
+		required: true
+	},
 	// {
 	// 	name: 'description',
 	// 	label: 'Description',
@@ -31,13 +34,15 @@ export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 		name: 'type',
 		label: 'Workout Type',
 		collection: 'workout_type',
-		type: 'select-single'
+		type: 'select-single',
+		required: true
 	},
 	{
 		name: 'exercises',
 		label: 'Exercises',
 		collection: 'exercise',
-		type: 'multi-select'
+		type: 'multi-select',
+		required: true
 	},
 	// {
 	// 	name: 'image',

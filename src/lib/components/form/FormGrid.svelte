@@ -37,12 +37,11 @@
 			const form_data = new FormData(event.target as HTMLFormElement);
 			const submitPayload = parseFormDataToObjects(form_data, multiNames);
 			validateForm(submitPayload, formTableJson as FormTableField[], event.target);
-
 			loading = true;
 			await handleSubmit?.(event, submitPayload);
 			await sleep(1000);
 		} catch (error: any) {
-			throw new Error(error);
+			console.error(error);
 		}
 		loading = false;
 	}
