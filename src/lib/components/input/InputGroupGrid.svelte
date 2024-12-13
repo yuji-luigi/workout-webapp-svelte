@@ -18,7 +18,10 @@
 
 <div class={`input-group ${className} ${hidden ? 'input-group-hidden' : ''}`}>
 	<label {hidden} for={name}>{label}</label>
-	{@render input?.()}
+	<div class="flex-column input-error-container" data-input-name={name}>
+		{@render input?.()}
+		<span class="error"></span>
+	</div>
 </div>
 
 <style>
@@ -33,6 +36,16 @@
 	}
 	.input-group-hidden {
 		display: none;
+	}
+	.flex-column {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.error {
+		margin-left: auto;
+		color: red;
 	}
 
 	@container (max-width: 600px) {

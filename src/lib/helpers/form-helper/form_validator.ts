@@ -1,6 +1,7 @@
 import type { FormTableField } from '../../../types/form/form-table-field';
+import { setFormErrors } from './setFormErrors';
 
-export function validateForm(data: any, formTableJson: FormTableField[]) {
+export function validateForm(data: any, formTableJson: FormTableField[], form: HTMLFormElement) {
 	const errors: Record<string, string> = {};
 	formTableJson.forEach((fieldConfig) => {
 		const isMulti = fieldConfig.multiple;
@@ -28,5 +29,6 @@ export function validateForm(data: any, formTableJson: FormTableField[]) {
 		}
 	});
 	if (Object.keys(errors).length === 0) return null;
-	throw errors;
+	setFormErrors(errors, form);
+	throw new Error('Form validation failed');
 }

@@ -22,7 +22,7 @@
 	} = $props();
 </script>
 
-<InputGroupGrid {label} {className} hidden={other.hidden}>
+<InputGroupGrid {name} {label} {className} hidden={other.hidden}>
 	{#snippet input()}
 		<input {name} {type} {...other} />
 	{/snippet}

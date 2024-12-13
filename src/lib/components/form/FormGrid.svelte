@@ -5,6 +5,9 @@
 	import { getForm, resetForm, setForm } from '../../store/form-store.svelte';
 	import FormContext from './FormContext.svelte';
 	import type { EventHandler } from 'svelte/elements';
+	import { validateForm } from '../../helpers/form-helper/form_validator';
+	import type { FormTableField } from '../../../types/form/form-table-field';
+	import { resetFormError } from '../../helpers/form-helper/setFormErrors';
 
 	let {
 		loading,
@@ -25,14 +28,17 @@
 	let multiNames: string[] = [];
 	let form = $state(getForm(form_id));
 	let isDebugForm = getContext('is_debug_form');
+	const formTableJson = getContext('form_table_json');
 
 	// handle shape of the form data. creates js object and array from form data and pass it to the handleSubmit function above root form
 	async function onsubmit(event: any) {
 		try {
 			if (!event || !event.target) return;
-			loading = true;
 			const form_data = new FormData(event.target as HTMLFormElement);
 			const submitPayload = parseFormDataToObjects(form_data, multiNames);
+			validateForm(submitPayload, formTableJson as FormTableField[], event.target);
+
+			loading = true;
 			await handleSubmit?.(event, submitPayload);
 			await sleep(1000);
 		} catch (error: any) {
@@ -56,6 +62,7 @@
 			const form_data = new FormData(formEl);
 			const dto = parseFormDataToObjects(form_data, multiNames);
 			setForm(form_id, dto);
+			resetFormError(event.target as HTMLElement);
 		});
 		return () => resetForm();
 	});

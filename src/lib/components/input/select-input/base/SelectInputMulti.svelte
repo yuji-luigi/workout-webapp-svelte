@@ -1,23 +1,12 @@
 <script lang="ts">
-	import {
-		onMount,
-		onDestroy,
-		type Snippet,
-		getContext,
-		hasContext,
-		getAllContexts,
-		setContext
-	} from 'svelte';
-	import Chip from '$lib/components/chip/Chip.svelte';
 	import type { Option } from '$types/form/option';
-	import { getForm, setForm } from '../../../../store/form-store.svelte';
-	import { sleep } from '../../../../helpers/sleep';
-	import ChipInput from '../../../chip/ChipInput.svelte';
-	import type { FormTableField } from '../../../../../types/form/form-table-field';
-	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
-	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { getContext, onDestroy, onMount, type Snippet } from 'svelte';
 	import type { Collection } from '../../../../../types/db/collections';
-	import Portal from '../../../Portal.svelte';
+	import type { FormTableField } from '../../../../../types/form/form-table-field';
+	import { getForm } from '../../../../store/form-store.svelte';
+	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
+	import ChipInput from '../../../chip/ChipInput.svelte';
 
 	let {
 		className,
@@ -38,25 +27,11 @@
 	// they are the same the values are the mapped values of selectedOptions to avoid mapping again
 	let selectedOptions: Option[] = $state([]);
 	// let selectedValues: string[] = $state([]);
-	let selectElement: HTMLSelectElement;
 	let selectContainer: HTMLDivElement;
-	let form = $state(getForm(getContext('form_id')));
-	const socketStates = createWebsocketStates();
+	let errorSpanEl: HTMLElement | null = $state(null);
+	// let form = $state(getForm(getContext('form_id')));
 
-	// onMount(() => {
-	// 	if (collection) {
-	// 		_options = db_state_getter[collection as Collection].map((data) => {
-	// 			return {
-	// 				// value: workout.id,
-	// 				id: data.id,
-	// 				value: JSON.stringify(data),
-	// 				label: data.name
-	// 			};
-	// 		});
-	// 	}
-	// });
 	$effect(() => {
-		// if (socketStates.globalWebSocket) {
 		if (collection) {
 			_options =
 				lofi_db?.db_state_getter[collection as Collection]?.map((data) => {
@@ -69,11 +44,17 @@
 				}) || [];
 		}
 		loading = false;
-		// }
 	});
-	console.log(_options);
+
+	$effect(() => {
+		if (selectContainer) {
+			errorSpanEl = selectContainer.closest('.input-group')?.querySelector('.error') as HTMLElement;
+		}
+	});
+
 	/** handle select from dropdown */
 	async function toggleSelection(selected: Option) {
+		if (errorSpanEl) errorSpanEl.textContent = '';
 		const { value } = selected;
 		if (selectedOptions.map((option) => option.value.toString()).includes(String(value))) {
 			selectedOptions = selectedOptions.filter((selected) => selected.value !== value);
@@ -135,9 +116,10 @@
 			document.removeEventListener('click', handleClickOutside);
 		}
 	});
-	$effect(() => {
-		form = getForm('routine-form');
-	});
+
+	// $effect(() => {
+	// 	form = getForm('routine-form');
+	// });
 </script>
 
 <div class={`${className} select-container`} bind:this={selectContainer}>

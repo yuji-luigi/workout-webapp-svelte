@@ -21,14 +21,6 @@
 		) => Promise<void>;
 	} = $props();
 	let loading = false;
-	// async function handleSubmit(event: SubmitEvent. payload: Record<string, any>) {
-	// 	// loading = true;
-	// 	// const form_data = new FormData(event.target as HTMLFormElement);
-	// 	// const dto = handleArrayFormData(form_data);
-	// 	// console.log(dto);
-	// 	// await sleep(500);
-	// 	// loading = false;
-	// }
 </script>
 
 <FormGrid {handleSubmit} {loading} {className} {form_id}>
@@ -42,27 +34,12 @@
 </FormGrid>
 
 <style>
-	label {
-		white-space: nowrap;
-	}
-
-	.input-group {
+	.sub-grid {
 		display: grid;
-		grid-column: span 2;
-		gap: 0.5rem;
 		grid-template-columns: subgrid;
-		grid-auto-flow: dense;
-		align-items: baseline;
-		justify-items: end;
+		gap: 0.5rem;
 	}
 
-	@container (max-width: 600px) {
-		.input-group {
-			gap: 0.25rem;
-			justify-items: start;
-			grid-column: 1/-1;
-		}
-	}
 	.fullWidth {
 		grid-column: 1/-1;
 	}

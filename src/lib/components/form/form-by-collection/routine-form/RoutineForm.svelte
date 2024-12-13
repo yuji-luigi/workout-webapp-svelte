@@ -2,28 +2,24 @@
 	import { sleep } from '$lib/helpers/sleep';
 	import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
 	import type { Workout } from '$types/db/workout';
+	import { setContext } from 'svelte';
 	import type { RoutineJoined } from '../../../../../types/db/routine';
 	import { routineFormTableJson } from '../../../../data/template-json/dataTable/routine-form-table-json';
 	import { validateForm } from '../../../../helpers/form-helper/form_validator';
+	import { setFormErrors } from '../../../../helpers/form-helper/setFormErrors';
+	import { setForm } from '../../../../store/form-store.svelte';
 	import JsonForm from '../../JsonForm.svelte';
 
 	let loading = false;
 	const form_id = 'routine-form';
+	setContext('form_table_json', routineFormTableJson);
 	const routinesY = lofi_db.routinesY;
 	async function handleSubmit(
 		event: SubmitEvent & { target: HTMLFormElement },
 		payload: Record<string, any>
 	) {
-		try {
-			loading = true;
-			const errors = validateForm(payload, routineFormTableJson);
-
-			routinesY.push([payload as RoutineJoined]);
-			await sleep(200);
-			loading = false;
-		} catch (error: any) {
-			console.error(error);
-		}
+		// validateForm(payload, routineFormTableJson, event.target);
+		routinesY.push([payload as RoutineJoined]);
 	}
 </script>
 
