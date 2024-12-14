@@ -17,6 +17,7 @@ class SetWorkoutFactory {
 	}
 
 	fromWorkoutFormPayload(formData: WorkoutFormPayload): WorkoutSetJoined[] {
+		return [];
 		return formData.exercises.map((exercise) => {
 			const id = this.workoutSet.length + 1;
 			const name = `  ${exercise.name}`;

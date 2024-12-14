@@ -22,7 +22,17 @@
 
 <InputGroupGrid {className} {label} {name}>
 	{#snippet input()}
-		<SelectInputMulti {name} {...other as any} />
-		<ExerciseConfigureButton {name} />
+		<div>
+			<SelectInputMulti {name} {...other as any} />
+			<ExerciseConfigureButton />
+		</div>
 	{/snippet}
 </InputGroupGrid>
+
+<style>
+	div {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-sm);
+	}
+</style>

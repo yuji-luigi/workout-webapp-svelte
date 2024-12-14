@@ -43,18 +43,13 @@ export const workoutFormTable = [
 	// 	type: 'select-single',
 	// 	required: true
 	// },
+
 	{
 		name: 'exercises',
 		label: 'Exercises',
 		collection: 'exercise',
 		type: 'multi-select',
-		required: true
-	},
-	{
-		name: 'exercises',
-		label: 'Exercises',
-		collection: 'exercise',
-		type: 'multi-select-with-config-sets',
+		formFieldConfig: { type: 'multi-select-with-config-sets' },
 		required: true
 	},
 

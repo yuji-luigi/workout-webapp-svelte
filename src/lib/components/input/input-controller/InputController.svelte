@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FormTableField } from '../../../../types/form/form-table-field';
+	import type { FormTableField } from '$types/form/form-table-field';
 	import * as Inputs from './index';
 	import { isInputKey } from './isInputKey';
 
@@ -8,8 +8,10 @@
 
 	let Input: any = $state();
 	Input = Inputs['TextInput'];
-	if (isInputKey(formTableField.type)) {
-		Input = Inputs[formTableField.type];
+	const formInputType = formTableField.formFieldConfig?.type || formTableField.type;
+
+	if (isInputKey(formInputType)) {
+		Input = Inputs[formInputType];
 	}
 	const { formFieldConfig, ...other } = formTableField;
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SelectInputSingle from '../../../input/select-input/base/SelectInputSingle.svelte';
-	import SelectSingleGrid from '../../../input/select-input/SelectSingleGrid.svelte';
+	import SelectInputSingle from '$components/input/select-input/base/SelectInputSingle.svelte';
+	import SelectSingleGrid from '$components/input/select-input/SelectSingleGrid.svelte';
 
 	let {
 		label,

@@ -34,10 +34,14 @@
 		font-size: var(--font-size-md);
 		justify-items: end;
 		cursor: pointer;
+		margin: var(--margin, 0);
 	}
 	input {
 		width: 3rem;
 		text-align: center;
 		border: none;
+	}
+	span {
+		margin-right: auto;
 	}
 </style>

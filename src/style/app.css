@@ -68,10 +68,13 @@
 
   --vertical-menu-width: 350px;
 
+  --border-radius-md: 0.25rem;
+  --border-radius-lg: 0.5rem;
 
-  --card-radius: 0.5rem;
+  --card-radius: var(--border-radius-lg);
 
-  --button-radius: 0.5rem;
+  --button-radius: var(--border-radius-lg);
+
 
   /* --text-color-white: #398bea; */
   /* --text-color-light: var(--fg-color-dark); */
@@ -131,8 +134,13 @@
 
   --padding-inline-main: 5rem;
 
+  --padding-inline-md: 1rem;
+  --padding-inline-lg: 1.25rem;
+  --padding-block-md: 1.5rem;
+
   --padding-inline-header: 2rem;
 
+  ;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.85rem;
@@ -255,7 +263,7 @@ input, textarea, select, div.input {
   width: 100%;
   background-color: light-dark(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01));
   padding: 0.5rem;
-  border-radius: 0.25rem;
+  border-radius: var(--border-radius-md);
   border: 1px solid light-dark(var(--gray-200), var(--gray-500));
 
   &:focus {

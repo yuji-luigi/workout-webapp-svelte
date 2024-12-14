@@ -37,7 +37,7 @@ export type SetsConfigButtonField = {
 export type FormTableField = BaseFormTableField | SlugFormTableField | SetsConfigButtonField;
 
 export type InputConfig = {
-	type?: InputType;
+	type?: InputType | 'multi-select-with-config-sets';
 	hidden?: boolean;
 };
 export type TableConfig = {

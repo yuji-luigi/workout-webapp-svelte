@@ -1,21 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import type { Exercise } from '$types/db/exercise';
+	import DialogGeneric from '$components/dialog/global/DialogGeneric.svelte';
 	import { sleep } from '$lib/helpers/sleep';
 	import { getForm } from '$lib/store/form-store.svelte';
-	import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
-	import DialogGeneric from '$components/dialog/global/DialogGeneric.svelte';
-	import ExerciseConfigRows from './ExerciseConfigRows.svelte';
-	let {
-		form_id
-	}: {
-		/** not necessary since we have form context*/
-		form_id: string;
-	} = $props();
-	let { exercises } = lofi_db.db_state;
+	import type { Exercise } from '$types/db/exercise';
+	import { getContext, onMount } from 'svelte';
+	import WorkoutSetConfigSection from './WorkoutSetConfigSection.svelte';
+
 	let isOpen = $state(false);
 	let selected_exercises: Exercise[] = $state([]);
 	let formEl: HTMLFormElement | undefined = $state();
+	const form_id: string = getContext('form_id') || 'NULL_ID';
 
 	const inputEvent = new Event('input');
 
@@ -28,15 +22,11 @@
 		selected_exercises = getForm(form_id)?.exercises || [];
 	}
 
-	$effect(() => {
-		exercises = lofi_db.db_state.exercises;
-		selected_exercises = getForm(form_id)?.exercises || [];
-	});
-
 	onMount(() => {
 		formEl = document.getElementById(form_id) as HTMLFormElement;
 		formEl?.addEventListener('input', handleSetSelectedWorkouts);
 	});
+
 	async function openConfig() {
 		await handleSetSelectedWorkouts();
 		isOpen = true;
@@ -49,9 +39,14 @@
 
 <DialogGeneric bind:isOpen>
 	<h2 class="title">Sets and rest time</h2>
-	<section class="grid">
+	<section class="sets-config-container">
 		{#each selected_exercises.filter((selected) => !!selected.id) as exercise, index}
-			<ExerciseConfigRows handleDestroyInput={dispatchInputEvent} {exercise} {index} {form_id} />
+			<WorkoutSetConfigSection
+				handleDestroyInput={dispatchInputEvent}
+				{exercise}
+				{index}
+				{form_id}
+			/>
 		{/each}
 	</section>
 </DialogGeneric>
@@ -60,17 +55,14 @@
 	button {
 		margin-left: auto;
 	}
+	.sets-config-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: var(--spacing-md);
+		border-radius: var(--border-radius);
+	}
 	.title {
 		margin-bottom: 1rem;
 		text-align: center;
-	}
-	.grid {
-		display: grid;
-		grid-template-columns: 1fr auto;
-		gap: var(--spacing-lg);
-		@media (max-width: 768px) {
-			grid-template-columns: 1fr;
-			gap: var(--spacing-sm);
-		}
 	}
 </style>

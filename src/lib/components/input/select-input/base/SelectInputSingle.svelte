@@ -11,7 +11,6 @@
 		label,
 		className,
 		options = [],
-		input,
 		collection,
 		name,
 		width = '100%',
@@ -21,35 +20,16 @@
 	}: {
 		className?: string;
 		options?: Option[];
-		input?: any;
 		width?: string;
 		textAlign?: string;
 	} & Omit<FormTableField, 'type'> = $props();
-	const socketStates = createWebsocketStates();
-	// socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
 
 	// Handle changes to the select
 	let selectedOption = $state('');
 	let _options = $state(options);
 	let loading = $state(true);
 
-	// onMount(() => {
-	// 	if (collection) {
-	// 		_options = db_state_getter[collection as Collection].map((data) => {
-	// 			return {
-	// 				// value: workout.id,
-	// 				id: data.id,
-	// 				value: JSON.stringify(data),
-	// 				label: data.name
-	// 			};
-	// 		});
-	// 		if (socketStates.isConnected) {
-	// 			loading = false;
-	// 		}
-	// 	}
-	// });
 	$effect(() => {
-		// if (socketStates.isConnected) {
 		if (collection) {
 			_options =
 				lofi_db?.db_state_getter[collection as Collection]?.map((data) => {
@@ -61,14 +41,12 @@
 				}) || [];
 		}
 		loading = false;
-		// }
 	});
 </script>
 
 <select
 	style={`--width:${width}; --text-align:${textAlign};`}
 	{name}
-	placeholder="select option"
 	class={className}
 	bind:value={selectedOption}
 	{...others}

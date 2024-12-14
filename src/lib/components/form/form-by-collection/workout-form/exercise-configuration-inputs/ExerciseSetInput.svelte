@@ -28,4 +28,7 @@
 		text-align: center;
 		border: none;
 	}
+	span {
+		margin-right: auto;
+	}
 </style>
