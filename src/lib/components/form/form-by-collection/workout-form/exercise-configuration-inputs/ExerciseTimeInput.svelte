@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { formatTime } from '../../../../helpers/formatTime';
+	import { formatTime } from '$lib/helpers/formatTime';
 	let {
 		label,
 		name

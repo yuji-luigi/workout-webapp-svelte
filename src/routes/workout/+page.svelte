@@ -2,7 +2,7 @@
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
 	import WorkoutCard from '../../lib/components/card/workout-card/WorkoutCard.svelte';
-	import { lofi_db } from '../../lib/store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../lib/store/lofi-db/lofi_db.svelte';
 	import type { Workout } from '../../types/db/workout';
 
 	let db_state = $state<any>(lofi_db?.db_state);

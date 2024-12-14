@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import type { Exercise } from '../../../../../types/db/exercise';
+	import type { Exercise } from '$types/db/exercise';
 	import WorkoutSetInput from './ExerciseSetInput.svelte';
 	import WorkoutTimeInput from './ExerciseTimeInput.svelte';
 	import ExerciseTypeInput from './ExerciseTypeInput.svelte';
-	import { getForm } from '../../../../store/form-store.svelte';
+	import { getForm } from '$lib/store/form-store.svelte';
 	let {
 		exercise,
 		index,

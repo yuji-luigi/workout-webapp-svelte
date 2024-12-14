@@ -5,7 +5,7 @@
 	import InputGrid from '../../lib/components/input/InputGrid.svelte';
 	import { handleArrayFormData } from '../../lib/helpers/form-helper/handle-array-form-data';
 	import { sleep } from '../../lib/helpers/sleep';
-	import { db_state } from '../../lib/store/lofi-db/workout-lofi.svelte';
+	import { db_state } from '../../lib/store/lofi-db/lofi_db.svelte';
 	import { createWebsocketStates } from '../../lib/store/socket-store.svelte';
 	import type { Workout } from '../../types/db/workout';
 	const connected = createWebsocketStates();

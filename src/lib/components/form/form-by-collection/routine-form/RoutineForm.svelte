@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { sleep } from '$lib/helpers/sleep';
-	import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
 	import type { Workout } from '$types/db/workout';
 	import { setContext } from 'svelte';
 	import type { RoutineJoined } from '../../../../../types/db/routine';
@@ -33,7 +33,7 @@
 			label="type of the workout"
 			name="type"
 			placeholder="Workout type"
-			collection="workout_type"
+			collection="workout_set_type"
 		/>
 		<InputGrid label="Slug of the routine(shown in url)" type="slug" from="name" />
 		<InputGrid label="Description" name="description" type="text" />

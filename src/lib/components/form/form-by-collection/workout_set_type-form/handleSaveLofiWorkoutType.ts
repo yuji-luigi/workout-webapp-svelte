@@ -1,5 +1,5 @@
 import type { Exercise, ExerciseJoined } from '$types/db/exercise';
-import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
+import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
 
 export type WorkoutFormData = {
 	exercise_id: any;
@@ -43,8 +43,8 @@ export function workoutJoinedFactory(workoutDto: WorkoutFormData): ExerciseJoine
 	};
 }
 
-const getWorkoutType = (workout_type: string) => {
-	switch (workout_type) {
+const getWorkoutType = (workout_set_type: string) => {
+	switch (workout_set_type) {
 		case 'tabata':
 			return { use_active_time: true, use_rest_time: true };
 		case 'hiit':

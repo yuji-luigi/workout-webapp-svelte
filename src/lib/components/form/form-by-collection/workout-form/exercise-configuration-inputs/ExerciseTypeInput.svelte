@@ -24,7 +24,7 @@
 			{name}
 			{className}
 			textAlign="end"
-			collection="workout_type"
+			collection="workout_set_type"
 			label="Exercise"
 			border="none"
 		/>

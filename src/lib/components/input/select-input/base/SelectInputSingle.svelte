@@ -4,7 +4,7 @@
 	import type { Option } from '../../../../../types/form/option';
 	import type { FormTableField } from '../../../../../types/form/form-table-field';
 	import type { Collection } from '../../../../../types/db/collections';
-	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
 	import { isRedirect } from '@sveltejs/kit';
 	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
 	let {

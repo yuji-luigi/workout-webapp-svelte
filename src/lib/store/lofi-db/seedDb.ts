@@ -1,14 +1,14 @@
-// import { exercisesY, workout_typeY } from './workout-lofi.svelte';
+// import { exercisesY, workout_set_typeY } from './workout-lofi.svelte';
 
 import type { Exercise } from '../../../types/db/exercise';
-import { lofi_db } from './workout-lofi.svelte';
-const { persistenceWorkoutDB, db_state, workout_typeY, exercisesY } = lofi_db;
+import { lofi_db } from './lofi_db.svelte';
+const { persistenceWorkoutDB, db_state, workout_set_typeY, exercisesY } = lofi_db;
 
 export async function seedLocalDB() {
 	await persistenceWorkoutDB?.whenSynced;
-	const { workout_types, exercises } = db_state;
-	if (workout_types.length === 0) {
-		workout_typeY.push([...defaultWorkoutTypes]);
+	const { workout_set_types, exercises } = db_state;
+	if (workout_set_types.length === 0) {
+		workout_set_typeY.push([...defaultWorkoutTypes]);
 	}
 	if (exercises.length === 0) {
 		exercisesY?.push([...calisthenicExercises]);

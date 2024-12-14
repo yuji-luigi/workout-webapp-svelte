@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { Exercise } from '../../../../../types/db/exercise';
-	import { sleep } from '../../../../helpers/sleep';
-	import { getForm } from '../../../../store/form-store.svelte';
-	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
-	import DialogGeneric from '../../../dialog/global/DialogGeneric.svelte';
+	import type { Exercise } from '$types/db/exercise';
+	import { sleep } from '$lib/helpers/sleep';
+	import { getForm } from '$lib/store/form-store.svelte';
+	import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
+	import DialogGeneric from '$components/dialog/global/DialogGeneric.svelte';
 	import ExerciseConfigRows from './ExerciseConfigRows.svelte';
 	let {
 		form_id

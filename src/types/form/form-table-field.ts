@@ -1,11 +1,14 @@
 import type { Collection } from '../db/collections';
+import type { Exercise, ExerciseJoined } from '../db/exercise';
+import type { WorkoutJoined } from '../db/workout';
 import type { Option } from './option';
 
 export type BaseFormTableField = {
 	name: string;
 	label: string;
 	multiple?: boolean;
-	required?: boolean;
+	/** explicitly state for all the field */
+	required: boolean;
 	/** shared type with table cell and input. inputConfig field and tableConfig for specific setting for each view*/
 	type: InputType; // Exclude 'slug' from BaseFormTableField
 	/** only for select kinds with static options */
@@ -25,7 +28,13 @@ export type SlugFormTableField = {
 	from: string; // 'from' is required
 } & Omit<BaseFormTableField, 'type'>;
 
-export type FormTableField = BaseFormTableField | SlugFormTableField;
+export type SetsConfigButtonField = {
+	name: string;
+	label: string;
+	type: 'multi-select-with-config-sets'; // Explicitly 'slug'
+} & Omit<BaseFormTableField, 'type'>;
+
+export type FormTableField = BaseFormTableField | SlugFormTableField | SetsConfigButtonField;
 
 export type InputConfig = {
 	type?: InputType;
@@ -77,3 +86,27 @@ export function isInputKey(key: string): key is InputKey {
 		'from'
 	].includes(key);
 }
+
+type TMap = {
+	'id-input': number | string;
+	text: string;
+	slug: string;
+	'multi-select': number[];
+	number: number;
+};
+type CMap = {
+	exercise: ExerciseJoined;
+	workout: WorkoutJoined;
+};
+
+export type PayloadFromForm<
+	FormType extends readonly { name: string; type: string; collection?: string }[]
+> = {
+	[F in FormType[number] as F['name']]: F['collection'] extends keyof CMap
+		? F['type'] extends 'multi-select'
+			? CMap[F['collection']][]
+			: CMap[F['collection']]
+		: F['type'] extends keyof TMap
+			? TMap[F['type']]
+			: unknown;
+};

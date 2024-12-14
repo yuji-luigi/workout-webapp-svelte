@@ -1,4 +1,4 @@
-export const workout_types: WorkoutType[] = [
+export const workout_set_types: WorkoutType[] = [
 	{
 		id: 0,
 		slug: 'hiit',

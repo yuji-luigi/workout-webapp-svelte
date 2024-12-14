@@ -1,8 +1,8 @@
 import type { ExerciseJoined } from '../../../../types/db/exercise';
 import type { Workout } from '../../../../types/db/workout';
-import type { FormTableField } from '../../../../types/form/form-table-field';
+import type { FormTableField, PayloadFromForm } from '../../../../types/form/form-table-field';
 
-export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
+export const workoutFormTable = [
 	{
 		name: 'id',
 		label: 'ID',
@@ -14,6 +14,12 @@ export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 	{
 		name: 'name',
 		label: 'Name of the workout',
+		type: 'text',
+		required: true
+	},
+	{
+		name: 'description',
+		label: 'Description',
 		type: 'text',
 		required: true
 	},
@@ -30,13 +36,13 @@ export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 	// 	label: 'Description',
 	// 	type: 'text'
 	// },
-	{
-		name: 'type',
-		label: 'Workout Type',
-		collection: 'workout_type',
-		type: 'select-single',
-		required: true
-	},
+	// {
+	// 	name: 'type',
+	// 	label: 'Workout Type',
+	// 	collection: 'workout_type',
+	// 	type: 'select-single',
+	// 	required: true
+	// },
 	{
 		name: 'exercises',
 		label: 'Exercises',
@@ -44,6 +50,14 @@ export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 		type: 'multi-select',
 		required: true
 	},
+	{
+		name: 'exercises',
+		label: 'Exercises',
+		collection: 'exercise',
+		type: 'multi-select-with-config-sets',
+		required: true
+	},
+
 	// {
 	// 	name: 'image',
 	// 	label: 'Image',
@@ -54,6 +68,9 @@ export const workoutFormTable: (FormTableField & { name: keyof Workout })[] = [
 		name: 'created_by',
 		label: 'Created By ID',
 		type: 'number',
+		required: false,
 		formFieldConfig: { hidden: true }
 	}
-];
+] satisfies (FormTableField & { name: keyof Workout | 'exercises' | '' })[];
+
+export type WorkoutFormPayload = PayloadFromForm<typeof workoutFormTable>;

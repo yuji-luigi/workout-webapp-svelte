@@ -11,7 +11,7 @@
 
 	let {
 		loading,
-		className,
+		className = '',
 		handleSubmit,
 		children,
 		form_id = 'id_null'
@@ -33,6 +33,7 @@
 	// handle shape of the form data. creates js object and array from form data and pass it to the handleSubmit function above root form
 	async function onsubmit(event: any) {
 		try {
+			event.preventDefault();
 			if (!event || !event.target) return;
 			const form_data = new FormData(event.target as HTMLFormElement);
 			const submitPayload = parseFormDataToObjects(form_data, multiNames);
@@ -72,8 +73,8 @@
 </script>
 
 <FormContext {form_id}>
-	<div class={className}>
-		<fieldset disabled={loading} aria-busy={loading}>
+	<div class={className + ' form-grid'}>
+		<fieldset class="form-grid-fieldset" disabled={loading} aria-busy={loading}>
 			{#if form_id}
 				<form bind:this={formEl} id={form_id} {onsubmit}>
 					{@render children?.()}

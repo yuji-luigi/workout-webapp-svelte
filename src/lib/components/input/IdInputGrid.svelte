@@ -7,7 +7,7 @@
 	import { onMount } from 'svelte';
 	import type { Collection } from '../../../types/db/collections';
 	import type { InputType } from '../../../types/input-type';
-	import { lofi_db } from '../../store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../store/lofi-db/lofi_db.svelte';
 	import InputGroupGrid from './InputGroupGrid.svelte';
 	import { sleep } from '../../helpers/sleep';
 

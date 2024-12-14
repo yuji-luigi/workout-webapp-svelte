@@ -1,9 +1,9 @@
 export const collections = [
 	'workout',
 	'exercise',
-	'workout_type',
+	'workout_set_type',
 	'routine'
-	// 'workout_type',
+	// 'workout_set_type',
 	// 'workout_workout_type',
 	// 'timer'
 ] as const;

@@ -6,7 +6,7 @@
 	import DataTable from '../../../lib/components/data-table/DataTable.svelte';
 	import JsonForm from '../../../lib/components/form/JsonForm.svelte';
 	import type { Collection } from '../../../types/db/collections';
-	import { lofi_db } from '../../../lib/store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../../lib/store/lofi-db/lofi_db.svelte';
 	let loading = false;
 	let collectionP = $state($page.params.collection) as Collection;
 	let FormByCollection = $state(formByCollection[collectionP] || JsonForm);

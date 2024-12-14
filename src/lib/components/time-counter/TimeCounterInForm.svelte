@@ -12,8 +12,8 @@
 	/* 	{
       ...ExerciseJoined, 
       n_sets: number, 
-      seconds_rest: number, 
-      seconds_active: number
+      rest_time: number, 
+      active_time: number
   } */
 	// 3. accept index, fieldName as argument so the value can be updated
 </script>

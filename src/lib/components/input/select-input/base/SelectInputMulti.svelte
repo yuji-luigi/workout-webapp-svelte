@@ -4,7 +4,7 @@
 	import type { Collection } from '../../../../../types/db/collections';
 	import type { FormTableField } from '../../../../../types/form/form-table-field';
 	import { getForm } from '../../../../store/form-store.svelte';
-	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
 	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
 	import ChipInput from '../../../chip/ChipInput.svelte';
 	import { resetErrorSpan } from '../../../../helpers/form-helper/setFormErrors';
@@ -49,7 +49,9 @@
 
 	$effect(() => {
 		if (selectContainer) {
-			errorSpanEl = selectContainer.closest('.input-group')?.querySelector('.error') as HTMLElement;
+			errorSpanEl = selectContainer
+				.closest('.input-group')
+				?.querySelector('.input-error-message') as HTMLElement;
 		}
 	});
 

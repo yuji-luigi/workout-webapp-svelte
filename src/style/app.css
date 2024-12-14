@@ -91,6 +91,20 @@
   --color-primary-700: oklch(45.58% 0.1097 203.42);
   --color-primary-800: oklch(35.58% 0.1097 203.42);
 
+
+
+  --color-error-100: oklch(90.53% 0.2146 16.03);
+  --color-error-200: oklch(85.53% 0.2146 16.03);
+  --color-error-300: oklch(80.53% 0.2146 16.03);
+  --color-error-400: oklch(75.53% 0.2146 16.03);
+  --color-error-400: oklch(65.53% 0.2146 16.03);
+  --color-error-500: oklch(60.53% 0.2146 16.03);
+  --color-error-600: oklch(56.53% 0.2146 16.03);
+  --color-error-700: oklch(50.53% 0.2146 16.03);
+  --color-error-800: oklch(40.53% 0.2146 16.03);
+
+  --color-error: var(--color-error-500);
+
   --accent-color: #964734;
 
   /* --color-primary: oklch(65.58% 0.1281 77.66);
@@ -217,12 +231,23 @@ select {
   /* Safari and Chrome */
 }
 
+.form-grid:has([data-has-error='true']) {
+  border: 1px solid var(--color-error);
+}
+
+.input-group:has([data-has-error='true']) {
+  color: var(--color-error);
+}
+
 .input-error-container:has([data-has-error="true"]) {
   input, textarea, select, div.input {
-    border: 1px solid #FF3F4D;
-    color: #FF3F4D;
+    border: 1px solid var(--color-error);
     /* background-color: #ffe6e6; */
   }
+}
+
+.input-error-message {
+  font-size: var(--font-size-xs);
 }
 
 

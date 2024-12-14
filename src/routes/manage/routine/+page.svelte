@@ -4,7 +4,7 @@
 	import InputGrid from '$lib/components/input/InputGrid.svelte';
 	import { handleArrayFormData } from '$lib/helpers/form-helper/handle-array-form-data';
 	import { sleep } from '$lib/helpers/sleep';
-	import { db_state, routinesY } from '$lib/store/lofi-db/workout-lofi.svelte';
+	import { db_state, routinesY } from '$lib/store/lofi-db/lofi_db.svelte';
 	let loading = false;
 	async function handleSubmit(event: SubmitEvent) {
 		loading = true;

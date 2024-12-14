@@ -11,6 +11,7 @@ const config = {
 		alias: {
 			$types: './src/types',
 			$lib: './src/lib',
+			$components: './src/lib/components',
 			$images: './src/lib/images'
 		},
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.

@@ -5,7 +5,7 @@
 	import type { Option } from '../../../../../types/form/option';
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
 	import NewExerciseModalFormOpenButton from '../../../open-dialog-button/NewExerciseModalFormOpenButton.svelte';
-	import { lofi_db } from '../../../../store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
 	import ExerciseConfigureButton from '../../../form/workout-form/exercise-configuration-inputs/ExerciseConfigureButton.svelte';
 	import { getForm } from '../../../../store/form-store.svelte';
 	import { get } from 'svelte/store';

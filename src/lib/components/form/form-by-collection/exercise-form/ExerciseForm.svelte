@@ -3,7 +3,7 @@
 
 	import type { Exercise } from '$types/db/exercise';
 	import { exerciseFormTableJson } from '$lib/data/template-json/dataTable';
-	import { lofi_db } from '$lib/store/lofi-db/workout-lofi.svelte';
+	import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
 	import JsonForm from '$lib/components/form/JsonForm.svelte';
 	let {
 		onSubmitCallback,

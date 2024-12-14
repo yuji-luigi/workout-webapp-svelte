@@ -4,6 +4,7 @@
 	import type { InputProps } from '../../../types/form/input-prop-type';
 	import InputGroupGrid from './InputGroupGrid.svelte';
 	import { getForm } from '../../store/form-store.svelte';
+	import { createSlug } from '../../helpers/createSlug';
 
 	let { input, from = 'name', ...others }: SlugFormTableField = $props();
 	const form_id = getContext('form_id');
@@ -14,7 +15,7 @@
 		if (form) {
 			const name = form[from];
 			// create a slug from the form[from] value. convert to lowercase and replace spaces with hyphens
-			slug = name.toLowerCase().trim().replace(/\s+/g, '-');
+			slug = createSlug(name);
 		}
 	});
 </script>

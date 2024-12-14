@@ -14,6 +14,11 @@ export interface Exercise {
 }
 
 export interface ExerciseJoined extends Exercise {
-	created_by_id: number;
-	created_by_name: string;
+	created_by_id?: number;
+	created_by_name?: string;
+}
+
+export interface ExerciseInSetWorkout extends ExerciseJoined {
+	rest_time?: number;
+	active_time?: number;
 }

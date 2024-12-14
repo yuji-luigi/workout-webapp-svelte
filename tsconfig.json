@@ -18,6 +18,12 @@
       ], // Add the alias for TypeScript to recognize it
       "$lib/*": [
         "./src/lib/*"
+      ],
+      "$components/*": [
+        "./src/lib/components/*"
+      ],
+      "$images/*": [
+        "./src/lib/images/*"
       ]
     }
   }

@@ -1,27 +1,29 @@
 // Type for Set (unchanged from the previous diagram)
+
+import type { ExerciseInSetWorkout, ExerciseJoined } from './exercise';
+
 /**
- *  Workout_set is only used by one routine.
+ *  WorkoutSet is only used by one routine.
  * one to one relationship.
  *   */
-export interface Workout_set {
+export interface WorkoutSet {
 	id: number; // primary key
-	id_timer: number; // Foreign key to Timer
-	id_workout: number; // Foreign key to Workout
+	// id_timer: number; // Foreign key to Timer
+	// id_workout: number; // Foreign key to Workout
 	n_set: number;
+	exercises: ExerciseInSetWorkout[];
 }
 
 /** WorkoutSet represents workout with timer. so it is Workout + timer. Flat object somehow */
 export interface WorkoutSetJoined {
 	id: number;
 	slug: string;
-	exercise_id: number;
-	exercise_name: string;
-	workout_type_id: number;
-	exercise_description: string;
-	name_workout_type: string; // tabata, hiit, reps_and_sets, ... etc
-	seconds_active: number;
-	seconds_rest: number;
-	n_sets: number;
-	created_by_id: number;
-	created_by_name: string;
+	type: string;
+	/** type of set + exercise name concatenated */
+	name: string;
+	/** there is no UI to set descriptions for now. */
+	description?: string;
+	/** not simple exercise. it may have rest/active_time */
+	exercises: ExerciseInSetWorkout[];
+	n_set: number;
 }

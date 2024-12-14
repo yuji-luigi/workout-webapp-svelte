@@ -5,7 +5,7 @@
 	import type { Exercise } from '../../../../types/db/exercise';
 	import { createQueryParams } from '../../../helpers/search-params/createQueryParams';
 	import type { Routine } from '../../../../types/db/routine';
-	import type { Workout_set } from '../../../../types/db/workout-set';
+	import type { WorkoutSet } from '../../../../types/db/workout-set';
 
 	let { routine }: { routine: Routine } = $props();
 	// let _routine: Routine & { workout_flows: WorkoutFlow[] };
@@ -15,7 +15,7 @@
 	// 	const raw_flows = await fetch(`../../api/workout_flow${flow_params}`);
 	// 	const _flows = await raw_flows.json();
 	// 	const fl_promises = _flows.map(async (flow: WorkoutFlow) => {
-	// 		const _flow: WorkoutFlow & { workout_sets?: Workout_set[] } = flow;
+	// 		const _flow: WorkoutFlow & { workout_sets?: WorkoutSet[] } = flow;
 	// 		const ws_params = createQueryParams({ id: flow.id_workout_set });
 	// 		const raw_sets = await fetch(`../../api/workout_set/${ws_params}`);
 	// 		const _sets = await raw_sets.json();
@@ -35,7 +35,7 @@
 	// const workout_sets = await raw__workout_sets.json();
 
 	// routine.workout_flows.forEach((workout_flow: WorkoutFlow, iwf: number) => {
-	// 	workout_sets.forEach((set: Workout_set, iws: number) => {
+	// 	workout_sets.forEach((set: WorkoutSet, iws: number) => {
 	// 		const _workout: Workout = workouts.find(
 	// 			(workout: Workout) => workout.exercise_id === set.id_workout
 	// 		);

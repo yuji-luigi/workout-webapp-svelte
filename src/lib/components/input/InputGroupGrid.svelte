@@ -20,7 +20,7 @@
 	<label {hidden} for={name}>{label}</label>
 	<div class="flex-column input-error-container" data-input-name={name}>
 		{@render input?.()}
-		<span class="error"></span>
+		<span class="input-error-message"></span>
 	</div>
 </div>
 
@@ -43,9 +43,9 @@
 		width: 100%;
 	}
 
-	.error {
+	.input-error-message {
 		margin-left: auto;
-		color: #ff3f4d;
+		margin-top: 0.2rem;
 	}
 
 	@container (max-width: 600px) {
