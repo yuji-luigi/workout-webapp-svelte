@@ -13,10 +13,9 @@
 <style>
 	button {
 		cursor: pointer;
-		display: grid;
-		grid-template-columns: minmax(150px, 200px) 1fr;
-		place-items: center;
-		place-content: center;
+		display: flex;
+		justify-content: center;
+
 		background-color: var(--color-primary-800);
 		padding-inline: var(--padding-inline-md);
 		gap: var(--spacing-lg);

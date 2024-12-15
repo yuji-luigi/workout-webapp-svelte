@@ -30,9 +30,26 @@
 </script>
 
 <section in:scale={{ duration: 300, start: 0.8 }} class="grid">
-	<div in:fade={{ duration: 300, delay: 300 }} class="set-config">
-		<div class="flex-row set-header">
+	<div in:fade={{ duration: 300, delay: 300 }}>
+		<div class="flex-row full-width">
 			<h2>SET#{index + 1}</h2>
+
+			<SelectInputSingle
+				width="auto"
+				label="set type"
+				collection="workout_set_type"
+				name={preName + '.workout_set_type'}
+				placeholder="type of set"
+				required
+				textAlign="center"
+			/>
+			<div class="flex-row add-workout">
+				Add workout
+				<IconButton --margin="0 0 0 auto">+</IconButton>
+			</div>
+		</div>
+		<div class="flex-row full-width">
+			<h2>Sets</h2>
 
 			<SelectInputSingle
 				width="auto"
@@ -61,6 +78,9 @@
 				/>
 				<SetTimeInput label="rest time" {index} {form_id} name={preName + '.timer_seconds_rest'} />
 			</div>
+			<div class="input-section">
+				<h3>Add exercise</h3>
+			</div>
 		</div>
 	</div>
 </section>
@@ -80,8 +100,12 @@
 			grid-template-columns: 1fr;
 			gap: var(--spacing-sm);
 		}
+		& > div {
+			display: grid;
+			gap: var(--spacing-md);
+		}
 	}
-	.set-header {
+	.full-width {
 		grid-column: 1/-1;
 		padding-inline: var(--padding-inline-lg);
 	}
@@ -104,12 +128,15 @@
 	}
 	.input-section {
 		display: grid;
-		cursor: grab;
 		padding-inline: var(--padding-inline-lg);
 		border-radius: var(--border-radius-lg);
 		grid-template-columns: 1fr auto auto;
 		padding-block: 2rem;
 		gap: var(--spacing-sm);
 		background-color: var(--gray-700);
+
+		&[draggable='true'] {
+			cursor: grab;
+		}
 	}
 </style>
