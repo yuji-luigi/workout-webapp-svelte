@@ -1,40 +1,46 @@
 <script lang="ts">
-	import { getForm } from '$lib/store/form-store.svelte';
-	import type { Exercise } from '$types/db/exercise';
-	import { onDestroy } from 'svelte';
 	import IconButton from '$components/button/IconButton.svelte';
-	import SelectInputSingle from '$components/input/select-input/base/SelectInputSingle.svelte';
+	import type { Exercise } from '$types/db/exercise';
+	import { getContext, onDestroy } from 'svelte';
+	import { fade, scale } from 'svelte/transition';
 	import SetNumberInput from './SetNumberInput.svelte';
 	import SetTimeInput from './SetTimeInput.svelte';
-	import { fade, scale } from 'svelte/transition';
+	import SelectInputSingle from '../../../../input/select-input/base/SelectInputSingle.svelte';
+	import AddExercise from './AddExercise.svelte';
+	import { getForm, getFormIDContext } from '../../../../../store/form-store.svelte';
+	import type { workout_set_type } from '../..';
 	let {
 		exercise,
 		index,
-		form_id,
-		handleDestroyInput
+		form_id
 	}: {
 		exercise: Exercise;
 		index: number;
 		form_id: string;
-		handleDestroyInput: () => void;
 	} = $props();
-	onDestroy(() => {
-		handleDestroyInput();
-	});
+	let exercises = $state<any>([]);
+	function addExercise() {
+		console.log('add exercise');
+		exercises.push({});
+	}
+	let selectedType = $state('');
+	let _selectedType = $state<WorkoutType | null>(null);
 	const preName = `exercises[${index}]`;
-	let form = $state(getForm(form_id));
+
 	$effect(() => {
-		form = getForm(form_id);
-		console.log('form', form);
+		if (selectedType) {
+			_selectedType = JSON.parse(selectedType);
+		}
 	});
 </script>
 
 <section in:scale={{ duration: 300, start: 0.8 }} class="grid">
-	<div in:fade={{ duration: 300, delay: 300 }}>
+	<div in:fade={{ duration: 300, delay: 150 }}>
 		<div class="flex-row full-width">
 			<h2>SET#{index + 1}</h2>
 
 			<SelectInputSingle
+				bind:selectedOption={selectedType}
 				width="auto"
 				label="set type"
 				collection="workout_set_type"
@@ -43,45 +49,40 @@
 				required
 				textAlign="center"
 			/>
-			<div class="flex-row add-workout">
-				Add workout
-				<IconButton --margin="0 0 0 auto">+</IconButton>
-			</div>
+			<SetNumberInput name={preName + '.n_set'} />
 		</div>
-		<div class="flex-row full-width">
-			<h2>Sets</h2>
 
-			<SelectInputSingle
-				width="auto"
-				label="set type"
-				collection="workout_set_type"
-				name={preName + '.workout_set_type'}
-				placeholder="type of set"
-				required
-				textAlign="center"
-			/>
-			<div class="flex-row add-workout">
-				Add workout
-				<IconButton --margin="0 0 0 auto">+</IconButton>
+		{#each exercises as exercise}
+			<div in:scale={{ duration: 400, start: 0.8 }}>
+				<div
+					in:fade={{
+						duration: 400
+					}}
+					class="set-cards"
+				>
+					<div class="input-section" draggable="true">
+						{#if _selectedType?.use_active_time}
+							<SetTimeInput
+								label="workout time"
+								{index}
+								{form_id}
+								name={preName + '.timer_seconds_active'}
+							/>
+						{/if}
+						{#if _selectedType?.use_rest_time}
+							<SetTimeInput
+								label="rest time"
+								{index}
+								{form_id}
+								name={preName + '.timer_seconds_rest'}
+							/>
+						{/if}
+					</div>
+				</div>
 			</div>
-		</div>
-		<!-- <h2 class="exercise-name">{exercise.name}</h2> -->
-		<div class="set-cards">
-			<div class="input-section" draggable="true">
-				<h3>{exercise.name}</h3>
-				<SetNumberInput name={preName + '.n_set'} />
-				<SetTimeInput
-					label="workout time"
-					{index}
-					{form_id}
-					name={preName + '.timer_seconds_active'}
-				/>
-				<SetTimeInput label="rest time" {index} {form_id} name={preName + '.timer_seconds_rest'} />
-			</div>
-			<div class="input-section">
-				<h3>Add exercise</h3>
-			</div>
-		</div>
+		{/each}
+
+		<AddExercise onclick={addExercise} />
 	</div>
 </section>
 

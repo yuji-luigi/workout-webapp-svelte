@@ -1,11 +1,18 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	let { type = 'button', children }: { type?: HTMLButtonElement['type']; children: Snippet } =
-		$props();
+	let {
+		type = 'button',
+		onclick,
+		children
+	}: {
+		type?: HTMLButtonElement['type'];
+		children: Snippet;
+		onclick?: () => void;
+	} = $props();
 </script>
 
-<button class="primary button" {type}>
+<button {onclick} class="primary button" {type}>
 	{#if children}
 		{@render children()}
 	{:else}{''}{/if}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getContext } from 'svelte';
 	import type { FormTableField } from '../../../types/form/form-table-field';
 	import { handleArrayFormData } from '../../helpers/form-helper/handle-array-form-data';
 	import { sleep } from '../../helpers/sleep';
@@ -9,12 +10,10 @@
 	let {
 		formTableFields,
 		className,
-		handleSubmit,
-		form_id = 'not_set_form_id'
+		handleSubmit
 	}: {
 		formTableFields: FormTableField[];
 		className?: string;
-		form_id?: string;
 		handleSubmit: (
 			event: SubmitEvent & { target: HTMLFormElement },
 			payload: Record<string, any>
@@ -23,7 +22,7 @@
 	let loading = false;
 </script>
 
-<FormGrid {handleSubmit} {loading} {className} {form_id}>
+<FormGrid {handleSubmit} {loading} {className}>
 	{#each formTableFields.filter(excludeFormHidden) as formTableField}
 		<InputController {formTableField} />
 	{/each}

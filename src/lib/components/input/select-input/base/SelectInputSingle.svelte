@@ -1,12 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { sleep } from '../../../../helpers/sleep';
-	import type { Option } from '../../../../../types/form/option';
-	import type { FormTableField } from '../../../../../types/form/form-table-field';
 	import type { Collection } from '../../../../../types/db/collections';
+	import type { FormTableField } from '../../../../../types/form/form-table-field';
+	import type { Option } from '../../../../../types/form/option';
 	import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
-	import { isRedirect } from '@sveltejs/kit';
-	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
 	let {
 		label,
 		className,
@@ -16,8 +12,10 @@
 		width = '100%',
 		textAlign,
 		placeholder,
+		selectedOption = $bindable(null),
 		...others
 	}: {
+		selectedOption?: string | null;
 		className?: string;
 		options?: Option[];
 		width?: string;
@@ -25,7 +23,7 @@
 	} & Omit<FormTableField, 'type'> = $props();
 
 	// Handle changes to the select
-	let selectedOption = $state('');
+	// let selectedOption = $state('');
 	let _options = $state(options);
 	let loading = $state(true);
 
@@ -67,10 +65,12 @@
 
 <style>
 	select {
+		opacity: var(--opacity, 1);
 		width: var(--width, 100%);
 		text-align: var(--text-align);
 		padding: 0.5rem;
 		border-radius: 4px;
 		min-height: 2.5rem;
+		position: var(--position);
 	}
 </style>

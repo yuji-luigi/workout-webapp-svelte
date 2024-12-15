@@ -1,17 +1,21 @@
-let formContext = $state<Record<string, any>>({ initial: 'initial' });
+import { getContext } from 'svelte';
+
+let formState = $state<Record<string, any>>({ initial: 'initial' });
 
 export const getForm = (form_id: string) => {
-	return formContext[form_id];
+	return formState[form_id];
 };
 
 export const setForm = (form_id: string, dto: Record<string, any>) => {
-	formContext[form_id] = dto;
+	formState[form_id] = dto;
 };
 
 export const resetFormById = (form_id: string) => {
-	delete formContext[form_id];
+	delete formState[form_id];
 };
 
 export const resetForm = () => {
-	formContext = {};
+	formState = {};
 };
+
+export const getFormIDContext = () => getContext<string>('form_id') || 'no_form_id';

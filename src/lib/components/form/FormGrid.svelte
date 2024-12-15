@@ -2,7 +2,7 @@
 	import { getContext, onMount } from 'svelte';
 	import { parseFormDataToObjects } from '../../helpers/form-helper/parse_data_to_object';
 	import { sleep } from '../../helpers/sleep';
-	import { getForm, resetForm, setForm } from '../../store/form-store.svelte';
+	import { getForm, getFormIDContext, resetForm, setForm } from '../../store/form-store.svelte';
 	import FormContext from './FormContext.svelte';
 	import type { EventHandler } from 'svelte/elements';
 	import { validateForm } from '../../helpers/form-helper/form_validator';
@@ -13,8 +13,7 @@
 		loading,
 		className = '',
 		handleSubmit,
-		children,
-		form_id = 'id_null'
+		children
 	}: {
 		loading?: boolean;
 		className?: string | undefined;
@@ -23,11 +22,12 @@
 			payload: Record<string, any>
 		) => Promise<void>;
 		children?: any;
-		form_id?: string;
 	} = $props();
 	let multiNames: string[] = [];
+	let form_id = getFormIDContext();
 	let form = $state(getForm(form_id));
-	let isDebugForm = getContext('is_debug_form');
+	// let isDebugForm = getContext('is_debug_form');
+	let isDebugForm = true;
 	const formTableJson = getContext('form_table_json');
 
 	// handle shape of the form data. creates js object and array from form data and pass it to the handleSubmit function above root form

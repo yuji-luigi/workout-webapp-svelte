@@ -106,7 +106,7 @@ dialog {
 
   &:active {
     background: light-dark(var(--gray-200), var(--gray-400));
-    transform: scale(0.98);
+    transform: scale(0.95);
   }
 }
 

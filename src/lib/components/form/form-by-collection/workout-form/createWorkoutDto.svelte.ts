@@ -5,8 +5,7 @@ import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
 
 export function workoutDtoFactory(payload: WorkoutFormPayload) {
 	const setFactory = new SetWorkoutFactory();
-	const sets = setFactory.WorkoutFormPayload(payload);
-	console.log(sets);
+	const sets = setFactory.fromWorkoutFormPayload(payload);
 	return null;
 }
 
@@ -18,16 +17,16 @@ class SetWorkoutFactory {
 
 	fromWorkoutFormPayload(formData: WorkoutFormPayload): WorkoutSetJoined[] {
 		return [];
-		return formData.exercises.map((exercise) => {
-			const id = this.workoutSet.length + 1;
-			const name = `  ${exercise.name}`;
-			return {
-				id,
-				slug: '',
-				name: '',
-				exercises: [],
-				n_set: 0
-			};
-		});
+		// return formData.exercises.map((exercise) => {
+		// 	const id = this.workoutSet.length + 1;
+		// 	const name = `  ${exercise.name}`;
+		// 	return {
+		// 		id,
+		// 		slug: '',
+		// 		name: '',
+		// 		exercises: [],
+		// 		n_set: 0
+		// 	};
+		// });
 	}
 }

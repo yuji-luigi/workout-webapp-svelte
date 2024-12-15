@@ -1,34 +1,35 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
+	import IconButton from '../../../../button/IconButton.svelte';
 	let { name }: { name: string } = $props();
 
-	let n_sets = $state(1);
+	let n_sets = $state<number>(1);
 	let form = getContext('form');
 </script>
 
-<div class="input-group">
-	<input value={n_sets} type="text" {name} />
-	<span> Sets</span>
+<div class="flex-row">
+	<IconButton onclick={() => (n_sets -= 1)}>﹣</IconButton>
+	<span class="flex-row">
+		<input value={n_sets} type="text" {name} />
+		<p>sets</p>
+	</span>
+	<IconButton onclick={() => (n_sets += 1)}>+</IconButton>
 </div>
 
 <style>
-	.input-group {
-		display: grid;
-		grid-column: 1/-1;
-		grid-template-columns: subgrid;
-		justify-content: end;
+	div.flex-row {
+		display: flex;
 		align-items: center;
-		gap: var(--spacing-sm);
-		font-size: var(--font-size-md);
-		justify-items: end;
-		cursor: pointer;
+		margin-left: auto;
 	}
 	input {
 		width: 3rem;
 		text-align: center;
 		border: none;
+		font-size: 2rem;
 	}
 	span {
-		margin-right: auto;
+		align-items: center;
+		margin-inline: 0.5rem;
 	}
 </style>
