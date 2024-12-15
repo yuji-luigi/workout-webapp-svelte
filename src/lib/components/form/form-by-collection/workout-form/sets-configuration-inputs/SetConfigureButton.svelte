@@ -5,6 +5,7 @@
 	import type { Exercise } from '$types/db/exercise';
 	import { getContext, onMount } from 'svelte';
 	import WorkoutSetConfigSection from './WorkoutSetConfigSection.svelte';
+	import SetConfigureModal from './SetConfigureModal.svelte';
 
 	let isOpen = $state(false);
 	let selected_exercises: Exercise[] = $state([]);
@@ -37,32 +38,18 @@
 	<button onclick={openConfig} type="button" class="button primary">configure sets</button>
 </div>
 
-<DialogGeneric bind:isOpen>
-	<h2 class="title">Sets and rest time</h2>
-	<section class="sets-config-container">
-		{#each selected_exercises.filter((selected) => !!selected.id) as exercise, index}
-			<WorkoutSetConfigSection
-				handleDestroyInput={dispatchInputEvent}
-				{exercise}
-				{index}
-				{form_id}
-			/>
-		{/each}
-	</section>
-</DialogGeneric>
+<SetConfigureModal
+	{isOpen}
+	{selected_exercises}
+	{formEl}
+	{form_id}
+	{inputEvent}
+	{dispatchInputEvent}
+	{handleSetSelectedWorkouts}
+/>
 
 <style>
 	button {
 		margin-left: auto;
-	}
-	.sets-config-container {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: var(--spacing-md);
-		border-radius: var(--border-radius);
-	}
-	.title {
-		margin-bottom: 1rem;
-		text-align: center;
 	}
 </style>

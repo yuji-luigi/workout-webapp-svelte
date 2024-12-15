@@ -4,7 +4,7 @@
 	import InputGroupGrid from '../InputGroupGrid.svelte';
 	import SelectInputMulti from './base/SelectInputMulti.svelte';
 	import type { FormTableField } from '../../../../types/form/form-table-field';
-	import ExerciseConfigureButton from '../../form/form-by-collection/workout-form/exercise-configuration-inputs/ExerciseConfigureButton.svelte';
+	import SetConfigureButton from '../../form/form-by-collection/workout-form/sets-configuration-inputs/SetConfigureButton.svelte';
 
 	let {
 		className,
@@ -24,7 +24,7 @@
 	{#snippet input()}
 		<div>
 			<SelectInputMulti {name} {...other as any} />
-			<ExerciseConfigureButton />
+			<SetConfigureButton />
 		</div>
 	{/snippet}
 </InputGroupGrid>

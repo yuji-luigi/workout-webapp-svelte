@@ -1,5 +1,7 @@
 <script lang="ts">
-	let { children, ...props }: any = $props();
+	import type { Snippet } from 'svelte';
+
+	let { children, ...props }: { children: Snippet } = $props();
 </script>
 
 <button type="button" class="primary button" {...props}>
