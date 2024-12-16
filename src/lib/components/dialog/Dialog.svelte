@@ -2,10 +2,13 @@
 	let {
 		dialog = $bindable(),
 		children,
-		maxWidth = 'md'
+		maxWidth,
+		fullScreen
 	}: {
 		maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
 		children: any;
+		fullScreen?: boolean;
+
 		dialog: HTMLDialogElement | undefined | null;
 	} = $props();
 	const maxWidths = {
@@ -14,9 +17,13 @@
 		lg: '800px',
 		xl: '1000px'
 	};
+
+	let style = fullScreen
+		? `--max-width: 100vw; --max-height: 100vh`
+		: maxWidth && `--max-width: ${maxWidths[maxWidth]}`;
 </script>
 
-<dialog style={`--max-width: ${maxWidths[maxWidth]}`} class="dialog card" bind:this={dialog}>
+<dialog {style} class="dialog card" bind:this={dialog}>
 	<div class="dialog-container">
 		{@render children?.()}
 	</div>
@@ -25,7 +32,7 @@
 <style>
 	dialog {
 		--max-width: 600px;
-		max-width: var(--max-width);
+		/* max-width: var(--max-width); */
 	}
 	.card {
 		padding: 0;

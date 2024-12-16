@@ -50,10 +50,20 @@
 
 <style>
 	.sets-config-container {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		display: flex; /* Use flex layout for a single row */
+		flex-direction: row; /* Ensure items are laid out horizontally */
+		justify-content: start;
+		align-items: start;
+		overflow-x: auto; /* Enable horizontal scrolling */
+		overflow-y: hidden; /* Prevent vertical scrolling */
+		overflow-x: scroll;
 		gap: var(--spacing-md);
 		border-radius: var(--border-radius);
+		@media (max-width: 900px) {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+			grid-template-rows: 1fr;
+		}
 	}
 	.title {
 		margin-bottom: 1rem;

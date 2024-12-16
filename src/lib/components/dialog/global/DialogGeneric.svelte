@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import { dialogStore } from '../../../store/global-dialog-store';
+	import { dialogStore, type DialogStore } from '../../../store/global-dialog-store';
 	import Dialog from '../Dialog.svelte';
 	let {
 		children,
+		fullScreen,
 		isOpen = $bindable()
 	}: {
+		fullScreen?: boolean;
 		isOpen: boolean;
 		children: any;
 	} = $props();
 	let dialog: HTMLDialogElement | undefined = $state();
-
+	let dialogParams = $state<DialogStore | null>(null);
 	const closeModal = () => {
 		if (!dialog) return;
 		if (dialog?.classList.contains('fade-in')) {
@@ -62,9 +64,12 @@
 	onDestroy(() => {
 		document.removeEventListener('keydown', handleEsc);
 	});
+	dialogStore.subscribe((value) => {
+		dialogParams = value;
+	});
 </script>
 
-<Dialog bind:dialog>
+<Dialog {fullScreen} bind:dialog>
 	<div>
 		{#if children}
 			{@render children()}

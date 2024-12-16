@@ -36,20 +36,21 @@
 
 <section in:scale={{ duration: 300, start: 0.8 }} class="grid">
 	<div in:fade={{ duration: 300, delay: 150 }}>
-		<div class="flex-row full-width">
+		<div class="flex-row full-width set-config-header">
 			<h2>SET#{index + 1}</h2>
-
-			<SelectInputSingle
-				bind:selectedOption={selectedType}
-				width="auto"
-				label="set type"
-				collection="workout_set_type"
-				name={preName + '.workout_set_type'}
-				placeholder="type of set"
-				required
-				textAlign="center"
-			/>
-			<SetNumberInput name={preName + '.n_set'} />
+			<div class="flex-column">
+				<SelectInputSingle
+					bind:selectedOption={selectedType}
+					width="auto"
+					label="set type"
+					collection="workout_set_type"
+					name={preName + '.workout_set_type'}
+					placeholder="type of set"
+					required
+					textAlign="center"
+				/>
+				<SetNumberInput name={preName + '.n_set'} />
+			</div>
 		</div>
 
 		{#each exercises as exercise}
@@ -123,9 +124,14 @@
 		/* justify-content: space-between; */
 		gap: var(--spacing-md);
 		align-items: center;
+		h2 {
+			place-self: start;
+		}
 	}
-	.add-workout {
-		margin-left: auto;
+	.set-config-header {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: var(--spacing-md);
 	}
 	.input-section {
 		display: grid;
