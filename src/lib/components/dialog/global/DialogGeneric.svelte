@@ -8,7 +8,7 @@
 		children,
 		fullScreen,
 		maxWidth,
-		isOpen = $bindable()
+		isOpen = $bindable(false)
 	}: {
 		fullScreen?: boolean;
 		isOpen: boolean;
@@ -37,13 +37,10 @@
 		}
 	}
 
-	function handleEsc(e: KeyboardEvent) {
+	async function handleEsc(e: KeyboardEvent) {
 		if (e.key === 'Escape') {
 			e.preventDefault();
-			// Only close if this dialog is the topmost one
-			if (dialog === getTopDialog()) {
-				handleCloseAnimation();
-			}
+			handleCloseAnimation();
 		}
 	}
 

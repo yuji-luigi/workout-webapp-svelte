@@ -4,19 +4,31 @@
 	let {
 		type = 'button',
 		onclick,
-		children
+		children,
+		disabled = false,
+		isDiv = false
 	}: {
 		type?: HTMLButtonElement['type'];
 		children: Snippet;
+		isDiv?: boolean;
+		disabled?: boolean;
 		onclick?: () => void;
 	} = $props();
 </script>
 
-<button {onclick} class="primary button" {type}>
-	{#if children}
-		{@render children()}
-	{:else}{''}{/if}
-</button>
+{#if isDiv}
+	<div class={`primary button ${disabled ? 'disabled' : ''}`}>
+		{#if children}
+			{@render children()}
+		{:else}{''}{/if}
+	</div>
+{:else}
+	<button {disabled} {onclick} class="primary button" {type}>
+		{#if children}
+			{@render children()}
+		{:else}{''}{/if}
+	</button>
+{/if}
 
 <style>
 	.button {
@@ -33,5 +45,9 @@
 		-webkit-user-select: none; /* Safari */
 		-ms-user-select: none; /* IE 10 and IE 11 */
 		user-select: none; /* Standard syntax */
+		&.disabled {
+			cursor: not-allowed;
+			opacity: 0.5;
+		}
 	}
 </style>

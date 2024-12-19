@@ -7,6 +7,14 @@
 	let dialogStoreParams: DialogStore | any = $state(null);
 	dialogStore.subscribe((value) => (dialogStoreParams = value));
 
+	async function handleEsc(e: KeyboardEvent) {
+		if (e.key === 'Escape') {
+			e.preventDefault();
+			handleCloseAnimation();
+			// dialogStore.set({ isOpen: false });
+		}
+	}
+
 	const closeModal = () => {
 		if (!dialog) return;
 		if (dialog.classList.contains('fade-in')) {
@@ -15,6 +23,7 @@
 		dialog.classList.remove('closing');
 		dialog.removeEventListener('transitionend', closeModal);
 		dialog.close();
+		dialogStore.set({ isOpen: false });
 	};
 
 	function handleCloseAnimation() {
@@ -36,16 +45,7 @@
 				},
 				true
 			);
-		dialog.addEventListener(
-			'keydown',
-			async (e) => {
-				if (e.key === 'Escape') {
-					e.preventDefault();
-					handleCloseAnimation();
-				}
-			},
-			true
-		);
+		dialog.addEventListener('keydown', handleEsc, true);
 	});
 	$effect(() => {
 		if (dialog && $dialogStore.isOpen) {
@@ -55,11 +55,12 @@
 		}
 		if (dialog && !$dialogStore.isOpen) {
 			dialog.close();
+			// dialogStore.set({ isOpen: false });
 		}
 	});
 </script>
 
-<Dialog maxWidth="xl" bind:dialog>
+x<Dialog maxWidth="xl" bind:dialog>
 	<div>
 		{#if dialogStoreParams?.componentInDialog}
 			<svelte:component

@@ -1,14 +1,10 @@
 <script lang="ts">
-	import IconButton from '$components/button/IconButton.svelte';
 	import type { Exercise } from '$types/db/exercise';
-	import { getContext, onDestroy } from 'svelte';
 	import { fade, scale } from 'svelte/transition';
-	import SetNumberInput from './SetNumberInput.svelte';
-	import SetTimeInput from './SetTimeInput.svelte';
 	import SelectInputSingle from '../../../../input/select-input/base/SelectInputSingle.svelte';
 	import AddExercise from './AddExercise.svelte';
-	import { getForm, getFormIDContext } from '../../../../../store/form-store.svelte';
-	import type { workout_set_type } from '../..';
+	import SetNumberInput from './SetNumberInput.svelte';
+	import SetTimeInput from './SetTimeInput.svelte';
 	let {
 		exercise,
 		index,
@@ -34,7 +30,7 @@
 	});
 </script>
 
-<section in:scale={{ duration: 300, start: 0.8 }} class="grid">
+<div in:scale={{ duration: 300, start: 0.8 }} class="grid set-card">
 	<div in:fade={{ duration: 300, delay: 150 }}>
 		<div class="flex-row full-width set-config-header">
 			<h2>SET#{index + 1}</h2>
@@ -85,10 +81,10 @@
 
 		<AddExercise onclick={addExercise} />
 	</div>
-</section>
+</div>
 
 <style>
-	.grid {
+	.set-card {
 		display: grid;
 		background-color: var(--color-primary-800);
 		padding-inline: var(--padding-inline-md);
@@ -97,7 +93,7 @@
 		border: var(--color-primary-600) solid 1.5px;
 		padding-block: var(--padding-block-md);
 		border-radius: var(--border-radius-lg);
-
+		min-width: 350px;
 		@media (max-width: 768px) {
 			grid-template-columns: 1fr;
 			gap: var(--spacing-sm);

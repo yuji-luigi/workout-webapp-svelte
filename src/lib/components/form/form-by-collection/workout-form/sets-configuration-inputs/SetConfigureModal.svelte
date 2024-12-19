@@ -6,6 +6,7 @@
 	import WorkoutSetConfigSection from './WorkoutSetConfigSection.svelte';
 	import { getForm } from '../../../../../store/form-store.svelte';
 	import { sleep } from '../../../../../helpers/sleep';
+	import ChooseSetTypeModal from './ChooseSetTypeModal.svelte';
 	let {
 		isOpen = $bindable(false)
 	}: {
@@ -14,6 +15,11 @@
 		// handleSetSelectedWorkouts: () => void;
 	} = $props();
 	const form_id: string = getContext('form_id') || 'NULL_ID';
+	let isOpenChooseSetTypeModal = $state(false);
+	function addSet(data: { type: any; n_set: number }) {
+		workoutSets.push(data);
+		isOpenChooseSetTypeModal = false;
+	}
 	// let formEl: HTMLFormElement | undefined = $state();
 	// const inputEvent = new Event('input');
 
@@ -32,7 +38,7 @@
 	let workoutSets = $state<any>([]);
 </script>
 
-<DialogGeneric bind:isOpen>
+<DialogGeneric fullScreen bind:isOpen>
 	<h2 class="title">Create sets and circuits</h2>
 	<section class="sets-config-container">
 		{#each workoutSets as exercise, index}
@@ -40,31 +46,28 @@
 		{/each}
 		<AddSetCard
 			onclick={() => {
-				workoutSets.push({
-					id: ''
-				});
+				isOpenChooseSetTypeModal = true;
+				// workoutSets.push({
+				// 	id: ''
+				// });
 			}}
 		/>
 	</section>
 </DialogGeneric>
+<ChooseSetTypeModal bind:isOpen={isOpenChooseSetTypeModal} {addSet} />
 
 <style>
 	.sets-config-container {
-		display: flex; /* Use flex layout for a single row */
-		flex-direction: row; /* Ensure items are laid out horizontally */
-		justify-content: start;
+		display: flex;
 		align-items: start;
-		overflow-x: auto; /* Enable horizontal scrolling */
-		overflow-y: hidden; /* Prevent vertical scrolling */
-		overflow-x: scroll;
 		gap: var(--spacing-md);
 		border-radius: var(--border-radius);
-		@media (max-width: 900px) {
+		@media (max-width: 1023px) {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-			grid-template-rows: 1fr;
+			grid-template-columns: repeat(auto-fit, 1fr);
 		}
 	}
+
 	.title {
 		margin-bottom: 1rem;
 		text-align: center;
