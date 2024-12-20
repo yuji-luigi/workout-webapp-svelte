@@ -1,6 +1,6 @@
 import type { ExerciseJoined } from './exercise';
 import type { FileDB } from './file-db';
-import type { WorkoutSet } from './workout-set';
+import type { WSet } from './workout-set';
 
 /** workout is a joined exercises with timer config.
  *
@@ -11,7 +11,7 @@ export interface Workout {
 	slug: string;
 	description: string;
 	tag: string;
-	type: WorkoutType;
+	type: WSetType;
 	// description: string;
 	// image: FileDB;
 	/**
@@ -21,7 +21,7 @@ export interface Workout {
 	rest_time?: number;
 	active_time?: number;
 	/** usually one exercise but user can customize workout to be one super-set or big-set or etc. */
-	sets: WorkoutSet[];
+	sets: WSet[];
 	created_by: number;
 }
 

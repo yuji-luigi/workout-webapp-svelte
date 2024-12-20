@@ -1,4 +1,4 @@
-import type { WorkoutSet, WorkoutSetJoined } from '../../../../types/db/workout-set';
+import type { WSet, WSetJoined } from '../../../../types/db/workout-set';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
 export const workoutTypeFormTable = [
@@ -41,4 +41,4 @@ export const workoutTypeFormTable = [
 		type: 'multi-select',
 		required: true
 	}
-] satisfies (FormTableField & { name: keyof WorkoutSetJoined })[];
+] satisfies (FormTableField & { name: keyof WSetJoined })[];

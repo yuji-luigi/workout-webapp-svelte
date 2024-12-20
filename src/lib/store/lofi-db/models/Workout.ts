@@ -5,7 +5,7 @@ export class WorkoutTest implements Workout {
 	id: string | number;
 	name: string;
 	slug: string;
-	type: WorkoutType;
+	type: WSetType;
 	rest_time?: number | undefined;
 	active_time?: number | undefined;
 	exercises: (ExerciseJoined & {

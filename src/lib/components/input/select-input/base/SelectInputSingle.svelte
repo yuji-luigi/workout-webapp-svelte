@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { getContext, onMount } from 'svelte';
 	import type { Collection } from '../../../../../types/db/collections';
 	import type { FormTableField } from '../../../../../types/form/form-table-field';
 	import type { Option } from '../../../../../types/form/option';
 	import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
+	import { getForm, getFormById, getFormIDContext } from '../../../../store/form-store.svelte';
 	let {
 		label,
 		className,
@@ -21,12 +23,19 @@
 		width?: string;
 		textAlign?: string;
 	} & Omit<FormTableField, 'type'> = $props();
-
-	// Handle changes to the select
+	let selectEl = $state<HTMLSelectElement>();
+	const form_id = getFormIDContext();
 	// let selectedOption = $state('');
 	let _options = $state(options);
 	let loading = $state(true);
+	onMount(() => {
+		if (selectedOption) {
+			const formEl = getFormById(form_id);
+			const inputEvent = new Event('input', { bubbles: true });
 
+			formEl?.dispatchEvent(inputEvent);
+		}
+	});
 	$effect(() => {
 		if (collection) {
 			_options =
@@ -47,6 +56,7 @@
 	{name}
 	class={className}
 	bind:value={selectedOption}
+	bind:this={selectEl}
 	{...others}
 >
 	{#if !loading && _options.length === 0}

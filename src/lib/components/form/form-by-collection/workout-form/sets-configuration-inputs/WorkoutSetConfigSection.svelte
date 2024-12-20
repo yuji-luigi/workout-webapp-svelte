@@ -5,12 +5,14 @@
 	import AddExercise from './AddExercise.svelte';
 	import SetNumberInput from './SetNumberInput.svelte';
 	import SetTimeInput from './SetTimeInput.svelte';
+	import type { WSet, WSetJoined } from '../../../../../../types/db/workout-set';
+	import { isValidJSON } from '../../../../../helpers/isValidJSON';
 	let {
-		exercise,
+		wSet,
 		index,
 		form_id
 	}: {
-		exercise: Exercise;
+		wSet: WSetJoined;
 		index: number;
 		form_id: string;
 	} = $props();
@@ -19,12 +21,13 @@
 		console.log('add exercise');
 		exercises.push({});
 	}
-	let selectedType = $state('');
-	let _selectedType = $state<WorkoutType | null>(null);
-	const preName = `exercises[${index}]`;
+	console.log(wSet);
+	let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
+	let _selectedType = $state<WSetType | null>(null);
+	const preName = `wSets[${index}]`;
 
 	$effect(() => {
-		if (selectedType) {
+		if (selectedType && isValidJSON(selectedType)) {
 			_selectedType = JSON.parse(selectedType);
 		}
 	});

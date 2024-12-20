@@ -106,7 +106,7 @@ export const calisthenicExercises: Exercise[] = [
 		image: undefined
 	}
 ];
-const defaultWorkoutTypes: WorkoutType[] = [
+const defaultWorkoutTypes: WSetType[] = [
 	{
 		id: 1,
 		name: 'Reps And Sets',

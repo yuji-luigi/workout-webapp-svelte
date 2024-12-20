@@ -17,7 +17,7 @@
 		// const formData = new FormData(event.target as HTMLFormElement);
 		try {
 			console.log(payload);
-			lofi_db.workout_set_typeY.push([payload as WorkoutType]);
+			lofi_db.workout_set_typeY.push([payload as WSetType]);
 
 			await sleep(750);
 			event.target?.reset();

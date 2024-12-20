@@ -1,12 +1,16 @@
 <script lang="ts">
+	import type { ExerciseJoined } from '../../../types/db/exercise';
 	import { lofi_db } from '../../store/lofi-db/lofi_db.svelte';
 	import Button from '../button/Button.svelte';
+
+	let { onclick }: { onclick?: (exercise: ExerciseJoined) => void } = $props();
+
 	const exercises = lofi_db.db_state.exercises;
 </script>
 
 <section class="menu-container">
 	{#each exercises as exercise}
-		<button class="button primary menu-item">
+		<button onclick={() => onclick?.(exercise)} class="button primary menu-item">
 			<h3>{exercise.name}</h3>
 		</button>
 	{/each}

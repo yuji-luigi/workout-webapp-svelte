@@ -1,16 +1,25 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import IconButton from '../../../../button/IconButton.svelte';
+	import {
+		dispatchFormInputEvent,
+		getFormById,
+		getFormIDContext
+	} from '../../../../../store/form-store.svelte';
 	let { name }: { name: string } = $props();
-
 	let n_sets = $state<number>(1);
-	let form = getContext('form');
+	const form_id = getFormIDContext();
+	const formEl = getFormById(form_id);
+	$effect(() => {
+		n_sets;
+		dispatchFormInputEvent();
+	});
 </script>
 
 <div class="flex-row">
 	<IconButton onclick={() => (n_sets -= 1)}>﹣</IconButton>
 	<span class="flex-row">
-		<input value={n_sets} type="text" {name} />
+		<input bind:value={n_sets} type="text" {name} />
 		<p>sets</p>
 	</span>
 	<IconButton onclick={() => (n_sets += 1)}>+</IconButton>

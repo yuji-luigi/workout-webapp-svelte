@@ -5,7 +5,11 @@
 		list,
 		onclick
 	}: {
-		list: { title: string; description?: string; value?: string | number }[];
+		list: {
+			name: string;
+			description?: string;
+			id?: string | number;
+		}[];
 		onclick?: (data?: any) => void;
 	} = $props();
 	function handleClick(item: any) {
@@ -16,7 +20,7 @@
 <section class="menu-container">
 	{#each list as item}
 		<button onclick={() => handleClick(item)} class="button primary menu-item">
-			<h3 class="center-item">{item.title}</h3>
+			<h3 class="center-item">{item.name}</h3>
 		</button>
 	{/each}
 </section>

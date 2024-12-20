@@ -4,9 +4,10 @@
 	import { getContext, onMount } from 'svelte';
 	import AddSetCard from './AddSetCard.svelte';
 	import WorkoutSetConfigSection from './WorkoutSetConfigSection.svelte';
-	import { getForm } from '../../../../../store/form-store.svelte';
+	import { getForm, setForm } from '../../../../../store/form-store.svelte';
 	import { sleep } from '../../../../../helpers/sleep';
 	import ChooseSetTypeModal from './ChooseSetTypeModal.svelte';
+	import type { WSetJoined, WSet } from '../../../../../../types/db/workout-set';
 	let {
 		isOpen = $bindable(false)
 	}: {
@@ -14,40 +15,48 @@
 		// selected_exercises: Exercise[];
 		// handleSetSelectedWorkouts: () => void;
 	} = $props();
+	let wSets = $state<WSetJoined[]>([]);
 	const form_id: string = getContext('form_id') || 'NULL_ID';
 	let isOpenChooseSetTypeModal = $state(false);
-	function addSet(data: { type: any; n_set: number }) {
-		workoutSets.push(data);
+
+	function addSet(data: WSetType) {
+		const formData = getForm(form_id);
+		wSets.push({
+			id: new Date().getTime(),
+			type: data,
+			slug: '',
+			name: '',
+			exercises: [],
+			n_set: 1
+		});
+
 		isOpenChooseSetTypeModal = false;
 	}
-	// let formEl: HTMLFormElement | undefined = $state();
-	// const inputEvent = new Event('input');
 
-	// function dispatchInputEvent() {
-	// 	formEl?.dispatchEvent(inputEvent);
+	// function removeSet(index: number) {
+	// 	wSets.splice(index, 1);
 	// }
 
-	// async function handleSetSelectedWorkouts(_?: any) {
-	// 	await sleep(10);
+	// function updateSet(index: number, data: { type: any; n_set: number }) {
+	// 	wSets[index] = data;
 	// }
 
-	// onMount(() => {
-	// 	formEl = document.getElementById(form_id) as HTMLFormElement;
-	// 	formEl?.addEventListener('input', handleSetSelectedWorkouts);
-	// });
-	let workoutSets = $state<any>([]);
+	// async function handleSetSelectedWorkouts() {
+	// 	await sleep(1000);
+	// 	isOpen = false;
+	// }
 </script>
 
 <DialogGeneric fullScreen bind:isOpen>
 	<h2 class="title">Create sets and circuits</h2>
 	<section class="sets-config-container">
-		{#each workoutSets as exercise, index}
-			<WorkoutSetConfigSection {exercise} {index} {form_id} />
+		{#each wSets as wSet, index}
+			<WorkoutSetConfigSection {wSet} {index} {form_id} />
 		{/each}
 		<AddSetCard
 			onclick={() => {
 				isOpenChooseSetTypeModal = true;
-				// workoutSets.push({
+				// wSets.push({
 				// 	id: ''
 				// });
 			}}

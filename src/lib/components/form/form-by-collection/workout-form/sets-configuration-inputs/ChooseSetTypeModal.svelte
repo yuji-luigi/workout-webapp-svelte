@@ -10,10 +10,7 @@
 <DialogGeneric maxWidth="sm" bind:isOpen>
 	<h2 class="title">Choose set type</h2>
 	<section class="choose-set-type-container">
-		<Menu
-			onclick={addSet}
-			list={workout_set_types.map((type) => ({ title: type.name, value: type.id }))}
-		/>
+		<Menu onclick={addSet} list={workout_set_types} />
 	</section>
 </DialogGeneric>
 
