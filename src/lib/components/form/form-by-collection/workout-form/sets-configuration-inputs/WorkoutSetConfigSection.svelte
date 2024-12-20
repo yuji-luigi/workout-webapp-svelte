@@ -18,19 +18,29 @@
 	} = $props();
 	let exercises = $state<any>([]);
 	function addExercise() {
+		// 1. open dialog
+		// dialog has list of exercises.
+		// 2. user selects exercise
+		// 3. exercise is added to exercises array of this component wSet.exercises
+		// how to add exercise to wSet.exercises from modal that is somewhere in parent?
+		// is it possible to use Promise to get the selected exercise from modal?
+		const modal = document.getElementById('modal') as HTMLDialogElement;
+		new Promise((resolve, reject) => {
+			modal.showModal();
+		});
+
 		console.log('add exercise');
 		exercises.push({});
 	}
 	console.log(wSet);
 	let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
-	let _selectedType = $state<WSetType | null>(null);
-	const preName = `wSets[${index}]`;
-
-	$effect(() => {
+	let _selectedType = $derived(() => {
 		if (selectedType && isValidJSON(selectedType)) {
-			_selectedType = JSON.parse(selectedType);
+			return JSON.parse(selectedType);
 		}
+		return null;
 	});
+	const preName = `wSets[${index}]`;
 </script>
 
 <div in:scale={{ duration: 300, start: 0.8 }} class="grid set-card">
@@ -81,7 +91,6 @@
 				</div>
 			</div>
 		{/each}
-
 		<AddExercise onclick={addExercise} />
 	</div>
 </div>
