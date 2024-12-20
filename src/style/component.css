@@ -41,6 +41,8 @@
   gap: 1rem;
 }
 
+
+
 @starting-style {
   dialog {
     transform: translate(0, 100%);
@@ -53,9 +55,14 @@ dialog.closing {
 
 
 /* dialog, */
+dialog[open] {
+  display: flex;
+  margin-inline: auto;
+}
+
 dialog[open]::backdrop {
   background-color: light-dark(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.1));
-  opacity: 0;
+  opacity: 1;
   transition: visibility 0s linear 0.5s, opacity 0.5s linear;
 }
 

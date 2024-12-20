@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { openStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
+	import { openDialog } from '../../../../../store/global-dialog-store';
 	import Dialog from '../../../../dialog/Dialog.svelte';
 	import DialogGeneric from '../../../../dialog/global/DialogGeneric.svelte';
 	import ExerciseMenu from '../../../../menu/ExerciseMenu.svelte';
@@ -7,13 +9,18 @@
 	let isOpen = $state(false);
 	function handleClick() {
 		isOpen = true;
+		openStackDialog({
+			component: ExerciseMenu as any,
+			props: {}
+		});
 	}
 </script>
 
 <button onclick={handleClick} type="button" class="input-section button">
 	<h3>Add exercise</h3>
 </button>
-<DialogGeneric maxWidth="sm" bind:isOpen><ExerciseMenu /></DialogGeneric>
+
+<!-- <DialogGeneric maxWidth="sm" bind:isOpen><ExerciseMenu /></DialogGeneric> -->
 
 <style>
 	.input-section {

@@ -20,7 +20,6 @@
 	let isOpenChooseSetTypeModal = $state(false);
 
 	function addSet(data: WSetType) {
-		const formData = getForm(form_id);
 		wSets.push({
 			id: new Date().getTime(),
 			type: data,
@@ -29,7 +28,6 @@
 			exercises: [],
 			n_set: 1
 		});
-
 		isOpenChooseSetTypeModal = false;
 	}
 

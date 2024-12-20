@@ -2,7 +2,11 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { dialogStore, type DialogStore } from '$lib/store/global-dialog-store';
 	import Dialog from '../Dialog.svelte';
-	import { dialogStack, pushDialog, popDialog, getTopDialog } from '$lib/store/dialogStackStore';
+	import {} from // dialogStack,
+	// pushDialog,
+	// popDialog,
+	// getTopDialog
+	'$lib/store/dialog-stack/dialogStackStore';
 
 	let {
 		children,
@@ -26,7 +30,7 @@
 		dialog.classList.remove('closing');
 		dialog.removeEventListener('transitionend', closeModal);
 		dialog.close();
-		popDialog(); // Remove dialog from the stack
+		// popDialog(); // Remove dialog from the stack
 		isOpen = false;
 	};
 
@@ -46,7 +50,7 @@
 
 	onMount(() => {
 		if (dialog) {
-			pushDialog(dialog); // Add dialog to the stack
+			// pushDialog(dialog); // Add dialog to the stack
 			dialog.addEventListener('keydown', handleEsc);
 			dialog.addEventListener(
 				'click',
@@ -73,7 +77,7 @@
 
 	onDestroy(() => {
 		if (dialog) {
-			popDialog(); // Clean up when dialog is destroyed
+			// popDialog(); // Clean up when dialog is destroyed
 			dialog.removeEventListener('keydown', handleEsc);
 		}
 	});
@@ -83,7 +87,7 @@
 	});
 </script>
 
-<Dialog {handleEsc} {fullScreen} {maxWidth} bind:dialog>
+<Dialog {fullScreen} {maxWidth} bind:dialog>
 	<div>
 		{#if children}
 			{@render children()}
