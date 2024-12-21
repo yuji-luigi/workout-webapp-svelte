@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Exercise } from '$types/db/exercise';
+	import type { Exercise, ExerciseJoined } from '$types/db/exercise';
 	import { fade, scale } from 'svelte/transition';
 	import SelectInputSingle from '../../../../input/select-input/base/SelectInputSingle.svelte';
 	import AddExercise from './AddExercise.svelte';
@@ -17,11 +17,12 @@
 		form_id: string;
 	} = $props();
 	let exercises = $state<any>([]);
-	function addExercise() {
+	function addExercise(exercise: ExerciseJoined) {
 		// 1. open dialog
 		// dialog has list of exercises.
 		// 2. user selects exercise
 		// 3. exercise is added to exercises array of this component wSet.exercises
+		exercises.push;
 		// how to add exercise to wSet.exercises from modal that is somewhere in parent?
 		// is it possible to use Promise to get the selected exercise from modal?
 		const modal = document.getElementById('modal') as HTMLDialogElement;
@@ -32,7 +33,6 @@
 		console.log('add exercise');
 		exercises.push({});
 	}
-	console.log(wSet);
 	let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
 	let _selectedType = $derived(() => {
 		if (selectedType && isValidJSON(selectedType)) {
