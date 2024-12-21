@@ -8,6 +8,7 @@
 	import type { WSet, WSetJoined } from '../../../../../../types/db/workout-set';
 	import { isValidJSON } from '../../../../../helpers/isValidJSON';
 	import SetTimeInput from './SetTimeInput.svelte';
+	import ExerciseConfigCard from '../../../../../../routes/workout/ExerciseConfigCard.svelte';
 	let {
 		wSet,
 		index,
@@ -26,6 +27,9 @@
 		exercises.push(exercise);
 		// how to add exercise to wSet.exercises from modal that is somewhere in parent?
 		// is it possible to use Promise to get the selected exercise from modal?
+	}
+	function removeExercise(index: number) {
+		exercises.splice(index, 1);
 	}
 	let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
 	let _selectedType = $derived.by(() => {
@@ -69,7 +73,15 @@
 		</div>
 
 		{#each exercises as exercise, index}
-			<input
+			<ExerciseConfigCard
+				{removeExercise}
+				{exercise}
+				{index}
+				{form_id}
+				preName={preName + '.exercises' + `[${index}]`}
+				{_selectedType}
+			/>
+			<!-- <input
 				hidden
 				type="text"
 				name={preName + '.exercises' + `[${index}]`}
@@ -104,7 +116,7 @@
 						{/if}
 					</div>
 				</div>
-			</div>
+			</div> -->
 		{/each}
 		<AddExercise onclick={addExercise} />
 	</div>
