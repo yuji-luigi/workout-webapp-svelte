@@ -2,10 +2,6 @@
 	import AddExerciseDialog from '../../../../../../routes/workout/AddExerciseDialog.svelte';
 	import type { ExerciseJoined } from '../../../../../../types/db/exercise';
 	import { openStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
-	import { openDialog } from '../../../../../store/global-dialog-store';
-	import Dialog from '../../../../dialog/Dialog.svelte';
-	import DialogGeneric from '../../../../dialog/global/DialogGeneric.svelte';
-	import ExerciseMenu from '../../../../menu/ExerciseMenu.svelte';
 
 	let { onclick }: { onclick: (exercise: ExerciseJoined) => void } = $props();
 	async function handleClick() {
@@ -28,7 +24,7 @@
 <!-- <DialogGeneric maxWidth="sm" bind:isOpen><ExerciseMenu /></DialogGeneric> -->
 
 <style>
-	.input-section {
+	button {
 		color: var(--text-color-white);
 		display: grid;
 		padding-inline: var(--padding-inline-lg);

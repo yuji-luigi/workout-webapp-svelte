@@ -12,7 +12,6 @@
 	function onclick(exercise: any) {
 		closeStackDialog();
 		resolve && resolve(exercise);
-		console.log(exercise);
 	}
 </script>
 
