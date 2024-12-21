@@ -9,6 +9,8 @@
 	import { isValidJSON } from '../../../../../helpers/isValidJSON';
 	import SetTimeInput from './SetTimeInput.svelte';
 	import ExerciseConfigCard from '../../../../../../routes/workout/ExerciseConfigCard.svelte';
+	import TimeCounter from '../../../../time-counter/TimeCounter.svelte';
+	import TimerInput from '../../../../input/TimerInput.svelte';
 	let {
 		wSet,
 		index,
@@ -41,6 +43,7 @@
 	const preName = `wSets[${index}]`;
 </script>
 
+<TimerInput />
 <div in:scale={{ duration: 300, start: 0.8 }} class="grid set-card">
 	<div in:fade={{ duration: 300, delay: 150 }}>
 		<div class="set-config-header">
