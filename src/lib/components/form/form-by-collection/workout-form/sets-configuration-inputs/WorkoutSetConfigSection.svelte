@@ -11,6 +11,8 @@
 	import ExerciseConfigCard from '../../../../../../routes/workout/ExerciseConfigCard.svelte';
 	import TimeCounter from '../../../../time-counter/TimeCounter.svelte';
 	import TimerInput from '../../../../input/TimerInput.svelte';
+	import { openStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
+	import TimerInputDialog from './TimerInputDialog.svelte';
 	let {
 		wSet,
 		index,
@@ -44,6 +46,13 @@
 </script>
 
 <TimerInput />
+<button
+	onclick={() => {
+		openStackDialog({
+			component: TimerInputDialog
+		});
+	}}>click</button
+>
 <div in:scale={{ duration: 300, start: 0.8 }} class="grid set-card">
 	<div in:fade={{ duration: 300, delay: 150 }}>
 		<div class="set-config-header">
