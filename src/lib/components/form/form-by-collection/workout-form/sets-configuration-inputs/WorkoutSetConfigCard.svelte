@@ -11,6 +11,8 @@
 	import SetNumberInput from './SetNumberInput.svelte';
 	import SetTimeInput from './SetTimeInput.svelte';
 	import TimerInputDialog from './TimerInputDialog.svelte';
+	import Button from '../../../../button/Button.svelte';
+	import IconButton from '../../../../button/IconButton.svelte';
 	let {
 		wSet,
 		index,
@@ -43,94 +45,62 @@
 	const preName = `wSets[${index}]`;
 </script>
 
-<div in:scale={{ duration: 300, start: 0.8 }} class="grid set-card">
-	<div in:fade={{ duration: 300, delay: 150 }}>
-		<div class="set-config-header">
-			<h2>SET#{index + 1}</h2>
-			<div class="flex-column">
-				<SelectInputSingle
-					bind:selectedOption={selectedType}
-					width="auto"
-					label="set type"
-					collection="workout_set_type"
-					name={preName + '.workout_set_type'}
-					placeholder="type of set"
-					required
-					textAlign="center"
-				/>
-				<SetNumberInput name={preName + '.n_set'} />
-			</div>
-			<div class="set-level-timers full-width">
-				{#if !_selectedType?.has_timer_per_exercise}
-					{#if _selectedType?.use_rest_time}
-						<TimerInputWithDialog name={preName + '.timer_seconds_rest'} />
-						<!-- <SetTimeInput {index} {form_id} name={preName + '.timer_seconds_rest'} />
-						rest time -->
-					{/if}
-					{#if _selectedType?.use_active_time}
-						<TimerInputWithDialog name={preName + '.timer_seconds_active'} />
-						<!-- 
-						<SetTimeInput name={preName + '.timer_seconds_active'} />
-						workout time -->
-					{/if}
-				{/if}
-			</div>
-		</div>
-
-		{#each exercises as exercise, index}
-			<ExerciseConfigCard
-				{removeExercise}
-				{exercise}
-				{index}
-				{form_id}
-				preName={preName + '.exercises' + `[${index}]`}
-				{_selectedType}
-			/>
-			<!-- <input
-				hidden
-				type="text"
-				name={preName + '.exercises' + `[${index}]`}
-				value={JSON.stringify(exercise)}
-			/>
-			<div in:scale={{ duration: 400, start: 0.8 }}>
-				<div
-					in:fade={{
-						duration: 400
-					}}
-					class="set-cards"
-				>
-					<div class="input-section" draggable="true">
-						<h5>{exercise.name}</h5>
-						{#if _selectedType?.has_timer_per_exercise}
-							{#if _selectedType?.use_active_time}
-								<SetTimeInputGroup
-									label="workout time"
-									{index}
-									{form_id}
-									name={preName + '.exercises' + `[${index}].timer_seconds_active`}
-								/>
-							{/if}
-							{#if _selectedType}
-								<SetTimeInputGroup
-									label="rest time"
-									{index}
-									{form_id}
-									name={preName + '.exercises' + `[${index}].timer_seconds_rest`}
-								/>
-							{/if}
-						{/if}
-					</div>
+<div in:scale={{ duration: 300, start: 0.8 }}>
+	<div class="grid set-card">
+		<div in:fade={{ duration: 300, delay: 150 }}>
+			<div class="set-config-header">
+				<div class="flex-row">
+					<h2>SET#{index + 1}</h2>
+					<button>🚮</button>
 				</div>
-			</div> -->
-		{/each}
-		<AddExercise onclick={addExercise} />
+				<div class="flex-column">
+					<SelectInputSingle
+						bind:selectedOption={selectedType}
+						width="auto"
+						label="set type"
+						collection="workout_set_type"
+						name={preName + '.workout_set_type'}
+						placeholder="type of set"
+						required
+						textAlign="center"
+					/>
+					<SetNumberInput name={preName + '.n_set'} />
+				</div>
+				<div class="set-level-timers full-width">
+					{#if !_selectedType?.has_timer_per_exercise}
+						{#if _selectedType?.use_rest_time}
+							<TimerInputWithDialog name={preName + '.timer_seconds_rest'} />
+							<!-- <SetTimeInput {index} {form_id} name={preName + '.timer_seconds_rest'} />
+              rest time -->
+						{/if}
+						{#if _selectedType?.use_active_time}
+							<TimerInputWithDialog name={preName + '.timer_seconds_active'} />
+							<!-- 
+              <SetTimeInput name={preName + '.timer_seconds_active'} />
+              workout time -->
+						{/if}
+					{/if}
+				</div>
+			</div>
+
+			{#each exercises as exercise, index}
+				<ExerciseConfigCard
+					{removeExercise}
+					{exercise}
+					{index}
+					{form_id}
+					preName={preName + '.exercises' + `[${index}]`}
+					{_selectedType}
+				/>
+			{/each}
+			<AddExercise onclick={addExercise} />
+		</div>
 	</div>
 </div>
 
 <style>
 	.set-card {
 		display: grid;
-
 		background-color: var(--color-primary-800);
 		padding-inline: var(--padding-inline-md);
 		/* grid-template-columns: 1fr auto; */
@@ -148,6 +118,7 @@
 			gap: var(--spacing-md);
 		}
 	}
+
 	.set-level-timers {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -166,7 +137,7 @@
 	} */
 
 	.set-config-header {
-		align-items: center;
+		align-items: start;
 		h2 {
 			place-self: start;
 		}

@@ -3,11 +3,11 @@
 	import type { Exercise } from '$types/db/exercise';
 	import { getContext, onMount } from 'svelte';
 	import AddSetCard from './AddSetCard.svelte';
-	import WorkoutSetConfigSection from './WorkoutSetConfigSection.svelte';
 	import { getForm, setForm } from '../../../../../store/form-store.svelte';
 	import { sleep } from '../../../../../helpers/sleep';
 	import ChooseSetTypeModal from './ChooseSetTypeModal.svelte';
 	import type { WSetJoined, WSet } from '../../../../../../types/db/workout-set';
+	import WorkoutSetConfigCard from './WorkoutSetConfigCard.svelte';
 	let {
 		isOpen = $bindable(false)
 	}: {
@@ -49,7 +49,7 @@
 	<h2 class="title">Create sets and circuits</h2>
 	<section class="sets-config-container">
 		{#each wSets as wSet, index}
-			<WorkoutSetConfigSection {wSet} {index} {form_id} />
+			<WorkoutSetConfigCard {wSet} {index} {form_id} />
 		{/each}
 		<AddSetCard
 			onclick={() => {

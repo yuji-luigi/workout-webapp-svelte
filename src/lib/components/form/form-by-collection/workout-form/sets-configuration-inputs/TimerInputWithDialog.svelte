@@ -2,6 +2,7 @@
 	import { formatSecondsToTimer } from '../../../../../helpers/format-time/formatSecondsToTimer';
 	import { openStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
 	import { getFormIDContext } from '../../../../../store/form-store.svelte';
+	import Input from '../../../../input/Input.svelte';
 	import TimerInputDialog from './TimerInputDialog.svelte';
 	let { name, label = '' }: { name: string; label?: string } = $props();
 	const form_id = getFormIDContext();
@@ -15,10 +16,10 @@
 				props: { resolve }
 			})
 		);
-		const form = document.getElementById(form_id) as HTMLFormElement;
-		form.dispatchEvent(new Event('input'));
+		// const form = document.getElementById(form_id) as HTMLFormElement;
+		// form.dispatchEvent(new Event('input'));
 	}
 </script>
 
-<input type="number" hidden bind:value {name} />
+<Input type="number" hidden bind:value {name} />
 <button class="input" onclick={handleOpenDialog}>{formatSecondsToTimer(value)}</button>

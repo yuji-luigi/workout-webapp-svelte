@@ -57,3 +57,8 @@ select.border-focus-none, input.border-focus-none {
     border: none;
   }
 }
+
+.error {
+  color: var(--color-error);
+  background-color: var(--color-error-100);
+}
