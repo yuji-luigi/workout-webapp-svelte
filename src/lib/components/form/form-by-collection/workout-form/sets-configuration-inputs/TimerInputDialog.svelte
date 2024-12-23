@@ -1,18 +1,22 @@
 <script>
 	import { closeStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
 	import TimerInput from '../../../../input/TimerInput.svelte';
+
+	let { resolve } = $props();
+	let time = $state(0);
 </script>
 
 <section class="dialog-container">
 	<h2>set the timer</h2>
-	<TimerInput />
+	<TimerInput bind:time />
 	<button
 		class="button primary"
 		onclick={() => {
+			resolve(time);
 			closeStackDialog();
 		}}
 	>
-		close
+		Confirm
 	</button>
 </section>
 

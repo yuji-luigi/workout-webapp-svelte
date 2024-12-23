@@ -2,6 +2,8 @@
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
 	import WorkoutCard from '../../lib/components/card/workout-card/WorkoutCard.svelte';
+	import TimerInputDialog from '../../lib/components/form/form-by-collection/workout-form/sets-configuration-inputs/TimerInputDialog.svelte';
+	import { openStackDialog } from '../../lib/store/dialog-stack/dialogStackStore';
 	import { lofi_db } from '../../lib/store/lofi-db/lofi_db.svelte';
 	import type { Workout } from '../../types/db/workout';
 
@@ -19,11 +21,12 @@
 	<title>Workouts</title>
 	<meta name="description" content="Exercise list page" />
 </svelte:head>
-<VideoHero
+<!-- <VideoHero
 	videoStyle="--video-object-position: 50% 25%;"
 	videoSrc="/videos/cover/workout_with_yume.mov"
 	class="video"
-/>
+/> -->
+<input />
 
 <div class="stretch-container flex-column">
 	<h1>Workout timers</h1>

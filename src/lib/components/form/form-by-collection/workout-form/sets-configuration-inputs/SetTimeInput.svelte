@@ -3,8 +3,6 @@
 	let {
 		name
 	}: {
-		index: number;
-		form_id: string;
 		name: string;
 	} = $props();
 

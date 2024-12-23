@@ -259,8 +259,11 @@ select {
   font-size: var(--font-size-xs);
 }
 
+.input {
+  text-align: left;
+}
 
-input, textarea, select, div.input {
+.input, input, textarea, select, div.input {
   width: 100%;
   background-color: light-dark(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01));
   padding: 0.5rem;

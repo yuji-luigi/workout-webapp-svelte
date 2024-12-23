@@ -1,9 +1,14 @@
 <script lang="ts">
-	import { getMinutesFromSeconds } from '../../helpers/getMinutes';
-	import { getSeconds } from '../../helpers/getSeconds';
-	import { getTenthSeconds } from '../../helpers/getTenthSeconds';
+	import { getMinutesFromSeconds } from '../../helpers/format-time/getMinutes';
+	import { getSeconds } from '../../helpers/format-time/getSeconds';
+	import { getTenthSeconds } from '../../helpers/format-time/getTenthSeconds';
+
 	import CounterColumn from '../counter/CounterColumn.svelte';
-	let time = $state(0);
+	let {
+		time = $bindable(0)
+	}: {
+		time?: number;
+	} = $props();
 	const min = 0;
 </script>
 

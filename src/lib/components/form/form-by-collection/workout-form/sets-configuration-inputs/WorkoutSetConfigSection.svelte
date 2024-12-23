@@ -1,17 +1,15 @@
 <script lang="ts">
-	import type { Exercise, ExerciseJoined } from '$types/db/exercise';
+	import type { ExerciseJoined } from '$types/db/exercise';
 	import { fade, scale } from 'svelte/transition';
-	import SelectInputSingle from '../../../../input/select-input/base/SelectInputSingle.svelte';
-	import AddExercise from './AddExercise.svelte';
-	import SetNumberInput from './SetNumberInput.svelte';
-	import SetTimeInputGroup from './SetTimeInputGroup.svelte';
-	import type { WSet, WSetJoined } from '../../../../../../types/db/workout-set';
-	import { isValidJSON } from '../../../../../helpers/isValidJSON';
-	import SetTimeInput from './SetTimeInput.svelte';
 	import ExerciseConfigCard from '../../../../../../routes/workout/ExerciseConfigCard.svelte';
-	import TimeCounter from '../../../../time-counter/TimeCounter.svelte';
+	import type { WSetJoined } from '../../../../../../types/db/workout-set';
+	import { isValidJSON } from '../../../../../helpers/isValidJSON';
+	import SelectInputSingle from '../../../../input/select-input/base/SelectInputSingle.svelte';
 	import TimerInput from '../../../../input/TimerInput.svelte';
-	import { openStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
+	import AddExercise from './AddExercise.svelte';
+	import TimerInputWithDialog from './TimerInputWithDialog.svelte';
+	import SetNumberInput from './SetNumberInput.svelte';
+	import SetTimeInput from './SetTimeInput.svelte';
 	import TimerInputDialog from './TimerInputDialog.svelte';
 	let {
 		wSet,
@@ -45,14 +43,6 @@
 	const preName = `wSets[${index}]`;
 </script>
 
-<TimerInput />
-<button
-	onclick={() => {
-		openStackDialog({
-			component: TimerInputDialog
-		});
-	}}>click</button
->
 <div in:scale={{ duration: 300, start: 0.8 }} class="grid set-card">
 	<div in:fade={{ duration: 300, delay: 150 }}>
 		<div class="set-config-header">
@@ -73,12 +63,15 @@
 			<div class="set-level-timers full-width">
 				{#if !_selectedType?.has_timer_per_exercise}
 					{#if _selectedType?.use_rest_time}
-						<SetTimeInput {index} {form_id} name={preName + '.timer_seconds_rest'} />
-						rest time
+						<TimerInputWithDialog name={preName + '.timer_seconds_rest'} />
+						<!-- <SetTimeInput {index} {form_id} name={preName + '.timer_seconds_rest'} />
+						rest time -->
 					{/if}
 					{#if _selectedType?.use_active_time}
-						<SetTimeInput {index} {form_id} name={preName + '.timer_seconds_active'} />
-						workout time
+						<TimerInputWithDialog name={preName + '.timer_seconds_active'} />
+						<!-- 
+						<SetTimeInput name={preName + '.timer_seconds_active'} />
+						workout time -->
 					{/if}
 				{/if}
 			</div>
