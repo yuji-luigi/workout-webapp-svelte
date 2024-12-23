@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { formatSecondsToTimer } from '../../../../../helpers/format-time/formatSecondsToTimer';
 	import { openStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
+	import { getFormIDContext } from '../../../../../store/form-store.svelte';
 	import TimerInputDialog from './TimerInputDialog.svelte';
 	let { name, label = '' }: { name: string; label?: string } = $props();
-
+	const form_id = getFormIDContext();
 	let value = $state(0);
+	console.log(name);
+
 	async function handleOpenDialog() {
 		value = await new Promise((resolve, _) =>
 			openStackDialog({
@@ -12,7 +15,8 @@
 				props: { resolve }
 			})
 		);
-		console.log(value);
+		const form = document.getElementById(form_id) as HTMLFormElement;
+		form.dispatchEvent(new Event('input'));
 	}
 </script>
 
