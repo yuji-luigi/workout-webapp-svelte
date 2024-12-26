@@ -3,14 +3,14 @@ import type { Workout } from '../../../../types/db/workout';
 import type { FormTableField, PayloadFromForm } from '../../../../types/form/form-table-field';
 
 export const workoutFormTable = [
-	{
-		name: 'id',
-		label: 'ID',
-		type: 'id-input',
-		collection: 'workout',
-		required: true,
-		formFieldConfig: { hidden: true }
-	},
+	// {
+	// 	name: 'id',
+	// 	label: 'ID',
+	// 	type: 'id-input',
+	// 	collection: 'workout',
+	// 	required: true,
+	// 	formFieldConfig: { hidden: true }
+	// },
 	{
 		name: 'name',
 		label: 'Name of the workout',

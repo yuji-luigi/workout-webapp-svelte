@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { fade, scale } from 'svelte/transition';
-	import type { ExerciseJoined } from '../../types/db/exercise';
-	import SetTimeInputGroup from '../../lib/components/form/form-by-collection/workout-form/sets-configuration-inputs/SetTimeInputGroup.svelte';
+	import type { ExerciseJoined } from '$types/db/exercise';
+	import SetTimeInputGroup from '../../lib/components/form/form-by-collection/workout-form/workout-set-configure-modal/inputs/SetTimeInputGroup.svelte';
 	let {
 		exercise,
 		index,
 		form_id,
-		_selectedType,
+		parsedSelectedType,
 		preName,
 		removeExercise
 	}: {
@@ -14,7 +14,7 @@
 		index: number;
 		form_id: string;
 		preName: string;
-		_selectedType: WSetType | null;
+		parsedSelectedType: WSetTypeI | null;
 		removeExercise: (index: number) => void;
 	} = $props();
 </script>
@@ -29,8 +29,8 @@
 	>
 		<div class="input-section" draggable="true">
 			<h5>{exercise.name}</h5>
-			{#if _selectedType?.has_timer_per_exercise}
-				{#if _selectedType?.use_active_time}
+			{#if parsedSelectedType?.has_timer_per_exercise}
+				{#if parsedSelectedType?.use_active_time}
 					<SetTimeInputGroup
 						label="workout time"
 						{index}
@@ -38,7 +38,7 @@
 						name={preName + `timer_seconds_active`}
 					/>
 				{/if}
-				{#if _selectedType}
+				{#if parsedSelectedType}
 					<SetTimeInputGroup
 						label="rest time"
 						{index}

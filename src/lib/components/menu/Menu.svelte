@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { lofi_db } from '../../store/lofi-db/lofi_db.svelte';
+	import { lofi_db } from '../../db/lofi-yjs-db/lofi_db.svelte';
 	import Button from '../button/Button.svelte';
 	let {
 		list,
@@ -19,7 +19,7 @@
 
 <section class="menu-container">
 	{#each list as item}
-		<button onclick={() => handleClick(item)} class="button primary menu-item">
+		<button type="button" onclick={() => handleClick(item)} class="button primary menu-item">
 			<h3 class="center-item">{item.name}</h3>
 		</button>
 	{/each}

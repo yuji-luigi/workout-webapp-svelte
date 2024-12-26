@@ -25,6 +25,7 @@
 	"type": "module",
 	"dependencies": {
 		"@ubermanu/sveltekit-websocket": "^0.2.1",
+		"dexie": "^4.0.10",
 		"ws": "^8.16.0",
 		"y-indexeddb": "^9.0.12",
 		"y-websocket": "^1.5.4",

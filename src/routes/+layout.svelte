@@ -13,7 +13,7 @@
 	import { createWebsocketStates } from '../lib/store/socket-store.svelte';
 	import type { Snippet } from 'svelte';
 	// import { workoutsY } from '../lib/store/lofi-db/workout-lofi.svelte';
-	import { seedLocalDB } from '../lib/store/lofi-db/seedDb';
+	import { seedLocalDB } from '../lib/db/lofi-yjs-db/seedDb';
 
 	let { children }: { children: Snippet } = $props();
 	const socketStates = createWebsocketStates();
@@ -23,10 +23,6 @@
 			seedLocalDB();
 		});
 		console.log('state', socketStates.isConnected);
-	});
-
-	onDestroy(() => {
-		// socketStates.globalWebSocket?.close();
 	});
 </script>
 

@@ -5,10 +5,10 @@
 	import type { Option } from '../../../../../types/form/option';
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
 	import NewExerciseModalFormOpenButton from '../../../open-dialog-button/NewExerciseModalFormOpenButton.svelte';
-	import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
-	import SetConfigureButton from '../../../form/workout-form/exercise-configuration-inputs/SetConfigureButton.svelte';
 	import { getForm } from '../../../../store/form-store.svelte';
 	import { get } from 'svelte/store';
+	import { db } from '../../../../db/dexie-db/dexie-db';
+	import { exercise } from '../../../form/form-by-collection';
 	let createdWorkout = null;
 	let {
 		loading = true,
@@ -26,16 +26,19 @@
 	let options: Option[] = $state([]);
 	const socket = new WebSocket('ws://localhost:1234');
 	const form_id = getContext('form_id') as string;
-	let form = $state(getForm(form_id));
-	$effect(() => {
-		options = lofi_db.db_state.exercises.map((exercise) => {
-			return {
-				// value: exercise.id,
-				id: exercise.id,
-				value: JSON.stringify(exercise),
-				label: exercise.name
-			};
-		});
+	console.log(form_id);
+	onMount(() => {
+		db.exercises.toArray().then(
+			(exercises) =>
+				(options = exercises.map((exercise) => {
+					return {
+						// value: exercise.id,
+						id: exercise.id,
+						value: JSON.stringify(exercise),
+						label: exercise.name
+					};
+				}))
+		);
 		loading = false;
 		return () => {
 			socket.close();

@@ -1,5 +1,5 @@
 import type { Workout } from './workout';
-import type { WSetJoined } from './workout-set';
+import type { WSetJoined } from './WSetI';
 
 // Type for Routine table
 export interface Routine {

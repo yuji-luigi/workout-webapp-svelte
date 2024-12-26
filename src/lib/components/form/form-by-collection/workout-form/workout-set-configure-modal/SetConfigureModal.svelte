@@ -2,12 +2,14 @@
 	import DialogGeneric from '$components/dialog/global/DialogGeneric.svelte';
 	import type { Exercise } from '$types/db/exercise';
 	import { getContext, onMount } from 'svelte';
-	import AddSetCard from './AddSetCard.svelte';
-	import { getForm, setForm } from '../../../../../store/form-store.svelte';
-	import { sleep } from '../../../../../helpers/sleep';
+	import AddSetCard from './add-buttons/AddSet.svelte';
+	import { getForm, setForm } from '$lib/store/form-store.svelte';
+	import { sleep } from '$lib/helpers/sleep';
 	import ChooseSetTypeModal from './ChooseSetTypeModal.svelte';
-	import type { WSetJoined, WSet } from '../../../../../../types/db/workout-set';
-	import WorkoutSetConfigCard from './WorkoutSetConfigCard.svelte';
+	import WorkoutSetConfigCard from './workout-set-card/SetCard.svelte';
+	import type { WSetJoined } from '$types/db/WSetI';
+	import Fetcher from '../../../../util-component/FetcherComponent.svelte';
+	import { fetcherResults } from '../../../../util-component/fetcherData';
 	let {
 		isOpen = $bindable(false)
 	}: {
@@ -15,14 +17,13 @@
 		// selected_exercises: Exercise[];
 		// handleSetSelectedWorkouts: () => void;
 	} = $props();
-	let wSets = $state<WSetJoined[]>([]);
+	let workout_sets = $state<Omit<WSetJoined, 'id'>[]>([]);
 	const form_id: string = getContext('form_id') || 'NULL_ID';
 	let isOpenChooseSetTypeModal = $state(false);
 
-	function addSet(data: WSetType) {
-		wSets.push({
-			id: new Date().getTime(),
-			type: data,
+	function addSet(setType: WSetTypeI) {
+		workout_sets.push({
+			type: setType,
 			slug: '',
 			name: '',
 			exercises: [],
@@ -30,31 +31,18 @@
 		});
 		isOpenChooseSetTypeModal = false;
 	}
-
-	// function removeSet(index: number) {
-	// 	wSets.splice(index, 1);
-	// }
-
-	// function updateSet(index: number, data: { type: any; n_set: number }) {
-	// 	wSets[index] = data;
-	// }
-
-	// async function handleSetSelectedWorkouts() {
-	// 	await sleep(1000);
-	// 	isOpen = false;
-	// }
 </script>
 
 <DialogGeneric fullScreen bind:isOpen>
 	<h2 class="title">Create sets and circuits</h2>
 	<section class="sets-config-container">
-		{#each wSets as wSet, index}
-			<WorkoutSetConfigCard {wSet} {index} {form_id} />
+		{#each workout_sets as wSet, index}
+			<WorkoutSetConfigCard bind:wSets={workout_sets} {index} {form_id} />
 		{/each}
 		<AddSetCard
 			onclick={() => {
 				isOpenChooseSetTypeModal = true;
-				// wSets.push({
+				// workout_sets.push({
 				// 	id: ''
 				// });
 			}}

@@ -1,5 +1,5 @@
 // Type for Workout_type table
-interface WSetType {
+interface WSetTypeI {
 	id: number; // primary key
 	slug: string;
 	name: string;

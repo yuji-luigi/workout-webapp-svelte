@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { app_state, yCounter } from '$lib/store/all_stores.svelte';
 	import { json } from '@sveltejs/kit';
-	import FormGrid from '../../lib/components/form/FormGrid.svelte';
-	import InputGrid from '../../lib/components/input/InputGrid.svelte';
-	import { handleArrayFormData } from '../../lib/helpers/form-helper/handle-array-form-data';
-	import { sleep } from '../../lib/helpers/sleep';
-	import { db_state } from '../../lib/store/lofi-db/lofi_db.svelte';
-	import { createWebsocketStates } from '../../lib/store/socket-store.svelte';
-	import type { Workout } from '../../types/db/workout';
+	import FormGrid from '$lib/components/form/FormGrid.svelte';
+	import InputGrid from '$lib/components/input/InputGrid.svelte';
+	import { handleArrayFormData } from '$lib/helpers/form-helper/handle-array-form-data';
+	import { sleep } from '$lib/helpers/sleep';
+	import { lofi_db } from '$lib/db/lofi-yjs-db/lofi_db.svelte';
+	import { createWebsocketStates } from '$lib/store/socket-store.svelte';
+	import type { Workout } from '$types/db/workout';
 	const connected = createWebsocketStates();
 	const socket = new WebSocket('ws://localhost:1234');
 	// Just to toggle the red green status emoji
@@ -40,8 +40,8 @@
 
 <input bind:this={inputEl} type="text" />
 <pre>
-  {JSON.stringify(db_state.workoutLocal || '', null, 4)}
+  <!-- {JSON.stringify(db_state.workoutLocal || '', null, 4)} -->
 </pre>
 <p>
-	Websocket connection status: {connected.value ? '🟢' : '🔴'}
+	<!-- Websocket connection status: {connected.value ? '🟢' : '🔴'} -->
 </p>

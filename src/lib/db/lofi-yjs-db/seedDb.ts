@@ -1,6 +1,7 @@
 // import { exercisesY, workout_set_typeY } from './workout-lofi.svelte';
 
 import type { Exercise } from '../../../types/db/exercise';
+import { db } from '../dexie-db/dexie-db';
 import { lofi_db } from './lofi_db.svelte';
 const { persistenceWorkoutDB, db_state, workout_set_typeY, exercisesY } = lofi_db;
 
@@ -9,9 +10,11 @@ export async function seedLocalDB() {
 	const { workout_set_types, exercises } = db_state;
 	if (workout_set_types.length === 0) {
 		workout_set_typeY.push([...defaultWorkoutTypes]);
+		db.workout_set_type.bulkAdd(defaultWorkoutTypes);
 	}
 	if (exercises.length === 0) {
 		exercisesY?.push([...calisthenicExercises]);
+		await db.exercise.bulkAdd(calisthenicExercises);
 	}
 }
 
@@ -106,7 +109,7 @@ export const calisthenicExercises: Exercise[] = [
 		image: undefined
 	}
 ];
-const defaultWorkoutTypes: WSetType[] = [
+const defaultWorkoutTypes: WSetTypeI[] = [
 	{
 		id: 1,
 		name: 'Reps And Sets',

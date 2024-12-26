@@ -1,7 +1,7 @@
 import type { Exercise, ExerciseJoined } from '../../../types/db/exercise';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { Workout, WorkoutJoined } from '../../../types/db/workout';
-import type { WSet, WSetJoined } from '../../../types/db/workout-set';
+import type { WSet, WSetJoined } from '../../../types/db/WSetI';
 
 const db_state_fields = ['routines', 'workouts', 'exercises'] as const;
 type DBStateField = (typeof db_state_fields)[number];
@@ -25,7 +25,7 @@ const defaultValues = {
 		routine: [] as RoutineJoined[],
 		workout: [] as WorkoutJoined[],
 		exercise: [] as ExerciseJoined[],
-		workout_set_type: [] as WSetType[],
+		workout_set_type: [] as WSetTypeI[],
 		workout_set: [] as WSetJoined[]
 	},
 	db_state_enum,
@@ -36,7 +36,7 @@ const defaultValues = {
 		routines: [] as RoutineJoined[],
 		workouts: [] as WorkoutJoined[],
 		exercises: [] as ExerciseJoined[],
-		workout_set_types: [] as WSetType[],
+		workout_set_types: [] as WSetTypeI[],
 		workout_sets: [] as WSetJoined[]
 	}
 };
@@ -55,7 +55,7 @@ async function create_lofi_db() {
 	const routinesY = ydoc.getArray<RoutineJoined>('routines');
 	const workoutsY = ydoc.getArray<WorkoutJoined>('workouts');
 	const exercisesY = ydoc.getArray<ExerciseJoined>('exercises');
-	const workout_set_typeY = ydoc.getArray<WSetType>('workout_set_types');
+	const workout_set_typeY = ydoc.getArray<WSetTypeI>('workout_set_types');
 	const workout_setY = ydoc.getArray<WSetJoined>('workout_set');
 
 	async function create_app_state() {

@@ -1,31 +1,28 @@
 <script lang="ts">
-	import { sleep } from '$lib/helpers/sleep';
-	import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
-	import type { Workout } from '$types/db/workout';
 	import { setContext } from 'svelte';
 	import type { RoutineJoined } from '../../../../../types/db/routine';
 	import { routineFormTableJson } from '../../../../data/template-json/dataTable/routine-form-table-json';
-	import { validateForm } from '../../../../helpers/form-helper/form_validator';
-	import { setFormErrors } from '../../../../helpers/form-helper/setFormErrors';
-	import { setForm } from '../../../../store/form-store.svelte';
 	import JsonForm from '../../JsonForm.svelte';
+	import { dexie_db } from '../../../../db/dexie-db/dexie-adaptor';
+	import { db } from '../../../../db/dexie-db/dexie-db';
+	import { setForm, setFormId } from '../../../../store/form-store.svelte';
 
-	let loading = false;
-	const form_id = 'routine-form';
+	setFormId('routine-form');
 	setContext('form_table_json', routineFormTableJson);
-	const routinesY = lofi_db.routinesY;
+	const routines = db.exercises;
 	async function handleSubmit(
-		event: SubmitEvent & { target: HTMLFormElement },
+		_: SubmitEvent & { target: HTMLFormElement },
 		payload: Record<string, any>
 	) {
 		// validateForm(payload, routineFormTableJson, event.target);
-		routinesY.push([payload as RoutineJoined]);
+		routines.add(payload as any);
 	}
+	setForm;
 </script>
 
 <div class="container">
 	<h3>Create a new Routine/Workout</h3>
-	<JsonForm form_id="routine_form" formTableFields={routineFormTableJson} {handleSubmit} />
+	<JsonForm formTableFields={routineFormTableJson} {handleSubmit} />
 
 	<!-- <FormGrid {handleSubmit} {loading} {form_id}>
 		<InputGrid label="Name of the routine" name="name" type="text" />

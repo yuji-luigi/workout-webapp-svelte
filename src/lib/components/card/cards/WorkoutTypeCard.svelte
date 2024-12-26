@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
 
-	type WSetType = {
+	type WSetTypeI = {
 		name: string;
 		description: string;
 		image: string;
@@ -10,7 +10,7 @@
 	};
 
 	export let index: number;
-	export let workoutType: WSetType;
+	export let workoutType: WSetTypeI;
 	export let active = false;
 	let cardEl: HTMLDivElement;
 	// TODO: Can be calculated in a server

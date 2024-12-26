@@ -3,8 +3,8 @@
 
 	import type { Exercise } from '$types/db/exercise';
 	import { exerciseFormTableJson } from '$lib/data/template-json/dataTable';
-	import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
-	import JsonForm from '$lib/components/form/JsonForm.svelte';
+	// import { dexie_db.exercises.add/lofi-yjs-db/dexie_db.exercises.addt JsonForm from '$lib/components/form/JsonForm.svelte';
+	import { dexie_db } from '../../../../db/dexie-db/dexie-adaptor';
 	let {
 		onSubmitCallback,
 		resolve,
@@ -27,7 +27,7 @@
 	) {
 		loading = true;
 		try {
-			lofi_db.exercisesY.push([payload as Exercise]);
+			dexie_db.exercises.add(payload as Exercise);
 			await sleep(750);
 			event.target?.reset();
 			onSubmitCallback && onSubmitCallback(payload);

@@ -7,9 +7,9 @@
 	import { onMount } from 'svelte';
 	import type { Collection } from '../../../types/db/collections';
 	import type { InputType } from '../../../types/input-type';
-	import { lofi_db } from '../../store/lofi-db/lofi_db.svelte';
 	import InputGroupGrid from './InputGroupGrid.svelte';
 	import { sleep } from '../../helpers/sleep';
+	import { db } from '../../db/dexie-db/dexie-db';
 
 	let {
 		label,
@@ -32,8 +32,8 @@
 	let time = $state(0);
 
 	$effect(() => {
-		if (lofi_db.db_state_getter[collection]) {
-			id = lofi_db.db_state_getter[collection]?.length + 1;
+		if (db[collection]) {
+			id = db[collection]?.length + 1;
 		}
 	});
 </script>

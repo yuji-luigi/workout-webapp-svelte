@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import IconButton from '../../../../button/IconButton.svelte';
+	import IconButton from '../../../../../button/IconButton.svelte';
 	import {
 		dispatchFormInputEvent,
 		getFormById,
 		getFormIDContext
-	} from '../../../../../store/form-store.svelte';
+	} from '../../../../../../store/form-store.svelte';
 	let { name }: { name: string } = $props();
 	let n_sets = $state<number>(1);
 	const form_id = getFormIDContext();

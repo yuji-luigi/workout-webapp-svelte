@@ -13,3 +13,9 @@
 </script>
 
 <input {...rest} bind:value />
+
+<style>
+	input {
+		position: relative;
+	}
+</style>

@@ -147,6 +147,11 @@ dialog {
   }
 }
 
+.button.error {
+  background: var(--color-error);
+  color: var(--text-color-white);
+}
+
 /* 
 button:active.button {
   background: light-dark(var(--gray-200), var(--gray-400));

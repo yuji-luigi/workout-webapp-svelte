@@ -62,3 +62,25 @@ select.border-focus-none, input.border-focus-none {
   color: var(--color-error);
   background-color: var(--color-error-100);
 }
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.center {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}

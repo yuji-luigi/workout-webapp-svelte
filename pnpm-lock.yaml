@@ -11,6 +11,9 @@ importers:
       '@ubermanu/sveltekit-websocket':
         specifier: ^0.2.1
         version: 0.2.1(@sveltejs/kit@2.7.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.0-next.266)(vite@5.4.9))(svelte@5.0.0-next.266)(vite@5.4.9))(svelte@5.0.0-next.266)
+      dexie:
+        specifier: ^4.0.10
+        version: 4.0.10
       ws:
         specifier: ^8.16.0
         version: 8.18.0
@@ -552,6 +555,9 @@ packages:
 
   devalue@5.1.1:
     resolution: {integrity: sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw==}
+
+  dexie@4.0.10:
+    resolution: {integrity: sha512-eM2RzuR3i+M046r2Q0Optl3pS31qTWf8aFuA7H9wnsHTwl8EPvroVLwvQene/6paAs39Tbk6fWZcn2aZaHkc/w==}
 
   encoding-down@6.3.0:
     resolution: {integrity: sha512-QKrV0iKR6MZVJV08QY0wp1e7vF6QbhnbQhb07bwpEyuz4uZiZgPlEGdkCROuFkUwdxlFaiPIhjyarH1ee/3vhw==}
@@ -1311,6 +1317,8 @@ snapshots:
     optional: true
 
   devalue@5.1.1: {}
+
+  dexie@4.0.10: {}
 
   encoding-down@6.3.0:
     dependencies:

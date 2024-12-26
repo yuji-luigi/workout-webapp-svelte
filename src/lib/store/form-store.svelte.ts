@@ -1,10 +1,13 @@
-import { getContext, onMount } from 'svelte';
+import { getContext, onMount, setContext } from 'svelte';
 
 let formState = $state<Record<string, any>>({ initial: 'initial' });
 
 export const getForm = (form_id: string) => {
 	return formState[form_id];
 };
+
+export const setFormId = (id: string) => setContext('form_id', id);
+
 export function getFormById(form_id: string): null | HTMLFormElement {
 	if (typeof window === 'undefined') return null;
 	return document.getElementById(form_id) as HTMLFormElement;

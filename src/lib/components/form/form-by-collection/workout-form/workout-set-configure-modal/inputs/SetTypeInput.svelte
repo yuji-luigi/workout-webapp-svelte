@@ -20,13 +20,11 @@
 <div class="input-group">
 	<div class="test">
 		<SelectInputSingle
-			borderFocus="none"
 			{name}
 			{className}
 			textAlign="end"
 			collection="workout_set_type"
 			label="Exercise"
-			border="none"
 		/>
 	</div>
 	<span> {label}</span>

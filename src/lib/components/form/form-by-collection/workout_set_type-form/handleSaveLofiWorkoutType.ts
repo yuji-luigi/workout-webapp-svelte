@@ -1,5 +1,5 @@
 import type { Exercise, ExerciseJoined } from '$types/db/exercise';
-import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
+import { db } from '../../../../db/dexie-db/dexie-db';
 
 export type WorkoutFormData = {
 	exercise_id: any;
@@ -11,11 +11,11 @@ export type WorkoutFormData = {
 	description: string;
 	workout_type_name: string;
 };
-const { exercisesY, workoutsY } = lofi_db || {};
+const { exercises: exercisesY, workouts: workoutsY } = db || {};
 export function handleSaveWorkoutLocally(workoutDto: WorkoutFormData) {
 	if (!exercisesY || !workoutsY) return;
-	exercisesY.push([exerciseFactory(workoutDto)]);
-	workoutsY.push([workoutJoinedFactory(workoutDto) as any]);
+	exercisesY.add(exerciseFactory(workoutDto));
+	workoutsY.add(workoutJoinedFactory(workoutDto) as any);
 }
 
 export function saveTimer(workoutDto: WorkoutFormData) {}

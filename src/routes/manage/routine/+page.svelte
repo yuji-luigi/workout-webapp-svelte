@@ -1,10 +1,9 @@
 <script lang="ts">
 	import FormGrid from '$lib/components/form/FormGrid.svelte';
-	import RoutineForm from '$lib/components/form/workout-form/WorkoutForm.svelte';
 	import InputGrid from '$lib/components/input/InputGrid.svelte';
 	import { handleArrayFormData } from '$lib/helpers/form-helper/handle-array-form-data';
 	import { sleep } from '$lib/helpers/sleep';
-	import { db_state, routinesY } from '$lib/store/lofi-db/lofi_db.svelte';
+	import RoutineForm from '../../../lib/components/form/form-by-collection/routine-form/RoutineForm.svelte';
 	let loading = false;
 	async function handleSubmit(event: SubmitEvent) {
 		loading = true;

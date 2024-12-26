@@ -6,16 +6,17 @@
 		type WorkoutFormPayload
 	} from '$lib/data/template-json/dataTable/workouts-form-table-json';
 	import { sleep } from '$lib/helpers/sleep';
-	import { lofi_db } from '$lib/store/lofi-db/lofi_db.svelte';
 	import { setContext } from 'svelte';
 	import { workoutDtoFactory } from './createWorkoutDto.svelte';
 	import Child from '../../../../experiment/Child.svelte';
+	import { db } from '../../../../db/dexie-db/dexie-db';
 
 	let loading = false;
 	const form_id = 'workout-create-form';
-	const workoutsY = lofi_db.workoutsY;
+	const workoutsY = db.workouts;
 	setContext('form_table_json', workoutFormTable);
 	setContext('form_id', form_id);
+
 	async function handleSubmit(
 		event: SubmitEvent & { target: HTMLFormElement },
 		payload: Record<string, any>

@@ -5,7 +5,7 @@
 	import { openDialog } from '$lib/store/global-dialog-store';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
 	import { collections } from '../../types/db/collections';
-	import { lofi_db } from '../../lib/store/lofi-db/lofi_db.svelte';
+	import { lofi_db } from '../../lib/db/lofi-yjs-db/lofi_db.svelte';
 	import type { RoutineJoined } from '../../types/db/routine';
 	import { createRandomImage } from '../../lib/images/random-images';
 	let cardGrid: HTMLDivElement;

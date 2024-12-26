@@ -3,11 +3,9 @@
 	import { getContext, onDestroy, onMount, type Snippet } from 'svelte';
 	import type { Collection } from '../../../../../types/db/collections';
 	import type { FormTableField } from '../../../../../types/form/form-table-field';
-	import { getForm } from '../../../../store/form-store.svelte';
-	import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
-	import { createWebsocketStates } from '../../../../store/socket-store.svelte';
-	import ChipInput from '../../../chip/ChipInput.svelte';
+	import { db } from '../../../../db/dexie-db/dexie-db';
 	import { resetErrorSpan } from '../../../../helpers/form-helper/setFormErrors';
+	import ChipInput from '../../../chip/ChipInput.svelte';
 
 	let {
 		className,
@@ -32,17 +30,28 @@
 	let errorSpanEl: HTMLElement | null = $state(null);
 	// let form = $state(getForm(getContext('form_id')));
 
-	$effect(() => {
+	onMount(() => {
 		if (collection) {
-			_options =
-				lofi_db?.db_state_getter[collection as Collection]?.map((data) => {
-					return {
-						// value: workout.id,
-						id: data.id,
-						value: JSON.stringify(data),
-						label: data.name
-					};
-				}) || [];
+			db[collection as Collection]?.toArray().then(
+				(exercises) =>
+					(_options = exercises.map((data) => {
+						return {
+							// value: workout.id,
+							id: data.id,
+							value: JSON.stringify(data),
+							label: data.name
+						};
+					}))
+			);
+			// _options =
+			// 	db[collection as Collection]?.map((data) => {
+			// 		return {
+			// 			// value: workout.id,
+			// 			id: data.id,
+			// 			value: JSON.stringify(data),
+			// 			label: data.name
+			// 		};
+			// 	}) || [];
 		}
 		loading = false;
 	});

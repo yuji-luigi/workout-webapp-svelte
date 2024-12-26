@@ -1,7 +1,7 @@
 <script lang="ts">
-	import AddExerciseDialog from '../../../../../../routes/workout/AddExerciseDialog.svelte';
-	import type { ExerciseJoined } from '../../../../../../types/db/exercise';
-	import { openStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
+	import AddExerciseDialog from '../../../../../../../routes/workout/AddExerciseDialog.svelte';
+	import type { ExerciseJoined } from '../../../../../../../types/db/exercise';
+	import { openStackDialog } from '../../../../../../store/dialog-stack/dialogStackStore';
 
 	let { onclick }: { onclick: (exercise: ExerciseJoined) => void } = $props();
 	async function handleClick() {

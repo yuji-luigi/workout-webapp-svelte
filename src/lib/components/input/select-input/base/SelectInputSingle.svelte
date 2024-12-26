@@ -3,8 +3,8 @@
 	import type { Collection } from '../../../../../types/db/collections';
 	import type { FormTableField } from '../../../../../types/form/form-table-field';
 	import type { Option } from '../../../../../types/form/option';
-	import { lofi_db } from '../../../../store/lofi-db/lofi_db.svelte';
 	import { getForm, getFormById, getFormIDContext } from '../../../../store/form-store.svelte';
+	import { db } from '../../../../db/dexie-db/dexie-db';
 	let {
 		label,
 		className,
@@ -36,16 +36,18 @@
 			formEl?.dispatchEvent(inputEvent);
 		}
 	});
-	$effect(() => {
+	onMount(async () => {
 		if (collection) {
-			_options =
-				lofi_db?.db_state_getter[collection as Collection]?.map((data) => {
-					return {
-						id: data.id,
-						value: JSON.stringify(data),
-						label: data.name
-					};
-				}) || [];
+			db[collection as Collection].toArray().then(
+				(list) =>
+					(_options = list.map((data) => {
+						return {
+							id: data.id,
+							value: JSON.stringify(data),
+							label: data.name
+						};
+					}))
+			) || [];
 		}
 		loading = false;
 	});

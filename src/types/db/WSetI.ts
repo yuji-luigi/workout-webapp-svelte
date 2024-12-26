@@ -1,7 +1,6 @@
 // Type for Set (unchanged from the previous diagram)
 
-import type { workout_set_type } from '../../lib/components/form/form-by-collection';
-import type { ExerciseInSetWorkout, ExerciseJoined } from './exercise';
+import type { ExerciseInSetWorkout } from './exercise';
 
 /**
  *  WSet is only used by one routine.
@@ -19,7 +18,7 @@ export interface WSet {
 export interface WSetJoined {
 	id: number;
 	slug: string;
-	type: WSetType;
+	type: WSetTypeI;
 	/** type of set + exercise name concatenated */
 	name: string;
 	/** there is no UI to set descriptions for now. */

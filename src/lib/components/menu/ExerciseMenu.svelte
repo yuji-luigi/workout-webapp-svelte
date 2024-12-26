@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ExerciseJoined } from '../../../types/db/exercise';
-	import { lofi_db } from '../../store/lofi-db/lofi_db.svelte';
+	import { lofi_db } from '../../db/lofi-yjs-db/lofi_db.svelte';
 	import Button from '../button/Button.svelte';
 
 	let { onclick }: { onclick?: (exercise: ExerciseJoined) => void } = $props();

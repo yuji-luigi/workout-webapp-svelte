@@ -1,5 +1,5 @@
 // Type for User table
-interface User {
+export interface User {
 	id: number; // primary key
 	name: string;
 	suname: string;

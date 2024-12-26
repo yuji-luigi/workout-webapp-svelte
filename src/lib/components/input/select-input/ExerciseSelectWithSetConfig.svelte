@@ -4,7 +4,7 @@
 	import InputGroupGrid from '../InputGroupGrid.svelte';
 	import SelectInputMulti from './base/SelectInputMulti.svelte';
 	import type { FormTableField } from '../../../../types/form/form-table-field';
-	import SetConfigureButton from '../../form/form-by-collection/workout-form/sets-configuration-inputs/SetConfigureButton.svelte';
+	import SetConfigureButton from '../../form/form-by-collection/workout-form/workout-set-configure-modal/SetConfigureButton.svelte';
 
 	let {
 		className,

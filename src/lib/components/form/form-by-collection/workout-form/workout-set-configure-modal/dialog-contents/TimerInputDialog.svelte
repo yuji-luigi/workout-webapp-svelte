@@ -1,6 +1,6 @@
 <script>
-	import { closeStackDialog } from '../../../../../store/dialog-stack/dialogStackStore';
-	import TimerInput from '../../../../input/TimerInput.svelte';
+	import { closeStackDialog } from '../../../../../../store/dialog-stack/dialogStackStore';
+	import TimerInput from '../../../../../input/TimerInput.svelte';
 
 	let { resolve } = $props();
 	let time = $state(0);

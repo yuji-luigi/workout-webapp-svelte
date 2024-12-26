@@ -1,4 +1,4 @@
-import type { WSet, WSetJoined } from '../../../../types/db/workout-set';
+import type { WSet, WSetJoined } from '../../../../types/db/WSetI';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
 export const workoutTypeFormTable = [
