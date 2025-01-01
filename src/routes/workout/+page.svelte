@@ -21,12 +21,11 @@
 	<title>Workouts</title>
 	<meta name="description" content="Exercise list page" />
 </svelte:head>
-<!-- <VideoHero
+<VideoHero
 	videoStyle="--video-object-position: 50% 25%;"
 	videoSrc="/videos/cover/workout_with_yume.mov"
 	class="video"
-/> -->
-<input />
+/>
 
 <div class="stretch-container flex-column">
 	<h1>Workout timers</h1>

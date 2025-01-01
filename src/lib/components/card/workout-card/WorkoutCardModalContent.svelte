@@ -3,7 +3,6 @@
 	import Chip from '../../chip/Chip.svelte';
 
 	let { workout }: { workout: Workout } = $props();
-	console.log(workout);
 </script>
 
 <div class="flex-column">

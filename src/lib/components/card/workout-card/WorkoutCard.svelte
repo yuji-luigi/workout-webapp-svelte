@@ -8,7 +8,6 @@
 	let { workout }: { workout: Workout } = $props();
 
 	const handleOpenDialog = () => {
-		console.log('workout', workout);
 		openDialog({
 			componentInDialog: {
 				component: WorkoutCardModalContent,

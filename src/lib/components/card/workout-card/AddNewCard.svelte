@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import type { Collection } from '../../../../types/db/collections';
 	import { openDialog } from '../../../store/global-dialog-store';
 	import * as formsByCollection from '$lib/components/form/form-by-collection';
@@ -10,7 +9,7 @@
 	const handleOpenDialog = () => {
 		openDialog({
 			componentInDialog: {
-				component: FormByCollection,
+				component: FormByCollection as any,
 				props: {}
 			}
 		});

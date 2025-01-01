@@ -2,23 +2,27 @@
 	import { fade, scale } from 'svelte/transition';
 	import type { ExerciseJoined } from '$types/db/exercise';
 	import SetTimeInputGroup from '../../lib/components/form/form-by-collection/workout-form/workout-set-configure-modal/inputs/SetTimeInputGroup.svelte';
+	import { getForm, getFormIDContext } from '../../lib/store/form-store.svelte';
+	import { snapshot } from 'yjs';
 	let {
 		exercise,
 		index,
-		form_id,
 		parsedSelectedType,
 		preName,
 		removeExercise
 	}: {
 		exercise: ExerciseJoined;
 		index: number;
-		form_id: string;
 		preName: string;
 		parsedSelectedType: WSetTypeI | null;
 		removeExercise: (index: number) => void;
 	} = $props();
+	const form_id = getFormIDContext();
+	let formState = $derived(getForm(form_id));
+	let setType = $derived(formState.workout_sets[index].type || '');
 </script>
 
+{JSON.stringify(setType, null, 2)}
 <input hidden type="text" name={preName} value={JSON.stringify(exercise)} />
 <div in:scale={{ duration: 400, start: 0.8 }}>
 	<div

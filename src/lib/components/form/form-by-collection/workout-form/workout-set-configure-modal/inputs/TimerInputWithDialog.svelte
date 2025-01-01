@@ -5,9 +5,7 @@
 	import Input from '../../../../../input/Input.svelte';
 	import TimerInputDialog from '../dialog-contents/TimerInputDialog.svelte';
 	let { name, label = '', suffix }: { name: string; label?: string; suffix?: string } = $props();
-	const form_id = getFormIDContext();
 	let value = $state(0);
-	console.log(name);
 
 	async function handleOpenDialog() {
 		value = await new Promise((resolve, _) =>
