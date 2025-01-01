@@ -1,29 +1,35 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { WSetJoined } from '../../../../../../../types/db/WSetI';
-	import { getFormIDContext } from '../../../../../../store/form-store.svelte';
-	import Button from '../../../../../button/Button.svelte';
 	import SelectInputSingle from '../../../../../input/select-input/base/SelectInputSingle.svelte';
 	import SetNumberInput from '../inputs/SetNumberInput.svelte';
 	import TimerInputWithDialog from '../inputs/TimerInputWithDialog.svelte';
+	import { getForm, getFormIDContext } from '../../../../../../store/form-store.svelte';
 
 	let {
 		index,
 		preName,
-		wSets = $bindable([]),
-		selectedType = $bindable(),
-		parsedSelectedType
+		wSet,
+		removeSet
 	}: {
 		index: number;
-		wSets: Omit<WSetJoined, 'id'>[];
 		preName: string;
-		selectedType: string;
-		parsedSelectedType: WSetTypeI | null;
+		// selectedType: string;
+		wSet: Omit<WSetJoined, 'id'>;
+		// parsedSelectedType: WSetTypeI | null;
+		removeSet: (index: number) => void;
 	} = $props();
-	const form_id = getFormIDContext();
+	let selectEl = $state<HTMLSelectElement>();
+	let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
+	let parsedSelectedType = $derived(selectedType ? JSON.parse(selectedType) : null);
+
+	// if possible use other than effect to update the selectedType. tried derived but need to update from select input too.
+	$effect(() => {
+		selectedType = wSet.type ? JSON.stringify(wSet.type) : '';
+	});
+
 	function handleRemoveSet() {
-		wSets.splice(index, 1);
-		const formEl = document.getElementById(form_id);
-		formEl?.dispatchEvent(new Event('input', { bubbles: true }));
+		removeSet(index);
 	}
 </script>
 
@@ -34,8 +40,9 @@
 			>remove</button
 		>
 	</div>
-	<div class="flex-column">
+	<div class="flex-column set-config-group">
 		<SelectInputSingle
+			bind:selectEl
 			bind:selectedOption={selectedType}
 			width="auto"
 			label="set type"
@@ -60,12 +67,15 @@
 </div>
 
 <style>
+	.set-config-header {
+		gap: var(--spacing-sm);
+	}
 	.main-header {
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-xs);
+		gap: var(--spacing-sm);
 		justify-content: center;
-		align-items: center;
+		align-items: start;
 	}
 	.set-level-timers {
 		display: grid;
@@ -73,6 +83,10 @@
 		place-content: center;
 		place-items: center;
 		gap: var(--spacing-xs);
+	}
+	.set-config-group {
+		display: grid;
+		gap: var(--spacing-sm);
 	}
 
 	.delete-button {

@@ -16,7 +16,6 @@
 		disabled?: boolean;
 		onclick?: () => void;
 	} = $props();
-	console.log('type', className);
 </script>
 
 {#if isDiv}

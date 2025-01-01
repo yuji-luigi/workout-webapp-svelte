@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import type { FormTableField } from '../../../types/form/form-table-field';
 	import { handleArrayFormData } from '../../helpers/form-helper/handle-array-form-data';
 	import { sleep } from '../../helpers/sleep';

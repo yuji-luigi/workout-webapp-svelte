@@ -11,16 +11,17 @@
 		// wSet,
 		index,
 		form_id,
-		wSets = $bindable([])
+		wSet = $bindable(),
+		removeSet
 	}: {
 		// wSet: Omit<WSetJoined, 'id'>;
-		wSets: Omit<WSetJoined, 'id'>[];
+		wSet: Omit<WSetJoined, 'id'>;
 		index: number;
 		form_id: string;
+		removeSet: (index: number) => void;
 	} = $props();
 	let inputEl: HTMLInputElement | null = $state(null);
 	let exercises = $state<any>([]);
-	const wSet = wSets[index];
 	function addExercise(exercise: ExerciseJoined) {
 		// 1. open dialog
 		// dialog has list of exercises.
@@ -53,7 +54,7 @@
 <div in:scale={{ duration: 300, start: 0.8 }}>
 	<div class="grid set-card">
 		<div in:fade={{ duration: 300, delay: 150 }}>
-			<SetCardHeader {index} bind:wSets {preName} bind:selectedType {parsedSelectedType} />
+			<SetCardHeader {index} {preName} {removeSet} {wSet} />
 			{#each exercises as exercise, index}
 				<ExerciseConfigCard
 					{removeExercise}

@@ -5,6 +5,7 @@
 	import type { Option } from '../../../../../types/form/option';
 	import { getForm, getFormById, getFormIDContext } from '../../../../store/form-store.svelte';
 	import { db } from '../../../../db/dexie-db/dexie-db';
+	import { snapshot } from 'yjs';
 	let {
 		label,
 		className,
@@ -13,29 +14,31 @@
 		name,
 		width = '100%',
 		textAlign,
+		selectEl = $bindable(),
+
 		placeholder,
 		selectedOption = $bindable(null),
 		...others
 	}: {
 		selectedOption?: string | null;
 		className?: string;
+		selectEl?: HTMLSelectElement;
 		options?: Option[];
 		width?: string;
 		textAlign?: string;
 	} & Omit<FormTableField, 'type'> = $props();
-	let selectEl = $state<HTMLSelectElement>();
 	const form_id = getFormIDContext();
-	// let selectedOption = $state('');
 	let _options = $state(options);
 	let loading = $state(true);
+
 	onMount(() => {
 		if (selectedOption) {
 			const formEl = getFormById(form_id);
 			const inputEvent = new Event('input', { bubbles: true });
-
 			formEl?.dispatchEvent(inputEvent);
 		}
 	});
+
 	onMount(async () => {
 		if (collection) {
 			db[collection as Collection].toArray().then(

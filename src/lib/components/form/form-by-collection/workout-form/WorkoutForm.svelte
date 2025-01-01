@@ -6,7 +6,7 @@
 		type WorkoutFormPayload
 	} from '$lib/data/template-json/dataTable/workouts-form-table-json';
 	import { sleep } from '$lib/helpers/sleep';
-	import { setContext } from 'svelte';
+	import { onMount, setContext } from 'svelte';
 	import { workoutDtoFactory } from './createWorkoutDto.svelte';
 	import Child from '../../../../experiment/Child.svelte';
 	import { db } from '../../../../db/dexie-db/dexie-db';
