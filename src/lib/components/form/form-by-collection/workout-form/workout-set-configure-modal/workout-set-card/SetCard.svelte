@@ -22,6 +22,8 @@
 	} = $props();
 	let inputEl: HTMLInputElement | null = $state(null);
 	let exercises = $state<any>([]);
+	let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
+
 	function addExercise(exercise: ExerciseJoined) {
 		// 1. open dialog
 		// dialog has list of exercises.
@@ -34,13 +36,8 @@
 	function removeExercise(index: number) {
 		exercises.splice(index, 1);
 	}
-	let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
-	let parsedSelectedType = $derived.by(() => {
-		if (selectedType && isValidJSON(selectedType)) {
-			return JSON.parse(selectedType) as WSetTypeI;
-		}
-		return null;
-	});
+
+	let parsedSelectedType = $state(wSet.type);
 	onMount(() => {
 		if (inputEl) {
 			inputEl.dispatchEvent(new Event('input', { bubbles: true }));
@@ -54,15 +51,14 @@
 <div in:scale={{ duration: 300, start: 0.8 }}>
 	<div class="grid set-card">
 		<div in:fade={{ duration: 300, delay: 150 }}>
-			<SetCardHeader {index} {preName} {removeSet} {wSet} />
+			<SetCardHeader {index} {preName} {removeSet} {wSet} bind:selectedType />
 			{#each exercises as exercise, index}
 				<ExerciseConfigCard
 					{removeExercise}
 					{exercise}
 					{index}
-					{form_id}
 					preName={preName + '.exercises' + `[${index}]`}
-					{parsedSelectedType}
+					bind:selectedType
 				/>
 			{/each}
 			<AddExercise onclick={addExercise} />

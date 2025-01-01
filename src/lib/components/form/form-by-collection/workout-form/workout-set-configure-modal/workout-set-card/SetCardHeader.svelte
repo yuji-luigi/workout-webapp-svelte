@@ -10,17 +10,18 @@
 		index,
 		preName,
 		wSet,
-		removeSet
+		removeSet,
+		selectedType = $bindable()
 	}: {
 		index: number;
 		preName: string;
-		// selectedType: string;
+		selectedType: string;
 		wSet: Omit<WSetJoined, 'id'>;
 		// parsedSelectedType: WSetTypeI | null;
 		removeSet: (index: number) => void;
 	} = $props();
 	let selectEl = $state<HTMLSelectElement>();
-	let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
+	// let selectedType = $state(wSet.type ? JSON.stringify(wSet.type) : '');
 	let parsedSelectedType = $derived(selectedType ? JSON.parse(selectedType) : null);
 
 	// if possible use other than effect to update the selectedType. tried derived but need to update from select input too.
