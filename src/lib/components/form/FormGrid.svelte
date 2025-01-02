@@ -27,7 +27,7 @@
 	let form_id = getFormIDContext();
 	let form = $state(getForm(form_id));
 	// let isDebugForm = getContext('is_debug_form');
-	let isDebugForm = true;
+	let isDebugForm = false;
 	const formTableJson = getContext('form_table_json');
 
 	// handle shape of the form data. creates js object and array from form data and pass it to the handleSubmit function above root form
