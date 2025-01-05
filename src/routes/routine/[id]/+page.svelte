@@ -2,17 +2,20 @@
 	import { goto } from '$app/navigation';
 	import { onDestroy, onMount } from 'svelte';
 	import CountInput from '../../../lib/components/counter/CountInput.svelte';
-	import type { Timer } from '../../../types/db/timer';
 	import TimerSection from './TimerSection.svelte';
-
-	export let data: { timer: Timer };
+	import type { RoutineJoined } from '../../../types/db/routine';
+	import { page } from '$app/stores';
+	import { db } from '../../../lib/db/dexie-db/dexie-db';
+	let routine: RoutineJoined | undefined = $state();
 	let dialog: HTMLDialogElement;
 	onMount(async () => {
-		// await tick();
-		if (dialog) {
-			dialog?.showModal();
+		if ($page.params.id) {
+			routine = await db.routine.get({ id: Number($page.params.id) });
+			console.log($page.params.id);
+			console.log(routine);
 		}
 	});
+
 	onDestroy(() => {
 		if (dialog) {
 			dialog.close();
@@ -21,8 +24,8 @@
 </script>
 
 <div class="page">
-	{#if data.timer}
-		<TimerSection timer={data.timer} />
+	{#if routine}
+		<TimerSection {routine} />
 	{/if}
 </div>
 

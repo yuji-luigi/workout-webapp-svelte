@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import type { Routine, RoutineJoined } from '../../../../types/db/routine';
 	import { closeDialog } from '../../../store/global-dialog-store';
 	import SetCard from '../../card/cards/SetCard.svelte';
@@ -6,6 +7,8 @@
 	let { routine }: { routine: RoutineJoined } = $props();
 
 	function handlePush() {
+		// push the routine to the workout list
+		goto(`/routine/${routine.id}/start-timer`);
 		closeDialog();
 	}
 </script>

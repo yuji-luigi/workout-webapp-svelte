@@ -3,7 +3,6 @@
 	import ProgressSvg from '../../../lib/components/progress/progress-svg/ProgressSvg.svelte';
 	import TimerWatch from '../../../lib/components/timer/TimerWatch.svelte';
 	import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
-	import type { Timer } from '../../../types/db/timer';
 	import { goto } from '$app/navigation';
 	import CountInput from '../../../lib/components/counter/CountInput.svelte';
 	import { openDialog } from '../../../lib/store/global-dialog-store';
