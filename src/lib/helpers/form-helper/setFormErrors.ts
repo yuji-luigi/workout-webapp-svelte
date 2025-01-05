@@ -1,5 +1,6 @@
 // function that get input.name from object key and set error message to input in value of the key
 export function setFormErrors(errors: Record<string, string>, form: HTMLFormElement) {
+	/** key is name of the input */
 	Object.keys(errors).forEach((key) => {
 		const input = form.querySelector(`[data-input-name="${key}"]`);
 		if (!input) return;

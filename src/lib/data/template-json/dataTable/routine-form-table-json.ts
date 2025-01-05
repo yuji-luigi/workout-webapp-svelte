@@ -3,18 +3,16 @@ import type { RoutineJoined } from '../../../../types/db/routine';
 import type { Workout } from '../../../../types/db/workout';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
-export const routineFormTableJson: (FormTableField & { name: keyof RoutineJoined })[] = [
-	{
-		name: 'id',
-		label: 'ID',
-		type: 'id-input',
-		collection: 'routine',
-		required: true,
-		formFieldConfig: { hidden: true }
-	},
+export const routineFormTableJson = [
 	{
 		name: 'name',
-		label: 'Name of the routine/workout',
+		label: 'Name of the workout',
+		type: 'text',
+		required: true
+	},
+	{
+		name: 'description',
+		label: 'Description',
 		type: 'text',
 		required: true
 	},
@@ -23,34 +21,30 @@ export const routineFormTableJson: (FormTableField & { name: keyof RoutineJoined
 		label: 'slug',
 		type: 'slug',
 		from: 'name',
-		required: true,
-
-		formFieldConfig: { hidden: true }
-	},
-	{
-		name: 'description',
-		label: 'Description',
-		type: 'text'
+		formFieldConfig: { hidden: true },
+		required: true
 	},
 
 	{
-		name: 'workouts',
-		label: 'Workouts',
-		collection: 'exercise',
-		required: true,
+		name: 'workout_sets',
+		label: 'Sets',
+		collection: 'workout_set',
+		type: 'multi-select',
+		formFieldConfig: { type: 'sets-config-section-input' },
+		required: true
+	},
 
-		type: 'multi-select'
-	},
-	{
-		name: 'image',
-		label: 'Image',
-		type: 'image'
-	},
+	// {
+	// 	name: 'image',
+	// 	label: 'Image',
+	// 	type: 'image'
+	// },
 
 	{
 		name: 'created_by',
 		label: 'Created By ID',
 		type: 'number',
+		required: false,
 		formFieldConfig: { hidden: true }
 	}
-];
+] satisfies (FormTableField & { name: keyof RoutineJoined | 'exercises' | '' })[];

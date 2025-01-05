@@ -8,9 +8,15 @@
 	import { lofi_db } from '../../lib/db/lofi-yjs-db/lofi_db.svelte';
 	import type { RoutineJoined } from '../../types/db/routine';
 	import { createRandomImage } from '../../lib/images/random-images';
+	import RoutineList from './routine-list/RoutineList.svelte';
+	import { onMount } from 'svelte';
+	import { db } from '../../lib/db/dexie-db/dexie-db';
 	let cardGrid: HTMLDivElement;
-	let db_state = $state(lofi_db.db_state);
 	let routines: RoutineJoined[] = $state([]);
+
+	onMount(async () => {
+		routines = await db.routine.toArray();
+	});
 	// Adjust the type as needed
 	//click event type
 	function handleClick(e: MouseEvent) {
@@ -28,11 +34,6 @@
 			});
 		}
 	}
-	$effect(() => {
-		if (db_state.routines.length) {
-			routines = db_state.routines;
-		}
-	});
 </script>
 
 <svelte:head>
@@ -58,9 +59,7 @@
 		onkeydown={null}
 		class="card-grid"
 	>
-		{#each routines as routine, index}
-			<RoutineCard {routine} active={false} {index} --image-url={`url(${createRandomImage()})`} />
-		{/each}
+		<RoutineList {routines} sectionClicked={() => console.log('clicked')} />
 		<AddNewCard collection="routine" />
 	</div>
 </div>

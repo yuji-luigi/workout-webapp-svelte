@@ -7,6 +7,7 @@ import type { WorkoutJoined } from '$types/db/workout';
 import type { User } from '$types/db/user'; // If you have a separate type
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { Collection } from '../../../types/db/collections';
+import type { IDOptional } from '../../../types/util-types/setOptional';
 
 class WorkoutDatabase extends Dexie {
 	// Actual table properties

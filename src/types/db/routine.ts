@@ -1,5 +1,5 @@
 import type { Workout } from './workout';
-import type { WSetJoined } from './WSetI';
+import type { WSet, WSetJoined } from './WSetI';
 
 // Type for Routine table
 export interface Routine {
@@ -8,7 +8,7 @@ export interface Routine {
 	name: string;
 	description: string;
 	image?: string;
-	workouts: Workout[];
+	workout_sets: WSetJoined[];
 	created_by: number | string;
 }
 
@@ -18,6 +18,6 @@ export interface RoutineJoined extends Routine {
 	name: string;
 	description: string;
 	image?: string;
-	workouts: Workout[];
+	workout_sets: WSetJoined[];
 	created_by: number | string;
 }

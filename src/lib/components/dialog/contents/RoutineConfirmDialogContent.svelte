@@ -1,89 +1,40 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import type { Routine, RoutineJoined } from '../../../../types/db/routine';
 	import { closeDialog } from '../../../store/global-dialog-store';
-	import type { Workout } from '../../../../types/db/workout';
-	import type { Exercise } from '../../../../types/db/exercise';
-	import { createQueryParams } from '../../../helpers/search-params/createQueryParams';
-	import type { Routine } from '../../../../types/db/routine';
-	import type { WSet } from '../../../../types/db/workout-set';
+	import SetCard from '../../card/cards/SetCard.svelte';
 
-	let { routine }: { routine: Routine } = $props();
-	// let _routine: Routine & { workout_flows: WorkoutFlow[] };
-
-	// onMount(async function join_routine() {
-	// 	const flow_params = createQueryParams({ id_routine: routine.id });
-	// 	const raw_flows = await fetch(`../../api/workout_flow${flow_params}`);
-	// 	const _flows = await raw_flows.json();
-	// 	const fl_promises = _flows.map(async (flow: WorkoutFlow) => {
-	// 		const _flow: WorkoutFlow & { workout_sets?: WSet[] } = flow;
-	// 		const ws_params = createQueryParams({ id: flow.id_workout_set });
-	// 		const raw_sets = await fetch(`../../api/workout_set/${ws_params}`);
-	// 		const _sets = await raw_sets.json();
-	// 		_flow.workout_sets = _sets;
-	// 		return flow;
-	// 	});
-
-	// 	const flows = (await Promise.all(fl_promises)) as WorkoutFlow[];
-	// 	console.log(flows);
-	// 	const raw_workouts = await fetch('../../api/workout');
-	// const raw_exercises = await fetch('../../api/exercise');
-	// const raw__workout_sets = await fetch('../../api/workout_set');
-	// const raw_timers = await fetch('../../api/timer');
-	// const timers = await raw_timers.json();
-	// const exercises = await raw_exercises.json();
-	// const workouts = await raw_workouts.json();
-	// const workout_sets = await raw__workout_sets.json();
-
-	// routine.workout_flows.forEach((workout_flow: WorkoutFlow, iwf: number) => {
-	// 	workout_sets.forEach((set: WSet, iws: number) => {
-	// 		const _workout: Workout = workouts.find(
-	// 			(workout: Workout) => workout.exercise_id === set.id_workout
-	// 		);
-	// 		const _exercise = exercises.find(
-	// 			(exercise: Exercise) => exercise.id === _workout.exercise_id
-	// 		);
-	// 		const _timer = timers.find((timer: Timer) => timer.id === set.id_timer);
-
-	// 		if (!routine.workout_flows[iwf].workout_sets) {
-	// 			routine.workout_flows[iwf].workout_sets = [];
-	// 		}
-	// 	// 		routine.workout_flows[iwf].workout_sets[iws] = {
-	// 	// 			...workout_sets[iws],
-	// 	// 			name: _exercise.name,
-	// 	// 			timer: _timer
-	// 	// 		};
-
-	// 	// 		//  set.id === routine.workout_flows[iwf].id_workout_set;
-	// 	// 	});
-	// 	// });
-	// });
+	let { routine }: { routine: RoutineJoined } = $props();
 
 	function handlePush() {
 		closeDialog();
 	}
 </script>
 
-<div class="contents">
+<div class="contents routine-confirm-dialog">
 	<img src={''} alt="" height="300px" />
-	<h5>{routine?.name}</h5>
-
+	<h2>{routine?.name}</h2>
+	{#each routine.workout_sets as set, index}
+		<SetCard {set} {index} />
+	{/each}
 	<div class="counter-section">
 		<h4>{routine?.description}</h4>
 	</div>
-</div>
-<div class="actions flex-row sm-column">
-	<button class="button" onclick={closeDialog}>Back</button>
-	<button onclick={handlePush} class="button">Confirm</button>
+
+	<div class="actions flex-row sm-column">
+		<button class="button" onclick={closeDialog}>Back</button>
+		<button onclick={handlePush} class="button">Confirm</button>
+	</div>
 </div>
 
 <style>
 	:root {
 		--gap: 0.5rem;
 	}
+	.routine-confirm-dialog {
+	}
 	.contents {
 		display: grid;
-		place-content: center;
-		place-items: center;
+
 		gap: var(--gap);
 	}
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Routine } from '../../../../types/db/routine';
+	import { exercise } from '../../form/form-by-collection';
 
 	export let index: number;
 	export let routine: Routine;
@@ -8,6 +9,7 @@
 	// TODO: Can be calculated in a server
 	routine;
 	let var_image_url = routine.image && `--image-url:${routine.image};`;
+	const totalSets = routine.workout_sets.length;
 
 	// When the component mounts, ensure the card position is available
 </script>
@@ -23,8 +25,14 @@
 >
 	<div class="info">
 		<h4>{routine.name}</h4>
-		<p class="description">
-			{routine.description}
+
+		<p>
+			{#each routine.workout_sets as set, index}
+				set#{index + 1}{set.name} ({set.type.name})
+				{#each set.exercises as exercise, index}
+					{exercise.name}
+				{/each}
+			{/each}
 		</p>
 	</div>
 </div>

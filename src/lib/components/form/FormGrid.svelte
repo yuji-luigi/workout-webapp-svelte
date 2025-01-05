@@ -26,6 +26,7 @@
 	let multiNames: string[] = [];
 	let form_id = getFormIDContext();
 	let form = $state(getForm(form_id));
+	let errors = $state({});
 	// let isDebugForm = getContext('is_debug_form');
 	let isDebugForm = false;
 	const formTableJson = getContext('form_table_json');

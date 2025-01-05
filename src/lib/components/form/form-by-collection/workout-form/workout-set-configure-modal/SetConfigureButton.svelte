@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import SetConfigureModal from './SetConfigureModal.svelte';
+	import SetConfigureSection from './SetConfigureSection.svelte';
+	import DialogGeneric from '../../../../dialog/global/DialogGeneric.svelte';
 
 	let isOpen = $state(false);
+	let { name }: { name: string } = $props();
 	// let selected_exercises: Exercise[] = $state([]);
 	// let formEl: HTMLFormElement | undefined = $state();
 
@@ -31,8 +33,9 @@
 <div class="full-width flex-row">
 	<button onclick={openConfig} type="button" class="button primary">configure sets</button>
 </div>
-
-<SetConfigureModal bind:isOpen />
+<DialogGeneric fullScreen bind:isOpen>
+	<SetConfigureSection {name} />
+</DialogGeneric>
 
 <style>
 	button {

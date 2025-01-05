@@ -31,13 +31,13 @@ export type SlugFormTableField = {
 export type SetsConfigButtonField = {
 	name: string;
 	label: string;
-	type: 'multi-select-with-config-sets'; // Explicitly 'slug'
+	type: 'sets-config-section-input'; // Explicitly 'slug'
 } & Omit<BaseFormTableField, 'type'>;
 
 export type FormTableField = BaseFormTableField | SlugFormTableField | SetsConfigButtonField;
 
 export type InputConfig = {
-	type?: InputType | 'multi-select-with-config-sets';
+	type?: InputType | 'sets-config-section-input';
 	hidden?: boolean;
 };
 export type TableConfig = {

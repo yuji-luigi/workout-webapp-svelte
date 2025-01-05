@@ -1,6 +1,7 @@
 import { getContext, onMount, setContext } from 'svelte';
 
 let formState = $state<Record<string, any>>({ initial: 'initial' });
+let formErrors = $state<Record<string, any>>({ initial: 'initial' });
 
 export const getForm = (form_id: string) => {
 	return formState[form_id];

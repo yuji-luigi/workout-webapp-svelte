@@ -1,18 +1,10 @@
 <script lang="ts">
-	import DialogGeneric from '$components/dialog/global/DialogGeneric.svelte';
 	import type { WSetJoined } from '$types/db/WSetI';
 	import { getContext } from 'svelte';
 	import AddSetCard from './add-buttons/AddSet.svelte';
 	import ChooseSetTypeModal from './ChooseSetTypeModal.svelte';
 	import WorkoutSetConfigCard from './workout-set-card/SetCard.svelte';
-	import { sleep } from '../../../../../helpers/sleep';
-	let {
-		isOpen = $bindable(false)
-	}: {
-		isOpen: boolean;
-		// selected_exercises: Exercise[];
-		// handleSetSelectedWorkouts: () => void;
-	} = $props();
+	let { name }: { name: string } = $props();
 	let workout_sets = $state<Omit<WSetJoined, 'id'>[]>([]);
 	const form_id: string = getContext('form_id') || 'NULL_ID';
 	let isOpenChooseSetTypeModal = $state(false);
@@ -34,22 +26,21 @@
 	}
 </script>
 
-<DialogGeneric fullScreen bind:isOpen>
-	<h2 class="title">Create sets and circuits</h2>
-	<section class="sets-config-container">
-		{#each workout_sets as wSet, index}
-			<WorkoutSetConfigCard {removeSet} {wSet} {index} {form_id} />
-		{/each}
-		<AddSetCard
-			onclick={() => {
-				isOpenChooseSetTypeModal = true;
-				// workout_sets.push({
-				// 	id: ''
-				// });
-			}}
-		/>
-	</section>
-</DialogGeneric>
+<h2 class="title">Create sets and circuits</h2>
+<section class="sets-config-container" data-input-name={name}>
+	<span class="input-error-message"></span>
+	{#each workout_sets as wSet, index}
+		<WorkoutSetConfigCard {removeSet} {wSet} {index} {form_id} />
+	{/each}
+	<AddSetCard
+		onclick={() => {
+			isOpenChooseSetTypeModal = true;
+			// workout_sets.push({
+			// 	id: ''
+			// });
+		}}
+	/>
+</section>
 <ChooseSetTypeModal bind:isOpen={isOpenChooseSetTypeModal} {addSet} />
 
 <style>

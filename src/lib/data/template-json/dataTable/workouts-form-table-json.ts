@@ -49,7 +49,7 @@ export const workoutFormTable = [
 		label: 'Exercises',
 		collection: 'exercise',
 		type: 'multi-select',
-		formFieldConfig: { type: 'multi-select-with-config-sets' },
+		formFieldConfig: { type: 'sets-config-section-input' },
 		required: true
 	},
 

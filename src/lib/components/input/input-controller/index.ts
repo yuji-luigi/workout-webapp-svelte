@@ -6,4 +6,4 @@ export { default as 'boolean' } from '../Boolean.svelte';
 export { default as 'switch' } from '../Switch.svelte';
 export { default as 'image' } from '../ImageInputGrid.svelte';
 export { default as 'slug' } from '../SlugInput.svelte';
-export { default as 'multi-select-with-config-sets' } from '../select-input/ExerciseSelectWithSetConfig.svelte'
+export { default as 'sets-config-section-input' } from '../select-input/ExerciseSelectWithSetConfig.svelte'
