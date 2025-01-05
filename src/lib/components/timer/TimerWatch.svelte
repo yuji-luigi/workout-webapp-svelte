@@ -1,20 +1,26 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import type { Timer } from '../../../types/db/timer';
 	import ProgressSvg from '../progress/progress-svg/ProgressSvg.svelte';
 	import { getTimerTime } from '../../helpers/formatTimerTime';
 	import Circle from '../progress/progress-svg/Circle.svelte';
 
-	export let timer: Timer;
-	export let seconds = timer.seconds;
-	export let timePassed = 0;
-	export let onFinished: () => void = () => {};
+	let {
+		timer,
+		seconds,
+		timePassed,
+		onFinished
+	}: {
+		timer: { seconds: number };
+		seconds: number;
+		timePassed: number;
+		onFinished: () => void;
+	} = $props();
 
 	let displaySeconds = timer.seconds;
 
 	let interval: number;
 	let isRunning = false;
-	let computedTime = '0';
+	let computedTime = $state('0');
 	let startTime = new Date();
 	let entTime;
 	let setEndTimes = [];
