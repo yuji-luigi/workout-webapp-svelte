@@ -3,18 +3,39 @@
 	import { workout } from '../../../../lib/data/template-json/dataTable';
 	import type { RoutineJoined } from '../../../../types/db/routine';
 
-	let { routine, currentSetIndex = 0 }: { routine: RoutineJoined; currentSetIndex: number } =
-		$props();
+	let {
+		routine,
+		currentSetIndex = 0,
+		currentExerciseIndex = 0
+	}: {
+		routine: RoutineJoined;
+		currentSetIndex: number;
+		currentExerciseIndex: number;
+	} = $props();
 </script>
 
 <header class="set-stepper">
 	{#each routine.workout_sets as set, index}
-		<div class="step">
-			<Tooltip
-				tooltip={routine.workout_sets[index].exercises.map((exercise) => exercise.name).join(', ')}
-			>
-				<h3>Set {index + 1}</h3>
-			</Tooltip>
+		<div class="step" data-active={index === currentSetIndex}>
+			<div class="flex-column">
+				<Tooltip
+					tooltip={routine.workout_sets[index].exercises
+						.map((exercise) => exercise.name)
+						.join(', ')}
+				>
+					<h3 class="set-index">Set {index + 1}</h3>
+				</Tooltip>
+				<div>
+					<ul>
+						{#each routine.workout_sets[index].exercises as exercise, index}
+							<li class="exercise-item" data-active={index === currentExerciseIndex}>
+								{exercise.name}
+							</li>
+						{/each}
+					</ul>
+				</div>
+			</div>
+
 			{#if index === currentSetIndex}
 				↑
 			{/if}
@@ -34,13 +55,31 @@
 		place-content: center;
 		gap: 0.25rem;
 	}
+	.set-index {
+		font-size: 1.5rem;
+	}
 	.step {
 		display: grid;
 		flex-direction: column;
 		place-items: center;
 		place-content: center;
 		grid-template-rows: 1fr 1fr;
+		&[data-active='true'] {
+			opacity: 1;
+			.exercise-item {
+				&[data-active='true'] {
+					font-weight: bold;
+					font-size: var(--font-size-lg);
+
+					color: var(--color-primary);
+				}
+			}
+		}
+		&[data-active='false'] {
+			opacity: 0.6;
+		}
 	}
+
 	.line {
 		width: 20px; /* Adjust width for the line */
 		height: 1px; /* Adjust height for the line */

@@ -21,16 +21,34 @@
 		if (!routine) return;
 		if (currentSetIndex < routine?.workout_sets.length - 1) {
 			currentSetIndex++;
+			currentExerciseIndex = 0;
 		}
 	}
 
-	function handlePrev() {}
-	function handleNext() {}
+	function handlePrev() {
+		if (!routine) return;
+		if (currentExerciseIndex > 0) {
+			currentExerciseIndex--;
+			return;
+		}
+		if (currentExerciseIndex === 0 && currentSetIndex > 0) {
+			currentSetIndex--;
+			currentExerciseIndex = routine.workout_sets[currentSetIndex].exercises.length - 1;
+		}
+	}
+	function handleNext() {
+		if (!routine) return;
+		if (routine.workout_sets[currentSetIndex].exercises.length - 1 > currentExerciseIndex) {
+			currentExerciseIndex++;
+		} else {
+			handleNextSet();
+		}
+	}
 </script>
 
 {#if routine}
 	<div class="flex-column">
-		<SetStepper {routine} {currentSetIndex} />
+		<SetStepper {routine} {currentSetIndex} {currentExerciseIndex} />
 		<div>
 			<button onclick={handlePrev} class="button primary">prev</button>
 			<button onclick={handleNext} class="button primary">next</button>
