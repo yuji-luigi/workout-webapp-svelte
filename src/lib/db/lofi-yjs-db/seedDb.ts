@@ -1,12 +1,15 @@
 // import { exercisesY, workout_set_typeY } from './workout-lofi.svelte';
 
-import type { Exercise } from '../../../types/db/exercise';
+import type { Exercise, ExerciseInSetWorkout } from '../../../types/db/exercise';
+import type { WSetJoined } from '../../../types/db/WSetI';
 import { db } from '../dexie-db/dexie-db';
+import { Routine } from '../dexie-db/Routine';
 import { lofi_db } from './lofi_db.svelte';
 const { persistenceWorkoutDB, db_state, workout_set_typeY, exercisesY } = lofi_db;
 
 export async function seedLocalDB() {
 	await persistenceWorkoutDB?.whenSynced;
+	const routinesDexie = await db.routine.toArray();
 	const { workout_set_types, exercises } = db_state;
 	if (workout_set_types.length === 0) {
 		workout_set_typeY.push([...defaultWorkoutTypes]);
@@ -16,6 +19,59 @@ export async function seedLocalDB() {
 		exercisesY?.push([...calisthenicExercises]);
 		await db.exercise.bulkAdd(calisthenicExercises);
 	}
+	if (routinesDexie.length === 0) {
+		[
+			{ name: 'Routine 1', description: 'desc 1' },
+			{
+				name: 'Routine 2',
+				description: 'A sample routine with 3 workouts'
+			}
+		];
+	}
+}
+
+function generateRoutines({ name, description }: { name: string; description: string }) {
+	const setsLength = Math.round(Math.random() * 10);
+	const sets: WSetJoined[] = Array.from({ length: setsLength }, (_, i) => {
+		const type = defaultWorkoutTypes[Math.floor(Math.random() * defaultWorkoutTypes.length)];
+		const exercisesLength = Math.round(Math.random() * 10);
+		const exercises: ExerciseInSetWorkout[] = Array.from({ length: exercisesLength }, (_, j) => {
+			const exercise: ExerciseInSetWorkout =
+				calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)];
+			return {
+				...exercise,
+				...(type.use_exercise_timer && {
+					exercise_timer: {
+						id: j,
+						active_time: Math.round(Math.random() * 30),
+						rest_time: Math.round(Math.random() * 20 + 30)
+					}
+				})
+			};
+		});
+		return {
+			id: i,
+			name,
+			description,
+			slug: `${routineName.toLowerCase().replace(' ', '-')}-${i}`,
+			n_set: Math.round(Math.random() * 5),
+			exercises,
+			type,
+			...(Math.random() > 0.5 && {
+				timer: {
+					active_time: Math.round(Math.random() * 60),
+					rest_time: Math.round(Math.random() * 60)
+				}
+			})
+		};
+	});
+	return new Routine({
+		slug: routineName.toLowerCase().replace(' ', '-'),
+		name: routineName,
+		description: 'A sample routine with 3 workouts',
+		created_by: '',
+		workout_sets: sets
+	});
 }
 
 export const calisthenicExercises: Exercise[] = [
