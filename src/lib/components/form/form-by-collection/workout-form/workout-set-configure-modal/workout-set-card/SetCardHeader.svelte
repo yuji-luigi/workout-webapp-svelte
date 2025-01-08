@@ -56,7 +56,7 @@
 		<SetNumberInput name={preName + '.n_set'} />
 	</div>
 	<div class="set-level-timers full-width">
-		{#if !parsedSelectedType?.has_timer_per_exercise}
+		{#if !parsedSelectedType?.use_exercise_timer}
 			{#if parsedSelectedType?.use_rest_time}
 				<TimerInputWithDialog name={preName + '.set_rest_time'} suffix="rest time" />
 			{/if}

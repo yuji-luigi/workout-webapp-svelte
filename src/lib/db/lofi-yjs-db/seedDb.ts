@@ -116,7 +116,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'reps-and-sets',
 		use_active_time: false,
 		use_rest_time: true,
-		has_timer_per_exercise: false,
+		use_exercise_timer: false,
 		description: 'Conventional workout with reps and sets',
 		repeat: false
 	},
@@ -126,7 +126,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'hiit',
 		use_active_time: true,
 		use_rest_time: true,
-		has_timer_per_exercise: true,
+		use_exercise_timer: true,
 		description: 'High Intensity Interval Training',
 		repeat: false
 	},
@@ -136,7 +136,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'tabata',
 		use_active_time: true,
 		use_rest_time: true,
-		has_timer_per_exercise: false,
+		use_exercise_timer: false,
 		description: 'Tabata workout',
 		repeat: false
 	},
@@ -146,7 +146,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'circuit-training-timer-per-exercise',
 		use_active_time: true,
 		use_rest_time: true,
-		has_timer_per_exercise: false,
+		use_exercise_timer: false,
 		description: 'Complete a series of exercises one after another with minimal rest',
 		repeat: true
 	},
@@ -156,7 +156,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'emom',
 		use_active_time: true,
 		use_rest_time: false,
-		has_timer_per_exercise: false, // EMOM typically uses a global timer per minute
+		use_exercise_timer: false, // EMOM typically uses a global timer per minute
 		description: 'Every Minute On the Minute - Perform a set number of reps each minute',
 		repeat: true
 	},
@@ -166,7 +166,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'amrap',
 		use_active_time: true,
 		use_rest_time: false,
-		has_timer_per_exercise: false, // AMRAP uses a single timer for the entire duration
+		use_exercise_timer: false, // AMRAP uses a single timer for the entire duration
 		description:
 			'As Many Rounds As Possible - Perform as many rounds of a set of exercises within a time limit',
 		repeat: false
@@ -177,7 +177,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'pyramid',
 		use_active_time: false,
 		use_rest_time: true,
-		has_timer_per_exercise: false, // Focuses on reps and sets rather than timers
+		use_exercise_timer: false, // Focuses on reps and sets rather than timers
 		description: 'Gradually increase or decrease reps in a pyramid structure',
 		repeat: false
 	},
@@ -187,7 +187,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'ladder',
 		use_active_time: false,
 		use_rest_time: true,
-		has_timer_per_exercise: false, // Increment/decrement reps without individual timers
+		use_exercise_timer: false, // Increment/decrement reps without individual timers
 		description: 'Increment or decrement the reps for each exercise in a ladder structure',
 		repeat: true
 	},
@@ -197,7 +197,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'endurance',
 		use_active_time: true,
 		use_rest_time: true,
-		has_timer_per_exercise: false, // Long-duration focus without per-exercise timers
+		use_exercise_timer: false, // Long-duration focus without per-exercise timers
 		description: 'Focus on long-duration exercises with minimal rest',
 		repeat: false
 	},
@@ -207,7 +207,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'strength-training',
 		use_active_time: false,
 		use_rest_time: true,
-		has_timer_per_exercise: false, // Heavy lifting with rest periods
+		use_exercise_timer: false, // Heavy lifting with rest periods
 		description: 'Focused on lifting heavy weights with sufficient rest between sets',
 		repeat: false
 	},
@@ -217,7 +217,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'core-blast',
 		use_active_time: true,
 		use_rest_time: true,
-		has_timer_per_exercise: false, // High-intensity core workouts without per-exercise timers
+		use_exercise_timer: false, // High-intensity core workouts without per-exercise timers
 		description: 'Short, high-intensity workouts focused on the core',
 		repeat: false
 	},
@@ -227,7 +227,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'stretch-and-mobility',
 		use_active_time: true,
 		use_rest_time: false,
-		has_timer_per_exercise: false, // Focuses on flexibility without timers
+		use_exercise_timer: false, // Focuses on flexibility without timers
 		description: 'Focus on improving flexibility and mobility',
 		repeat: false
 	},
@@ -237,7 +237,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'warm-up',
 		use_active_time: true,
 		use_rest_time: false,
-		has_timer_per_exercise: false, // Low-intensity prep without timers
+		use_exercise_timer: false, // Low-intensity prep without timers
 		description: 'Low-intensity exercises to prepare the body for the main workout',
 		repeat: false
 	},
@@ -247,7 +247,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'cooldown',
 		use_active_time: true,
 		use_rest_time: false,
-		has_timer_per_exercise: false, // Low-intensity cooldown without timers
+		use_exercise_timer: false, // Low-intensity cooldown without timers
 		description: 'Low-intensity exercises to cool down the body after a workout',
 		repeat: false
 	},
@@ -257,7 +257,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'yoga-flow',
 		use_active_time: true,
 		use_rest_time: false,
-		has_timer_per_exercise: true, // Each pose may have its own timer
+		use_exercise_timer: true, // Each pose may have its own timer
 		description: 'A series of yoga poses for relaxation and flexibility',
 		repeat: false
 	}

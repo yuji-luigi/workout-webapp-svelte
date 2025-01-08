@@ -6,7 +6,8 @@ interface WSetTypeI {
 	image_url?: string;
 	description: string;
 	repeat: boolean;
-	has_timer_per_exercise: boolean;
+	use_set_timer: boolean;
+	use_exercise_timer: boolean;
 	// these two can make some complexity
 	use_active_time: boolean;
 	use_rest_time: boolean;

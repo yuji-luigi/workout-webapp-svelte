@@ -3,6 +3,6 @@
  */
 interface Timer {
 	id: number; // primary key
-	secondsActive: number;
-	secondsRest: number;
+	rest_time: number;
+	active_time: number;
 }

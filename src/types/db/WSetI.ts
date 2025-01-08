@@ -26,6 +26,7 @@ export interface WSetJoined {
 	/** not simple exercise. it may have rest/active_time */
 	exercises: ExerciseInSetWorkout[];
 	n_set: number;
+	set_timer?: Timer;
 	set_rest_time?: number;
 	set_active_time?: number;
 }

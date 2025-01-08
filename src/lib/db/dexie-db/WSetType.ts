@@ -5,7 +5,7 @@ import type { WSetJoined } from '$types/db/WSetI';
 export class WorkoutSetType implements WSetTypeI {
 	image_url?: string | undefined;
 	description!: string;
-	has_timer_per_exercise!: boolean;
+	use_exercise_timer!: boolean;
 	id!: number;
 	slug!: string;
 	name!: string;
@@ -22,8 +22,8 @@ export class WorkoutSetType implements WSetTypeI {
 			throw new Error('Slug is required and must be a string');
 		}
 
-		if (typeof this.has_timer_per_exercise !== 'boolean') {
-			throw new Error('has_timer_per_exercise must be a boolean');
+		if (typeof this.use_exercise_timer !== 'boolean') {
+			throw new Error('use_exercise_timer must be a boolean');
 		}
 
 		if (typeof this.use_active_time !== 'boolean') {

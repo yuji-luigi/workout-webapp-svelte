@@ -31,7 +31,7 @@
 	>
 		<div class="input-section" draggable="true">
 			<h5>{exercise.name}</h5>
-			{#if parsedSelectedType?.has_timer_per_exercise}
+			{#if parsedSelectedType?.use_exercise_timer}
 				{#if parsedSelectedType?.use_active_time}
 					<SetTimeInputGroup
 						label="workout time"

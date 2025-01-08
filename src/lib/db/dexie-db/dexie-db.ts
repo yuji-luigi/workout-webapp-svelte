@@ -54,7 +54,7 @@ class WorkoutDatabase extends Dexie {
 			routines: '++id, slug, name, image, workouts, description, created_at, updated_at', // Updated from empty string
 			workout_sets: '++id, slug, type, name, n_set',
 			workout_set_types:
-				'++id, slug, name, repeat, use_active_time, use_rest_time, description, has_timer_per_exercise',
+				'++id, slug, name, repeat, use_active_time, use_rest_time, description, use_exercise_timer, use_set_timer',
 			exercises: '++id, name, slug, rest_time, active_time, description, image',
 			users: '++id, name, suname, address, birth_date, locale',
 			files: '++id, name, slug, description, src, full_path, parent_collection'
