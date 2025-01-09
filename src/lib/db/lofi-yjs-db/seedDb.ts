@@ -8,41 +8,50 @@ import { lofi_db } from './lofi_db.svelte';
 const { persistenceWorkoutDB, db_state, workout_set_typeY, exercisesY } = lofi_db;
 
 export async function seedLocalDB() {
-	await persistenceWorkoutDB?.whenSynced;
-	const routinesDexie = await db.routine.toArray();
-	const { workout_set_types, exercises } = db_state;
-	if (workout_set_types.length === 0) {
-		workout_set_typeY.push([...defaultWorkoutTypes]);
-		db.workout_set_type.bulkAdd(defaultWorkoutTypes);
-	}
-	if (exercises.length === 0) {
-		exercisesY?.push([...calisthenicExercises]);
-		await db.exercise.bulkAdd(calisthenicExercises);
-	}
-	if (routinesDexie.length === 0) {
-		[
-			{ name: 'Routine 1', description: 'desc 1' },
-			{
-				name: 'Routine 2',
-				description: 'A sample routine with 3 workouts'
-			}
-		];
+	try {
+		await persistenceWorkoutDB?.whenSynced;
+		const routinesDexie = await db.routine.toArray();
+		const { workout_set_types, exercises } = db_state;
+		if (workout_set_types.length === 0) {
+			workout_set_typeY.push([...defaultWorkoutTypes]);
+			db.workout_set_type.bulkAdd(defaultWorkoutTypes);
+		}
+		if (exercises.length === 0) {
+			exercisesY?.push([...calisthenicExercises]);
+			await db.exercise.bulkAdd(calisthenicExercises);
+		}
+		if (routinesDexie.length === 0) {
+			const routines = [
+				{ name: 'Routine 1', description: 'desc 1' },
+				{
+					name: 'Routine 2',
+					description: 'A sample routine with 3 workouts'
+				},
+				{ name: 'Routine 3', description: 'desc 3' }
+			].map((r) => generateRoutines(r));
+			await db.routine.bulkAdd(routines);
+		}
+	} catch (error: any) {
+		console.error(error?.message || error || 'Error seeding local db');
+		console.error('Error seeding local db', error ? JSON.stringify(error, null, 4) : 'no message');
 	}
 }
 
 function generateRoutines({ name, description }: { name: string; description: string }) {
-	const setsLength = Math.round(Math.random() * 10);
+	const setsLength = Math.round(Math.random() * 7 + 3);
+	// const setsLength = 0;
 	const sets: WSetJoined[] = Array.from({ length: setsLength }, (_, i) => {
 		const type = defaultWorkoutTypes[Math.floor(Math.random() * defaultWorkoutTypes.length)];
-		const exercisesLength = Math.round(Math.random() * 10);
+		// const exercisesLength = 0;
+		const exercisesLength = Math.round(Math.random() * 10 + 1);
 		const exercises: ExerciseInSetWorkout[] = Array.from({ length: exercisesLength }, (_, j) => {
 			const exercise: ExerciseInSetWorkout =
 				calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)];
 			return {
 				...exercise,
 				...(type.use_exercise_timer && {
-					exercise_timer: {
-						id: j,
+					timer: {
+						// id: j,
 						active_time: Math.round(Math.random() * 30),
 						rest_time: Math.round(Math.random() * 20 + 30)
 					}
@@ -50,24 +59,24 @@ function generateRoutines({ name, description }: { name: string; description: st
 			};
 		});
 		return {
-			id: i,
-			name,
-			description,
-			slug: `${routineName.toLowerCase().replace(' ', '-')}-${i}`,
+			// id: i,
+			name: `Set ${i + 1}`,
+			description: `Set ${i + 1} description`,
+			slug: `${name.toLowerCase().replace(' ', '-')}-${i}`,
 			n_set: Math.round(Math.random() * 5),
 			exercises,
 			type,
-			...(Math.random() > 0.5 && {
+			...((!type.use_exercise_timer || Math.random() < 0.5) && {
 				timer: {
-					active_time: Math.round(Math.random() * 60),
-					rest_time: Math.round(Math.random() * 60)
+					active_time: Math.round(Math.random() * 60 + 20),
+					rest_time: Math.round(Math.random() * 60 + 40)
 				}
 			})
 		};
 	});
 	return new Routine({
-		slug: routineName.toLowerCase().replace(' ', '-'),
-		name: routineName,
+		slug: name.toLowerCase().replace(' ', '-'),
+		name: name,
 		description: 'A sample routine with 3 workouts',
 		created_by: '',
 		workout_sets: sets

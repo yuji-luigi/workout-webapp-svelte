@@ -7,16 +7,15 @@
 	import TimerWatch from '../../../../lib/components/timer/TimerWatch.svelte';
 	import TimerWatchNew from '../../../../lib/components/timer/TimerWatchNew.svelte';
 	import { formatSecondsToTimer } from '../../../../lib/helpers/format-time/formatSecondsToTimer';
+	import type { ExerciseInSetWorkout } from '../../../../types/db/exercise';
 	let routine: RoutineJoined | undefined = $state();
 	let dialog: HTMLDialogElement;
 	let currentSetIndex = $state(0);
 	let currentExerciseIndex = $state(0);
 	let currentSet = $derived(routine?.workout_sets[currentSetIndex]);
-	let currentExercise = $derived(() => {
+	let currentExercise = $derived.by(() => {
 		if (!currentSet) return null;
-		if (currentSet.type.use_exercise_timer) {
-			return currentExercise;
-		}
+		return currentSet.exercises[currentExerciseIndex];
 	});
 	onMount(() => {
 		if ($page.params.id) {
@@ -67,14 +66,14 @@
 		<h5>current timer</h5>
 		<pre>
       {#if currentSet.type.use_exercise_timer}
-				{formatSecondsToTimer(currentExercise.rest_time || 0)} rest
+				{formatSecondsToTimer(currentExercise.timer?.active_time || 0)} rest
 				{formatSecondsToTimer(
-					currentExercise.active_time || 0
+					currentExercise.timer?.active_time || 0
 				)} workout
 			{:else}
-				{formatSecondsToTimer(currentSet.set_rest_time || 0)} rest
+				{formatSecondsToTimer(currentSet.timer?.rest_time || 0)} rest
 				{formatSecondsToTimer(
-					currentSet.set_active_time || 0
+					currentSet.timer?.active_time || 0
 				)} active
 			{/if}
     </pre>

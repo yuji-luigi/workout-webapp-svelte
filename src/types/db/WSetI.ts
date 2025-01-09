@@ -16,7 +16,7 @@ import type { ExerciseInSetWorkout } from './exercise';
 
 /** WSet represents workout with timer. so it is Workout + timer. Flat object somehow */
 export interface WSetJoined {
-	id: number;
+	id?: number;
 	slug: string;
 	type: WSetTypeI;
 	/** type of set + exercise name concatenated */
@@ -26,7 +26,7 @@ export interface WSetJoined {
 	/** not simple exercise. it may have rest/active_time */
 	exercises: ExerciseInSetWorkout[];
 	n_set: number;
-	set_timer?: Timer;
-	set_rest_time?: number;
-	set_active_time?: number;
+	timer?: Timer;
+	// set_rest_time?: number;
+	// set_active_time?: number;
 }

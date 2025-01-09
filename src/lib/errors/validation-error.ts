@@ -5,7 +5,7 @@ export class ValidationError extends Error {
 	constructor(errors: Record<string, string>) {
 		const message = Object.entries(errors)
 			.map(([field, errMsg]) => `field ${field} ${errMsg.toLowerCase()}`)
-			.join(', ');
+			.join('\n');
 		super(message);
 		// name as ValidationError to be consistent with the other errors
 		this.name = 'ValidationError';

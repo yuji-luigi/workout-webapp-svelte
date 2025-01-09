@@ -6,7 +6,7 @@ import type { FileDB } from './file-db';
  * collection name is exercise but for commodity ue also REST as exercise.
  * */
 export interface Exercise {
-	id: number; // primary key
+	id?: number; // primary key
 	name: string; // Foreign key to Timer
 	slug: string;
 	description?: string;
@@ -19,5 +19,5 @@ export interface ExerciseJoined extends Exercise {
 }
 
 export interface ExerciseInSetWorkout extends ExerciseJoined {
-	exercise_timer?: Timer;
+	timer?: Timer;
 }

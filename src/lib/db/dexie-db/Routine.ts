@@ -9,7 +9,7 @@ import { db } from './dexie-db';
 import { WSet } from './WSet';
 
 export class Routine implements RoutineJoined {
-	id: number;
+	id?: number;
 	slug: string;
 	name: string;
 	description: string;
@@ -17,29 +17,23 @@ export class Routine implements RoutineJoined {
 	workout_sets: WSetJoined[];
 	created_by: string | number;
 
-	constructor({
-		slug,
-		name,
-		description,
-		workout_sets,
-		created_by
-	}: {
+	constructor(fields: {
 		slug: string;
 		name: string;
 		description: string;
 		workout_sets: WSetJoined[];
 		created_by: string | number;
 	}) {
+		Routine.validate(fields);
+		const { slug, name, description, workout_sets, created_by } = fields;
 		/** id is created for temporal purpose. before creation of the record it will be set to undefined to get the auto inc-ID */
-		this.id = new Date().getTime();
 		this.slug = slug;
 		this.name = name;
 		this.description = description;
 		this.workout_sets = workout_sets;
 		this.created_by = created_by;
 	}
-
-	private validate(fields: Partial<Routine>) {
+	static validate(fields: Partial<Routine>) {
 		const errors: Record<string, string> = {};
 		if (!fields.name) {
 			errors['name'] = 'Name is required';
@@ -50,7 +44,7 @@ export class Routine implements RoutineJoined {
 		if (!fields.description) {
 			errors['description'] = 'Description is required';
 		}
-		if (!fields.workout_sets) {
+		if (!fields.workout_sets || !fields.workout_sets.length) {
 			errors['workout_sets'] = 'Workout sets are required';
 		}
 
@@ -79,7 +73,7 @@ export class Routine implements RoutineJoined {
 	static async add(fields: Omit<RoutineJoined, 'id'>): Promise<RoutineJoined> {
 		const instance = new Routine(fields);
 		// 2. Validate. If invalid, it throws ValidationError
-		instance.validate(fields);
+		// this.validate(fields);
 		const newID = await db.routines.add({
 			...instance,
 			// id should be undefined to get the auto-incremented id from the db

@@ -51,6 +51,7 @@ export class WSet {
 		}
 		return true;
 	}
+
 	save() {
 		return db.wSet.put(this);
 	}

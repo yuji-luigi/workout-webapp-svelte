@@ -1,9 +1,9 @@
 import type { Workout } from './workout';
-import type { WSet, WSetJoined } from './WSetI';
+import type { WSetJoined } from './WSetI';
 
 // Type for Routine table
 export interface Routine {
-	id: number; // primary key
+	id?: number; // primary key
 	slug: string;
 	name: string;
 	description: string;
@@ -13,7 +13,7 @@ export interface Routine {
 }
 
 export interface RoutineJoined extends Routine {
-	id: number; // primary key
+	id?: number; // primary key
 	slug: string;
 	name: string;
 	description: string;
