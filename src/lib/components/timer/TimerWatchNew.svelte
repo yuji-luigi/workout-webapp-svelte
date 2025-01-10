@@ -8,20 +8,25 @@
 	type Status = 'COUNTDOWN' | 'COUNTUP' | 'PAUSE' | 'FINISHED' | 'PRE_START';
 
 	let {
-		routine,
+		timer,
+		timerController,
 		children,
 		onFinished
 	}: {
 		onFinished?: () => void;
 		children?: Snippet;
-		routine: RoutineJoined;
+		timer: Timer;
+		timerController: {
+			handleNext: () => void;
+			handlePrev: () => void;
+		};
 	} = $props();
 
 	let interval: number;
 	let isRunning = false;
 	let computedTime = $state('0');
 	let displaySeconds = 0;
-	let seconds = 10;
+	// let seconds = 10;
 	let timePassed = $state(0);
 	let timerStatus = $state<Status>('PRE_START');
 	/* 
@@ -87,7 +92,7 @@
 	});
 
 	onMount(() => {
-		countUp();
+		// countUp();
 		// countDown();
 	});
 </script>
@@ -98,7 +103,7 @@
 			<div class="inner">
 				{#if timerStatus === 'PRE_START'}
 					<h3 class="title" id="watch-inside">
-						{routine.workout_sets[0].set_rest_time}
+						{timer.rest_time}
 					</h3>
 				{:else}
 					<h3 class="title" id="watch-inside">
@@ -109,7 +114,7 @@
 			</div>
 		</div>
 	</div>
-	<ProgressSvg {seconds} {timePassed} />
+	<ProgressSvg seconds={timer.active_time} {timePassed} />
 </div>
 <div class="flex-row">
 	<button>back</button>

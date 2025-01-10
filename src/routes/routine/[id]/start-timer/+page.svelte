@@ -3,13 +3,11 @@
 	import { db } from '$lib/db/dexie-db/dexie-db';
 	import type { RoutineJoined } from '$types/db/routine';
 	import { onMount } from 'svelte';
-	import SetStepper from './SetStepper.svelte';
-	import TimerWatch from '../../../../lib/components/timer/TimerWatch.svelte';
 	import TimerWatchNew from '../../../../lib/components/timer/TimerWatchNew.svelte';
 	import { formatSecondsToTimer } from '../../../../lib/helpers/format-time/formatSecondsToTimer';
-	import type { ExerciseInSetWorkout } from '../../../../types/db/exercise';
-	let routine: RoutineJoined | undefined = $state();
-	let dialog: HTMLDialogElement;
+	import SetStepper from './SetStepper.svelte';
+	let { data }: { data: { routine: RoutineJoined } } = $props();
+	let routine: RoutineJoined | undefined = data.routine;
 	let currentSetIndex = $state(0);
 	let currentExerciseIndex = $state(0);
 	let currentSet = $derived(routine?.workout_sets[currentSetIndex]);
@@ -17,12 +15,13 @@
 		if (!currentSet) return null;
 		return currentSet.exercises[currentExerciseIndex];
 	});
-	onMount(() => {
-		if ($page.params.id) {
-			db.routine.get({ id: Number($page.params.id) }).then((r) => {
-				routine = r;
-			});
+	// TODO: NEED A STATE FOR SET_COMPLETED TO USE SET.TIMER
+	let currentTimer = $derived.by(() => {
+		if (!currentExercise || !currentSet) return null;
+		if (currentSet.type.use_exercise_timer) {
+			return currentExercise.timer;
 		}
+		return currentSet.timer;
 	});
 
 	function handleNextSet() {
@@ -52,6 +51,10 @@
 			handleNextSet();
 		}
 	}
+	const timerController = {
+		handleNext,
+		handlePrev
+	};
 </script>
 
 {#if routine && currentSet && currentExercise}
@@ -78,7 +81,9 @@
 			{/if}
     </pre>
 	</div>
-	<TimerWatchNew {routine} />
+	{#if currentTimer}
+		<TimerWatchNew {timerController} timer={currentTimer} />
+	{/if}
 {/if}
 
 <style>

@@ -27,7 +27,10 @@ export async function seedLocalDB() {
 					name: 'Routine 2',
 					description: 'A sample routine with 3 workouts'
 				},
-				{ name: 'Routine 3', description: 'desc 3' }
+				{ name: 'Routine 3', description: 'desc 3' },
+				{ name: 'Routine 4', description: 'desc 4' },
+				{ name: 'Routine 5', description: 'desc 5' },
+				{ name: 'Routine 6', description: 'desc 6' }
 			].map((r) => generateRoutines(r));
 			await db.routine.bulkAdd(routines);
 		}
@@ -52,8 +55,10 @@ function generateRoutines({ name, description }: { name: string; description: st
 				...(type.use_exercise_timer && {
 					timer: {
 						// id: j,
-						active_time: Math.round(Math.random() * 30),
-						rest_time: Math.round(Math.random() * 20 + 30)
+						active_time: j + 1,
+						rest_time: j + 2
+						// active_time: Math.round(Math.random() * 30),
+						// rest_time: Math.round(Math.random() * 20 + 30)
 					}
 				})
 			};
@@ -68,8 +73,10 @@ function generateRoutines({ name, description }: { name: string; description: st
 			type,
 			...((!type.use_exercise_timer || Math.random() < 0.5) && {
 				timer: {
-					active_time: Math.round(Math.random() * 60 + 20),
-					rest_time: Math.round(Math.random() * 60 + 40)
+					active_time: i + 1,
+					rest_time: i + 2
+					// active_time: Math.round(Math.random() * 60 + 20),
+					// rest_time: Math.round(Math.random() * 60 + 40)
 				}
 			})
 		};
@@ -201,7 +208,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'tabata',
 		use_active_time: true,
 		use_rest_time: true,
-		use_exercise_timer: false,
+		use_exercise_timer: true,
 		description: 'Tabata workout',
 		repeat: false
 	},
