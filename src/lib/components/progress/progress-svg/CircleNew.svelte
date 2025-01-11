@@ -1,30 +1,27 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-
-	export let seconds: number = 0;
-	export let timePassed: number = 0;
+	import { snapshot } from 'yjs';
+	let { seconds, timePassed }: { seconds: number; timePassed: number } = $props();
+	let mediaQuery: MediaQueryList;
+	let circleElement: SVGCircleElement;
 	const _SIZE = 400;
-	let SIZE = _SIZE;
-	let R = SIZE / 2;
-	let isSmallScreen = false; // Track if the screen is small
+	let isSmallScreen = $state(false); // Track if the screen is small
+	let size = $derived(isSmallScreen ? _SIZE * 0.7 : _SIZE);
+	let r = $derived(size / 2);
 
 	timePassed = timePassed ? timePassed : 0;
 
-	let percent = timePassed && seconds ? timePassed / seconds : 0;
-	function updateSize() {
-		SIZE = isSmallScreen ? _SIZE * 0.7 : _SIZE;
-		R = SIZE / 2;
-	}
+	let percent = $derived(timePassed && seconds ? timePassed / seconds : 0);
+	let circumference = $derived(Math.round(2 * Math.PI * r));
+	let processed = $derived(Math.floor(circumference - circumference * percent));
+
 	function handleMediaChange(e: MediaQueryListEvent) {
 		isSmallScreen = e.matches;
-		updateSize();
 	}
 
-	let mediaQuery: MediaQueryList;
-	let circleElement: SVGCircleElement;
 	onMount(() => {
-		document.documentElement.style.setProperty('--size-base', `${SIZE}px`);
-		document.documentElement.style.setProperty('--r', `${R}px`);
+		document.documentElement.style.setProperty('--size-base', `${size}px`);
+		document.documentElement.style.setProperty('--r', `${r}px`);
 		// Media query to detect screen size changes
 		mediaQuery = window.matchMedia('(max-width: 768px)');
 
@@ -32,7 +29,6 @@
 
 		// Set initial state based on the current screen size
 		isSmallScreen = mediaQuery.matches;
-		updateSize();
 
 		// Add listener to handle changes
 		mediaQuery.addEventListener('change', handleMediaChange);
@@ -42,15 +38,6 @@
 	onDestroy(() => {
 		mediaQuery?.removeEventListener('change', handleMediaChange);
 	});
-
-	let circumference = Math.round(2 * Math.PI * R);
-	let processed = Math.floor(circumference - circumference * percent);
-
-	$: {
-		percent = timePassed && seconds ? timePassed / seconds : 0;
-		circumference = Math.round(2 * Math.PI * R);
-		processed = Math.round(circumference - circumference * percent);
-	}
 </script>
 
 <circle id="empty-progress-circle" stroke="lightgray" stroke-width="10" fill="none" />

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Circle from './Circle.svelte';
+	import CircleNew from './CircleNew.svelte';
 	export let seconds: number = 0;
 	export let timePassed: number = 0;
 </script>
@@ -11,7 +12,7 @@
 			<stop offset="100%" stop-color="#ffcc00" />
 		</linearGradient>
 	</defs>
-	<Circle {seconds} {timePassed} />
+	<CircleNew {seconds} {timePassed} />
 </svg>
 
 <style>

@@ -18,6 +18,7 @@
 						.join(', ')}
 				>
 					<h3>Set {index + 1}</h3>
+					<h3>{set.type.name}</h3>
 				</Tooltip>
 			</div>
 			{#if index < routine.workout_sets.length - 1}

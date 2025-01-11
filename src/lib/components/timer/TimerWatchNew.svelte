@@ -4,31 +4,30 @@
 	import { getTimerTime } from '../../helpers/formatTimerTime';
 	import Circle from '../progress/progress-svg/Circle.svelte';
 	import type { RoutineJoined } from '../../../types/db/routine';
-
+	import audio from '$lib/assets/sounds/count-down-sha.mp3';
 	type Status = 'COUNTDOWN' | 'COUNTUP' | 'PAUSE' | 'FINISHED' | 'PRE_START';
 
 	let {
-		timer,
+		time,
 		timerController,
 		children,
 		onFinished
 	}: {
 		onFinished?: () => void;
 		children?: Snippet;
-		timer: Timer;
+		time: number;
 		timerController: {
 			handleNext: () => void;
 			handlePrev: () => void;
 		};
 	} = $props();
-
 	let interval: number;
 	let isRunning = false;
 	let computedTime = $state('0');
 	let displaySeconds = 0;
-	// let seconds = 10;
+	let seconds = $derived(time);
 	let timePassed = $state(0);
-	let timerStatus = $state<Status>('PRE_START');
+	// let timerStatus = $state<Status>('PRE_START');
 	/* 
 1. start from rep phase(count up)
 2. count up phase: on click/tap switch to rest phase that starts count down.(compute remaining time)
@@ -40,11 +39,11 @@
   1. routine types: custom, tabata, emom, amrap, for time, for reps
 */
 	function handleToggleWatch() {
-		if (timerStatus === 'PRE_START') {
-			timerStatus = 'COUNTDOWN';
-			countDown();
-			return;
-		}
+		// if (timerStatus === 'PRE_START') {
+		// 	timerStatus = 'COUNTDOWN';
+		// 	countDown();
+		// 	return;
+		// }
 		if (isRunning) {
 			stop();
 		} else {
@@ -56,8 +55,10 @@
 		if (isRunning) return;
 		isRunning = true;
 		interval = setInterval(() => {
+			if (seconds - timePassed === 3) {
+				new Audio(audio).play();
+			}
 			if (seconds - timePassed <= 3) {
-				countDown();
 				navigator.vibrate(300);
 			}
 			if (timePassed >= seconds) {
@@ -66,6 +67,9 @@
 				isRunning = false;
 				computedTime = getTimerTime(seconds - timePassed - 1);
 				onFinished?.();
+				timerController.handleNext();
+				timePassed = 0;
+				countDown();
 				return;
 			}
 			timePassed++;
@@ -95,26 +99,23 @@
 		// countUp();
 		// countDown();
 	});
+	$effect(() => {
+		console.log({ seconds });
+	});
 </script>
 
 <div class="watch" onclick={handleToggleWatch} role="button" tabindex="0" onkeydown={null}>
 	<div class="skill">
 		<div class="outer">
 			<div class="inner">
-				{#if timerStatus === 'PRE_START'}
-					<h3 class="title" id="watch-inside">
-						{timer.rest_time}
-					</h3>
-				{:else}
-					<h3 class="title" id="watch-inside">
-						{computedTime}
-					</h3>
-				{/if}
+				<h3 class="title" id="watch-inside">
+					{computedTime}comp
+				</h3>
 				{children?.()}
 			</div>
 		</div>
 	</div>
-	<ProgressSvg seconds={timer.active_time} {timePassed} />
+	<ProgressSvg seconds={time} {timePassed} />
 </div>
 <div class="flex-row">
 	<button>back</button>

@@ -15,6 +15,6 @@
 	section {
 		display: grid;
 		place-items: center;
-		min-height: calc(100vh - var(--sub-header-height));
+		/* min-height: calc(100vh - var(--sub-header-height)); */
 	}
 </style>

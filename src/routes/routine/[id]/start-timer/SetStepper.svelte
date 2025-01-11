@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Tooltip from '../../../../lib/components/Tooltip.svelte';
-	import { workout } from '../../../../lib/data/template-json/dataTable';
 	import type { RoutineJoined } from '../../../../types/db/routine';
 
 	let {
@@ -10,7 +9,7 @@
 	}: {
 		routine: RoutineJoined;
 		currentSetIndex: number;
-		currentExerciseIndex: number;
+		currentExerciseIndex: number | null;
 	} = $props();
 </script>
 
@@ -36,15 +35,15 @@
 				</div>
 			</div>
 
-			{#if index === currentSetIndex}
+			<!-- {#if index === currentSetIndex}
 				↑
-			{/if}
+			{/if} -->
 		</div>
-		{#if index < routine.workout_sets.length - 1}
+		<!-- {#if index < routine.workout_sets.length - 1}
 			<div class="step">
 				<div class="line"></div>
 			</div>
-		{/if}
+		{/if} -->
 	{/each}
 </header>
 

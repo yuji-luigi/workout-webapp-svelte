@@ -73,8 +73,8 @@ function generateRoutines({ name, description }: { name: string; description: st
 			type,
 			...((!type.use_exercise_timer || Math.random() < 0.5) && {
 				timer: {
-					active_time: i + 1,
-					rest_time: i + 2
+					active_time: i + 11,
+					rest_time: i + 33
 					// active_time: Math.round(Math.random() * 60 + 20),
 					// rest_time: Math.round(Math.random() * 60 + 40)
 				}

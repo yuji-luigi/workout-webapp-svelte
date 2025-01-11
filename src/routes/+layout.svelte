@@ -22,7 +22,7 @@
 		socketStates.globalWebSocket?.addEventListener('open', () => {
 			seedLocalDB();
 		});
-		console.log('state', socketStates.isConnected);
+		console.log(socketStates.isConnected && 'yjs socket connected!');
 	});
 </script>
 
