@@ -17,11 +17,7 @@
 	{#each routine.workout_sets as set, index}
 		<div class="step" data-active={index === currentSetIndex}>
 			<div class="flex-column">
-				<Tooltip
-					tooltip={routine.workout_sets[index].exercises
-						.map((exercise) => exercise.name)
-						.join(', ')}
-				>
+				<Tooltip tooltip={routine.workout_sets[index].type.name}>
 					<h3 class="set-index">Set {index + 1}</h3>
 				</Tooltip>
 				<div>
@@ -52,7 +48,8 @@
 		display: grid;
 		grid-auto-flow: column;
 		place-content: center;
-		gap: 0.25rem;
+		place-items: start;
+		gap: 2.25rem;
 	}
 	.set-index {
 		font-size: 1.5rem;
