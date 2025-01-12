@@ -1,16 +1,12 @@
 <script lang="ts">
-	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
-	import RoutineCard from '$lib/components/card/cards/RoutineCard.svelte';
 	import RoutineConfirmDialogContent from '$lib/components/dialog/contents/RoutineConfirmDialogContent.svelte';
+	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import { openDialog } from '$lib/store/global-dialog-store';
-	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
-	import { collections } from '../../types/db/collections';
-	import { lofi_db } from '../../lib/db/lofi-yjs-db/lofi_db.svelte';
-	import type { RoutineJoined } from '../../types/db/routine';
-	import { createRandomImage } from '../../lib/images/random-images';
-	import RoutineList from './routine-list/RoutineList.svelte';
 	import { onMount } from 'svelte';
+	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
 	import { db } from '../../lib/db/dexie-db/dexie-db';
+	import type { RoutineJoined } from '../../types/db/routine';
+	import RoutineList from './routine-list/RoutineList.svelte';
 	let cardGrid: HTMLDivElement;
 	let routines: RoutineJoined[] = $state([]);
 

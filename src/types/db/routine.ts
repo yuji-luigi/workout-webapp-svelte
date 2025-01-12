@@ -13,7 +13,7 @@ export interface Routine {
 }
 
 export interface RoutineJoined extends Routine {
-	id?: number; // primary key
+	id: number; // primary key
 	slug: string;
 	name: string;
 	description: string;

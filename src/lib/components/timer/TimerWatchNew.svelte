@@ -109,7 +109,7 @@
 		<div class="outer">
 			<div class="inner">
 				<h3 class="title" id="watch-inside">
-					{computedTime}comp
+					{computedTime}
 				</h3>
 				{children?.()}
 			</div>

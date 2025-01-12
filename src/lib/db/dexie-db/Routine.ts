@@ -8,7 +8,7 @@ import { ValidationError } from '../../errors/validation-error';
 import { db } from './dexie-db';
 import { WSet } from './WSet';
 
-export class Routine implements RoutineJoined {
+export class Routine implements Omit<RoutineJoined, 'id'> {
 	id?: number;
 	slug: string;
 	name: string;
@@ -62,11 +62,14 @@ export class Routine implements RoutineJoined {
 		}
 		return true;
 	}
+	static async getAll() {
+		return db.routines.toArray();
+	}
 
 	async create() {}
 	async save() {
 		if (hasId(this)) {
-			return db.routines.put(this);
+			return await db.routines.put(this);
 		}
 	}
 
@@ -80,7 +83,6 @@ export class Routine implements RoutineJoined {
 			// @ts-ignore
 			id: undefined
 		});
-		instance.id = newID;
-		return instance;
+		return { ...instance, id: newID };
 	}
 }

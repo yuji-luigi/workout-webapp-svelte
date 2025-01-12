@@ -11,13 +11,13 @@ import type { IDOptional } from '../../../types/util-types/setOptional';
 
 class WorkoutDatabase extends Dexie {
 	// Actual table properties
-	workouts!: Table<WorkoutJoined, number>;
-	routines!: Table<RoutineJoined, number>;
-	workout_sets!: Table<WSetJoined, number>;
-	workout_set_types!: Table<WSetTypeI, number>;
-	exercises!: Table<ExerciseInSetWorkout, number>;
-	users!: Table<User, number>;
-	files!: Table<FileDB, number>;
+	workouts!: Table<WorkoutJoined, number, Omit<WorkoutJoined, 'id'>>;
+	routines!: Table<RoutineJoined, number, Omit<RoutineJoined, 'id'>>;
+	workout_sets!: Table<WSetJoined, number, Omit<WSetJoined, 'id'>>;
+	workout_set_types!: Table<WSetTypeI, number, Omit<WSetTypeI, 'id'>>;
+	exercises!: Table<ExerciseInSetWorkout, number, Omit<ExerciseInSetWorkout, 'id'>>;
+	users!: Table<User, number, Omit<User, 'id'>>;
+	files!: Table<FileDB, number, Omit<FileDB, 'id'>>;
 
 	// ALIASES (getters)
 	get routine() {

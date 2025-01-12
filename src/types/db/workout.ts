@@ -1,6 +1,6 @@
+import type { WSet } from '../../lib/db/dexie-db/WSet';
 import type { ExerciseJoined } from './exercise';
 import type { FileDB } from './file-db';
-import type { WSet } from './WSetI';
 
 /** workout is a joined exercises with timer config.
  *
