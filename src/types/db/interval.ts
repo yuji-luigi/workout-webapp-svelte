@@ -3,8 +3,8 @@
  */
 export interface Interval {
 	// id?: number;
-	rest_time: number;
-	active_time: number;
+	rest_time?: number;
+	active_time?: number;
 }
 
 export const TIMER_KEYS = ['rest_time', 'active_time'] as const;
