@@ -2,10 +2,9 @@
 	import type { Collection } from '../../../../types/db/collections';
 	import { openDialog } from '../../../store/global-dialog-store';
 	import * as formsByCollection from '$lib/components/form/form-by-collection';
-
 	let { collection }: { collection: Collection } = $props();
 	let FormByCollection = formsByCollection[collection];
-
+	// TODO: update the routine array in parent component. after adding a new routine.
 	const handleOpenDialog = () => {
 		openDialog({
 			componentInDialog: {

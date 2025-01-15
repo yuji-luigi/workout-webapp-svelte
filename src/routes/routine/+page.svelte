@@ -2,17 +2,19 @@
 	import RoutineConfirmDialogContent from '$lib/components/dialog/contents/RoutineConfirmDialogContent.svelte';
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import { openDialog } from '$lib/store/global-dialog-store';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
 	import { db } from '../../lib/db/dexie-db/dexie-db';
 	import type { RoutineJoined } from '../../types/db/routine';
 	import RoutineList from './routine-list/RoutineList.svelte';
+	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
 	let cardGrid: HTMLDivElement;
-	let routines: RoutineJoined[] = $state([]);
+	let routines = $derived(routinesStore.list);
 
 	onMount(async () => {
-		routines = await db.routine.toArray();
+		await getRoutines();
 	});
+
 	// Adjust the type as needed
 	//click event type
 	function handleClick(e: MouseEvent) {

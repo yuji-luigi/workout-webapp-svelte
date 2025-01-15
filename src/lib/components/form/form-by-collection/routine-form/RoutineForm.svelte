@@ -6,6 +6,8 @@
 	import { setFormId } from '../../../../store/form-store.svelte';
 	import { closeDialog } from '../../../../store/global-dialog-store';
 	import JsonForm from '../../JsonForm.svelte';
+	import { invalidate } from '$app/navigation';
+	import { routinesStore } from '../../../../store/states/routine_store.svelte';
 
 	setFormId('routine-form');
 	setContext('form_table_json', routineFormTableJson);
@@ -14,7 +16,8 @@
 		payload: Record<string, any>
 	) {
 		try {
-			await Routine.add(payload as any);
+			const newRoutine = await Routine.add(payload as any);
+			routinesStore.list = [...routinesStore.list, newRoutine];
 			await sleep(500);
 			closeDialog();
 		} catch (error) {
