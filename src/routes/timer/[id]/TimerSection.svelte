@@ -3,7 +3,7 @@
 	import ProgressSvg from '../../../lib/components/progress/progress-svg/ProgressSvg.svelte';
 	import TimerWatch from '../../../lib/components/interval/TimerWatch.svelte';
 	import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
-	import type { Timer } from '../../../types/db/interval';
+	import type { Interval } from '../../../types/db/interval';
 	import { goto } from '$app/navigation';
 	import CountInput from '../../../lib/components/counter/CountInput.svelte';
 	import { openDialog } from '../../../lib/store/global-dialog-store';
@@ -15,7 +15,7 @@
 	let timePassed = 0;
 
 	let sets = '';
-	export let interval: Timer;
+	export let interval: Interval;
 
 	onMount(() => {
 		const query = new URLSearchParams(location.search);

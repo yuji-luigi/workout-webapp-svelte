@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
 
-	type Timer = {
+	type Interval = {
 		name: string;
 		description: string;
 		image: string;
@@ -11,7 +11,7 @@
 	};
 
 	export let index: number;
-	export let interval: Timer;
+	export let interval: Interval;
 	export let active = false;
 	let cardEl: HTMLDivElement;
 	// TODO: Can be calculated in a server

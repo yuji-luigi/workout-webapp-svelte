@@ -7,7 +7,7 @@
 	import { formatSecondsToTimer } from '../../../../lib/helpers/format-time/formatSecondsToTimer';
 	import SetStepper from './SetStepper.svelte';
 	import { snapshot } from 'yjs';
-	import { extractTimerKeys, type Timer, type TimerKey } from '../../../../types/db/interval';
+	import { extractTimerKeys, type Interval, type TimerKey } from '../../../../types/db/interval';
 	let { data }: { data: { routine: RoutineJoined } } = $props();
 	let routine: RoutineJoined | undefined = data.routine;
 	let currentSetIndex = $state(0);
@@ -19,7 +19,7 @@
 		return currentSet.exercises[currentExerciseIndex];
 	});
 	// TODO: NEED A STATE FOR SET_COMPLETED TO USE SET.TIMER
-	let currentTimer = $derived.by<Timer | null>(() => {
+	let currentTimer = $derived.by<Interval | null>(() => {
 		if (!currentExercise || !currentSet) return null;
 		if (currentSet.type.use_exercise_timer) {
 			return currentExercise.interval;

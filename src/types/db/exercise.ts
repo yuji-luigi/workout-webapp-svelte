@@ -7,7 +7,7 @@ import type { FileDB } from './file-db';
  * */
 export interface Exercise {
 	id?: number; // primary key
-	name: string; // Foreign key to Timer
+	name: string; // Foreign key to Interval
 	slug: string;
 	description?: string;
 	image?: FileDB | number | File;
@@ -19,5 +19,5 @@ export interface ExerciseJoined extends Exercise {
 }
 
 export interface ExerciseInSetWorkout extends ExerciseJoined {
-	interval?: Timer;
+	interval?: Interval;
 }

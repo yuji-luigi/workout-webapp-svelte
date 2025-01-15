@@ -2,14 +2,14 @@
 	import { goto } from '$app/navigation';
 	import { getStores } from '$app/stores';
 	import { closeDialog } from '../../../store/global-dialog-store';
-	import type { Timer } from '../../../../types/db/data';
+	import type { Interval } from '../../../../types/db/data';
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
 	import Counter from '../../CounterOriginal.svelte';
 	import CountInput from '../../counter/CountInput.svelte';
 	import TimeCounter from '../../time-counter/TimeCounter.svelte';
 	import DialogActions from '../DialogActions.svelte';
 
-	export let data: Timer;
+	export let data: Interval;
 	let sets = 1;
 
 	function handlePush() {

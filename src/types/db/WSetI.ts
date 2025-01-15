@@ -8,7 +8,7 @@ import type { ExerciseInSetWorkout } from './exercise';
  *   */
 // export interface WSet {
 // 	id: number; // primary key
-// 	// id_timer: number; // Foreign key to Timer
+// 	// id_timer: number; // Foreign key to Interval
 // 	// id_workout: number; // Foreign key to Workout
 // 	n_set: number;
 // 	exercises: ExerciseInSetWorkout[];
@@ -26,7 +26,7 @@ export interface WSetJoined {
 	/** not simple exercise. it may have rest/active_time */
 	exercises: ExerciseInSetWorkout[];
 	n_set: number;
-	interval?: Timer;
+	interval?: Interval;
 	// set_rest_time?: number;
 	// set_active_time?: number;
 }

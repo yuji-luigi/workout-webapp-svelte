@@ -5,7 +5,7 @@
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
 	import DialogActions from '../DialogActions.svelte';
 
-	export let interval: Timer;
+	export let interval: Interval;
 	let sets = 1;
 
 	function handlePush() {

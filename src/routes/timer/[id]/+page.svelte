@@ -2,10 +2,10 @@
 	import { goto } from '$app/navigation';
 	import { onDestroy, onMount } from 'svelte';
 	import CountInput from '../../../lib/components/counter/CountInput.svelte';
-	import type { Timer } from '../../../types/db/interval';
+	import type { Interval } from '../../../types/db/interval';
 	import TimerSection from './TimerSection.svelte';
 
-	export let data: { interval: Timer };
+	export let data: { interval: Interval };
 	let dialog: HTMLDialogElement;
 	onMount(async () => {
 		// await tick();

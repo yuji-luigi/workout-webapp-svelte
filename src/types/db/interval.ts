@@ -1,7 +1,7 @@
 /**
- * Timer collection. But one interval is only used by one workout_set. so it is one to one relationship.
+ * Interval collection. But one interval is only used by one workout_set. so it is one to one relationship.
  */
-export interface Timer {
+export interface Interval {
 	// id?: number;
 	rest_time: number;
 	active_time: number;
@@ -11,7 +11,7 @@ export const TIMER_KEYS = ['rest_time', 'active_time'] as const;
 
 export type TimerKey = (typeof TIMER_KEYS)[number];
 
-export function extractTimerKeys(interval: Timer) {
+export function extractTimerKeys(interval: Interval) {
 	return (
 		Object.keys(interval)
 			.filter((key) => TIMER_KEYS.includes(key as TimerKey))

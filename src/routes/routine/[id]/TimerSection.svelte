@@ -14,7 +14,7 @@
 	let timePassed = 0;
 
 	let sets = '';
-	export let interval: Timer;
+	export let interval: Interval;
 
 	onMount(() => {
 		const query = new URLSearchParams(location.search);

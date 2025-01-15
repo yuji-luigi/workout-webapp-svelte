@@ -13,7 +13,7 @@
       interval: [{90sec, 30sec}, {90sec, 30sec}, {90sec, 30sec}] // {active, rest}
 
 Approach 2.
-Timer base.
+Interval base.
 Choose interval.
 <Example Reps and sets>
   starts interval and count up. tap to and count down the seconds
@@ -26,15 +26,15 @@ Choose interval.
     name: interval.secondsActive + interval.secondsRest
 
 <Example HIIT>
-  starts interval and only countdown. finish and start countdown again. Timer should be tuple of [int, int] => [active, rest] 
+  starts interval and only countdown. finish and start countdown again. Interval should be tuple of [int, int] => [active, rest] 
     name: interval.secondsActive + interval.secondsRest
   Problem seconds field is int it should not be a tuple
 
 <Example Abs>
-  starts interval and only countdown. finish and start countdown again. Timer is array of object {name, description, exercise_id, seconds}
+  starts interval and only countdown. finish and start countdown again. Interval is array of object {name, description, exercise_id, seconds}
     name: interval.secondsActive + interval.secondsRest
   Problem seconds field is int it should not be a tuple
 
-NOTE: The rest time is not a Exercise. It can be like pseudo Timer without creating a record.
-NOTE: May be Timer object should contain seconds: int and also restSeconds: int
+NOTE: The rest time is not a Exercise. It can be like pseudo Interval without creating a record.
+NOTE: May be Interval object should contain seconds: int and also restSeconds: int
 
