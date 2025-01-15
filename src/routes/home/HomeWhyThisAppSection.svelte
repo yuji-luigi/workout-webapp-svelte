@@ -6,9 +6,9 @@
 
 	const cards = [
 		{
-			title: 'Create timer',
+			title: 'Create interval',
 			description:
-				'Simple! Just create timer for single workout to routine just like a timer app. You can share it or you can use the other user created timer.',
+				'Simple! Just create interval for single workout to routine just like a interval app. You can share it or you can use the other user created interval.',
 			img: '/images/placeholder/placeholder-nike-card1.jpg'
 		},
 		{

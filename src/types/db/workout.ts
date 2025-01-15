@@ -2,7 +2,7 @@ import type { WSet } from '../../lib/db/dexie-db/WSet';
 import type { ExerciseJoined } from './exercise';
 import type { FileDB } from './file-db';
 
-/** workout is a joined exercises with timer config.
+/** workout is a joined exercises with interval config.
  *
  */
 export interface Workout {
@@ -15,7 +15,7 @@ export interface Workout {
 	// description: string;
 	// image: FileDB;
 	/**
-	 * you can set timer values whether here or exercise level. not both.
+	 * you can set interval values whether here or exercise level. not both.
 	 * get rest_time and active_time from here and set to each exercise, in iteration set if rest_time and active_time in exercise or workout level to handle priority.
 	 * */
 	rest_time?: number;

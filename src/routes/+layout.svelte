@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../style/timer.css';
+	import '../style/interval.css';
 	import '../style/app.css';
 	import '../style/component.css';
 	import '../style/animation.css';

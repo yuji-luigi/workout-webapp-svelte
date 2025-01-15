@@ -5,18 +5,18 @@
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
 	import DialogActions from '../DialogActions.svelte';
 
-	export let timer: Timer;
+	export let interval: Timer;
 	let sets = 1;
 
 	function handlePush() {
 		closeDialog();
-		goto(`/timers/${timer.id}?sets=${sets}`);
+		goto(`/timers/${interval.id}?sets=${sets}`);
 	}
 </script>
 
 <div class="contents">
-	<img src={timer.image.split('(')[1].split(')')[0]} alt="" height="300px" />
-	<h5>Time: {getTimerTime(timer.seconds)}</h5>
+	<img src={interval.image.split('(')[1].split(')')[0]} alt="" height="300px" />
+	<h5>Time: {getTimerTime(interval.seconds)}</h5>
 
 	<div class="counter-section">
 		<h4>How many sets?</h4>

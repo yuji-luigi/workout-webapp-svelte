@@ -5,18 +5,18 @@
 	import Circle from '../progress/progress-svg/Circle.svelte';
 
 	let {
-		timer,
+		interval,
 		seconds,
 		timePassed,
 		onFinished
 	}: {
-		timer: { seconds: number };
+		interval: { seconds: number };
 		seconds: number;
 		timePassed: number;
 		onFinished: () => void;
 	} = $props();
 
-	let displaySeconds = timer.seconds;
+	let displaySeconds = interval.seconds;
 
 	let interval: number;
 	let isRunning = false;

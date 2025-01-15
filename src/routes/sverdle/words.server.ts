@@ -2066,7 +2066,7 @@ export const words = [
 	'tiger',
 	'tight',
 	'tilde',
-	'timer',
+	'interval',
 	'timid',
 	'tipsy',
 	'titan',

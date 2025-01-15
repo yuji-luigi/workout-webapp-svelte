@@ -53,7 +53,7 @@ function generateRoutines({ name, description }: { name: string; description: st
 			return {
 				...exercise,
 				...(type.use_exercise_timer && {
-					timer: {
+					interval: {
 						// id: j,
 						active_time: j + 1,
 						rest_time: j + 2
@@ -72,7 +72,7 @@ function generateRoutines({ name, description }: { name: string; description: st
 			exercises,
 			type,
 			...((!type.use_exercise_timer || Math.random() < 0.5) && {
-				timer: {
+				interval: {
 					active_time: i + 11,
 					rest_time: i + 33
 					// active_time: Math.round(Math.random() * 60 + 20),
@@ -214,8 +214,8 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 	},
 	{
 		id: 4,
-		name: 'Circuit Training timer per exercise',
-		slug: 'circuit-training-timer-per-exercise',
+		name: 'Circuit Training interval per exercise',
+		slug: 'circuit-training-interval-per-exercise',
 		use_active_time: true,
 		use_rest_time: true,
 		use_exercise_timer: false,
@@ -228,7 +228,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'emom',
 		use_active_time: true,
 		use_rest_time: false,
-		use_exercise_timer: false, // EMOM typically uses a global timer per minute
+		use_exercise_timer: false, // EMOM typically uses a global interval per minute
 		description: 'Every Minute On the Minute - Perform a set number of reps each minute',
 		repeat: true
 	},
@@ -238,7 +238,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'amrap',
 		use_active_time: true,
 		use_rest_time: false,
-		use_exercise_timer: false, // AMRAP uses a single timer for the entire duration
+		use_exercise_timer: false, // AMRAP uses a single interval for the entire duration
 		description:
 			'As Many Rounds As Possible - Perform as many rounds of a set of exercises within a time limit',
 		repeat: false
@@ -329,7 +329,7 @@ const defaultWorkoutTypes: WSetTypeI[] = [
 		slug: 'yoga-flow',
 		use_active_time: true,
 		use_rest_time: false,
-		use_exercise_timer: true, // Each pose may have its own timer
+		use_exercise_timer: true, // Each pose may have its own interval
 		description: 'A series of yoga poses for relaxation and flexibility',
 		repeat: false
 	}

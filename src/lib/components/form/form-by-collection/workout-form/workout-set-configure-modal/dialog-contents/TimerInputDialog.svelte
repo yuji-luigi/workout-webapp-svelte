@@ -7,7 +7,7 @@
 </script>
 
 <section class="dialog-container">
-	<h2>set the timer</h2>
+	<h2>set the interval</h2>
 	<TimerInput bind:time />
 	<button
 		class="button primary"

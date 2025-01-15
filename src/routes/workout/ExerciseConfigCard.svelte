@@ -37,7 +37,7 @@
 						label="workout time"
 						{index}
 						{form_id}
-						name={preName + `.timer.active_time`}
+						name={preName + `.interval.active_time`}
 					/>
 				{/if}
 				{#if parsedSelectedType.use_rest_time}
@@ -45,7 +45,7 @@
 						label="rest time"
 						{index}
 						{form_id}
-						name={preName + `.timer.rest_time`}
+						name={preName + `.interval.rest_time`}
 					/>
 				{/if}
 			{/if} <button onclick={() => removeExercise(index)}>remove</button>

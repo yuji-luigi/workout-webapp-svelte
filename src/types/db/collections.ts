@@ -5,7 +5,7 @@ export const collections = [
 	'workout_set',
 	'routine'
 	// 'workout_set'
-	// 'timer'
+	// 'interval'
 ] as const;
 
 export type Collection = (typeof collections)[number];

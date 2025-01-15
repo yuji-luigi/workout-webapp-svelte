@@ -49,8 +49,8 @@
 		{#each workoutTypes as workoutType, index}
 			<WorkoutTypeCard {workoutType} active={workoutType.active} {index} />
 		{/each}
-		<!-- {#each timers as timer, index}
-			<TimerCard {timer} active={timer.active} {index} />
+		<!-- {#each timers as interval, index}
+			<TimerCard {interval} active={interval.active} {index} />
 		{/each} -->
 	</div>
 </div>

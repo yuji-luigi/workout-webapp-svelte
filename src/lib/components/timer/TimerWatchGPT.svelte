@@ -9,7 +9,7 @@
 		timerInterval = setInterval(() => {
 			timePassed += 1;
 			timeLeft = TIME_LIMIT - timePassed;
-			document.getElementById('base-timer-label').innerHTML = formatTime(timeLeft);
+			document.getElementById('base-interval-label').innerHTML = formatTime(timeLeft);
 			setCircleProgress();
 
 			if (timeLeft === 0) {
@@ -34,7 +34,7 @@
 	startTimer();
 </script>
 
-<div class="base-timer">
+<div class="base-interval">
 	<div class="base-timer__circle">
 		<div class="base-timer__filler"></div>
 		<div class="base-timer__mask full"></div>
@@ -42,7 +42,7 @@
 			<div class="base-timer__fill"></div>
 		</div>
 	</div>
-	<span id="base-timer-label" class="base-timer__label">20:00</span>
+	<span id="base-interval-label" class="base-timer__label">20:00</span>
 </div>
 
 <style>
@@ -53,7 +53,7 @@
 		place-items: center;
 	}
 
-	.base-timer {
+	.base-interval {
 		position: relative;
 		width: 300px;
 		height: 300px;

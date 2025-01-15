@@ -7,6 +7,7 @@
 	export let active = false;
 	let cardEl: HTMLDivElement;
 	// TODO: Can be calculated in a server
+	// TODO: refactor unnecessary codes
 	routine;
 	let var_image_url = routine.image && `--image-url:${routine.image};`;
 	const totalSets = routine.workout_sets.length;

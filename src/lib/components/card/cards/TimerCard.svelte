@@ -11,11 +11,11 @@
 	};
 
 	export let index: number;
-	export let timer: Timer;
+	export let interval: Timer;
 	export let active = false;
 	let cardEl: HTMLDivElement;
 	// TODO: Can be calculated in a server
-	const time = getTimerTime(timer.seconds);
+	const time = getTimerTime(interval.seconds);
 	let initialPosition = {
 		top: 0,
 		left: 0,
@@ -40,12 +40,12 @@
 	class="card"
 	on:keydown={(e) => null}
 	data-index={index}
-	style={`--image-url:${timer.image};`}
+	style={`--image-url:${interval.image};`}
 >
 	<div class="info">
-		<h4>{timer.name} {time}</h4>
+		<h4>{interval.name} {time}</h4>
 		<p class="description">
-			{timer.description}
+			{interval.description}
 		</p>
 	</div>
 </div>

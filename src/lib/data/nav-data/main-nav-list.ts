@@ -14,7 +14,7 @@ export const mainNavList: NavItem[] = [
 		label: 'Workouts'
 	},
 	{
-		href: '/timer',
+		href: '/interval',
 		label: 'Timers'
 	},
 	{

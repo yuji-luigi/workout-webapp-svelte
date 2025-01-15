@@ -58,10 +58,10 @@
 	<div class="set-level-timers full-width">
 		{#if !parsedSelectedType?.use_exercise_timer}
 			{#if parsedSelectedType?.use_rest_time}
-				<TimerInputWithDialog name={preName + '.timer.rest_time'} suffix="rest time" />
+				<TimerInputWithDialog name={preName + '.interval.rest_time'} suffix="rest time" />
 			{/if}
 			{#if parsedSelectedType?.use_active_time}
-				<TimerInputWithDialog name={preName + '.timer.active_time'} suffix="active time" />
+				<TimerInputWithDialog name={preName + '.interval.active_time'} suffix="active time" />
 			{/if}
 		{/if}
 	</div>

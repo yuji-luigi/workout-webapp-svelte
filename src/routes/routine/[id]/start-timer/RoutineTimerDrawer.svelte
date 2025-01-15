@@ -7,9 +7,10 @@
 </script>
 
 <button onclick={() => (isOpen = !isOpen)}>toggle</button>
-<section class="routine-timer-drawer" data-open={isOpen}>
+<section class="routine-interval-drawer" data-open={isOpen}>
 	<button onclick={() => (isOpen = !isOpen)}>toggle</button>
 	<header class="set-stepper">
+		<!-- TODO: can count the reps of finished or on going workouts (see the current index of set and exercise) -->
 		{#each routine.workout_sets as set, index}
 			<div class="step">
 				<Tooltip
@@ -31,7 +32,7 @@
 </section>
 
 <style>
-	.routine-timer-drawer {
+	.routine-interval-drawer {
 		margin-top: var(--sub-header-height);
 		&[data-open='false'] {
 			translate: -100% 0%;

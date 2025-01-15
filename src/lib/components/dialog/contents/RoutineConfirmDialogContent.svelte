@@ -8,7 +8,7 @@
 
 	function handlePush() {
 		// push the routine to the workout list
-		goto(`/routine/${routine.id}/start-timer`);
+		goto(`/routine/${routine.id}/start-interval`);
 		closeDialog();
 	}
 </script>

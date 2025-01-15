@@ -8,21 +8,21 @@
 		"id": 2,
 		"name": "Circuit",
 		"slug": "circuit",
-		"description": "timer indicates the rest time",
+		"description": "interval indicates the rest time",
 		"image": "url(https://picsum.photos/400/301)"
 	},
 	{
 		"id": 3,
 		"name": "HIIT",
 		"slug": "HIIT",
-		"description": "timer indicates the rest time",
+		"description": "interval indicates the rest time",
 		"image": "url(https://picsum.photos/400/301)"
 	},
 	{
 		"id": 4,
 		"name": "TABATA",
 		"slug": "TABATA",
-		"description": "timer indicates the rest time",
+		"description": "interval indicates the rest time",
 		"image": "url(https://picsum.photos/400/301)"
 	}
 ]

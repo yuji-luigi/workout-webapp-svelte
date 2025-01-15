@@ -9,7 +9,7 @@
 	// socket.addEventListener('open', () => {
 	// 	console.log('connected');
 	// });
-	// save exercise + timer + joined workout
+	// save exercise + interval + joined workout
 	async function handleSubmit(
 		event: SubmitEvent & { target: HTMLFormElement },
 		payload: Record<string, any>

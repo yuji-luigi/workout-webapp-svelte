@@ -19,5 +19,5 @@ export interface ExerciseJoined extends Exercise {
 }
 
 export interface ExerciseInSetWorkout extends ExerciseJoined {
-	timer?: Timer;
+	interval?: Timer;
 }

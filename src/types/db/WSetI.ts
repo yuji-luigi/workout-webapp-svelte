@@ -14,7 +14,7 @@ import type { ExerciseInSetWorkout } from './exercise';
 // 	exercises: ExerciseInSetWorkout[];
 // }
 
-/** WSet represents workout with timer. so it is Workout + timer. Flat object somehow */
+/** WSet represents workout with interval. so it is Workout + interval. Flat object somehow */
 export interface WSetJoined {
 	id?: number;
 	slug: string;
@@ -26,7 +26,7 @@ export interface WSetJoined {
 	/** not simple exercise. it may have rest/active_time */
 	exercises: ExerciseInSetWorkout[];
 	n_set: number;
-	timer?: Timer;
+	interval?: Timer;
 	// set_rest_time?: number;
 	// set_active_time?: number;
 }

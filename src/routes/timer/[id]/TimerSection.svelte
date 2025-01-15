@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import ProgressSvg from '../../../lib/components/progress/progress-svg/ProgressSvg.svelte';
-	import TimerWatch from '../../../lib/components/timer/TimerWatch.svelte';
+	import TimerWatch from '../../../lib/components/interval/TimerWatch.svelte';
 	import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
-	import type { Timer } from '../../../types/db/timer';
+	import type { Timer } from '../../../types/db/interval';
 	import { goto } from '$app/navigation';
 	import CountInput from '../../../lib/components/counter/CountInput.svelte';
 	import { openDialog } from '../../../lib/store/global-dialog-store';
@@ -15,7 +15,7 @@
 	let timePassed = 0;
 
 	let sets = '';
-	export let timer: Timer;
+	export let interval: Timer;
 
 	onMount(() => {
 		const query = new URLSearchParams(location.search);
@@ -30,15 +30,15 @@
 	}
 
 	$: {
-		if (timePassed >= timer.seconds) {
+		if (timePassed >= interval.seconds) {
 			openDialog({});
 		}
 	}
 </script>
 
-<section class="timer-section">
+<section class="interval-section">
 	<button class="button">Open</button>
-	<TimerWatch {timer} {onFinished}>
+	<TimerWatch {interval} {onFinished}>
 		<div class="contents">
 			<h4>sets 1/{sets}</h4>
 			<h4>reps</h4>
@@ -51,7 +51,7 @@
 </section>
 
 <style>
-	.timer-section {
+	.interval-section {
 		display: grid;
 		place-items: center;
 		justify-content: center;
