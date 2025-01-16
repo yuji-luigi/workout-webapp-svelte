@@ -1,6 +1,7 @@
 // Type for Set (unchanged from the previous diagram)
 
 import type { ExerciseInSetWorkout } from './exercise';
+import type { Interval } from './interval';
 
 /**
  *  WSet is only used by one routine.

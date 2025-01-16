@@ -1,3 +1,6 @@
+import type { ExerciseInSetWorkout } from './exercise';
+import type { WSetJoined } from './WSetI';
+
 /**
  * Interval collection. But one interval is only used by one workout_set. so it is one to one relationship.
  */
@@ -17,5 +20,18 @@ export function extractTimerKeys(interval: Interval) {
 			.filter((key) => TIMER_KEYS.includes(key as TimerKey))
 			/** sorting without argument so active_timer should be the first one. ASCII sorting */
 			.sort() as TimerKey[]
+	);
+}
+
+export function getFirstTimerKey({
+	set,
+	exercise
+}: {
+	set: WSetJoined;
+	exercise: ExerciseInSetWorkout;
+}) {
+	return (
+		(exercise?.interval && extractTimerKeys(exercise?.interval)[0]) ||
+		(set.interval && extractTimerKeys(set.interval)[0])!
 	);
 }

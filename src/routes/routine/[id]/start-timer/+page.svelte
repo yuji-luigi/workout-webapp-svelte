@@ -8,11 +8,14 @@
 	import SetStepper from './SetStepper.svelte';
 	import { snapshot } from 'yjs';
 	import { extractTimerKeys, type Interval, type TimerKey } from '../../../../types/db/interval';
+	import { RoutineTimer } from '../../../../lib/store/states/routine_timer.svelte';
 	let { data }: { data: { routine: RoutineJoined } } = $props();
 	let routine: RoutineJoined | undefined = data.routine;
 	let currentSetIndex = $state(0);
 	let currentExerciseIndex = $state<number | null>(0);
 	let currentSet = $derived(routine?.workout_sets[currentSetIndex]);
+
+	const routineTimer = $state(new RoutineTimer(routine));
 
 	let currentExercise = $derived.by(() => {
 		if (!currentSet || currentExerciseIndex === null) return null;
@@ -22,9 +25,9 @@
 	let currentTimer = $derived.by<Interval | null>(() => {
 		if (!currentExercise || !currentSet) return null;
 		if (currentSet.type.use_exercise_timer) {
-			return currentExercise.interval;
+			return currentExercise.interval || null;
 		}
-		return currentSet.interval;
+		return currentSet.interval || null;
 	});
 
 	let currentTimerIndex = $state(0);
@@ -47,10 +50,6 @@
 	let currentTime = $derived(
 		currentTimer && currentTimerKeys && currentTimer[currentTimerKeys[currentTimerIndex]]
 	);
-	$effect(() => {
-		// console.log({ currentTime, currentTimerIndex, currentTimerKeys });
-		console.log({ currentTime });
-	});
 
 	function handleNextSet() {
 		if (!routine) return;
@@ -61,6 +60,7 @@
 	}
 
 	function handlePrev() {
+		routineTimer.handlePrev();
 		if (!routine) return;
 		/** when the set is at least second and pointing at the first exercise*/
 		if (currentExerciseIndex === 0 && currentSetIndex > 0) {
@@ -78,9 +78,11 @@
 		}
 	}
 	function handleNext() {
+		routineTimer.handleNext();
+
 		if (!routine) return;
 		// handle next interval index
-		if (currentTimerIndex < currentTimerKeys.length - 1) {
+		if (currentTimerKeys && currentTimerIndex < currentTimerKeys.length - 1) {
 			currentTimerIndex++;
 			return;
 		}
@@ -101,6 +103,11 @@
 			currentExerciseIndex++;
 		}
 	}
+	let index = $state(routineTimer.a);
+	$effect(() => {
+		console.log($state.snapshot(index));
+	});
+
 	const timerController = {
 		handleNext,
 		handlePrev
@@ -132,7 +139,7 @@
     </pre>
 	</div>
 	{#if currentTimer}
-		<TimerWatchNew {timerController} time={currentTime} />
+		<TimerWatchNew {timerController} time={currentTime || 0} />
 	{/if}
 {/if}
 

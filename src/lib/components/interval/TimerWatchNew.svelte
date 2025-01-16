@@ -99,9 +99,6 @@
 		// countUp();
 		// countDown();
 	});
-	$effect(() => {
-		console.log({ seconds });
-	});
 </script>
 
 <div class="watch" onclick={handleToggleWatch} role="button" tabindex="0" onkeydown={null}>

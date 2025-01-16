@@ -1,4 +1,5 @@
 import type { FileDB } from './file-db';
+import type { Interval } from './interval';
 
 /**
  * Primitive collection (no join needed)
