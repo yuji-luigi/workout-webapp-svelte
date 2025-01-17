@@ -19,7 +19,9 @@ export class RoutineTimer {
 	currentTimerKeys: string[] = $state([]);
 	// the actual interval value. shown on the timer. and used to beep
 	currentInterval: Interval | null = $derived.by(() => {
-		if (!this.currentExercise) return null;
+		if (!this.currentExercise) {
+			return this.currentSet?.interval || null;
+		}
 		return this.currentExercise.interval || null;
 	});
 	currentTime: number | null = $derived.by(() => {
