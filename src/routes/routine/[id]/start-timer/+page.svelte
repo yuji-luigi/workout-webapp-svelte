@@ -31,7 +31,7 @@
 		<pre>
       {#if routineTimer.currentSet.type.use_exercise_timer && routineTimer.currentExercise}
 				{formatSecondsToTimer(
-					routineTimer.currentExercise.interval?.active_time || 0
+					routineTimer.currentExercise.interval?.rest_time || 0
 				)} rest
 				{formatSecondsToTimer(
 					routineTimer.currentExercise.interval?.active_time || 0

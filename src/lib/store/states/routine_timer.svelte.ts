@@ -26,6 +26,7 @@ export class RoutineTimer {
 	});
 	currentTime: number | null = $derived.by(() => {
 		if (!this.currentInterval) return null;
+		// TODO: UPDATE THE CURRENT INTERVAL KEY CORRECTLY AFTER BEEP SOUND
 		return this.currentInterval[this.currentIntervalKey] || null;
 	});
 	// the key of the interval. rest_time or active_time
