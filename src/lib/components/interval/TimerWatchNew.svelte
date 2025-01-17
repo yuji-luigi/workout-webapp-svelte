@@ -5,21 +5,19 @@
 	import Circle from '../progress/progress-svg/Circle.svelte';
 	import type { RoutineJoined } from '../../../types/db/routine';
 	import audio from '$lib/assets/sounds/count-down-sha.mp3';
+	import type { RoutineTimer } from '../../store/states/routine_timer.svelte';
 	type Status = 'COUNTDOWN' | 'COUNTUP' | 'PAUSE' | 'FINISHED' | 'PRE_START';
 
 	let {
 		time,
-		timerController,
+		routineTimer,
 		children,
 		onFinished
 	}: {
 		onFinished?: () => void;
 		children?: Snippet;
 		time: number;
-		timerController: {
-			handleNext: () => void;
-			handlePrev: () => void;
-		};
+		routineTimer: RoutineTimer;
 	} = $props();
 	let interval: number;
 	let isRunning = false;
@@ -67,7 +65,7 @@
 				isRunning = false;
 				computedTime = getTimerTime(seconds - timePassed - 1);
 				onFinished?.();
-				timerController.handleNext();
+				routineTimer.handleNext();
 				timePassed = 0;
 				countDown();
 				return;

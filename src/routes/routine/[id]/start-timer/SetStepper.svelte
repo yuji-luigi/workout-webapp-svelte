@@ -1,29 +1,30 @@
 <script lang="ts">
-	import Tooltip from '../../../../lib/components/Tooltip.svelte';
-	import type { RoutineJoined } from '../../../../types/db/routine';
-
-	let {
-		routine,
-		currentSetIndex = 0,
-		currentExerciseIndex = 0
-	}: {
-		routine: RoutineJoined;
-		currentSetIndex: number;
-		currentExerciseIndex: number | null;
-	} = $props();
+	import Tooltip from '$lib/components/Tooltip.svelte';
+	import type { RoutineJoined } from '$types/db/routine';
+	import { getRoutineTimer } from '$lib/store/states/routine_timer.svelte';
+	// let {
+	// 	routine,
+	// 	currentSetIndex = 0,
+	// 	currentExerciseIndex = 0
+	// }: {
+	// 	routine: RoutineJoined;
+	// 	currentSetIndex: number;
+	// 	currentExerciseIndex: number | null;
+	// } = $props();
+	let routineTimer = getRoutineTimer();
 </script>
 
 <header class="set-stepper">
-	{#each routine.workout_sets as set, index}
-		<div class="step" data-active={index === currentSetIndex}>
+	{#each routineTimer.routine.workout_sets || [] as set, index}
+		<div class="step" data-active={index === routineTimer.currentSetIndex}>
 			<div class="flex-column">
-				<Tooltip tooltip={routine.workout_sets[index].type.name}>
+				<Tooltip tooltip={set.type.name}>
 					<h3 class="set-index">Set {index + 1}</h3>
 				</Tooltip>
 				<div>
 					<ul>
-						{#each routine.workout_sets[index].exercises as exercise, index}
-							<li class="exercise-item" data-active={index === currentExerciseIndex}>
+						{#each set.exercises as exercise, index}
+							<li class="exercise-item" data-active={index === routineTimer.currentExerciseIndex}>
 								{exercise.name}
 							</li>
 						{/each}
