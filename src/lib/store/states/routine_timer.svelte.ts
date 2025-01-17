@@ -9,35 +9,49 @@ import type { WSetJoined } from '../../../types/db/WSetI';
 // calculate the
 
 export class RoutineTimer {
-	#routine: RoutineJoined;
-	currentSet?: WSetJoined = $state();
-	currentExercise?: ExerciseInSetWorkout = $state();
-	currentInterval?: number = $state();
-	currentIntervalKey: 'rest_time' | 'active_time' = $state('active_time');
-	currentExerciseIndex: number | null = $state(null);
+	// routine passed in
+	#routine: RoutineJoined | Record<string, null> = {};
+	// all the indexes for each property of the routine
+	currentExerciseIndex: number | null = $state(0);
 	currentSetIndex: number = $state(0);
-	currentTimerKeys: string[] = $state([]);
 	currentTimerIndex: number = $state(0);
+	// timer keys updates when the current interval changes
+	currentTimerKeys: string[] = $state([]);
+	// the actual interval value. shown on the timer. and used to beep
+	currentInterval?: number = $state();
+	// the key of the interval. rest_time or active_time
+	currentIntervalKey: 'rest_time' | 'active_time' = $state('active_time');
+	// current WSetJoined Object. reactive with the currentSetIndex
+	currentSet?: WSetJoined = $derived(this.#routine.workout_sets?.[this.currentSetIndex]);
+	// current ExerciseInSetWorkout Object. reactive with the currentExerciseIndex
+	currentExercise: ExerciseInSetWorkout | null = $derived(
+		this.currentExerciseIndex === null
+			? null
+			: this.#routine.workout_sets?.[this.currentSetIndex]?.exercises?.[
+					this.currentExerciseIndex
+				] || null
+	);
+
 	constructor(routine: RoutineJoined) {
 		this.#routine = routine;
 		// start with the first set
-		this.currentSet = routine.workout_sets[0];
+		// this.currentSet = routine.workout_sets[0];
 		// start with the first exercise
-		this.currentExercise = routine.workout_sets[0].exercises[0];
+		const firstSet = routine.workout_sets?.[0];
+		const firstExercise = firstSet?.exercises?.[0];
+		// this.currentExercise = routine.workout_sets[0].exercises[0];
 		this.currentIntervalKey =
-			(this.currentExercise?.interval && extractTimerKeys(this.currentExercise?.interval)[0]) ||
-			(this.currentSet.interval && extractTimerKeys(this.currentSet.interval)[0])!;
+			(firstExercise?.interval && extractTimerKeys(firstExercise?.interval)[0]) ||
+			(firstSet?.interval && extractTimerKeys(firstSet?.interval)[0])!;
 		if (!this.currentIntervalKey) {
 			throw new Error('No interval key');
 		}
 		// start with the first interval in the first exercise
 		this.currentInterval =
 			this.currentExercise?.interval && this.currentExercise?.interval[this.currentIntervalKey];
-		this.currentExerciseIndex = 0;
 		this.currentSetIndex = 0;
-		this.currentTimerKeys = extractTimerKeys(
-			this.currentExercise?.interval || this.currentSet.interval!
-		);
+		this.currentExerciseIndex = 0;
+		this.currentTimerKeys = extractTimerKeys(this.currentExercise?.interval || firstSet?.interval!);
 		this.currentTimerIndex = 0;
 	}
 	handleNext = () => {
@@ -66,15 +80,19 @@ export class RoutineTimer {
 			this.currentExerciseIndex === null
 		) {
 			this.goToNextSet();
-		} else {
-			console.log('handleNext', this.currentExerciseIndex);
-			this.currentExerciseIndex++;
+			return;
 		}
+
+		this.currentExerciseIndex++;
+		// console.log('handleNext', this.currentExerciseIndex);
 	};
 	handlePrev() {
-		if (!this.#routine) return;
+		if (!this.#routine.workout_sets) return;
 		/** when the set is at least second and pointing at the first exercise*/
-		if (this.currentExerciseIndex === 0 && this.currentSetIndex > 0) {
+		if (
+			(this.currentExerciseIndex === 0 || this.currentExerciseIndex === null) &&
+			this.currentSetIndex > 0
+		) {
 			this.currentSetIndex--;
 			this.currentExerciseIndex =
 				this.#routine.workout_sets[this.currentSetIndex].exercises.length - 1;
@@ -83,17 +101,12 @@ export class RoutineTimer {
 			this.currentExerciseIndex--;
 			return;
 		}
-		/** all exercise are completed of the current set*/
-		if (this.currentExerciseIndex === null) {
-			/** set exercise index to last one of current set*/
-			this.currentExerciseIndex =
-				this.#routine.workout_sets[this.currentSetIndex].exercises.length - 1;
-		}
 	}
 	handleStop() {}
 	handleReset() {}
 
 	private goToNextSet() {
+		if (!this.#routine.workout_sets) return;
 		if (this.currentSetIndex < this.#routine.workout_sets.length - 1) {
 			this.currentSetIndex++;
 			this.currentExerciseIndex = 0;
@@ -101,27 +114,12 @@ export class RoutineTimer {
 	}
 
 	private goToPreviousSet() {
+		if (!this.#routine.workout_sets) return;
 		if (this.currentSetIndex > 0) {
 			this.currentSetIndex--;
 			this.currentExerciseIndex =
 				this.#routine.workout_sets[this.currentSetIndex].exercises.length - 1;
 		}
-	}
-
-	get currentStates() {
-		return {
-			currentSet: this.currentSet,
-			currentExercise: this.currentExercise,
-			currentInterval: this.currentInterval,
-			currentIntervalKey: this.currentIntervalKey,
-			currentExerciseIndex: this.currentExerciseIndex,
-			currentSetIndex: this.currentSetIndex,
-			currentTimerKeys: this.currentTimerKeys,
-			currentTimerIndex: this.currentTimerIndex
-		};
-	}
-	get a() {
-		return this.currentExerciseIndex;
 	}
 }
 

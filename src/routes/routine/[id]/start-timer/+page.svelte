@@ -15,7 +15,13 @@
 	let currentExerciseIndex = $state<number | null>(0);
 	let currentSet = $derived(routine?.workout_sets[currentSetIndex]);
 
-	const routineTimer = $state(new RoutineTimer(routine));
+	const routineTimer = new RoutineTimer(routine);
+
+	$effect(() => {
+		console.log({
+			exercise: routineTimer.currentExercise
+		});
+	});
 
 	let currentExercise = $derived.by(() => {
 		if (!currentSet || currentExerciseIndex === null) return null;
@@ -62,20 +68,26 @@
 	function handlePrev() {
 		routineTimer.handlePrev();
 		if (!routine) return;
-		/** when the set is at least second and pointing at the first exercise*/
-		if (currentExerciseIndex === 0 && currentSetIndex > 0) {
+		console.log('handlePrev');
+		/**
+		 * case go back to prev set.
+		 * point to last exercise of prev set
+		 * checking: is a first exercise of the current set or null.
+		 * */
+		if ((currentExerciseIndex === null || currentExerciseIndex === 0) && currentSetIndex > 0) {
 			currentSetIndex--;
 			currentExerciseIndex = routine.workout_sets[currentSetIndex].exercises.length - 1;
+			return;
 		}
 		if (currentExerciseIndex && currentExerciseIndex > 0) {
 			currentExerciseIndex--;
 			return;
 		}
-		/** all exercise are completed of the current set*/
-		if (currentExerciseIndex === null) {
-			/** set exercise index to last one of current set*/
-			currentExerciseIndex = routine.workout_sets[currentSetIndex].exercises.length - 1;
-		}
+		// /** all exercise are completed of the current set*/
+		// if () {
+		// 	/** set exercise index to last one of current set*/
+		// 	currentExerciseIndex = routine.workout_sets[currentSetIndex].exercises.length - 1;
+		// }
 	}
 	function handleNext() {
 		routineTimer.handleNext();
@@ -103,10 +115,6 @@
 			currentExerciseIndex++;
 		}
 	}
-	let index = $state(routineTimer.a);
-	$effect(() => {
-		console.log($state.snapshot(index));
-	});
 
 	const timerController = {
 		handleNext,
