@@ -8,7 +8,6 @@ export interface Routine {
 	name: string;
 	description: string;
 	image?: string;
-	workout_sets: WSetJoined[];
 	created_by: number | string;
 }
 
@@ -18,6 +17,7 @@ export interface RoutineJoined extends Routine {
 	name: string;
 	description: string;
 	image?: string;
+	// joined by workout_flow many to many relationship
+	// TODO: workout_sets to be workout_blocks
 	workout_sets: WSetJoined[];
-	created_by: number | string;
 }

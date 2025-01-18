@@ -1,5 +1,7 @@
 import type { FileDB } from './file-db';
 import type { Interval } from './interval';
+import type { Repetition } from './Repetition';
+import type { Weight } from './weight';
 
 /**
  * Primitive collection (no join needed)
@@ -12,13 +14,31 @@ export interface Exercise {
 	slug: string;
 	description?: string;
 	image?: FileDB | number | File;
+	created_by_id: number;
 }
 
 export interface ExerciseJoined extends Exercise {
-	created_by_id?: number;
 	created_by_name?: string;
 }
 
+// TODO: this is not a Exercise table, it should be separated table. creating new def under this interface.
 export interface ExerciseInSetWorkout extends ExerciseJoined {
 	interval?: Interval;
+	// the target repetition.
+	repetition: Repetition;
+	// target or default weight value of the exercise when created under routine
+	weight: Weight;
+}
+
+// New def of the ExerciseInSetWorkout
+export interface ExerciseInRoutine {
+	exercise_id: number;
+	interval_id?: number;
+	repetition_id: number;
+	weight_id: number;
+}
+export interface ExerciseInRoutineJoined extends ExerciseJoined {
+	interval: Interval;
+	repetition: Repetition;
+	weight: Weight;
 }

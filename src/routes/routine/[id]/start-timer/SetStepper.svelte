@@ -19,7 +19,7 @@
 		<div class="step" data-active={index === routineTimer.currentSetIndex}>
 			<div class="flex-column">
 				<Tooltip tooltip={set.type.name}>
-					<h3 class="set-index">Set {index + 1}</h3>
+					<h3 class="set-index">Set {index + 1} x{set.n_set}</h3>
 				</Tooltip>
 				<div>
 					<ul>

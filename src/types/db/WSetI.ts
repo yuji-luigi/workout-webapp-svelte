@@ -16,6 +16,7 @@ import type { Interval } from './interval';
 // }
 
 /** WSet represents workout with interval. so it is Workout + interval. Flat object somehow */
+//TODO: Set naming to Block
 export interface WSetJoined {
 	id?: number;
 	slug: string;

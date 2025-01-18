@@ -1,4 +1,5 @@
 // Type for Workout_type table
+// TODO. WSetTypeI to be renamed to BlockTypeI
 interface WSetTypeI {
 	id: number; // primary key
 	slug: string;
