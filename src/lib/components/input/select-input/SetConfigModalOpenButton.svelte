@@ -22,16 +22,16 @@
 	} = $props();
 	const form_id = getFormIDContext();
 	let formState = $derived(getForm(form_id));
-	let totalWSets = $derived(formState?.workout_sets?.length || 0);
+	let totalRoutineBlocks = $derived(formState?.blocks?.length || 0);
 	let totalExercises = $derived(
-		formState?.workout_sets.reduce((acc: any, set: any) => acc + set.exercises?.length || 0, 0) || 0
+		formState?.blocks.reduce((acc: any, set: any) => acc + set.exercises?.length || 0, 0) || 0
 	);
 </script>
 
 <InputGroupGrid {className} {label} {name}>
 	{#snippet input()}
 		<div>
-			<p>{totalWSets} sets {totalExercises} exercises</p>
+			<p>{totalRoutineBlocks} sets {totalExercises} exercises</p>
 			<!-- <SelectInputMulti {name} {...other as any} /> -->
 			<SetConfigure Section {name} />
 		</div>

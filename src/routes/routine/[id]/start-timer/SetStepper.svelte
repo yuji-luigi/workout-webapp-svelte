@@ -15,7 +15,7 @@
 </script>
 
 <header class="set-stepper">
-	{#each routineTimer.routine.workout_sets || [] as set, index}
+	{#each routineTimer.routine.blocks || [] as set, index}
 		<div class="step" data-active={index === routineTimer.currentSetIndex}>
 			<div class="flex-column">
 				<Tooltip tooltip={set.type.name}>
@@ -36,7 +36,7 @@
 				↑
 			{/if} -->
 		</div>
-		<!-- {#if index < routine.workout_sets.length - 1}
+		<!-- {#if index < routine.blocks.length - 1}
 			<div class="step">
 				<div class="line"></div>
 			</div>

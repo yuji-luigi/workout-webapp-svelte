@@ -1,4 +1,4 @@
-import type { WSet } from '../../lib/db/dexie-db/WSet';
+import type { RoutineBlock } from '../../lib/db/dexie-db/RoutineBlock';
 import type { ExerciseJoined } from './exercise';
 import type { FileDB } from './file-db';
 
@@ -11,7 +11,7 @@ export interface Workout {
 	slug: string;
 	description: string;
 	tag: string;
-	type: WSetTypeI;
+	type: RoutineBlockTypeI;
 	// description: string;
 	// image: FileDB;
 	/**
@@ -21,7 +21,7 @@ export interface Workout {
 	rest_time?: number;
 	active_time?: number;
 	/** usually one exercise but user can customize workout to be one super-set or big-set or etc. */
-	sets: WSet[];
+	sets: RoutineBlock[];
 	created_by: number;
 }
 

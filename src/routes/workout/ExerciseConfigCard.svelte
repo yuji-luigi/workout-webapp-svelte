@@ -16,7 +16,9 @@
 		selectedType: string | null;
 		removeExercise: (index: number) => void;
 	} = $props();
-	let parsedSelectedType: WSetTypeI = $derived(selectedType ? JSON.parse(selectedType) : null);
+	let parsedSelectedType: RoutineBlockTypeI = $derived(
+		selectedType ? JSON.parse(selectedType) : null
+	);
 	const form_id = getFormIDContext();
 	const formState = $state(getForm(form_id));
 </script>

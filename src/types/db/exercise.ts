@@ -1,7 +1,7 @@
 import type { FileDB } from './file-db';
 import type { Interval } from './interval';
 import type { Repetition } from './Repetition';
-import type { Weight } from './weight';
+import type { Weight, WeightJoined } from './weight';
 
 /**
  * Primitive collection (no join needed)
@@ -22,7 +22,7 @@ export interface ExerciseJoined extends Exercise {
 }
 
 // TODO: this is not a Exercise table, it should be separated table. creating new def under this interface.
-export interface ExerciseInRoutineJoined extends ExerciseJoined {
+export interface _ExerciseInRoutineJoined extends ExerciseJoined {
 	interval?: Interval;
 	// the target repetition.
 	repetition: Repetition;
@@ -37,8 +37,9 @@ export interface ExerciseInRoutine {
 	repetition_id: number;
 	weight_id: number;
 }
-export interface ExerciseInRoutineJoined extends ExerciseJoined {
+export interface ExerciseInRoutineJoined extends Exercise {
+	id: number;
 	interval?: Interval;
 	repetition: Repetition;
-	weight: Weight;
+	weight: WeightJoined;
 }

@@ -11,18 +11,16 @@
 	<button onclick={() => (isOpen = !isOpen)}>toggle</button>
 	<header class="set-stepper">
 		<!-- TODO: can count the reps of finished or on going workouts (see the current index of set and exercise) -->
-		{#each routine.workout_sets as set, index}
+		{#each routine.blocks as set, index}
 			<div class="step">
 				<Tooltip
-					tooltip={routine.workout_sets[index].exercises
-						.map((exercise) => exercise.name)
-						.join(', ')}
+					tooltip={routine.blocks[index].exercises.map((exercise) => exercise.name).join(', ')}
 				>
 					<h3>Set {index + 1}</h3>
 					<h3>{set.type.name}</h3>
 				</Tooltip>
 			</div>
-			{#if index < routine.workout_sets.length - 1}
+			{#if index < routine.blocks.length - 1}
 				<div class="step">
 					<div class="line"></div>
 				</div>

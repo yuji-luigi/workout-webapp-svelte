@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { WSetJoined } from '../../../../types/db/WSetI';
+	import type { RoutineBlockJoined } from '../../../../types/db/routine_block_interface';
 	import { formatSecondsToTimer } from '../../../helpers/format-time/formatSecondsToTimer';
 
-	let { set, index }: { set: WSetJoined; index: number } = $props();
+	let { set, index }: { set: RoutineBlockJoined; index: number } = $props();
 </script>
 
 <section class="set-card">

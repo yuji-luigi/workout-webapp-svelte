@@ -1,8 +1,8 @@
 import { db } from './dexie-db';
-import type { WSetJoined } from '$types/db/WSetI';
+import type { RoutineBlockJoined } from '$types/db/routine_block_interface';
 
-// WSetTypeI Class
-export class WorkoutSetType implements WSetTypeI {
+// RoutineBlockTypeI Class
+export class RoutineBlockType implements RoutineBlockTypeI {
 	image_url?: string | undefined;
 	description!: string;
 	use_exercise_timer!: boolean;
@@ -52,13 +52,13 @@ export class WorkoutSetType implements WSetTypeI {
 		return db.workout_set_type.put(this);
 	}
 
-	static async add(fields: Partial<WSetType>): Promise<WSetType> {
-		const instance = new WSetType();
+	static async add(fields: Partial<RoutineBlockType>): Promise<RoutineBlockType> {
+		const instance = new RoutineBlockType();
 		Object.assign(instance, fields);
 		await instance.save();
 		return instance;
 	}
-	static async getAll(): Promise<WSetTypeI[]> {
+	static async getAll(): Promise<RoutineBlockTypeI[]> {
 		return await db.workout_set_type.toArray();
 	}
 }

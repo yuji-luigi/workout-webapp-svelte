@@ -54,7 +54,7 @@ interface TimerExecutableTable {
  *      goal_seconds
  *      rest_time, active_time
  * 3. if user changed some parameter, app prompts user to update the routine or create duplicate or do not save at all.
- * ex: HIIT routine with 2 WSets, each exercise has 30 seconds active_time, and 20 seconds rest_time.
+ * ex: HIIT routine with 2 RoutineBlocks, each exercise has 30 seconds active_time, and 20 seconds rest_time.
  * User changes the active_time to 40 seconds, rest_time to 10 seconds.
  * App asks
  * "The routine has some changes from the original. Do you want to create new Routine out of this? or update the original? or use this routine only for this time?"

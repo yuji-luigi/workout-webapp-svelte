@@ -26,7 +26,7 @@ export const routineFormTableJson = [
 	},
 
 	{
-		name: 'workout_sets',
+		name: 'blocks',
 		label: 'Sets',
 		collection: 'workout_set',
 		type: 'multi-select',

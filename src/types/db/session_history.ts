@@ -45,8 +45,8 @@ export interface SetLogJoined {
 	exercise_index: number;
 	exercise: ExerciseInRoutineJoined;
 	time_spent: number;
-	interval_done: Interval;
-	interval_preset: Interval;
+	interval_done?: Interval;
+	interval_preset?: Interval;
 	repetition_done: Repetition;
 	repetition_preset: Repetition;
 	weight_done: Weight;

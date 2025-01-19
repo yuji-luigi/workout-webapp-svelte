@@ -34,7 +34,7 @@ example or routine
 {
   id: x,
   name: Pull day HIIT,
-  workout_sets: [
+  blocks: [
     {
       type: hiit,
       n_sets: 3,

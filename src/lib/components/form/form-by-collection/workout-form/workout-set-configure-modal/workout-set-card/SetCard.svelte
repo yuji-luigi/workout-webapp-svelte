@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ExerciseJoined } from '$types/db/exercise';
-	import type { WSetJoined } from '$types/db/WSetI';
+	import type { RoutineBlockJoined } from '$types/db/routine_block_interface';
 	import { fade, scale } from 'svelte/transition';
 	import ExerciseConfigCard from '../../../../../../../routes/workout/ExerciseConfigCard.svelte';
 	import { isValidJSON } from '../../../../../../helpers/isValidJSON';
@@ -14,8 +14,8 @@
 		wSet = $bindable(),
 		removeSet
 	}: {
-		// wSet: Omit<WSetJoined, 'id'>;
-		wSet: Omit<WSetJoined, 'id'>;
+		// wSet: Omit<RoutineBlockJoined, 'id'>;
+		wSet: Omit<RoutineBlockJoined, 'id'>;
 		index: number;
 		form_id: string;
 		removeSet: (index: number) => void;
@@ -44,7 +44,7 @@
 		}
 		exercises = wSet.exercises;
 	});
-	const preName = `workout_sets[${index}]`;
+	const preName = `blocks[${index}]`;
 </script>
 
 <input bind:this={inputEl} hidden type="text" name={preName} value={JSON.stringify(wSet)} />

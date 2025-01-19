@@ -1,4 +1,4 @@
-export const workout_set_types: WSetTypeI[] = [
+export const workout_set_types: RoutineBlockTypeI[] = [
 	{
 		id: 0,
 		slug: 'hiit',

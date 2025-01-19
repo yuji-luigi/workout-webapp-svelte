@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { WSetJoined } from '../../../../../../../types/db/WSetI';
+	import type { RoutineBlockJoined } from '../../../../../../../types/db/routine_block_interface';
 	import SelectInputSingle from '../../../../../input/select-input/base/SelectInputSingle.svelte';
 	import SetNumberInput from '../inputs/SetNumberInput.svelte';
 	import TimerInputWithDialog from '../inputs/TimerInputWithDialog.svelte';
@@ -16,8 +16,8 @@
 		index: number;
 		preName: string;
 		selectedType: string;
-		wSet: Omit<WSetJoined, 'id'>;
-		// parsedSelectedType: WSetTypeI | null;
+		wSet: Omit<RoutineBlockJoined, 'id'>;
+		// parsedSelectedType: RoutineBlockTypeI | null;
 		removeSet: (index: number) => void;
 	} = $props();
 	let selectEl = $state<HTMLSelectElement>();

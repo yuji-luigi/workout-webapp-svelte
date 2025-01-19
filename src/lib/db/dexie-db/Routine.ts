@@ -1,12 +1,12 @@
 import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { Workout } from '../../../types/db/workout';
-import type { WSetJoined } from '../../../types/db/WSetI';
+import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import { hasId } from '../../../types/util-types/hasID';
 import type { SetOptional } from '../../../types/util-types/setOptional';
 import { ValidationError } from '../../errors/validation-error';
 import { db } from './dexie-db';
-import { WSet } from './WSet';
+import { RoutineBlock } from './RoutineBlock';
 
 export class Routine implements Omit<RoutineJoined, 'id'> {
 	id?: number;
@@ -14,23 +14,23 @@ export class Routine implements Omit<RoutineJoined, 'id'> {
 	name: string;
 	description: string;
 	image?: string | undefined;
-	workout_sets: WSetJoined[];
+	blocks: RoutineBlockJoined[];
 	created_by: string | number;
 
 	constructor(fields: {
 		slug: string;
 		name: string;
 		description: string;
-		workout_sets: WSetJoined[];
+		blocks: RoutineBlockJoined[];
 		created_by: string | number;
 	}) {
 		Routine.validate(fields);
-		const { slug, name, description, workout_sets, created_by } = fields;
+		const { slug, name, description, blocks, created_by } = fields;
 		/** id is created for temporal purpose. before creation of the record it will be set to undefined to get the auto inc-ID */
 		this.slug = slug;
 		this.name = name;
 		this.description = description;
-		this.workout_sets = workout_sets;
+		this.blocks = blocks;
 		this.created_by = created_by;
 	}
 	static validate(fields: Partial<Routine>) {
@@ -44,16 +44,16 @@ export class Routine implements Omit<RoutineJoined, 'id'> {
 		if (!fields.description) {
 			errors['description'] = 'Description is required';
 		}
-		if (!fields.workout_sets || !fields.workout_sets.length) {
-			errors['workout_sets'] = 'Workout sets are required';
+		if (!fields.blocks || !fields.blocks.length) {
+			errors['blocks'] = 'Workout sets are required';
 		}
 
-		if (fields.workout_sets?.length) {
-			fields.workout_sets.forEach((workoutSet, index) => {
+		if (fields.blocks?.length) {
+			fields.blocks.forEach((workoutSet, index) => {
 				try {
-					WSet.checkFields(workoutSet);
+					RoutineBlock.checkFields(workoutSet);
 				} catch (error: any) {
-					errors[`workout_sets[${index}]`] = error.message;
+					errors[`blocks[${index}]`] = error.message;
 				}
 			});
 		}

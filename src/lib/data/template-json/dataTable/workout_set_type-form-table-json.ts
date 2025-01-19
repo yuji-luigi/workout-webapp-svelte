@@ -1,4 +1,7 @@
-import type { WSet, WSetJoined } from '../../../../types/db/WSetI';
+import type {
+	RoutineBlock,
+	RoutineBlockJoined
+} from '../../../../types/db/routine_block_interface';
 import type { FormTableField } from '../../../../types/form/form-table-field';
 
 export const workoutTypeFormTable = [
@@ -41,4 +44,4 @@ export const workoutTypeFormTable = [
 		type: 'multi-select',
 		required: true
 	}
-] satisfies (FormTableField & { name: keyof WSetJoined })[];
+] satisfies (FormTableField & { name: keyof RoutineBlockJoined })[];

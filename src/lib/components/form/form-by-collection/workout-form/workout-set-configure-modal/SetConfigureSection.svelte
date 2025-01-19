@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { WSetJoined } from '$types/db/WSetI';
+	import type { RoutineBlockJoined } from '$types/db/routine_block_interface';
 	import { getContext } from 'svelte';
 	import AddSetCard from './add-buttons/AddSet.svelte';
 	import ChooseSetTypeModal from './ChooseSetTypeModal.svelte';
-	import WorkoutSetConfigCard from './workout-set-card/SetCard.svelte';
+	import RoutineBlockConfigCard from './workout-set-card/SetCard.svelte';
 	let { name }: { name: string } = $props();
-	let workout_sets = $state<Omit<WSetJoined, 'id'>[]>([]);
+	let blocks = $state<Omit<RoutineBlockJoined, 'id'>[]>([]);
 	const form_id: string = getContext('form_id') || 'NULL_ID';
 	let isOpenChooseSetTypeModal = $state(false);
 	let formEl = $state<HTMLFormElement>();
-	function addSet(setType: WSetTypeI) {
-		workout_sets.push({
+	function addSet(setType: RoutineBlockTypeI) {
+		blocks.push({
 			type: setType,
 			slug: '',
 			name: '',
@@ -21,7 +21,7 @@
 	}
 	async function removeSet(index: number) {
 		formEl = document.getElementById(form_id) as HTMLFormElement;
-		workout_sets.splice(index, 1);
+		blocks.splice(index, 1);
 		formEl?.dispatchEvent(new Event('input', { bubbles: true }));
 	}
 </script>
@@ -29,13 +29,13 @@
 <h2 class="title">Create sets and circuits</h2>
 <section class="sets-config-container" data-input-name={name}>
 	<span class="input-error-message"></span>
-	{#each workout_sets as wSet, index}
-		<WorkoutSetConfigCard {removeSet} {wSet} {index} {form_id} />
+	{#each blocks as wSet, index}
+		<RoutineBlockConfigCard {removeSet} {wSet} {index} {form_id} />
 	{/each}
 	<AddSetCard
 		onclick={() => {
 			isOpenChooseSetTypeModal = true;
-			// workout_sets.push({
+			// blocks.push({
 			// 	id: ''
 			// });
 		}}

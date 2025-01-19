@@ -1,7 +1,11 @@
 // import { exercisesY, workout_set_typeY } from './workout-lofi.svelte';
 
-import type { Exercise, ExerciseInRoutineJoined } from '../../../types/db/exercise';
-import type { WSetJoined } from '../../../types/db/WSetI';
+import type {
+	Exercise,
+	ExerciseInRoutineJoined,
+	ExerciseInSetWorkout
+} from '../../../types/db/exercise';
+import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import { db } from '../dexie-db/dexie-db';
 import { Routine } from '../dexie-db/Routine';
 import { lofi_db } from './lofi_db.svelte';
@@ -43,50 +47,62 @@ export async function seedLocalDB() {
 function generateRoutines({ name, description }: { name: string; description: string }) {
 	const setsLength = Math.round(Math.random() * 7 + 3);
 	// const setsLength = 0;
-	const sets: WSetJoined[] = Array.from({ length: setsLength }, (_, i) => {
+	const blocks: RoutineBlockJoined[] = Array.from({ length: setsLength }, (_, i) => {
 		const type = defaultWorkoutTypes[Math.floor(Math.random() * defaultWorkoutTypes.length)];
 		// const exercisesLength = 0;
 		const exercisesLength = Math.round(Math.random() * 10 + 1);
-		const exercises: ExerciseInRoutineJoined[] = Array.from({ length: exercisesLength }, (_, j) => {
-			const exercise: ExerciseInRoutineJoined =
-				calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)];
+		const exercises: ExerciseInSetWorkout[] = Array.from({ length: exercisesLength }, (_, j) => {
+			const exercises: ExerciseInRoutineJoined[] = Array.from(
+				{ length: exercisesLength },
+				(_, j) => {
+					const exercise: ExerciseInRoutineJoined = {
+						...calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)],
+						id: undefined as any, // TODO: fix this
+
+						repetition: {
+							id: undefined as any, // TODO: fix this
+							count: Math.round(Math.random() * 10 + 1),
+							seconds_static_hold: Math.round(Math.random() * 10 + 1)
+						},
+						weight: {
+							id: undefined as any, // TODO: fix this
+							amount: Math.round(Math.random() * 10 + 1),
+							weight_type_id: 1,
+							weight_type: {
+								id: 1,
+								name: 'body weight',
+								description: 'body weight'
+							}
+						}
+					};
+					return exercise;
+				}
+			);
 			return {
-				...exercise,
-				...(type.use_exercise_timer && {
+				// id: i,
+				name: `Set ${i + 1}`,
+				description: `Set ${i + 1} description`,
+				slug: `${name.toLowerCase().replace(' ', '-')}-${i}`,
+				n_set: Math.round(Math.random() * 5),
+				exercises,
+				type,
+				...((!type.use_exercise_timer || Math.random() < 0.5) && {
 					interval: {
-						// id: j,
-						active_time: j + 1,
-						rest_time: j + 2
-						// active_time: Math.round(Math.random() * 30),
-						// rest_time: Math.round(Math.random() * 20 + 30)
+						active_time: i + 11,
+						rest_time: i + 33
+						// active_time: Math.round(Math.random() * 60 + 20),
+						// rest_time: Math.round(Math.random() * 60 + 40)
 					}
 				})
 			};
 		});
-		return {
-			// id: i,
-			name: `Set ${i + 1}`,
-			description: `Set ${i + 1} description`,
-			slug: `${name.toLowerCase().replace(' ', '-')}-${i}`,
-			n_set: Math.round(Math.random() * 5),
-			exercises,
-			type,
-			...((!type.use_exercise_timer || Math.random() < 0.5) && {
-				interval: {
-					active_time: i + 11,
-					rest_time: i + 33
-					// active_time: Math.round(Math.random() * 60 + 20),
-					// rest_time: Math.round(Math.random() * 60 + 40)
-				}
-			})
-		};
-	});
-	return new Routine({
-		slug: name.toLowerCase().replace(' ', '-'),
-		name: name,
-		description: 'A sample routine with 3 workouts',
-		created_by: '',
-		workout_sets: sets
+		return new Routine({
+			slug: name.toLowerCase().replace(' ', '-'),
+			name: name,
+			description: 'A sample routine with 3 workouts',
+			created_by: '',
+			blocks
+		});
 	});
 }
 
@@ -97,35 +113,40 @@ export const calisthenicExercises: Exercise[] = [
 		slug: 'pull-up',
 		description:
 			'A bodyweight exercise where you pull yourself up until your chin is above the bar.',
-		image: undefined // Replace with actual image reference if available
+		image: undefined, // Replace with actual image reference if available
+		created_by_id: 1
 	},
 	{
 		id: 2,
 		name: 'Push Up',
 		slug: 'push-up',
 		description: 'A classic upper-body exercise where you push your body up from a prone position.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 3,
 		name: 'Body Rows',
 		slug: 'body-rows',
 		description: 'An exercise performed by pulling your body towards a horizontal bar.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 4,
 		name: 'Ring Push Ups',
 		slug: 'ring-push-ups',
 		description: 'A push-up variation using gymnastic rings for additional instability.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 5,
 		name: 'Ring Dips',
 		slug: 'ring-dips',
 		description: 'A dip exercise using gymnastic rings to target triceps, shoulders, and chest.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 6,
@@ -133,7 +154,8 @@ export const calisthenicExercises: Exercise[] = [
 		slug: 'dips',
 		description:
 			'An exercise where you lower and raise your body using parallel bars or a dip station.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 7,
@@ -141,7 +163,8 @@ export const calisthenicExercises: Exercise[] = [
 		slug: 'pike-push-ups',
 		description:
 			'A push-up variation focusing on the shoulders by performing the exercise in a pike position.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 8,
@@ -149,14 +172,16 @@ export const calisthenicExercises: Exercise[] = [
 		slug: 'handstand-push-ups',
 		description:
 			'An advanced exercise performed in a handstand position, pushing your body up and down.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 9,
 		name: 'Squats',
 		slug: 'squats',
 		description: 'A lower-body exercise focusing on the quadriceps, hamstrings, and glutes.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 10,
@@ -164,24 +189,27 @@ export const calisthenicExercises: Exercise[] = [
 		slug: 'lunges',
 		description:
 			'A single-leg bodyweight exercise that strengthens the quads, glutes, and hamstrings.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 11,
 		name: 'Plank',
 		slug: 'plank',
 		description: 'A core-strength exercise where you hold a position similar to the push-up.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	},
 	{
 		id: 12,
 		name: 'Mountain Climbers',
 		slug: 'mountain-climbers',
 		description: 'A dynamic bodyweight exercise that works the core and cardiovascular system.',
-		image: undefined
+		image: undefined,
+		created_by_id: 1
 	}
 ];
-const defaultWorkoutTypes: WSetTypeI[] = [
+const defaultWorkoutTypes: RoutineBlockTypeI[] = [
 	{
 		id: 1,
 		name: 'Reps And Sets',

@@ -1,6 +1,6 @@
 // Type for Workout_type table
-// TODO. WSetTypeI to be renamed to BlockTypeI
-interface WSetTypeI {
+// TODO. RoutineBlockTypeI to be renamed to BlockTypeI
+interface RoutineBlockTypeI {
 	id: number; // primary key
 	slug: string;
 	name: string;

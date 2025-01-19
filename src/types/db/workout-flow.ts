@@ -1,6 +1,6 @@
 // Type for Workout_flow table
 /**
- *  Workout flow is just junction table of one routine to many workout_sets
+ *  Workout flow is just junction table of one routine to many blocks
  * in runtime the workout_set's interval id can be changed by user for the flexibility. In such a case the interval is just a default value.
  */
 interface WorkoutFlow {

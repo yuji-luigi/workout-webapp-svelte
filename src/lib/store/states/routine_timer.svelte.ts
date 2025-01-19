@@ -3,7 +3,7 @@ import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import { extractTimerKeys, type Interval } from '../../../types/db/interval';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { WorkoutJoined } from '../../../types/db/workout';
-import type { WSetJoined } from '../../../types/db/WSetI';
+import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 
 // need logic to control the current index of routine.
 // calculate the
@@ -31,24 +31,23 @@ export class RoutineTimer {
 	});
 	// the key of the interval. rest_time or active_time
 	currentIntervalKey: 'rest_time' | 'active_time' = $state('active_time');
-	// current WSetJoined Object. reactive with the currentSetIndex
-	currentSet?: WSetJoined = $derived(this.routine.workout_sets?.[this.currentSetIndex]);
+	// current RoutineBlockJoined Object. reactive with the currentSetIndex
+	currentSet?: RoutineBlockJoined = $derived(this.routine.blocks?.[this.currentSetIndex]);
 	// current ExerciseInRoutineJoined Object. reactive with the currentExerciseIndex
 	currentExercise: ExerciseInRoutineJoined | null = $derived(
 		this.currentExerciseIndex === null
 			? null
-			: this.routine.workout_sets?.[this.currentSetIndex]?.exercises?.[this.currentExerciseIndex] ||
-					null
+			: this.routine.blocks?.[this.currentSetIndex]?.exercises?.[this.currentExerciseIndex] || null
 	);
 
 	constructor(routine: RoutineJoined) {
 		this.routine = routine;
 		// start with the first set
-		// this.currentSet = routine.workout_sets[0];
+		// this.currentSet = routine.blocks[0];
 		// start with the first exercise
-		const firstSet = routine.workout_sets?.[0];
+		const firstSet = routine.blocks?.[0];
 		const firstExercise = firstSet?.exercises?.[0];
-		// this.currentExercise = routine.workout_sets[0].exercises[0];
+		// this.currentExercise = routine.blocks[0].exercises[0];
 		this.currentIntervalKey =
 			(firstExercise?.interval && extractTimerKeys(firstExercise?.interval)[0]) ||
 			(firstSet?.interval && extractTimerKeys(firstSet?.interval)[0])!;
@@ -96,15 +95,14 @@ export class RoutineTimer {
 		// console.log('handleNext', this.currentExerciseIndex);
 	};
 	handlePrev = () => {
-		if (!this.routine.workout_sets) return;
+		if (!this.routine.blocks) return;
 		/**
 		 * case go back to last exercise of current set (in interval of the set).
 		 * point to last exercise of current set from null exercise
 		 * checking: currentExerciseIndex is null.
 		 * */
 		if (this.currentExerciseIndex === null) {
-			this.currentExerciseIndex =
-				this.routine.workout_sets[this.currentSetIndex].exercises.length - 1;
+			this.currentExerciseIndex = this.routine.blocks[this.currentSetIndex].exercises.length - 1;
 			return;
 		}
 		/**
@@ -117,8 +115,7 @@ export class RoutineTimer {
 			this.currentSetIndex > 0
 		) {
 			this.currentSetIndex--;
-			this.currentExerciseIndex =
-				this.routine.workout_sets[this.currentSetIndex].exercises.length - 1;
+			this.currentExerciseIndex = this.routine.blocks[this.currentSetIndex].exercises.length - 1;
 			return;
 		}
 		if (this.currentExerciseIndex && this.currentExerciseIndex > 0) {
@@ -130,19 +127,18 @@ export class RoutineTimer {
 	handleReset() {}
 
 	private goToNextSet() {
-		if (!this.routine.workout_sets) return;
-		if (this.currentSetIndex < this.routine.workout_sets.length - 1) {
+		if (!this.routine.blocks) return;
+		if (this.currentSetIndex < this.routine.blocks.length - 1) {
 			this.currentSetIndex++;
 			this.currentExerciseIndex = 0;
 		}
 	}
 
 	private goToPreviousSet() {
-		if (!this.routine.workout_sets) return;
+		if (!this.routine.blocks) return;
 		if (this.currentSetIndex > 0) {
 			this.currentSetIndex--;
-			this.currentExerciseIndex =
-				this.routine.workout_sets[this.currentSetIndex].exercises.length - 1;
+			this.currentExerciseIndex = this.routine.blocks[this.currentSetIndex].exercises.length - 1;
 		}
 	}
 }
@@ -153,6 +149,6 @@ export const initializeRoutineTimer = (routine: RoutineJoined) => {
 };
 export const getRoutineTimer = () => routineTimer as RoutineTimer;
 
-// interval factory creates interval out of RoutineJoined, Interval[], or WorkoutSetJoined[] etc
+// interval factory creates interval out of RoutineJoined, Interval[], or RoutineBlockJoined[] etc
 
 interface Timer {}

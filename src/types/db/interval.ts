@@ -1,11 +1,11 @@
 import type { ExerciseInRoutineJoined } from './exercise';
-import type { WSetJoined } from './WSetI';
+import type { RoutineBlockJoined } from './routine_block_interface';
 
 /**
  * Interval collection. But one interval is only used by one workout_set. so it is one to one relationship.
  */
 export interface Interval {
-	// id?: number;
+	id: number;
 	rest_time?: number;
 	active_time?: number;
 }
@@ -27,7 +27,7 @@ export function getFirstTimerKey({
 	set,
 	exercise
 }: {
-	set: WSetJoined;
+	set: RoutineBlockJoined;
 	exercise: ExerciseInRoutineJoined;
 }) {
 	return (

@@ -2,7 +2,7 @@
 import Dexie, { type Table } from 'dexie';
 import type { ExerciseInRoutineJoined } from '$types/db/exercise';
 import type { FileDB } from '$types/db/file-db';
-import type { WSetJoined } from '$types/db/WSetI';
+import type { RoutineBlockJoined } from '$types/db/routine_block_interface';
 import type { WorkoutJoined } from '$types/db/workout';
 import type { User } from '$types/db/user'; // If you have a separate type
 import type { RoutineJoined } from '../../../types/db/routine';
@@ -13,8 +13,8 @@ class WorkoutDatabase extends Dexie {
 	// Actual table properties
 	workouts!: Table<WorkoutJoined, number, Omit<WorkoutJoined, 'id'>>;
 	routines!: Table<RoutineJoined, number, Omit<RoutineJoined, 'id'>>;
-	workout_sets!: Table<WSetJoined, number, Omit<WSetJoined, 'id'>>;
-	workout_set_types!: Table<WSetTypeI, number, Omit<WSetTypeI, 'id'>>;
+	blocks!: Table<RoutineBlockJoined, number, Omit<RoutineBlockJoined, 'id'>>;
+	workout_set_types!: Table<RoutineBlockTypeI, number, Omit<RoutineBlockTypeI, 'id'>>;
 	exercises!: Table<ExerciseInRoutineJoined, number, Omit<ExerciseInRoutineJoined, 'id'>>;
 	users!: Table<User, number, Omit<User, 'id'>>;
 	files!: Table<FileDB, number, Omit<FileDB, 'id'>>;
@@ -31,7 +31,7 @@ class WorkoutDatabase extends Dexie {
 	}
 
 	get workout_set() {
-		return this.workout_sets;
+		return this.blocks;
 	}
 	get workout_set_type() {
 		return this.workout_set_types;
@@ -52,7 +52,7 @@ class WorkoutDatabase extends Dexie {
 		this.version(1).stores({
 			workouts: '++id, slug, type, name, sets',
 			routines: '++id, slug, name, image, workouts, description, created_at, updated_at', // Updated from empty string
-			workout_sets: '++id, slug, type, name, n_set',
+			blocks: '++id, slug, type, name, n_set',
 			workout_set_types:
 				'++id, slug, name, repeat, use_active_time, use_rest_time, description, use_exercise_timer, use_set_timer',
 			exercises: '++id, name, slug, rest_time, active_time, description, image',
@@ -72,8 +72,8 @@ type Tables = (typeof db)['exercises'];
 export interface TableRowMap {
 	workouts: WorkoutJoined;
 	routines: RoutineJoined;
-	workout_sets: WSetJoined;
-	workout_set_types: WSetTypeI;
+	blocks: RoutineBlockJoined;
+	workout_set_types: RoutineBlockTypeI;
 	exercises: ExerciseInRoutineJoined;
 	users: User;
 	files: FileDB;

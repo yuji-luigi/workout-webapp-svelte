@@ -4,10 +4,10 @@ import type { ExerciseInRoutineJoined } from './exercise';
 import type { Interval } from './interval';
 
 /**
- *  WSet is only used by one routine.
+ *  RoutineBlock is only used by one routine.
  * one to one relationship.
  *   */
-// export interface WSet {
+// export interface RoutineBlock {
 // 	id: number; // primary key
 // 	// id_timer: number; // Foreign key to Interval
 // 	// id_workout: number; // Foreign key to Workout
@@ -15,12 +15,12 @@ import type { Interval } from './interval';
 // 	exercises: ExerciseInRoutineJoined[];
 // }
 
-/** WSet represents workout with interval. so it is Workout + interval. Flat object somehow */
+/** RoutineBlock represents workout with interval. so it is Workout + interval. Flat object somehow */
 //TODO: Set naming to Block
-export interface WSetJoined {
+export interface RoutineBlockJoined {
 	id?: number;
 	slug: string;
-	type: WSetTypeI;
+	type: RoutineBlockTypeI;
 	/** type of set + exercise name concatenated */
 	name: string;
 	/** there is no UI to set descriptions for now. */

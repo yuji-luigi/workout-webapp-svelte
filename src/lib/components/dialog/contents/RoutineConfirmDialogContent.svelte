@@ -16,7 +16,7 @@
 <div class="contents routine-confirm-dialog">
 	<img src={''} alt="" height="300px" />
 	<h2>{routine?.name}</h2>
-	{#each routine.workout_sets as set, index}
+	{#each routine.blocks as set, index}
 		<SetCard {set} {index} />
 	{/each}
 	<div class="counter-section">

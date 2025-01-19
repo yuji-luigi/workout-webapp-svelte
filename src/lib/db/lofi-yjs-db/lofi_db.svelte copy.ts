@@ -1,14 +1,14 @@
 import type { Exercise, ExerciseJoined } from '../../../types/db/exercise';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { Workout, WorkoutJoined } from '../../../types/db/workout';
-import type { WSet, WSetJoined } from '../../../types/db/WSetI';
+import type { RoutineBlock, RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 
 const db_state_fields = ['routines', 'workouts', 'exercises'] as const;
 type DBStateField = (typeof db_state_fields)[number];
 const db_state_enum = {
 	workout: 'workouts',
 	exercise: 'exercises',
-	workout_set: 'workout_sets',
+	workout_set: 'blocks',
 	routine: 'routines'
 } as const;
 
@@ -25,8 +25,8 @@ const defaultValues = {
 		routine: [] as RoutineJoined[],
 		workout: [] as WorkoutJoined[],
 		exercise: [] as ExerciseJoined[],
-		workout_set_type: [] as WSetTypeI[],
-		workout_set: [] as WSetJoined[]
+		workout_set_type: [] as RoutineBlockTypeI[],
+		workout_set: [] as RoutineBlockJoined[]
 	},
 	db_state_enum,
 	db_state_fields,
@@ -36,8 +36,8 @@ const defaultValues = {
 		routines: [] as RoutineJoined[],
 		workouts: [] as WorkoutJoined[],
 		exercises: [] as ExerciseJoined[],
-		workout_set_types: [] as WSetTypeI[],
-		workout_sets: [] as WSetJoined[]
+		workout_set_types: [] as RoutineBlockTypeI[],
+		blocks: [] as RoutineBlockJoined[]
 	}
 };
 
@@ -55,8 +55,8 @@ async function create_lofi_db() {
 	const routinesY = ydoc.getArray<RoutineJoined>('routines');
 	const workoutsY = ydoc.getArray<WorkoutJoined>('workouts');
 	const exercisesY = ydoc.getArray<ExerciseJoined>('exercises');
-	const workout_set_typeY = ydoc.getArray<WSetTypeI>('workout_set_types');
-	const workout_setY = ydoc.getArray<WSetJoined>('workout_set');
+	const workout_set_typeY = ydoc.getArray<RoutineBlockTypeI>('workout_set_types');
+	const workout_setY = ydoc.getArray<RoutineBlockJoined>('workout_set');
 
 	async function create_app_state() {
 		persistenceWorkoutDB.whenSynced.catch((error) => {
@@ -66,7 +66,7 @@ async function create_lofi_db() {
 		let _exercises = $state(exercisesY.toArray());
 		let _routines = $state(routinesY.toArray());
 		let _workout_set_types = $state(workout_set_typeY.toArray());
-		let _workout_sets = $state(workout_setY.toArray());
+		let _blocks = $state(workout_setY.toArray());
 
 		workoutsY.observeDeep(() => {
 			_workouts = workoutsY.toArray();
@@ -78,7 +78,7 @@ async function create_lofi_db() {
 			_routines = routinesY.toArray();
 		});
 		workout_setY.observeDeep(() => {
-			_workout_sets = workout_setY.toArray();
+			_blocks = workout_setY.toArray();
 		});
 		workout_set_typeY.observeDeep(() => {
 			_workout_set_types = workout_set_typeY.toArray();
@@ -95,8 +95,8 @@ async function create_lofi_db() {
 			get exercises() {
 				return _exercises || [];
 			},
-			get workout_sets() {
-				return _workout_sets || [];
+			get blocks() {
+				return _blocks || [];
 			},
 			get workout_set_types() {
 				return _workout_set_types || [];
@@ -117,7 +117,7 @@ async function create_lofi_db() {
 			return db_state.exercises;
 		},
 		get workout_set() {
-			return db_state.workout_sets;
+			return db_state.blocks;
 		},
 		get workout_set_type() {
 			return db_state.workout_set_types;

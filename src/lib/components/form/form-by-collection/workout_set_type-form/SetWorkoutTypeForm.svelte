@@ -17,7 +17,7 @@
 		// const formData = new FormData(event.target as HTMLFormElement);
 		try {
 			console.log(payload);
-			db.workout_set_types.add(payload as WSetTypeI);
+			db.workout_set_types.add(payload as RoutineBlockTypeI);
 
 			await sleep(750);
 			event.target?.reset();

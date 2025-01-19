@@ -10,7 +10,7 @@
 	// TODO: refactor unnecessary codes
 	routine;
 	let var_image_url = routine.image && `--image-url:${routine.image};`;
-	const totalSets = routine.workout_sets.length;
+	const totalSets = routine.blocks.length;
 
 	// When the component mounts, ensure the card position is available
 </script>
@@ -28,7 +28,7 @@
 		<h4>{routine.name}</h4>
 
 		<p>
-			{#each routine.workout_sets as set, index}
+			{#each routine.blocks as set, index}
 				set#{index + 1}{set.name} ({set.type.name})
 				{#each set.exercises as exercise, index}
 					{exercise.name}

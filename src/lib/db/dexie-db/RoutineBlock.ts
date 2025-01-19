@@ -1,13 +1,13 @@
 import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
-import type { WSetJoined } from '../../../types/db/WSetI';
+import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import { ValidationError } from '../../errors/validation-error';
 import { db } from './dexie-db';
-import type { WSetType } from './WSetType';
+import type { RoutineBlockType } from './RoutineBlockType';
 
-export class WSet {
+export class RoutineBlock {
 	id!: number;
 	slug!: string;
-	type!: WSetType;
+	type!: RoutineBlockType;
 	name!: string;
 	exercises!: ExerciseInRoutineJoined[];
 	n_set!: number;
@@ -20,7 +20,7 @@ export class WSet {
 		n_set
 	}: {
 		slug: string;
-		type: WSetType;
+		type: RoutineBlockType;
 		name: string;
 		exercises: ExerciseInRoutineJoined[];
 		n_set: number;
@@ -33,7 +33,7 @@ export class WSet {
 		this.n_set = n_set;
 	}
 
-	private validate(fields: Partial<WSetJoined>) {
+	private validate(fields: Partial<RoutineBlockJoined>) {
 		const errors: Record<string, string> = {};
 
 		// if (!this.name) {
@@ -56,11 +56,11 @@ export class WSet {
 		return db.wSet.put(this);
 	}
 
-	static checkFields(fields: WSetJoined) {
-		new WSet(fields).validate(fields);
+	static checkFields(fields: RoutineBlockJoined) {
+		new RoutineBlock(fields).validate(fields);
 	}
-	static async add(fields: Partial<WSet>): Promise<WSet> {
-		const instance = new WSet();
+	static async add(fields: Partial<RoutineBlock>): Promise<RoutineBlock> {
+		const instance = new RoutineBlock();
 		Object.assign(instance, fields); // Assign fields to the instance
 		await instance.save(); // Save to the database
 		return instance;
