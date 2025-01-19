@@ -1,10 +1,6 @@
 // import { exercisesY, workout_set_typeY } from './workout-lofi.svelte';
 
-import type {
-	Exercise,
-	ExerciseInRoutineJoined,
-	ExerciseInSetWorkout
-} from '../../../types/db/exercise';
+import type { Exercise, ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import { db } from '../dexie-db/dexie-db';
 import { Routine } from '../dexie-db/Routine';

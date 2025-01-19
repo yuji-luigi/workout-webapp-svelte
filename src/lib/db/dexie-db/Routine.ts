@@ -7,6 +7,7 @@ import type { SetOptional } from '../../../types/util-types/setOptional';
 import { ValidationError } from '../../errors/validation-error';
 import { db } from './dexie-db';
 import { RoutineBlock } from './RoutineBlock';
+import type { User } from '../../../types/db/user';
 
 export class Routine implements Omit<RoutineJoined, 'id'> {
 	id?: number;
@@ -83,6 +84,11 @@ export class Routine implements Omit<RoutineJoined, 'id'> {
 			// @ts-ignore
 			id: undefined
 		});
-		return { ...instance, id: newID };
+		return {
+			...instance,
+			id: newID,
+			created_by_id: instance.created_by,
+			created_by: { name: 'test', id: 0 } as User
+		};
 	}
 }

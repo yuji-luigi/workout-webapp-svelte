@@ -1,6 +1,6 @@
 // db.ts
 import Dexie, { type Table } from 'dexie';
-import type { ExerciseInRoutineJoined } from '$types/db/exercise';
+import type { ExerciseJoined } from '$types/db/exercise';
 import type { FileDB } from '$types/db/file-db';
 import type { RoutineBlockJoined } from '$types/db/routine_block_interface';
 import type { WorkoutJoined } from '$types/db/workout';
@@ -15,7 +15,7 @@ class WorkoutDatabase extends Dexie {
 	routines!: Table<RoutineJoined, number, Omit<RoutineJoined, 'id'>>;
 	blocks!: Table<RoutineBlockJoined, number, Omit<RoutineBlockJoined, 'id'>>;
 	workout_set_types!: Table<RoutineBlockTypeI, number, Omit<RoutineBlockTypeI, 'id'>>;
-	exercises!: Table<ExerciseInRoutineJoined, number, Omit<ExerciseInRoutineJoined, 'id'>>;
+	exercises!: Table<ExerciseJoined, number, Omit<ExerciseJoined, 'id'>>;
 	users!: Table<User, number, Omit<User, 'id'>>;
 	files!: Table<FileDB, number, Omit<FileDB, 'id'>>;
 
@@ -74,7 +74,7 @@ export interface TableRowMap {
 	routines: RoutineJoined;
 	blocks: RoutineBlockJoined;
 	workout_set_types: RoutineBlockTypeI;
-	exercises: ExerciseInRoutineJoined;
+	exercises: ExerciseJoined;
 	users: User;
 	files: FileDB;
 }
