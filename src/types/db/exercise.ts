@@ -41,5 +41,5 @@ export interface ExerciseInRoutineJoined extends Exercise {
 	id: number;
 	interval?: Interval;
 	repetition: Repetition;
-	weight: WeightJoined;
+	weight?: WeightJoined;
 }

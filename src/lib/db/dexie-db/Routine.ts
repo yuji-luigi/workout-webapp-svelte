@@ -16,7 +16,7 @@ export class Routine implements Omit<RoutineJoined, 'id'> {
 	description: string;
 	image?: string | undefined;
 	blocks: RoutineBlockJoined[];
-	created_by: string | number;
+	created_by: User;
 
 	constructor(fields: {
 		slug: string;
@@ -70,12 +70,12 @@ export class Routine implements Omit<RoutineJoined, 'id'> {
 	async create() {}
 	async save() {
 		if (hasId(this)) {
-			return await db.routines.put(this);
+			return await db.routines.put(this as any);
 		}
 	}
 
 	static async add(fields: Omit<RoutineJoined, 'id'>): Promise<RoutineJoined> {
-		const instance = new Routine(fields);
+		const instance = new Routine(fields as any);
 		// 2. Validate. If invalid, it throws ValidationError
 		// this.validate(fields);
 		const newID = await db.routines.add({
@@ -87,8 +87,7 @@ export class Routine implements Omit<RoutineJoined, 'id'> {
 		return {
 			...instance,
 			id: newID,
-			created_by_id: instance.created_by,
-			created_by: { name: 'test', id: 0 } as User
+			created_by_id: instance.created_by.id
 		};
 	}
 }

@@ -41,7 +41,7 @@ export interface SetLog {
 // Join from SetLog and ExerciseInRoutine
 export interface SetLogJoined {
 	id: number;
-	set_index: number;
+	// set_index: number;
 	exercise_index: number;
 	exercise: ExerciseInRoutineJoined;
 	time_spent: number;

@@ -47,58 +47,54 @@ function generateRoutines({ name, description }: { name: string; description: st
 		const type = defaultWorkoutTypes[Math.floor(Math.random() * defaultWorkoutTypes.length)];
 		// const exercisesLength = 0;
 		const exercisesLength = Math.round(Math.random() * 10 + 1);
-		const exercises: ExerciseInSetWorkout[] = Array.from({ length: exercisesLength }, (_, j) => {
-			const exercises: ExerciseInRoutineJoined[] = Array.from(
-				{ length: exercisesLength },
-				(_, j) => {
-					const exercise: ExerciseInRoutineJoined = {
-						...calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)],
-						id: undefined as any, // TODO: fix this
+		const exercises: ExerciseInRoutineJoined[] = Array.from({ length: exercisesLength }, (_, j) => {
+			const exercise: ExerciseInRoutineJoined = {
+				...calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)],
+				id: undefined as any, // TODO: fix this
 
-						repetition: {
-							id: undefined as any, // TODO: fix this
-							count: Math.round(Math.random() * 10 + 1),
-							seconds_static_hold: Math.round(Math.random() * 10 + 1)
-						},
-						weight: {
-							id: undefined as any, // TODO: fix this
-							amount: Math.round(Math.random() * 10 + 1),
-							weight_type_id: 1,
-							weight_type: {
-								id: 1,
-								name: 'body weight',
-								description: 'body weight'
-							}
-						}
-					};
-					return exercise;
-				}
-			);
-			return {
-				// id: i,
-				name: `Set ${i + 1}`,
-				description: `Set ${i + 1} description`,
-				slug: `${name.toLowerCase().replace(' ', '-')}-${i}`,
-				n_set: Math.round(Math.random() * 5),
-				exercises,
-				type,
-				...((!type.use_exercise_timer || Math.random() < 0.5) && {
-					interval: {
-						active_time: i + 11,
-						rest_time: i + 33
-						// active_time: Math.round(Math.random() * 60 + 20),
-						// rest_time: Math.round(Math.random() * 60 + 40)
+				repetition: {
+					id: undefined as any, // TODO: fix this
+					count: Math.round(Math.random() * 10 + 1),
+					seconds_static_hold: Math.round(Math.random() * 10 + 1)
+				},
+				weight: {
+					id: undefined as any, // TODO: fix this
+					amount: Math.round(Math.random() * 10 + 1),
+					weight_type_id: 1,
+					weight_type: {
+						id: 1,
+						name: 'body weight',
+						description: 'body weight'
 					}
-				})
+				}
 			};
+			return exercise;
 		});
-		return new Routine({
-			slug: name.toLowerCase().replace(' ', '-'),
-			name: name,
-			description: 'A sample routine with 3 workouts',
-			created_by: '',
-			blocks
-		});
+		return {
+			id: undefined as any,
+			name: `Set ${i + 1}`,
+			description: `Set ${i + 1} description`,
+			slug: `${name.toLowerCase().replace(' ', '-')}-${i}`,
+			n_set: Math.round(Math.random() * 5),
+			exercises,
+			type,
+			...((!type.use_exercise_timer || Math.random() < 0.5) && {
+				interval: {
+					id: undefined as any,
+					active_time: i + 11,
+					rest_time: i + 33
+					// active_time: Math.round(Math.random() * 60 + 20),
+					// rest_time: Math.round(Math.random() * 60 + 40)
+				}
+			})
+		};
+	});
+	return new Routine({
+		slug: name.toLowerCase().replace(' ', '-'),
+		name: name,
+		description: 'A sample routine with 3 workouts',
+		created_by: '',
+		blocks
 	});
 }
 
