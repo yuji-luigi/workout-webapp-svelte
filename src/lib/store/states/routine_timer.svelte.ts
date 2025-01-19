@@ -1,5 +1,5 @@
 import { readable } from 'svelte/store';
-import type { ExerciseInSetWorkout } from '../../../types/db/exercise';
+import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import { extractTimerKeys, type Interval } from '../../../types/db/interval';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { WorkoutJoined } from '../../../types/db/workout';
@@ -33,8 +33,8 @@ export class RoutineTimer {
 	currentIntervalKey: 'rest_time' | 'active_time' = $state('active_time');
 	// current WSetJoined Object. reactive with the currentSetIndex
 	currentSet?: WSetJoined = $derived(this.routine.workout_sets?.[this.currentSetIndex]);
-	// current ExerciseInSetWorkout Object. reactive with the currentExerciseIndex
-	currentExercise: ExerciseInSetWorkout | null = $derived(
+	// current ExerciseInRoutineJoined Object. reactive with the currentExerciseIndex
+	currentExercise: ExerciseInRoutineJoined | null = $derived(
 		this.currentExerciseIndex === null
 			? null
 			: this.routine.workout_sets?.[this.currentSetIndex]?.exercises?.[this.currentExerciseIndex] ||

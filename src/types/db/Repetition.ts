@@ -1,4 +1,4 @@
-// is used in ExerciseInSetWorkout
+// is used in ExerciseInRoutineJoined
 // one to one relationship with exercise or exercise_in_history
 export interface Repetition {
 	id?: number;

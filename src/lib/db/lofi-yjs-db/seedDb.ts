@@ -1,6 +1,6 @@
 // import { exercisesY, workout_set_typeY } from './workout-lofi.svelte';
 
-import type { Exercise, ExerciseInSetWorkout } from '../../../types/db/exercise';
+import type { Exercise, ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import type { WSetJoined } from '../../../types/db/WSetI';
 import { db } from '../dexie-db/dexie-db';
 import { Routine } from '../dexie-db/Routine';
@@ -47,8 +47,8 @@ function generateRoutines({ name, description }: { name: string; description: st
 		const type = defaultWorkoutTypes[Math.floor(Math.random() * defaultWorkoutTypes.length)];
 		// const exercisesLength = 0;
 		const exercisesLength = Math.round(Math.random() * 10 + 1);
-		const exercises: ExerciseInSetWorkout[] = Array.from({ length: exercisesLength }, (_, j) => {
-			const exercise: ExerciseInSetWorkout =
+		const exercises: ExerciseInRoutineJoined[] = Array.from({ length: exercisesLength }, (_, j) => {
+			const exercise: ExerciseInRoutineJoined =
 				calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)];
 			return {
 				...exercise,

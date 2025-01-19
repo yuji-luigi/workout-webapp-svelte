@@ -1,4 +1,4 @@
-import type { ExerciseInSetWorkout } from './exercise';
+import type { ExerciseInRoutineJoined } from './exercise';
 import type { WSetJoined } from './WSetI';
 
 /**
@@ -28,7 +28,7 @@ export function getFirstTimerKey({
 	exercise
 }: {
 	set: WSetJoined;
-	exercise: ExerciseInSetWorkout;
+	exercise: ExerciseInRoutineJoined;
 }) {
 	return (
 		(exercise?.interval && extractTimerKeys(exercise?.interval)[0]) ||

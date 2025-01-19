@@ -22,7 +22,7 @@ export interface ExerciseJoined extends Exercise {
 }
 
 // TODO: this is not a Exercise table, it should be separated table. creating new def under this interface.
-export interface ExerciseInSetWorkout extends ExerciseJoined {
+export interface ExerciseInRoutineJoined extends ExerciseJoined {
 	interval?: Interval;
 	// the target repetition.
 	repetition: Repetition;
@@ -30,7 +30,7 @@ export interface ExerciseInSetWorkout extends ExerciseJoined {
 	weight: Weight;
 }
 
-// New def of the ExerciseInSetWorkout
+// New def of the ExerciseInRoutineJoined
 export interface ExerciseInRoutine {
 	exercise_id: number;
 	interval_id?: number;
@@ -38,7 +38,7 @@ export interface ExerciseInRoutine {
 	weight_id: number;
 }
 export interface ExerciseInRoutineJoined extends ExerciseJoined {
-	interval: Interval;
+	interval?: Interval;
 	repetition: Repetition;
 	weight: Weight;
 }

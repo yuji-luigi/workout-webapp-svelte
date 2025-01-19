@@ -1,8 +1,8 @@
-import type { ExerciseInSetWorkout } from '../../../types/db/exercise';
+import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import type { FileDB } from '../../../types/db/file-db';
 import { db } from './dexie-db';
 
-export class Exercise implements ExerciseInSetWorkout {
+export class Exercise implements ExerciseInRoutineJoined {
 	created_by_id?: number | undefined;
 	created_by_name?: string | undefined;
 	description?: string;

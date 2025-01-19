@@ -1,4 +1,4 @@
-import type { ExerciseInSetWorkout } from '../../../types/db/exercise';
+import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { Workout } from '../../../types/db/workout';
 import type { WSetJoined } from '../../../types/db/WSetI';

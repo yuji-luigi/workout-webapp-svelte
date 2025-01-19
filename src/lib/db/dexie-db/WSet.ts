@@ -1,4 +1,4 @@
-import type { ExerciseInSetWorkout } from '../../../types/db/exercise';
+import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import type { WSetJoined } from '../../../types/db/WSetI';
 import { ValidationError } from '../../errors/validation-error';
 import { db } from './dexie-db';
@@ -9,7 +9,7 @@ export class WSet {
 	slug!: string;
 	type!: WSetType;
 	name!: string;
-	exercises!: ExerciseInSetWorkout[];
+	exercises!: ExerciseInRoutineJoined[];
 	n_set!: number;
 
 	constructor({
@@ -22,7 +22,7 @@ export class WSet {
 		slug: string;
 		type: WSetType;
 		name: string;
-		exercises: ExerciseInSetWorkout[];
+		exercises: ExerciseInRoutineJoined[];
 		n_set: number;
 	}) {
 		this.id = new Date().getTime();

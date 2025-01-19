@@ -1,3 +1,4 @@
+import type { User } from './user';
 import type { Workout } from './workout';
 import type { WSetJoined } from './WSetI';
 
@@ -8,7 +9,7 @@ export interface Routine {
 	name: string;
 	description: string;
 	image?: string;
-	created_by: number | string;
+	created_by_id: number | string;
 }
 
 export interface RoutineJoined extends Routine {
@@ -20,4 +21,5 @@ export interface RoutineJoined extends Routine {
 	// joined by workout_flow many to many relationship
 	// TODO: workout_sets to be workout_blocks
 	workout_sets: WSetJoined[];
+	created_by: User;
 }

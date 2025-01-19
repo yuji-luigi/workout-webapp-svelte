@@ -12,13 +12,13 @@ timeSpentForSession: {
 
 2025-01-22-00:30-0000
 session base ["routine"] pull day HIIT
+routine_id: 0,
 [
   {
     name: "set-1",
     type: hiit,
     n_sets: 3,
     interval: {60 rest},
-    id_routine?: 0,
     exercise_histories:[
       {set_index: 0,  "pull up", 10 repetition_goal: Repetition, repetition_done: Repetition,  goal_interval:Interval, actual_interval: Interval,  },
       {set_index: 0,  "body row", 10 repetition_goal: Repetition, repetition_done: Repetition,  goal_interval:Interval, actual_interval: Interval,  },
