@@ -5,7 +5,7 @@
 	import Circle from '../progress/progress-svg/Circle.svelte';
 	import type { RoutineJoined } from '../../../types/db/routine';
 	import audio from '$lib/assets/sounds/count-down-sha.mp3';
-	import type { RoutineTimer } from '../../store/states/routine_timer.svelte';
+	import type { RoutineTimer } from '../../store/timers/routine_timer.svelte';
 	type Status = 'COUNTDOWN' | 'COUNTUP' | 'PAUSE' | 'FINISHED' | 'PRE_START';
 
 	let {

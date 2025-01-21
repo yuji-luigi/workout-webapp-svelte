@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Tooltip from '$lib/components/Tooltip.svelte';
 	import type { RoutineJoined } from '$types/db/routine';
-	import { getRoutineTimer } from '$lib/store/states/routine_timer.svelte';
+	import { getRoutineTimer } from '$lib/store/timers/routine_timer.svelte';
+	import { getIntervalTimer } from '../../../../lib/store/timers/interval_timer.svelte';
+	import { exercise } from '../../../../lib/data/template-json/dataTable';
 	// let {
 	// 	routine,
 	// 	currentSetIndex = 0,
@@ -12,10 +14,18 @@
 	// 	currentExerciseIndex: number | null;
 	// } = $props();
 	let routineTimer = getRoutineTimer();
+	const intervalTimer = getIntervalTimer();
 </script>
 
 <header class="set-stepper">
-	{#each routineTimer.routine.blocks || [] as set, index}
+	set {intervalTimer.currentFlow.set_index + 1}
+	{#if 'exercise' in intervalTimer.currentFlow}
+		{intervalTimer.currentFlow.exercise.name}
+	{:else}
+		rest time
+	{/if}
+
+	<!-- {#each routineTimer.routine.blocks || [] as set, index}
 		<div class="step" data-active={index === routineTimer.currentSetIndex}>
 			<div class="flex-column">
 				<Tooltip tooltip={set.type.name}>
@@ -31,17 +41,9 @@
 					</ul>
 				</div>
 			</div>
-
-			<!-- {#if index === currentSetIndex}
-				↑
-			{/if} -->
 		</div>
-		<!-- {#if index < routine.blocks.length - 1}
-			<div class="step">
-				<div class="line"></div>
-			</div>
-		{/if} -->
-	{/each}
+
+	{/each} -->
 </header>
 
 <style>

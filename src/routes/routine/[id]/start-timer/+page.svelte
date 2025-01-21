@@ -11,16 +11,41 @@
 	import {
 		initializeRoutineTimer,
 		getRoutineTimer
-	} from '../../../../lib/store/states/routine_timer.svelte';
-	let { data }: { data: { routine: RoutineJoined } } = $props();
-	let routine: RoutineJoined | undefined = data.routine;
+	} from '../../../../lib/store/timers/routine_timer.svelte';
+	import type { SessionJoined } from '../../../../types/db/session_history';
+	import {
+		getIntervalTimer,
+		initializeIntervalTimer
+	} from '../../../../lib/store/timers/interval_timer.svelte';
+	import JsonForm from '../../../../lib/components/form/JsonForm.svelte';
+	import type { WorkoutFlow } from '../../../../types/db/workout-flow';
+	let {
+		data
+	}: {
+		data: {
+			routine: RoutineJoined;
+			sessionLog: SessionJoined;
+			workoutFlows: WorkoutFlow[];
+		};
+	} = $props();
+	const { routine, sessionLog, workoutFlows } = data;
 	initializeRoutineTimer(routine);
+	initializeIntervalTimer(workoutFlows);
+	const intervalTimer = getIntervalTimer();
 	let routineTimer = getRoutineTimer();
+	function handleNext() {
+		intervalTimer.handleNext();
+		routineTimer.handleNext();
+	}
+	function handlePrev() {
+		intervalTimer.handlePrev();
+		routineTimer.handlePrev();
+	}
 </script>
 
 <div>
-	<button onclick={routineTimer.handlePrev} class="button primary">prev</button>
-	<button onclick={routineTimer.handleNext} class="button primary">next</button>
+	<button onclick={handlePrev} class="button primary">prev</button>
+	<button onclick={handleNext} class="button primary">next</button>
 </div>
 {#if routine && routineTimer.currentSet}
 	<div class="flex-column">
@@ -48,6 +73,7 @@
 		<TimerWatchNew {routineTimer} time={routineTimer.currentTime || 0} />
 	{/if}
 {/if}
+{JSON.stringify(intervalTimer.currentFlow)}
 
 <style>
 	.page {

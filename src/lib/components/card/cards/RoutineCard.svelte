@@ -1,17 +1,20 @@
 <script lang="ts">
-	import type { Routine } from '../../../../types/db/routine';
-	import { exercise } from '../../form/form-by-collection';
+	import type { RoutineJoined } from '../../../../types/db/routine';
 
-	export let index: number;
-	export let routine: Routine;
-	export let active = false;
+	let {
+		index,
+		routine,
+		active = false
+	}: {
+		index: number;
+		routine: RoutineJoined;
+		active: boolean;
+	} = $props();
+	// export let index: numProident proident Lorem deserunt fugiat ad laboris.Quis sit incididunt labore eu amet enim cupidatat adipisicing aute ex reprehenderit officia magna.lse;
 	let cardEl: HTMLDivElement;
 	// TODO: Can be calculated in a server
 	// TODO: refactor unnecessary codes
 	routine;
-	let var_image_url = routine.image && `--image-url:${routine.image};`;
-	const totalSets = routine.blocks.length;
-
 	// When the component mounts, ensure the card position is available
 </script>
 

@@ -4,11 +4,12 @@ import { extractTimerKeys, type Interval } from '../../../types/db/interval';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { WorkoutJoined } from '../../../types/db/workout';
 import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
+import type { TimerBase } from './timer_abstract';
 
 // need logic to control the current index of routine.
 // calculate the
 
-export class RoutineTimer {
+export class RoutineTimer implements TimerBase {
 	// routine passed in
 	routine: RoutineJoined | Record<string, null> = {};
 	// all the indexes for each property of the routine
@@ -62,6 +63,13 @@ export class RoutineTimer {
 		this.currentTimerKeys = extractTimerKeys(this.currentExercise?.interval || firstSet?.interval!);
 		this.currentTimerIndex = 0;
 	}
+	handlePause(): void {
+		throw new Error('Method not implemented.');
+	}
+	handleResume(): void {
+		throw new Error('Method not implemented.');
+	}
+
 	handleNext = () => {
 		console.log('handleNext');
 		if (!this.routine) return;
@@ -150,5 +158,3 @@ export const initializeRoutineTimer = (routine: RoutineJoined) => {
 export const getRoutineTimer = () => routineTimer as RoutineTimer;
 
 // interval factory creates interval out of RoutineJoined, Interval[], or RoutineBlockJoined[] etc
-
-interface Timer {}
