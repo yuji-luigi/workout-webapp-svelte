@@ -4,5 +4,8 @@
     "titleBar.inactiveForeground": "#ffffffcc",
     "titleBar.activeBackground": "#f32707",
     "titleBar.inactiveBackground": "#f32707dd"
-  }
+  },
+  "cSpell.words": [
+    "onoutroend"
+  ]
 }

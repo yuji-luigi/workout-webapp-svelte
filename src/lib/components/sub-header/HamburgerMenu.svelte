@@ -3,7 +3,7 @@
 		closeVerticalMenu,
 		openVerticalMenu,
 		verticalMenuStore
-	} from '../../store/vertical-menu-store';
+	} from '../../store/vertical-menu-store.svelte';
 	import HamburgerSvg from '../icons/svgs/HamburgerSvg.svelte';
 	let isOpen = false;
 	export let color: string | undefined = undefined;

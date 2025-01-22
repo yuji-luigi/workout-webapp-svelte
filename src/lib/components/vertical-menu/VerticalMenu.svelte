@@ -5,7 +5,7 @@
 		openVerticalMenu,
 		verticalMenuStore,
 		type DrawerStore
-	} from '../../store/vertical-menu-store';
+	} from '../../store/vertical-menu-store.svelte';
 	import GradientButton from '../gradient-buttons/GradientButton.svelte';
 	import ConicButton from '../gradient-buttons/ConicButton.svelte';
 	import ConicDiv from '../gradient-buttons/ConicDiv.svelte';
@@ -13,6 +13,7 @@
 	import type { NavItem } from '../../../types/nav-item-type';
 	import { verticalNavList } from '../../data/nav-data/vertical-nav-list';
 	import { mainNavList } from '../../data/nav-data';
+	import CloseButton from '../button/CloseButton.svelte';
 	let verticalMenuParams: DrawerStore;
 	verticalMenuStore.subscribe((value) => (verticalMenuParams = value));
 
@@ -32,7 +33,9 @@
 </script>
 
 <div class="drawer-side-nav" data-open={verticalMenuParams.isOpen}>
-	<button class="closebtn" on:click={closeVerticalMenu}>&times;</button>
+	<div class="close-btn-container">
+		<CloseButton onclick={closeVerticalMenu} />
+	</div>
 	<section class="nav-section">
 		<div class="gcss_sidenav_hover">
 			<h4 class="drawer-side-nav-section-title mobile-view">Main</h4>
@@ -134,24 +137,10 @@
 		}
 	}
 
-	.drawer-side-nav .closebtn {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 100%;
-		width: 36px;
-		height: 36px;
+	.close-btn-container {
 		position: absolute;
 		top: 1rem;
 		right: 1rem;
-		font-size: 46px;
-		margin-left: 50px;
-		color: var(--text-color-white);
-		transition: 0.3s ease-in-out;
-		&:hover {
-			background-color: var(--text-color-white);
-			color: var(--text-color-black);
-		}
 	}
 
 	.overlay {

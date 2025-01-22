@@ -4,12 +4,15 @@
 	import MainNav from '../nav/MainNav.svelte';
 	import ThemeSwitch from '../theme-switch/ThemeSwitch.svelte';
 	import HamburgerMenu from './HamburgerMenu.svelte';
+	import LeftDrawerButton from './LeftDrawerButton.svelte';
 </script>
 
 <header>
+	<LeftDrawerButton />
 	<div class="main-nav-wrapper">
 		<MainNav />
 	</div>
+
 	<div class="flex-row icons-white">
 		<div class="corner">
 			<ThemeSwitch />
@@ -35,6 +38,7 @@
 		display: grid;
 		grid-template-columns: 1fr auto 1fr;
 		justify-content: space-between;
+		align-items: center;
 		padding-inline: var(--padding-inline-header);
 		&::before {
 			content: '';

@@ -10,21 +10,21 @@
 		<h4>Set.{index + 1}:</h4>
 		&nbsp;
 		<h4>{set.type.name}</h4>
-		{#if set.set_rest_time}
-			<h5>Rest time: {formatSecondsToTimer(set.set_rest_time)}</h5>
+		{#if set.interval?.rest_time}
+			<h5>Rest time: {formatSecondsToTimer(set.interval?.rest_time)}</h5>
 		{/if}
-		{#if set.set_active_time}
-			<h5>Active time: {formatSecondsToTimer(set.set_active_time)}}</h5>
+		{#if set.interval?.active_time}
+			<h5>Active time: {formatSecondsToTimer(set.interval?.active_time)}}</h5>
 		{/if}
 	</div>
 	<div>
 		{#each set.exercises as exercise, index}
 			<h5>{exercise.name}</h5>
-			{#if exercise.rest_time}
-				<h5>{formatSecondsToTimer(exercise.rest_time)} rest</h5>
+			{#if exercise.interval?.rest_time}
+				<h5>{formatSecondsToTimer(exercise.interval?.rest_time)} rest</h5>
 			{/if}
-			{#if exercise.active_time}
-				<h5>{formatSecondsToTimer(exercise.active_time)} active</h5>
+			{#if exercise.interval?.active_time}
+				<h5>{formatSecondsToTimer(exercise.interval?.active_time)} active</h5>
 			{/if}
 		{/each}
 	</div>

@@ -73,7 +73,6 @@
 		<TimerWatchNew {routineTimer} time={routineTimer.currentTime || 0} />
 	{/if}
 {/if}
-{JSON.stringify(intervalTimer.currentFlow)}
 
 <style>
 	.page {
