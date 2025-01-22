@@ -4,10 +4,12 @@
 
 	let {
 		children,
-		position
+		position,
+		withCloseButton = false
 	}: {
 		children: Snippet;
 		position: 'left' | 'right';
+		withCloseButton?: boolean;
 	} = $props();
 
 	const drawerState = leftDrawerState;
@@ -21,7 +23,9 @@
 </script>
 
 <div class="drawer-side-nav" data-open={drawerState.isOpen} data-position={position}>
-	<button class="closebtn" onclick={closeVerticalMenu}>&times;</button>
+	{#if withCloseButton}
+		<button class="closebtn" onclick={closeVerticalMenu}>&times;</button>
+	{/if}
 	{@render children()}
 </div>
 <div
@@ -33,8 +37,8 @@
 <style>
 	.drawer-side-nav {
 		display: grid;
-		justify-content: start;
-		align-content: start;
+		justify-content: var(--justify-content);
+		align-content: var(--align-content);
 		padding: 1rem 2rem;
 		height: calc(100% - var(--sub-header-height));
 		width: var(--vertical-menu-width);

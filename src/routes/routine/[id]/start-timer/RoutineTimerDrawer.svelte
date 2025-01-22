@@ -5,11 +5,12 @@
 	import { getIntervalTimer } from '../../../../lib/store/timers/interval_timer.svelte';
 	import type { RoutineJoined } from '../../../../types/db/routine';
 	import { leftDrawerState } from '../../../../lib/store/left_drawer_state.svelte';
+	import { isBlockSetLog, isSetLog } from '../../../../types/db/session_history';
 
 	let { routine }: { routine: RoutineJoined } = $props();
 	const intervalTimer = getIntervalTimer();
 	let drawerState = $state(leftDrawerState);
-	let x = $derived(leftDrawerState);
+	console.log(intervalTimer.workoutFlows);
 </script>
 
 <!-- <button class="appbar_toggle_btn" onclick={() => (isOpen = !isOpen)}>toggle</button> -->
@@ -18,16 +19,20 @@
 	<section class="routine-interval-drawer" data-open={drawerState.isOpen}>
 		<header class="set-stepper">
 			<!-- TODO: can count the reps of finished or on going workouts (see the current index of set and exercise) -->
-			{#each routine.blocks as set, index}
-				<div class="step">
-					<Tooltip
-						tooltip={routine.blocks[index].exercises.map((exercise) => exercise.name).join(', ')}
-					>
-						<h3>Set {index + 1}</h3>
-						<h3>{set.type.name}</h3>
-					</Tooltip>
-				</div>
-				{#if index < routine.blocks.length - 1}
+			{#each routine.blocks as set, blockIndex}
+				<Tooltip
+					--width={'100%'}
+					tooltip={routine.blocks[blockIndex].exercises.map((exercise) => exercise.name).join(', ')}
+				>
+					<div class="block-heading">
+						<h3>Block {blockIndex + 1}</h3>
+						<p>{set.type.name}</p>
+					</div>
+					{#each intervalTimer.workoutFlows.filter(isBlockSetLog(blockIndex)) as blockSets}
+						<p>{blockSets.exercise.name}</p>
+					{/each}
+				</Tooltip>
+				{#if blockIndex < routine.blocks.length - 1}
 					<div class="step">
 						<div class="line"></div>
 					</div>
@@ -38,20 +43,15 @@
 </VerticalMenuBase>
 
 <style>
-	/* .appbar_toggle_btn {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 1000;
+	.block-heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
 	}
-	.routine-interval-drawer {
-		margin-top: var(--sub-header-height);
-		position: fixed;
-		width: 300px;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		padding: 1rem;
-		transition: translate 0.3s;
-	} */
+	.line {
+		background-color: var(--text-color-white);
+		height: 1px;
+		width: 100%;
+	}
 </style>

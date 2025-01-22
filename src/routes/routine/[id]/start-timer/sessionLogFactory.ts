@@ -16,7 +16,7 @@ export class SessionJoinedFactory {
 				set_index: index,
 				block_time_spent: 0,
 				interval: block.interval,
-				set_logs: SetLogFactory.fromRoutineBlockJoined(block)
+				set_logs: SetLogFactory.fromRoutineBlockJoined(block, index)
 			};
 		});
 
@@ -33,16 +33,32 @@ export class SessionJoinedFactory {
 
 export class SetLogFactory {
 	// iterates exercises and sets to create array of interval + exercise that will be passed in timer.
-	static fromRoutineBlockJoined(block: RoutineBlockJoined): (SetLogJoined | IntervalOnlyLog)[] {
+	static fromRoutineBlockJoined(
+		block: RoutineBlockJoined,
+		block_index: number
+	): (SetLogJoined | IntervalOnlyLog)[] {
 		// create RoutineBlockJoined for n_set times
 		const setLogs: (SetLogJoined | IntervalOnlyLog)[] = [];
-		for (let i = 0; i < block.n_set; i++) {
+		for (let set_index = 0; set_index < block.n_set; set_index++) {
 			// TODO: refactor with another factory that creates setLogJoined and intervalOnlyLog
-			block.exercises.forEach((exercise, index) => {
-				setLogs.push(this.fromExerciseInRoutineJoined(exercise, i));
+			block.exercises.forEach((exercise, exercise_index) => {
+				setLogs.push({
+					...this.fromExerciseInRoutineJoined(exercise, {
+						set_index,
+						block_index,
+						exercise_index
+					}),
+					block_index
+				});
 				// case there is interval implemented at the set level then impose it at end of the set
-				if (index === block.exercises.length - 1 && hasInterval(block)) {
-					setLogs.push(this.fromSetInterval(block, i));
+				if (exercise_index === block.exercises.length - 1 && hasInterval(block)) {
+					setLogs.push(
+						this.fromSetInterval(block, {
+							set_index,
+							block_index,
+							exercise_index
+						})
+					);
 				}
 			});
 		}
@@ -50,12 +66,21 @@ export class SetLogFactory {
 	}
 	static fromExerciseInRoutineJoined(
 		exercise: ExerciseInRoutineJoined,
-		index: number
+		{
+			set_index,
+			block_index,
+			exercise_index
+		}: {
+			set_index: number;
+			block_index: number;
+			exercise_index: number;
+		}
 	): SetLogJoined {
 		return {
 			id: 0,
-			set_index: index,
-			exercise_index: index,
+			set_index,
+			block_index,
+			exercise_index: exercise_index,
 			exercise: exercise,
 			time_spent: 0,
 			...(exercise.interval && {
@@ -88,9 +113,22 @@ export class SetLogFactory {
 			}
 		};
 	}
-	static fromSetInterval(block: RoutineBlockJoined & { interval: Interval }, index: number) {
+	static fromSetInterval(
+		block: RoutineBlockJoined & { interval: Interval },
+		{
+			set_index,
+			block_index,
+			exercise_index
+		}: {
+			set_index: number;
+			block_index: number;
+			exercise_index: number;
+		}
+	) {
 		return {
-			set_index: index,
+			set_index,
+			block_index,
+			exercise_index,
 			interval_preset: block.interval,
 			interval_done: {
 				id: undefined as any,

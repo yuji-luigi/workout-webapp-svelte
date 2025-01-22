@@ -6,16 +6,17 @@
 
 <style>
 	.closebtn {
+		--size-default: var(--size, 36px);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border-radius: 100%;
-		width: 36px;
-		height: 36px;
+		width: var(--size-default);
+		height: var(--size-default);
 		/* position: absolute; */
 		/* top: 1rem;
 		right: 1rem; */
-		font-size: 46px;
+		font-size: calc(var(--size-default) + 6px);
 		/* margin-left: 50px; */
 		color: var(--text-color-white);
 		transition: 0.3s ease-in-out;

@@ -8,13 +8,7 @@
 		// leftDrawerState.isOpen = !leftDrawerState.isOpen;
 		leftDrawerState.isOpen = !leftDrawerState.isOpen;
 	}
-	function handleTransitionEnd() {
-		if (leftDrawerState.isOpen) {
-			showCloseIcon = true;
-		} else {
-			showListIcon = true;
-		}
-	}
+
 	let showListIcon = $state(!leftDrawerState.isOpen);
 	let showCloseIcon = $state(leftDrawerState.isOpen);
 </script>
@@ -35,6 +29,7 @@
 	{#if leftDrawerState.isOpen}
 		<div class="button-div" in:fade={{ duration: 300 }} out:fade={{ duration: 300 }}>
 			<CloseButton
+				--size={'28px'}
 				onclick={() => {
 					showCloseIcon = false;
 					handleClick();

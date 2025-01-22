@@ -5,6 +5,7 @@ import type { RoutineJoined } from './routine';
 import type { TimerExecutableTable } from './timer_executable_table';
 import type { User } from './user';
 import type { Weight } from './weight';
+import type { WorkoutFlow } from './workout-flow';
 
 export interface SetLog {
 	id: number;
@@ -18,10 +19,22 @@ export interface SetLog {
 	time_spent: number;
 }
 
+export function isSetLog(log: WorkoutFlow): log is SetLogJoined {
+	return 'exercise' in log;
+}
+
+export function isBlockSetLog(blockIndex: number) {
+	// Return a function that TS recognizes as a type predicate
+	return (flow: WorkoutFlow): flow is SetLogJoined => {
+		return flow.block_index === blockIndex && isSetLog(flow);
+	};
+}
+
 // Join from SetLog and ExerciseInRoutine
 export interface SetLogJoined {
 	id: number;
 	// set_index: number;
+	block_index: number;
 	exercise_index: number;
 	set_index: number;
 	exercise: ExerciseInRoutineJoined;
@@ -36,6 +49,8 @@ export interface SetLogJoined {
 
 export type IntervalOnlyLog = {
 	set_index: number;
+	block_index: number;
+	exercise_index: number;
 	interval_done: Interval;
 	interval_preset: Interval;
 };
