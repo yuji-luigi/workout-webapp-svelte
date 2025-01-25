@@ -28,6 +28,7 @@
 	{/if}
 	{@render children()}
 </div>
+<!-- Just an overlay to listen for clicks and also show the darker background -->
 <div
 	bind:this={verticalMenuOverlayElement}
 	data-open={drawerState.isOpen}
@@ -36,9 +37,9 @@
 
 <style>
 	.drawer-side-nav {
-		display: grid;
+		/* display: grid;
 		justify-content: var(--justify-content);
-		align-content: var(--align-content);
+		align-content: var(--align-content); */
 		padding: 1rem 2rem;
 		height: calc(100% - var(--sub-header-height));
 		width: var(--vertical-menu-width);
@@ -50,7 +51,6 @@
 		background-color: #111;
 		overflow-x: hidden;
 		transition: 0.5s;
-		padding-top: 60px;
 		transition: transform 0.5s ease-in-out;
 		z-index: 1000;
 		color: var(--text-color-white);

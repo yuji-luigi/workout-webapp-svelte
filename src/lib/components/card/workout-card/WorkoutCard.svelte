@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Workout } from '../../../../types/db/workout';
 	import { createRandomImage } from '$images/random-images';
-	import { dialogStore, openDialog } from '../../../store/global-dialog-store';
+	import { dialogStore, openDialog } from '../../../store/global-dialog-store.svelte';
 
 	import WorkoutCardModalContent from './WorkoutCardModalContent.svelte';
 

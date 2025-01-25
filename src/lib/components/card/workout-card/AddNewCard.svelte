@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Collection } from '../../../../types/db/collections';
-	import { openDialog } from '../../../store/global-dialog-store';
+	import { openDialog } from '../../../store/global-dialog-store.svelte';
 	import * as formsByCollection from '$lib/components/form/form-by-collection';
 	import BlackBoardCard from '../BlackBoardCard.svelte';
 	let { collection }: { collection: Collection } = $props();

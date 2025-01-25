@@ -1,5 +1,5 @@
 import type { SvelteComponent } from 'svelte';
-import { openDialog } from '../../../store/global-dialog-store';
+import { openDialog } from '../../../store/global-dialog-store.svelte';
 import ErrorDialogContent from '../contents/ErrorDialogContent.svelte';
 
 export function handleOpenDialog(

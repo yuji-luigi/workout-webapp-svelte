@@ -1,6 +1,5 @@
 <script>
-	import ToggleRoutineDrawer from '../../../routes/routine/[id]/start-timer/ToggleRoutineDrawer.svelte';
-	import listIconPath from '$lib/assets/icons/list_icon.png';
+	import ToggleRoutineDrawer from '$lib/sections/start-timer-components/ToggleRoutineDrawer.svelte';
 </script>
 
 <div>

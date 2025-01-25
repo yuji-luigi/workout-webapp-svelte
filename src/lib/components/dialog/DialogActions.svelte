@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { closeDialog } from '../../store/global-dialog-store';
+	import { closeDialog } from '../../store/global-dialog-store.svelte';
 
 	type ActionProps = {
 		text: string;
