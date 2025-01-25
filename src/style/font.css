@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "DkCrayonCrumble";
+  src:
+    local("DkCrayonCrumble"),
+    url("/fonts/chalk/DkCrayonCrumble-ddll.ttf") format("truetype");
+}
