@@ -1,6 +1,7 @@
 // dialogStackStore.ts
 import { get, writable } from 'svelte/store';
 import { mount, unmount, type SvelteComponent } from 'svelte';
+import { sleep } from '../../helpers/sleep';
 
 export type DialogItem = {
 	/** component must be component so .svelte file */
@@ -11,11 +12,12 @@ export type DialogItem = {
 	target?: string; // The ID or selector of where to append the dialog
 	/** currently not using */
 	rawHtml?: string;
-
 	/** handled internally in order to destroy the instantiated component. maybe not necessary. */
 	componentInstance?: SvelteComponent;
 	/** handled internally in order to remove the created dialog from dom tree. */
 	dialogEl?: HTMLDialogElement;
+	disablePadding?: boolean;
+	dialogClasses?: string[];
 };
 
 export const dialogStack = writable<DialogItem[]>([]);
@@ -30,7 +32,20 @@ export function openStackDialog(dialog: DialogItem) {
 	}
 
 	const dialogEl: HTMLDialogElement = document.createElement('dialog');
+	setTimeout(() => {
+		dialogEl.scrollTop = 0; // Reset scroll position to the top
+	}, 0);
+	dialogEl.autofocus = true;
+	dialogEl.classList.add('dialog');
+	if (!dialog.disablePadding) {
+		dialogEl.classList.add('dialog-contents');
+	}
+	if (dialog.dialogClasses) {
+		dialogEl.classList.add(...dialog.dialogClasses);
+	}
+
 	dialog.dialogEl = dialogEl;
+
 	dialogStack.update((stack) => [...stack, dialog]);
 
 	const backdropClickListener = (e: MouseEvent) => {
@@ -65,13 +80,14 @@ export function openStackDialog(dialog: DialogItem) {
 		// Remove the dialog from the stack
 		dialogStack.update((stack) => stack.slice(0, -1));
 	};
-	dialogEl.classList.add('dialog');
+
 	// Add event listeners for backdrop clicks and 'cancel' events
 	dialogEl.addEventListener('click', backdropClickListener, true);
 	dialogEl.addEventListener('cancel', handleCancel);
 	dialogEl.addEventListener('close', handleClose);
-
-	/* 	const componentInstance =  */ mount(dialog.component, {
+	/* 	const componentInstance =  */
+	mount(dialog.component, {
+		/** where to append the dialog. see svelte docs for more info. */
 		target: dialogEl,
 		props: dialog.props
 	});
