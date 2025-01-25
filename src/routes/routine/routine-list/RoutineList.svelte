@@ -3,7 +3,7 @@
 	import type { RoutineJoined } from '../../../types/db/routine';
 	import { db } from '../../../lib/db/dexie-db/dexie-db';
 	import RoutineCard from '../../../lib/components/card/cards/RoutineCard.svelte';
-	import { createRandomImage } from '../../../lib/images/random-images';
+	import { createRandomImage } from '$images/random-images';
 	let { sectionClicked, routines }: { sectionClicked: () => void; routines: RoutineJoined[] } =
 		$props();
 

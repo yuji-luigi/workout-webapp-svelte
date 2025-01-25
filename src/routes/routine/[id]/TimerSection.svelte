@@ -5,7 +5,7 @@
 	import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
 	import { goto } from '$app/navigation';
 	import CountInput from '../../../lib/components/counter/CountInput.svelte';
-	import { openDialog } from '../../../lib/store/global-dialog-store';
+	import { openDialog } from '../../../lib/store/global-dialog-store.svelte';
 	let count = 0;
 
 	let reps = 0;
