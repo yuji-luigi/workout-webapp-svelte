@@ -32,9 +32,7 @@ export function openStackDialog(dialog: DialogItem) {
 	}
 
 	const dialogEl: HTMLDialogElement = document.createElement('dialog');
-	setTimeout(() => {
-		dialogEl.scrollTop = 0; // Reset scroll position to the top
-	}, 0);
+
 	dialogEl.autofocus = true;
 	dialogEl.classList.add('dialog');
 	if (!dialog.disablePadding) {
@@ -79,6 +77,10 @@ export function openStackDialog(dialog: DialogItem) {
 		}
 		// Remove the dialog from the stack
 		dialogStack.update((stack) => stack.slice(0, -1));
+		// put into the task queue. ensures that this function completed then run the scroll top
+		setTimeout(() => {
+			dialogEl.scrollTop = 0; // Reset scroll position to the top
+		}, 0);
 	};
 
 	// Add event listeners for backdrop clicks and 'cancel' events
