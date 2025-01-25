@@ -91,8 +91,8 @@ export function openStackDialog(dialog: DialogItem) {
 	});
 	// dialog.componentInstance = componentInstance as any;
 	targetElement.appendChild(dialogEl);
-	dialogEl.showModal();
 	// put into the task queue. ensures that this function completed then run the scroll top
+	dialogEl.showModal();
 	setTimeout(() => {
 		dialogEl.scrollTop = 0; // Reset scroll position to the top
 	}, 0);
