@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { getStores } from '$app/stores';
-	import { closeDialog } from '../../../store/global-dialog-store';
+	import { closeDialog } from '../../../store/global-dialog-store.svelte';
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
 	import DialogActions from '../DialogActions.svelte';
 	import type { Interval } from '$types/db/interval';

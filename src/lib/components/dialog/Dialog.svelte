@@ -11,7 +11,7 @@
 		fullScreen?: boolean;
 		// handleEsc: (e: KeyboardEvent) => void;
 
-		dialog: HTMLDialogElement | undefined | null;
+		dialog?: HTMLDialogElement | undefined | null;
 	} = $props();
 	const maxWidths = {
 		xs: '300px',
@@ -27,7 +27,7 @@
 </script>
 
 <dialog {style} class="dialog card" bind:this={dialog}>
-	<div class="dialog-container">
+	<div class="dialog-contents">
 		{@render children?.()}
 	</div>
 </dialog>
@@ -41,8 +41,5 @@
 		@media (max-width: 600px) {
 			max-width: 100%;
 		}
-	}
-	.card {
-		padding: 0;
 	}
 </style>
