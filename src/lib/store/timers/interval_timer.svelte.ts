@@ -1,12 +1,7 @@
-import { readable } from 'svelte/store';
 import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
-import { extractTimerKeys, type Interval } from '../../../types/db/interval';
-import type { RoutineJoined } from '../../../types/db/routine';
-import type { WorkoutJoined } from '../../../types/db/workout';
-import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
-import type { TimerBase } from './timer_abstract';
+import { isSetLog } from '../../../types/db/session_history';
 import type { WorkoutFlow } from '../../../types/db/workout-flow';
-import type { IntervalOnlyLog } from '../../../types/db/session_history';
+import type { TimerBase } from './timer_abstract';
 
 // need logic to control the current index of routine.
 // calculate the
@@ -34,6 +29,24 @@ export class IntervalTimer implements TimerBase {
 	}
 	handleResume(): void {
 		throw new Error('Method not implemented.');
+	}
+	/** the same thing as the currentFlow */
+	get currentExercise(): ExerciseInRoutineJoined {
+		if (isSetLog(this.currentFlow)) {
+			return this.currentFlow.exercise;
+		}
+		const prevSet = this.workoutFlows[this.currentIndex - 1];
+		if (isSetLog(prevSet)) {
+			return prevSet.exercise;
+		}
+		// placeholder
+		return {
+			id: 0,
+			repetition: {},
+			name: 'Ready to workout?',
+			slug: '',
+			created_by_id: 0
+		};
 	}
 }
 
