@@ -30,6 +30,7 @@
 
 <style>
 	header {
+		height: var(--sub-header-height);
 		position: fixed;
 		top: 0;
 		left: 0;
