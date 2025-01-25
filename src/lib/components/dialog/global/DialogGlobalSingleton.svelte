@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { closeDialog, dialogStore, type DialogStore } from '../../../store/global-dialog-store';
+	import {
+		closeDialog,
+		dialogStore,
+		type DialogStore
+	} from '../../../store/global-dialog-store.svelte';
 	import Dialog from '../Dialog.svelte';
-	import { sleep } from '../../../helpers/sleep';
 	let dialog: HTMLDialogElement | null = $state(null);
-	let dialogStoreParams: DialogStore | any = $state(null);
-	dialogStore.subscribe((value) => (dialogStoreParams = value));
+	// dialogStore.subscribe((value) => (dialogStoreParams = value));
 
 	async function handleEsc(e: KeyboardEvent) {
 		if (e.key === 'Escape') {
@@ -23,7 +25,7 @@
 		dialog.classList.remove('closing');
 		dialog.removeEventListener('transitionend', closeModal);
 		dialog.close();
-		dialogStore.set({ isOpen: false });
+		dialogStore.isOpen = false;
 	};
 
 	function handleCloseAnimation() {
@@ -48,31 +50,30 @@
 		dialog.addEventListener('keydown', handleEsc, true);
 	});
 	$effect(() => {
-		if (dialog && $dialogStore.isOpen) {
+		if (dialog && dialogStore.isOpen) {
 			dialog.showModal();
 			dialog.classList.add('fade-in');
 			dialog.addEventListener('transitionend', closeModal);
 		}
-		if (dialog && !$dialogStore.isOpen) {
+		if (dialog && !dialogStore.isOpen) {
 			dialog.close();
 			// dialogStore.set({ isOpen: false });
 		}
 	});
+	// console.log(dialogStore?.componentInDialog?.props);
 </script>
 
 <Dialog bind:dialog>
 	<div class="">
-		{#if dialogStoreParams?.componentInDialog}
-			{@render dialogStoreParams.componentInDialog.component({
-				...dialogStoreParams.componenetInDialog.props
-			})}
+		{#if dialogStore?.componentInDialog && dialogStore?.componentInDialog.component}
+			{@render dialogStore.componentInDialog.component?.({ name: 'insane' })}
 			<!-- <svelte:component
-				this={dialogStoreParams.componentInDialog.component}
-				{...dialogStoreParams.componenetInDialog.props}
+				this={dialogStore.componentInDialog.component}
+				{...dialogStore.componenetInDialog.props}
 			/> -->
 		{/if}
-		{#if dialogStoreParams?.rawHtml}
-			{@html dialogStoreParams.rawHtml}
+		{#if dialogStore?.rawHtml}
+			{@html dialogStore.rawHtml}
 		{/if}
 	</div>
 </Dialog>

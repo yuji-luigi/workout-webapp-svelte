@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import { dialogStore, type DialogStore } from '$lib/store/global-dialog-store';
+	import { dialogStore, type DialogStore } from '$lib/store/global-dialog-store.svelte';
 	import Dialog from '../Dialog.svelte';
 	import {} from // dialogStack,
 	// pushDialog,
@@ -80,10 +80,6 @@
 			// popDialog(); // Clean up when dialog is destroyed
 			dialog.removeEventListener('keydown', handleEsc);
 		}
-	});
-
-	dialogStore.subscribe((value) => {
-		dialogParams = value;
 	});
 </script>
 
