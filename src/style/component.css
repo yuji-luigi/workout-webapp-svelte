@@ -32,6 +32,10 @@
   gap: 1rem;
   padding: 2rem 5rem;
   width: 100%;
+
+  @media (max-width: 600px) {
+    padding: 1rem;
+  }
 }
 
 .dialog-actions {
@@ -120,6 +124,15 @@ dialog {
     background: light-dark(var(--gray-200), var(--gray-400));
     color: var(--gray-500);
     cursor: not-allowed;
+  }
+}
+
+.button-min-style {
+  transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.8;
   }
 }
 
