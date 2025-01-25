@@ -15,7 +15,6 @@
   border: none;
   border-radius: var(--card-radius);
   margin: auto;
-  min-width: 600px;
   background-color: var(--bg-color);
   width: 100%;
 
@@ -26,7 +25,7 @@
 
 
 
-.dialog-container {
+.dialog-contents {
   display: flex;
   flex-direction: column;
   gap: 1rem;

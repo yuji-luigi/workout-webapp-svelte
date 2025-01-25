@@ -197,6 +197,9 @@ body {
   --color-primary: light-dark(var(--color-primary-500), var(--color-primary-500));
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
 
 main {
   &:not(:has(.video-hero)) {

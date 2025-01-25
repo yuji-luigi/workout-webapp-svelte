@@ -127,3 +127,43 @@ select.border-focus-none, input.border-focus-none {
   justify-content: center;
   align-items: center;
 }
+
+.max-width-100 {
+  max-width: 100%;
+}
+
+.max-width-100vw {
+  max-width: 100vw;
+}
+
+.max-width-300 {
+  max-width: 300px;
+}
+
+.max-width-400 {
+  max-width: 400px;
+}
+
+.max-width-500 {
+  max-width: 500px;
+}
+
+.max-width-600 {
+  max-width: 600px;
+}
+
+.max-width-700 {
+  max-width: 700px;
+}
+
+.max-width-800 {
+  max-width: 800px;
+}
+
+.max-width-900 {
+  max-width: 900px;
+}
+
+.max-width-1000 {
+  max-width: 1000px;
+}
