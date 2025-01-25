@@ -17,7 +17,7 @@
 		fullScreen?: boolean;
 		isOpen: boolean;
 		children: any;
-		maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
+		maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 	} = $props();
 
 	let dialog: HTMLDialogElement | undefined = $state();

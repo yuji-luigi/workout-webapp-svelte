@@ -60,16 +60,22 @@
 	});
 </script>
 
-<Dialog maxWidth="xl" bind:dialog>
-	<div>
+<Dialog bind:dialog>
+	<div class="">
 		{#if dialogStoreParams?.componentInDialog}
-			<svelte:component
+			{@render dialogStoreParams.componentInDialog.component({
+				...dialogStoreParams.componenetInDialog.props
+			})}
+			<!-- <svelte:component
 				this={dialogStoreParams.componentInDialog.component}
-				{...dialogStoreParams.componentInDialog.props}
-			/>
+				{...dialogStoreParams.componenetInDialog.props}
+			/> -->
 		{/if}
 		{#if dialogStoreParams?.rawHtml}
 			{@html dialogStoreParams.rawHtml}
 		{/if}
 	</div>
 </Dialog>
+
+<style>
+</style>
