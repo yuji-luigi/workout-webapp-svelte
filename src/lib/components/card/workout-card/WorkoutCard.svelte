@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Workout } from '../../../../types/db/workout';
-	import { createRandomImage } from '../../../images/random-images';
+	import { createRandomImage } from '$images/random-images';
 	import { dialogStore, openDialog } from '../../../store/global-dialog-store';
 
 	import WorkoutCardModalContent from './WorkoutCardModalContent.svelte';
@@ -10,7 +10,7 @@
 	const handleOpenDialog = () => {
 		openDialog({
 			componentInDialog: {
-				component: WorkoutCardModalContent,
+				component: WorkoutCardModalContent as any,
 				props: { workout }
 			}
 		});
