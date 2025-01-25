@@ -17,11 +17,11 @@
 <style>
 	.chip {
 		--cursor: pointer;
-		display: inline-block;
+		display: flex;
 		padding: var(--chip-padding);
 		border-radius: var(--button-radius);
-		background-color: var(--color-primary);
-		color: var(--color-white);
+		background-color: var(--background-color, var(--color-primary));
+		color: var(--text-color-white);
 		cursor: var(--cursor);
 	}
 </style>
