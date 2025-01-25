@@ -23,7 +23,7 @@
         "./src/lib/components/*"
       ],
       "$images/*": [
-        "./src/lib/images/*"
+        "./src/lib/assets/images/*"
       ]
     }
   }
