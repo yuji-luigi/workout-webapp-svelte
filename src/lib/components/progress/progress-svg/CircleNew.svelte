@@ -1,10 +1,18 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { snapshot } from 'yjs';
-	let { seconds, timePassed }: { seconds: number; timePassed: number } = $props();
+	let {
+		seconds,
+		timePassed,
+		_SIZE = 400
+	}: {
+		seconds: number;
+		timePassed: number;
+		_SIZE?: number;
+	} = $props();
 	let mediaQuery: MediaQueryList;
 	let circleElement: SVGCircleElement;
-	const _SIZE = 400;
+
 	let isSmallScreen = $state(false); // Track if the screen is small
 	let size = $derived(isSmallScreen ? _SIZE * 0.7 : _SIZE);
 	let r = $derived(size / 2);
