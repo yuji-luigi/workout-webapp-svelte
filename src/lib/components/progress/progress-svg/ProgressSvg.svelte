@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { getContext } from 'svelte';
 	import Circle from './Circle.svelte';
 	import CircleNew from './CircleNew.svelte';
 	export let seconds: number = 0;
 	export let timePassed: number = 0;
+	const timerSize = getContext<number>('timerSize');
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -12,7 +14,7 @@
 			<stop offset="100%" stop-color="#ffcc00" />
 		</linearGradient>
 	</defs>
-	<CircleNew {seconds} {timePassed} />
+	<CircleNew _SIZE={timerSize} {seconds} {timePassed} />
 </svg>
 
 <style>
