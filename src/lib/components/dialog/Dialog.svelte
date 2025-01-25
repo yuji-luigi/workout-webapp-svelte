@@ -6,7 +6,7 @@
 		fullScreen
 		// handleEsc
 	}: {
-		maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
+		maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 		children: any;
 		fullScreen?: boolean;
 		// handleEsc: (e: KeyboardEvent) => void;
@@ -14,6 +14,7 @@
 		dialog: HTMLDialogElement | undefined | null;
 	} = $props();
 	const maxWidths = {
+		xs: '300px',
 		sm: '400px',
 		md: '600px',
 		lg: '1000px',
@@ -37,6 +38,9 @@
 		/* height: var(--height, 100%); */
 		/* width: var(--width, 100%); */
 		max-width: var(--max-width);
+		@media (max-width: 600px) {
+			max-width: 100%;
+		}
 	}
 	.card {
 		padding: 0;
