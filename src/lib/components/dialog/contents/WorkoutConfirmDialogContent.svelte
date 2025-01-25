@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { getStores } from '$app/stores';
-	import { closeDialog } from '../../../store/global-dialog-store';
-	import type { Interval } from '../../../../types/db/data';
+	import { closeDialog } from '$lib/store/global-dialog-store';
+	import type { Interval } from '../../../../types/db/interval';
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
 	import Counter from '../../CounterOriginal.svelte';
 	import CountInput from '../../counter/CountInput.svelte';

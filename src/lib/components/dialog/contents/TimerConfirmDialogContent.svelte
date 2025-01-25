@@ -4,6 +4,7 @@
 	import { closeDialog } from '../../../store/global-dialog-store';
 	import { getTimerTime } from '../../../helpers/formatTimerTime';
 	import DialogActions from '../DialogActions.svelte';
+	import type { Interval } from '$types/db/interval';
 
 	export let interval: Interval;
 	let sets = 1;

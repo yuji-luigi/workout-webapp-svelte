@@ -33,8 +33,7 @@
 	:root {
 		--gap: 0.5rem;
 	}
-	.routine-confirm-dialog {
-	}
+
 	.contents {
 		display: grid;
 
@@ -48,21 +47,6 @@
 	}
 	.flex-row {
 		gap: var(--gap);
-	}
-	.counter {
-		display: grid;
-		place-self: center;
-		place-items: center;
-		grid-template-columns: repeat(3, 1fr);
-		& button {
-			--size: 2rem;
-			padding: 0;
-			width: var(--size);
-			height: var(--size);
-			font-size: var(--font-size-lg);
-			border-radius: 900px;
-			color: var(--text-color-black);
-		}
 	}
 	.actions {
 		margin-top: 1rem;
