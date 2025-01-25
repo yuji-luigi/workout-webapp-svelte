@@ -77,10 +77,6 @@ export function openStackDialog(dialog: DialogItem) {
 		}
 		// Remove the dialog from the stack
 		dialogStack.update((stack) => stack.slice(0, -1));
-		// put into the task queue. ensures that this function completed then run the scroll top
-		setTimeout(() => {
-			dialogEl.scrollTop = 0; // Reset scroll position to the top
-		}, 0);
 	};
 
 	// Add event listeners for backdrop clicks and 'cancel' events
@@ -96,6 +92,10 @@ export function openStackDialog(dialog: DialogItem) {
 	// dialog.componentInstance = componentInstance as any;
 	targetElement.appendChild(dialogEl);
 	dialogEl.showModal();
+	// put into the task queue. ensures that this function completed then run the scroll top
+	setTimeout(() => {
+		dialogEl.scrollTop = 0; // Reset scroll position to the top
+	}, 0);
 }
 
 export function closeStackDialog() {
