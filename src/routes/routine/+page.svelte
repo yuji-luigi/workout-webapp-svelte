@@ -1,13 +1,13 @@
 <script lang="ts">
 	import RoutineConfirmDialogContent from '$lib/components/dialog/contents/RoutineConfirmDialogContent.svelte';
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
-	import { openDialog } from '$lib/store/global-dialog-store';
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
-	import { db } from '../../lib/db/dexie-db/dexie-db';
-	import type { RoutineJoined } from '../../types/db/routine';
-	import RoutineList from './routine-list/RoutineList.svelte';
+	import DialogGeneric from '../../lib/components/dialog/global/DialogGeneric.svelte';
+	import { openStackDialog } from '../../lib/store/dialog-stack/dialogStackStore';
 	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
+	import RoutineList from './routine-list/RoutineList.svelte';
+	let isOpenTestDialog = $state(false);
 	let cardGrid: HTMLDivElement;
 	let routines = $derived(routinesStore.list);
 
@@ -24,13 +24,21 @@
 			cardEl.dataset.active = 'true';
 			const routine = routines.find((r) => r.id.toString() === cardEl.dataset.id);
 			// open global dialog with the target routine data
-			openDialog({
-				componentInDialog: {
-					component: RoutineConfirmDialogContent as any,
-					props: { routine }
-				}
+			openStackDialog({
+				component: RoutineConfirmDialogContent,
+				props: { routine },
+				dialogClasses: ['max-width-800']
 			});
+			// openDialog({
+			// 	componentInDialog: {
+			// 		component: RoutineConfirmDialogContent as any,
+			// 		props: { routine }
+			// 	}
+			// });
 		}
+	}
+	function openTest() {
+		isOpenTestDialog = true;
 	}
 </script>
 
@@ -43,11 +51,10 @@
 	videoSrc="/videos/cover/workout_with_yume.mov"
 	class="video"
 />
-
 <div class="stretch-container flex-column">
 	<div class="flex-row title-row">
 		<h1>Select workouts/routines</h1>
-		<button class="button primary">Add routine/workout</button>
+		<button onclick={openTest} class="button primary">Add routine/workout TEST</button>
 	</div>
 	<div
 		role="button"
@@ -61,6 +68,14 @@
 		<AddNewCard collection="routine" />
 	</div>
 </div>
+
+{#if isOpenTestDialog}
+	<DialogGeneric isOpen={isOpenTestDialog}>
+		<div class="dialog-contents">
+			<RoutineConfirmDialogContent routine={routines[0]} />
+		</div>
+	</DialogGeneric>
+{/if}
 
 <style>
 	.title-row {
