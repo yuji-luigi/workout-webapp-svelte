@@ -1,5 +1,5 @@
 <script>
-	import placeholder_img from '$lib/images/placeholder/placeholder-home-1.jpg';
+	import placeholder_img from '$images/placeholder/placeholder-home-1.jpg';
 </script>
 
 <section class="container">

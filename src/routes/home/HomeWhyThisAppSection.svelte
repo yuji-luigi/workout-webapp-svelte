@@ -1,8 +1,8 @@
 <script>
-	import why_this_app_img from '$lib/images/placeholder/placeholder-nike-home2.jpg';
-	import program_img from '$lib/images/placeholder/placeholder-nike-program.jpg';
-	import program_img2 from '$lib/images/placeholder/placeholder-nike-program-2.jpg';
-	import CardColumn from '../../lib/components/card/CardColumn.svelte';
+	import why_this_app_img from '$images/placeholder/placeholder-nike-home2.jpg';
+	import program_img from '$images/placeholder/placeholder-nike-program.jpg';
+	import program_img2 from '$images/placeholder/placeholder-nike-program-2.jpg';
+	import CardColumn from '$lib/components/card/CardColumn.svelte';
 
 	const cards = [
 		{
