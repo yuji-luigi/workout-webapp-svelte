@@ -6,7 +6,7 @@
 	let time = $state(0);
 </script>
 
-<section class="dialog-container">
+<section class="dialog-contents">
 	<h2>set the interval</h2>
 	<TimerInput bind:time />
 	<button
