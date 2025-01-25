@@ -15,12 +15,12 @@
 	}
 </script>
 
-<div class="dialog-container">
+<div class="dialog-contents">
 	<ExerciseMenu {onclick} />
 </div>
 
 <style>
-	.dialog-container {
+	.dialog-contents {
 		width: 100%;
 	}
 </style>
