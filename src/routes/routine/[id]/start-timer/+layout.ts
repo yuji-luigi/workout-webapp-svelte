@@ -2,7 +2,7 @@ import { browser } from '$app/environment';
 import { db } from '../../../../lib/db/dexie-db/dexie-db';
 import type { RoutineJoined } from '../../../../types/db/routine';
 import type { WorkoutFlow } from '../../../../types/db/workout-flow';
-import { SessionJoinedFactory } from './sessionLogFactory';
+import { SessionJoinedFactory } from '../../../../lib/sections/start-timer-components/sessionLogFactory';
 
 export const ssr = false; // Turn off SSR if you're using IndexDB in load
 

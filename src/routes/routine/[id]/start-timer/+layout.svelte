@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import RoutineTimerDrawer from './RoutineTimerDrawer.svelte';
+
 	import type { RoutineJoined } from '../../../../types/db/routine';
+	import RoutineTimerDrawer from '../../../../lib/sections/start-timer-components/RoutineTimerDrawer.svelte';
 
 	let { children, data }: { children: Snippet; data: { routine: RoutineJoined } } = $props();
 </script>
