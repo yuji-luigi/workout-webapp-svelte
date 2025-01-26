@@ -5,7 +5,6 @@
 	import SetCard from '../../card/cards/SetCard.svelte';
 
 	let props: { routine: RoutineJoined } = $props();
-	console.log(props);
 	const { routine } = props;
 	function handlePush() {
 		// push the routine to the workout list
@@ -15,7 +14,9 @@
 </script>
 
 <div class="contents routine-confirm-dialog">
-	<img src={''} alt="" height="300px" />
+	{#if routine.image}
+		<img src={routine.image} alt="" height="300px" />
+	{/if}
 	<h2>{routine?.name}</h2>
 	{#each routine?.blocks as set, index}
 		<SetCard {set} {index} />
@@ -36,7 +37,6 @@
 	}
 
 	.contents {
-		display: grid;
 		gap: var(--gap);
 		height: 100%;
 	}

@@ -83,19 +83,31 @@ export function openStackDialog(dialog: DialogItem) {
 	dialogEl.addEventListener('click', backdropClickListener, true);
 	dialogEl.addEventListener('cancel', handleCancel);
 	dialogEl.addEventListener('close', handleClose);
-	/* 	const componentInstance =  */
+	// dialog.componentInstance = componentInstance as any;
+	targetElement.appendChild(dialogEl);
+	// put into the task queue. ensures that this function completed then run the scroll top
+	// passed arg component is mounted inside the dialogEl
+
+	dialogEl.showModal();
 	mount(dialog.component, {
 		/** where to append the dialog. see svelte docs for more info. */
 		target: dialogEl,
 		props: dialog.props
 	});
-	// dialog.componentInstance = componentInstance as any;
-	targetElement.appendChild(dialogEl);
-	// put into the task queue. ensures that this function completed then run the scroll top
-	dialogEl.showModal();
 	setTimeout(() => {
 		dialogEl.scrollTop = 0; // Reset scroll position to the top
 	}, 0);
+
+	// mount(dialog.component, {
+	// 	// where to append the dialog. see svelte docs for more info. */
+	// 	target: dialogEl,
+	// 	props: dialog.props
+	// });
+	// dialogEl.showModal();
+	// dialogEl.scrollTop = 0; // Reset scroll position to the top
+	// setTimeout(() => {
+	// 	dialogEl.scrollTop = 0; // Reset scroll position to the top
+	// }, 0);
 }
 
 export function closeStackDialog() {
