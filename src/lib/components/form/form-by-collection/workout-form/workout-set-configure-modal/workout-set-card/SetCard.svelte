@@ -1,12 +1,11 @@
 <script lang="ts">
 	import type { ExerciseJoined } from '$types/db/exercise';
 	import type { RoutineBlockJoined } from '$types/db/routine_block_interface';
+	import { onMount } from 'svelte';
 	import { fade, scale } from 'svelte/transition';
 	import ExerciseConfigCard from '../../../../../../../routes/workout/ExerciseConfigCard.svelte';
-	import { isValidJSON } from '../../../../../../helpers/isValidJSON';
 	import AddExercise from '../add-buttons/AddExercise.svelte';
 	import SetCardHeader from './SetCardHeader.svelte';
-	import { onMount } from 'svelte';
 	let {
 		// wSet,
 		index,

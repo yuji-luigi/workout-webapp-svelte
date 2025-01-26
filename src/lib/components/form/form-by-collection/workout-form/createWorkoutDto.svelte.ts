@@ -1,12 +1,6 @@
-import type { ExerciseJoined } from '../../../../../types/db/exercise';
-import type {
-	RoutineBlock,
-	RoutineBlockJoined
-} from '../../../../../types/db/routine_block_interface';
+import type { RoutineBlockJoined } from '../../../../../types/db/routine_block_interface';
 import type { WorkoutFormPayload } from '../../../../data/template-json/dataTable/workouts-form-table-json';
 import { db } from '../../../../db/dexie-db/dexie-db';
-// import { lofi_db } from '../../../../db/lofi-yjs-db/lofi_db.svelte';
-
 export function workoutDtoFactory(payload: WorkoutFormPayload) {
 	const setFactory = new SetWorkoutFactory();
 	const sets = setFactory.fromWorkoutFormPayload(payload);

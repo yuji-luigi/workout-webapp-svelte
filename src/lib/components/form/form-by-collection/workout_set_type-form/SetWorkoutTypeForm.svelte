@@ -5,11 +5,6 @@
 	import JsonForm from '$lib/components/form/JsonForm.svelte';
 	import { db } from '../../../../db/dexie-db/dexie-db';
 
-	// const socket = new WebSocket('ws://localhost:1234');
-	// socket.addEventListener('open', () => {
-	// 	console.log('connected');
-	// });
-	// save exercise + interval + joined workout
 	async function handleSubmit(
 		event: SubmitEvent & { target: HTMLFormElement },
 		payload: Record<string, any>

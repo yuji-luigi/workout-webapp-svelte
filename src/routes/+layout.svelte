@@ -14,14 +14,15 @@
 	import { createWebsocketStates } from '../lib/store/socket-store.svelte';
 	import type { Snippet } from 'svelte';
 	// import { workoutsY } from '../lib/store/lofi-db/workout-lofi.svelte';
-	import { seedLocalDB } from '../lib/db/lofi-yjs-db/seedDb';
+	import { seedDexieDB } from '../lib/db/lofi-yjs-db/seedDb';
 
 	let { children }: { children: Snippet } = $props();
 	const socketStates = createWebsocketStates();
 	onMount(() => {
 		socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
 		socketStates.globalWebSocket?.addEventListener('open', () => {
-			seedLocalDB();
+			// seedLocalDB();
+			seedDexieDB();
 		});
 		console.log(socketStates.isConnected && 'yjs socket connected!');
 	});

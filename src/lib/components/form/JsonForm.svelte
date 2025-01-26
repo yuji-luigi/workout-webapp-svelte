@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { getContext, onMount } from 'svelte';
 	import type { FormTableField } from '../../../types/form/form-table-field';
-	import { handleArrayFormData } from '../../helpers/form-helper/handle-array-form-data';
-	import { sleep } from '../../helpers/sleep';
 	import InputController from '../input/input-controller/InputController.svelte';
 	import { excludeFormHidden } from './filterInputs';
 	import FormGrid from './FormGrid.svelte';

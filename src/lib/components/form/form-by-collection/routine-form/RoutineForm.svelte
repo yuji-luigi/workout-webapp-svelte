@@ -5,9 +5,8 @@
 	import { sleep } from '../../../../helpers/sleep';
 	import { setFormId } from '../../../../store/form-store.svelte';
 	import { closeDialog } from '../../../../store/global-dialog-store.svelte';
-	import JsonForm from '../../JsonForm.svelte';
-	import { invalidate } from '$app/navigation';
 	import { routinesStore } from '../../../../store/states/routine_store.svelte';
+	import JsonForm from '../../JsonForm.svelte';
 
 	setFormId('routine-form');
 	setContext('form_table_json', routineFormTableJson);

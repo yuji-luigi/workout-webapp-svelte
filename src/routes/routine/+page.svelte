@@ -42,10 +42,6 @@
 	}
 </script>
 
-<svelte:head>
-	<title>timers</title>
-	<meta name="description" content="Exercise list page" />
-</svelte:head>
 <VideoHero
 	videoStyle="--video-object-position: 50% 25%;"
 	videoSrc="/videos/cover/workout_with_yume.mov"

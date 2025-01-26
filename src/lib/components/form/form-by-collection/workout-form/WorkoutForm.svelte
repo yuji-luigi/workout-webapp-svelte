@@ -1,15 +1,13 @@
 <script lang="ts">
-	import type { Workout } from '$lib/../types/db/workout';
 	import JsonForm from '$lib/components/form/JsonForm.svelte';
 	import {
 		workoutFormTable,
 		type WorkoutFormPayload
 	} from '$lib/data/template-json/dataTable/workouts-form-table-json';
 	import { sleep } from '$lib/helpers/sleep';
-	import { onMount, setContext } from 'svelte';
-	import { workoutDtoFactory } from './createWorkoutDto.svelte';
-	import Child from '../../../../experiment/Child.svelte';
+	import { setContext } from 'svelte';
 	import { db } from '../../../../db/dexie-db/dexie-db';
+	import { workoutDtoFactory } from './createWorkoutDto.svelte';
 
 	let loading = false;
 	const form_id = 'workout-create-form';

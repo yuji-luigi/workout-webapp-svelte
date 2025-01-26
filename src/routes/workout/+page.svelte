@@ -2,18 +2,12 @@
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
 	import WorkoutCard from '../../lib/components/card/workout-card/WorkoutCard.svelte';
-	import TimerInputDialog from '../../lib/components/form/form-by-collection/workout-form/workout-set-configure-modal/dialog-contents/TimerInputDialog.svelte';
-	import { openStackDialog } from '../../lib/store/dialog-stack/dialogStackStore';
-	import { lofi_db } from '../../lib/db/lofi-yjs-db/lofi_db.svelte';
 	import type { Workout } from '../../types/db/workout';
 
-	let db_state = $state<any>(lofi_db?.db_state);
 	let workouts: Workout[] = $state([]);
 
 	$effect(() => {
-		if (db_state.workouts) {
-			workouts = db_state.workouts;
-		}
+		workouts = [];
 	});
 </script>
 

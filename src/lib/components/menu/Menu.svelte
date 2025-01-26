@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { lofi_db } from '../../db/lofi-yjs-db/lofi_db.svelte';
-	import Button from '../button/Button.svelte';
 	let {
 		list,
-		onclick
+		onclickß
 	}: {
 		list: {
 			name: string;

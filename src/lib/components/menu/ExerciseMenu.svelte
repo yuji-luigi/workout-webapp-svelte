@@ -1,11 +1,10 @@
 <script lang="ts">
 	import type { ExerciseJoined } from '../../../types/db/exercise';
-	import { lofi_db } from '../../db/lofi-yjs-db/lofi_db.svelte';
-	import Button from '../button/Button.svelte';
+	import { tableStates } from '../../db/table_states.svelte';
 
 	let { onclick }: { onclick?: (exercise: ExerciseJoined) => void } = $props();
 
-	const exercises = lofi_db.db_state.exercises;
+	const exercises = $derived(tableStates.exercises);
 </script>
 
 <section class="menu-container">

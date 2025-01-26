@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { FormTableField } from '../../../../types/form/form-table-field';
-	import { getForm, getFormIDContext } from '../../../store/form-store.svelte';
 	import SetConfigureSection from '../../form/form-by-collection/workout-form/workout-set-configure-modal/SetConfigureSection.svelte';
 
 	let {
