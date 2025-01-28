@@ -4,7 +4,7 @@
 </script>
 
 <div class={`video-container video-hero ${$$props.class}`}>
-	<video style={videoStyle} class={`video ${$$props.class}`} autoplay loop muted>
+	<video style={videoStyle} class={`video ${$$props.class}`} autoplay loop muted playsinline>
 		<source src={videoSrc} type="video/mp4" />
 	</video>
 	<div class="hero-content-container">
