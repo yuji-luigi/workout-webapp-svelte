@@ -3,8 +3,9 @@
 	import type { Routine, RoutineJoined } from '../../../../types/db/routine';
 	import { closeDialog } from '../../../store/global-dialog-store.svelte';
 	import SetCard from '../../card/cards/SetCard.svelte';
+	import StackDialog from '../StackDialog.svelte';
 
-	let props: { routine: RoutineJoined } = $props();
+	let props: { routine: RoutineJoined; id: string } = $props();
 	const { routine } = props;
 	function handlePush() {
 		// push the routine to the workout list
@@ -13,23 +14,25 @@
 	}
 </script>
 
-<div class="contents routine-confirm-dialog">
-	{#if routine.image}
-		<img src={routine.image} alt="" height="300px" />
-	{/if}
-	<h2>{routine?.name}</h2>
-	{#each routine?.blocks as set, index}
-		<SetCard {set} {index} />
-	{/each}
-	<div class="counter-section">
-		<h4>{routine?.description}</h4>
-	</div>
+<StackDialog id={props.id}>
+	<div class="contents routine-confirm-dialog">
+		{#if routine.image}
+			<img src={routine.image} alt="" height="300px" />
+		{/if}
+		<h2>{routine?.name}</h2>
+		{#each routine?.blocks as set, index}
+			<SetCard {set} {index} />
+		{/each}
+		<div class="counter-section">
+			<h4>{routine?.description}</h4>
+		</div>
 
-	<div class="actions flex-row sm-column">
-		<button class="button" onclick={closeDialog}>Back</button>
-		<button onclick={handlePush} class="button">Confirm</button>
+		<div class="actions flex-row sm-column">
+			<button class="button" onclick={closeDialog}>Back</button>
+			<button onclick={handlePush} class="button">Confirm</button>
+		</div>
 	</div>
-</div>
+</StackDialog>
 
 <style>
 	:root {

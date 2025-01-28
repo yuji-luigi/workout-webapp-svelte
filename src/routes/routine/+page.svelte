@@ -1,5 +1,5 @@
 <script lang="ts">
-	import RoutineConfirmDialogContent from '$lib/components/dialog/contents/RoutineConfirmDialogContent.svelte';
+	import RoutineConfirmDialogContent from '$lib/components/dialog/contents/RoutineConfirmDialog.svelte';
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import { onMount } from 'svelte';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
@@ -7,6 +7,7 @@
 	import { openStackDialog } from '../../lib/store/dialog-stack/dialogStackStore';
 	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
 	import RoutineList from './routine-list/RoutineList.svelte';
+	import { openStackDialogNew } from '../../lib/store/dialog-stack/dialogStackStoreNew';
 	let isOpenTestDialog = $state(false);
 	let cardGrid: HTMLDivElement;
 	let routines = $derived(routinesStore.list);
@@ -24,11 +25,16 @@
 			cardEl.dataset.active = 'true';
 			const routine = routines.find((r) => r.id.toString() === cardEl.dataset.id);
 			// open global dialog with the target routine data
-			openStackDialog({
+			openStackDialogNew({
 				component: RoutineConfirmDialogContent,
 				props: { routine },
 				dialogClasses: ['max-width-800']
 			});
+			// openStackDialog({
+			// 	component: RoutineConfirmDialogContent,
+			// 	props: { routine },
+			// 	dialogClasses: ['max-width-800']
+			// });
 			// openDialog({
 			// 	componentInDialog: {
 			// 		component: RoutineConfirmDialogContent as any,
