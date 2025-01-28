@@ -100,7 +100,6 @@ export class RoutineTimer implements TimerBase {
 		}
 
 		this.currentExerciseIndex++;
-		// console.log('handleNext', this.currentExerciseIndex);
 	};
 	handlePrev = () => {
 		if (!this.routine.blocks) return;

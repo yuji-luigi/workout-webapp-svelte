@@ -1,37 +1,39 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import { dialogStore, type DialogStore } from '$lib/store/global-dialog-store.svelte';
 	import Dialog from '../Dialog.svelte';
-	import {} from // dialogStack,
-	// pushDialog,
-	// popDialog,
-	// getTopDialog
-	'$lib/store/dialog-stack/dialogStackStore';
+	import {
+		closeStackDialogNew,
+		dialogStackNew,
+		openStackDialogNew
+	} from '../../../store/dialog-stack/dialogStackStoreNew';
+	import { get } from 'svelte/store';
+
+	('$lib/store/dialog-stack/dialogStackStore');
 
 	let {
 		children,
 		fullScreen,
 		maxWidth,
-		isOpen = $bindable(false)
+		isOpen = $bindable(false),
+		id
 	}: {
 		fullScreen?: boolean;
-		isOpen: boolean;
+		isOpen?: boolean;
 		children: any;
 		maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+		id?: string;
 	} = $props();
 
 	let dialog: HTMLDialogElement | undefined = $state();
-	let dialogParams = $state<DialogStore | null>(null);
-
 	const closeModal = () => {
 		if (!dialog) return;
 		if (dialog.classList.contains('fade-in')) return;
-
+		console.log('closeModal is called');
 		dialog.classList.remove('closing');
 		dialog.removeEventListener('transitionend', closeModal);
 		dialog.close();
-		// popDialog(); // Remove dialog from the stack
 		isOpen = false;
+		closeStackDialogNew();
 	};
 
 	function handleCloseAnimation() {
@@ -49,8 +51,8 @@
 	}
 
 	onMount(() => {
+		console.log('onMount');
 		if (dialog) {
-			// pushDialog(dialog); // Add dialog to the stack
 			dialog.addEventListener('keydown', handleEsc);
 			dialog.addEventListener(
 				'click',
@@ -65,12 +67,14 @@
 	});
 
 	$effect(() => {
-		if (dialog && isOpen) {
+		if (!dialog) return;
+		if (isOpen) {
 			dialog.showModal();
 			dialog.classList.add('fade-in');
 			dialog.addEventListener('transitionend', closeModal);
 		}
-		if (dialog && !isOpen) {
+		if (!isOpen) {
+			closeStackDialogNew();
 			dialog.close();
 		}
 	});
@@ -79,16 +83,15 @@
 		if (dialog) {
 			// popDialog(); // Clean up when dialog is destroyed
 			dialog.removeEventListener('keydown', handleEsc);
+			console.log('onDestroy');
 		}
 	});
 </script>
 
-<Dialog {fullScreen} {maxWidth} bind:dialog>
-	<div>
-		{#if children}
-			{@render children()}
-		{:else}
-			no children provided
-		{/if}
-	</div>
+<Dialog {id} {fullScreen} {maxWidth} bind:dialog>
+	{#if children}
+		{@render children()}
+	{:else}
+		no children provided
+	{/if}
 </Dialog>

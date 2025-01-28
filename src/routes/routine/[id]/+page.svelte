@@ -11,8 +11,6 @@
 	onMount(async () => {
 		if ($page.params.id) {
 			routine = await db.routine.get({ id: Number($page.params.id) });
-			console.log($page.params.id);
-			console.log(routine);
 		}
 	});
 

@@ -9,7 +9,6 @@
 		loading = true;
 		const form_data = new FormData(event.target as HTMLFormElement);
 		const dto = handleArrayFormData(form_data);
-		console.log(dto);
 		await sleep(2000);
 		loading = false;
 	}

@@ -60,7 +60,6 @@
 			// dialogStore.set({ isOpen: false });
 		}
 	});
-	// console.log(dialogStore?.componentInDialog?.props);
 </script>
 
 <Dialog bind:dialog>

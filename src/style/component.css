@@ -7,8 +7,8 @@
 }
 
 dialog[open] {
-
   max-height: 80%;
+  overflow-y: scroll;
 }
 
 dialog:focus {
@@ -38,7 +38,7 @@ dialog:focus {
   gap: 1rem;
   padding: 2rem 5rem;
   width: 100%;
-
+  height: fit-content;
 
   @media (max-width: 600px) {
     padding: 1rem 2rem;

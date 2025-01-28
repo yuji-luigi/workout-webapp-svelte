@@ -32,18 +32,16 @@
 		? `--max-width: 100vw; --max-height: 100vh`
 		: maxWidth && `--max-width: ${maxWidths[maxWidth]}`;
 	function handleClickOutside(e: MouseEvent) {
-		console.log('hey');
 		if (e.target === dialog) {
 			closeStackDialogNew();
 		}
 	}
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.key === 'Escape') {
-			closeStackDialogNew();
+			// closeStackDialogNew();
 		}
 	}
 	onMount(() => {
-		console.log('StackDialog', dialog);
 		if (dialog) {
 			dialog.showModal();
 			setTimeout(() => {
@@ -71,6 +69,6 @@
 		}
 	}
 	.dialog-contents {
-		height: fit-content;
+		/* height: fit-content; */
 	}
 </style>

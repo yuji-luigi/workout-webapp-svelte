@@ -8,7 +8,6 @@
 	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
 	import RoutineList from './routine-list/RoutineList.svelte';
 	import { openStackDialogNew } from '../../lib/store/dialog-stack/dialogStackStoreNew';
-	let isOpenTestDialog = $state(false);
 	let cardGrid: HTMLDivElement;
 	let routines = $derived(routinesStore.list);
 
@@ -19,6 +18,7 @@
 	// Adjust the type as needed
 	//click event type
 	function handleClick(e: MouseEvent) {
+		console.log('handleClickd ');
 		const cardEl = (e.target as HTMLElement)?.closest('.selection-card') as HTMLDivElement;
 		if (cardEl) {
 			// target gets to active state.
@@ -43,9 +43,6 @@
 			// });
 		}
 	}
-	function openTest() {
-		isOpenTestDialog = true;
-	}
 </script>
 
 <VideoHero
@@ -56,7 +53,9 @@
 <div class="stretch-container flex-column">
 	<div class="flex-row title-row">
 		<h1>Select workouts/routines</h1>
-		<button onclick={openTest} class="button primary">Add routine/workout TEST</button>
+		<button onclick={() => console.log('implement something')} class="button primary"
+			>Add routine/workout TEST</button
+		>
 	</div>
 	<div
 		role="button"
@@ -70,14 +69,6 @@
 		<AddNewCard collection="routine" />
 	</div>
 </div>
-
-{#if isOpenTestDialog}
-	<DialogGeneric isOpen={isOpenTestDialog}>
-		<div class="dialog-contents">
-			<RoutineConfirmDialogContent routine={routines[0]} />
-		</div>
-	</DialogGeneric>
-{/if}
 
 <style>
 	.title-row {

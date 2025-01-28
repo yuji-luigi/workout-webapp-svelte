@@ -44,7 +44,6 @@
 		} else {
 			selectedOptions = [...selectedOptions, selected];
 		}
-		console.log(selectedOptions);
 		selectedValues = selectedOptions.map((selected) => selected.value.toString());
 		updateSelectOptions(); // TODO:  See if necessary
 		setForm(form_id, { ...Object(form), [name]: selectedValues });

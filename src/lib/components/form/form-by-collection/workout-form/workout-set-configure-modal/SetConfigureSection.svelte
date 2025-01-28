@@ -35,9 +35,6 @@
 	<AddSetCard
 		onclick={() => {
 			isOpenChooseSetTypeModal = true;
-			// blocks.push({
-			// 	id: ''
-			// });
 		}}
 	/>
 </section>

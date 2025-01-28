@@ -12,7 +12,7 @@
 </script>
 
 <FetcherComponent bind:results fetcher={RoutineBlockType.getAll} />
-<DialogGeneric maxWidth="xs" bind:isOpen>
+<DialogGeneric maxWidth="md" bind:isOpen>
 	<h2 class="title">Choose set type</h2>
 	<section class="choose-set-type-container">
 		<Menu onclick={addSet} list={results.data} />

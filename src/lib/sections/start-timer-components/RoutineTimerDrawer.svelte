@@ -21,7 +21,6 @@
 		intervalTimer.handlePrev();
 		routineTimer.handlePrev();
 	}
-	console.log(intervalTimer.workoutFlows);
 </script>
 
 <!-- <button class="appbar_toggle_btn" onclick={() => (isOpen = !isOpen)}>toggle</button> -->

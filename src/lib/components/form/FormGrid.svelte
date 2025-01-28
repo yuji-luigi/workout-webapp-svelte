@@ -53,7 +53,6 @@
 		const multiSelects = formEl?.querySelectorAll('select[multiple]') as
 			| NodeListOf<HTMLSelectElement>
 			| undefined;
-		console.log({ multiSelectsValues: multiSelects?.values() });
 
 		multiNames = Array.from(multiSelects?.values() || []).map((field) => field.name) || [];
 		formEl?.addEventListener('input', async (event) => {

@@ -19,7 +19,7 @@
 	});
 </script>
 
-<InputGroupGrid {className} {label} {...others}>
+<InputGroupGrid {className} {label} {name} {...others}>
 	{#snippet input()}
 		<div>
 			<input {...others} type="checkbox" bind:checked />
