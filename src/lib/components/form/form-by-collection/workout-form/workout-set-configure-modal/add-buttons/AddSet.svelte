@@ -15,7 +15,8 @@
 		cursor: pointer;
 		display: flex;
 		justify-content: center;
-		min-width: 350px;
+		max-width: 350px;
+		width: 100%;
 		background-color: var(--color-primary-800);
 		padding-inline: var(--padding-inline-md);
 		gap: var(--spacing-lg);

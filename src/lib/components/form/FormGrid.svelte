@@ -96,7 +96,6 @@
 		container-type: inline-size;
 		border: none;
 		border-radius: 5px;
-		padding: 1rem;
 		transition: opacity 0.3s ease-in-out;
 		&[disabled] {
 			opacity: 0.5;

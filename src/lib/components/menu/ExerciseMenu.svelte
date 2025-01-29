@@ -5,6 +5,7 @@
 	let { onclick }: { onclick?: (exercise: ExerciseJoined) => void } = $props();
 
 	const exercises = $derived(tableStates.exercises);
+	console.log({ exercises });
 </script>
 
 <section class="menu-container">

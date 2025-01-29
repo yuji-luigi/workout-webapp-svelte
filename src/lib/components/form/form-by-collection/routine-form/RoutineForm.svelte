@@ -29,3 +29,10 @@
 	<h3>Create a new Routine/Workout</h3>
 	<JsonForm formTableFields={routineFormTableJson} {handleSubmit} />
 </div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 1rem;
+	}
+</style>

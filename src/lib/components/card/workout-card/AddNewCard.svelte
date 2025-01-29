@@ -4,11 +4,14 @@
 	import * as formsByCollection from '$lib/components/form/form-by-collection';
 	import BlackBoardCard from '../BlackBoardCard.svelte';
 	import { openStackDialogNew } from '../../../store/dialog-stack/dialogStackStoreNew';
-	let { collection }: { collection: Collection } = $props();
+	let { collection, onclick }: { collection: Collection; onclick: () => void } = $props();
 	let FormByCollection = formsByCollection[collection];
 	// TODO: update the routine array in parent component. after adding a new routine.
 	const handleOpenDialog = () => {
-		console.log('handle add new');
+		if (onclick) {
+			onclick();
+			return;
+		}
 		openStackDialogNew({
 			component: FormByCollection as any,
 			props: {}

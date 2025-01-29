@@ -8,6 +8,7 @@
 	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
 	import RoutineList from './routine-list/RoutineList.svelte';
 	import { openStackDialogNew } from '../../lib/store/dialog-stack/dialogStackStoreNew';
+	import RoutineForm from '../../lib/components/form/form-by-collection/routine-form/RoutineForm.svelte';
 	let cardGrid: HTMLDivElement;
 	let routines = $derived(routinesStore.list);
 
@@ -43,6 +44,13 @@
 			// });
 		}
 	}
+	function handleAddNewClicked() {
+		console.log('handle add new');
+		openStackDialogNew({
+			component: RoutineForm as any,
+			props: {}
+		});
+	}
 </script>
 
 <VideoHero
@@ -53,9 +61,7 @@
 <div class="stretch-container flex-column">
 	<div class="flex-row title-row">
 		<h1>Select workouts/routines</h1>
-		<button onclick={() => console.log('implement something')} class="button primary"
-			>Add routine/workout TEST</button
-		>
+		<button onclick={handleAddNewClicked} class="button primary">Add routine/workout TEST</button>
 	</div>
 	<div
 		role="button"
@@ -66,7 +72,7 @@
 		class="card-grid"
 	>
 		<RoutineList {routines} sectionClicked={() => console.log('clicked')} />
-		<AddNewCard collection="routine" />
+		<AddNewCard onclick={handleAddNewClicked} collection="routine" />
 	</div>
 </div>
 

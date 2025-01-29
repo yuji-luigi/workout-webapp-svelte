@@ -40,8 +40,8 @@ dialog:focus {
   width: 100%;
   height: fit-content;
 
-  @media (max-width: 600px) {
-    padding: 1rem 2rem;
+  @media (max-width: 768px) {
+    padding: 0;
   }
 }
 
