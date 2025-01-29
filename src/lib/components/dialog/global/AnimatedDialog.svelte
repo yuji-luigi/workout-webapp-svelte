@@ -1,12 +1,15 @@
+<!--
+@component
+- Modal component that animates in and out.AnimatedDialog
+- TODO: when the isOpen state is controlled from outside the component, the dialog will close without animation. need to fix this.
+@example
+```svelte
+<Repeat text="Repeat this" numberOfTimes={3} />
+```
+-->
 <script lang="ts">
 	import { onDestroy, onMount, type Component, type Snippet } from 'svelte';
 	import Dialog from '../Dialog.svelte';
-	import {
-		closeStackDialogNew,
-		dialogStackNew,
-		openStackDialogNew
-	} from '../../../store/dialog-stack/dialogStackStoreNew';
-	import { get } from 'svelte/store';
 
 	('$lib/store/dialog-stack/dialogStackStore');
 
@@ -16,27 +19,24 @@
 		maxWidth,
 		isOpen = $bindable(false),
 		id,
-		PassedComponent,
-		...rest
+		closeStackDialogCB
 	}: {
 		fullScreen?: boolean;
 		isOpen?: boolean;
 		children?: Snippet;
-
+		closeStackDialogCB?: () => void;
 		maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 		id?: string;
-		PassedComponent?: Component;
 	} = $props();
 	let dialog: HTMLDialogElement | undefined = $state();
 	const closeModal = () => {
 		if (!dialog) return;
 		if (dialog.classList.contains('fade-in')) return;
-		console.log('closeModal is called');
 		dialog.classList.remove('closing');
 		dialog.removeEventListener('transitionend', closeModal);
 		dialog.close();
+		closeStackDialogCB?.();
 		isOpen = false;
-		closeStackDialogNew();
 	};
 
 	function handleCloseAnimation() {
@@ -54,7 +54,6 @@
 	}
 
 	onMount(() => {
-		console.log('onMount');
 		if (dialog) {
 			dialog.addEventListener('keydown', handleEsc);
 			dialog.addEventListener(
@@ -70,18 +69,16 @@
 	});
 
 	$effect(() => {
+		console.log({ isOpen });
 		if (!dialog) return;
 		if (isOpen) {
-			setTimeout(() => {
-				if (dialog) {
-					dialog.showModal();
-					dialog.classList.add('fade-in');
-					dialog.addEventListener('transitionend', closeModal);
-				}
-			}, 0);
+			if (dialog) {
+				dialog.showModal();
+				dialog.classList.add('fade-in');
+				dialog.addEventListener('transitionend', closeModal);
+			}
 		}
 		if (!isOpen) {
-			closeStackDialogNew();
 			dialog.close();
 		}
 	});
@@ -96,9 +93,7 @@
 </script>
 
 <Dialog {id} {fullScreen} {maxWidth} bind:dialog>
-	{#if PassedComponent}
-		<PassedComponent {...rest} />
-	{:else if children}
+	{#if children}
 		{@render children()}
 	{:else}
 		no children provided

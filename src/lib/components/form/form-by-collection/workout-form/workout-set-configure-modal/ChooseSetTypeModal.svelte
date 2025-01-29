@@ -1,25 +1,27 @@
 <script lang="ts">
-	import { db } from '../../../../../db/dexie-db/dexie-db';
-	import { getTable } from '../../../../../db/dexie-db/getDexieDb.svelte';
 	import { RoutineBlockType } from '../../../../../db/dexie-db/RoutineBlockType';
 	import AnimatedDialog from '../../../../dialog/global/AnimatedDialog.svelte';
 	import Menu from '../../../../menu/Menu.svelte';
 	import FetcherComponent from '../../../../util-component/FetcherComponent.svelte';
 	import { fetcherResults } from '../../../../util-component/fetcherData';
-	let { isOpen = $bindable(false), addSet }: { isOpen: boolean; addSet: (data: any) => void } =
-		$props();
+	let {
+		isOpen = $bindable(false),
+		addSet
+	}: {
+		isOpen: boolean;
+		addSet: (data: any) => void;
+	} = $props();
 	let results = $state(fetcherResults);
+	console.log();
 </script>
 
 <FetcherComponent bind:results fetcher={RoutineBlockType.getAll} />
-{#if isOpen}
-	<AnimatedDialog maxWidth="md" bind:isOpen>
-		<h2 class="title">Choose set type</h2>
-		<section class="choose-set-type-container">
-			<Menu onclick={addSet} list={results.data} />
-		</section>
-	</AnimatedDialog>
-{/if}
+<AnimatedDialog maxWidth="md" bind:isOpen>
+	<h2 class="title">Choose set type</h2>
+	<section class="choose-set-type-container">
+		<Menu onclick={addSet} list={results.data} />
+	</section>
+</AnimatedDialog>
 
 <style>
 	h2 {

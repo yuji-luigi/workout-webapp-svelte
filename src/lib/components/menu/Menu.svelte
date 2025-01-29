@@ -1,7 +1,7 @@
 <script lang="ts">
 	let {
 		list,
-		onclickß
+		onclick
 	}: {
 		list: {
 			name: string;

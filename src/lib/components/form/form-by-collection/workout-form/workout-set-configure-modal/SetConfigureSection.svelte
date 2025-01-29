@@ -10,6 +10,7 @@
 	let isOpenChooseSetTypeModal = $state(false);
 	let formEl = $state<HTMLFormElement>();
 	function addSet(setType: RoutineBlockTypeI) {
+		console.log('add set clicked');
 		blocks.push({
 			type: setType,
 			slug: '',
