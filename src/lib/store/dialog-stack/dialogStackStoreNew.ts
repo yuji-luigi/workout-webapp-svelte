@@ -1,7 +1,7 @@
 // dialogStackStore.ts
 import { mount, unmount, type SvelteComponent } from 'svelte';
 import { get, writable } from 'svelte/store';
-import DialogGeneric from '../../components/dialog/global/AnimatedDialog.svelte';
+import StackDialog from '../../components/dialog/global/StackDialog.svelte';
 export type DialogStackConfig = {
 	/** component must be component so .svelte file */
 	component: any | (new (...args: any) => SvelteComponent);
@@ -10,9 +10,7 @@ export type DialogStackConfig = {
 	 *  TODO: check if form is getting the input value from it.  */
 	target?: string; // The ID or selector of where to append the stackDialogConfig
 	/** currently not using */
-	rawHtml?: string;
 	/** handled internally in order to destroy the instantiated component. maybe not necessary. */
-	componentInstance?: SvelteComponent;
 	/** handled internally in order to remove the created stackDialogConfig from dom tree. */
 	disablePadding?: boolean;
 	dialogClasses?: string[];
@@ -40,11 +38,12 @@ export function openStackDialogNew(stackDialogConfig: Omit<DialogStackConfig, 'i
 
 	// put into the task queue. ensures that this function completed then run the scroll top
 	// passed arg component is mounted inside the dialogEl
-	mount(DialogGeneric, {
+	mount(StackDialog, {
 		target: bodyEl,
 		props: {
 			id: _stackDialogConfig.id,
-			PassedComponent: _stackDialogConfig.component,
+			PassedChildren: _stackDialogConfig.component,
+			childrenProps: _stackDialogConfig.props,
 			isOpen: true,
 			..._stackDialogConfig.props
 		}

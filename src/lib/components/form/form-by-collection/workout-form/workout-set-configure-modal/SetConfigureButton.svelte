@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import SetConfigureSection from './SetConfigureSection.svelte';
-	import DialogGeneric from '../../../../dialog/global/AnimatedDialog.svelte';
+	import AnimatedDialog from '../../../../dialog/global/AnimatedDialog.svelte';
 
 	let isOpen = $state(false);
 	let { name }: { name: string } = $props();
@@ -14,9 +14,9 @@
 <div class="full-width flex-row">
 	<button onclick={openConfig} type="button" class="button primary">configure sets</button>
 </div>
-<DialogGeneric fullScreen bind:isOpen>
+<AnimatedDialog fullScreen bind:isOpen>
 	<SetConfigureSection {name} />
-</DialogGeneric>
+</AnimatedDialog>
 
 <style>
 	button {

@@ -21,7 +21,7 @@
 	<h3>Add exercise</h3>
 </button>
 
-<!-- <DialogGeneric maxWidth="sm" bind:isOpen><ExerciseMenu /></DialogGeneric> -->
+<!-- <AnimatedDialog maxWidth="sm" bind:isOpen><ExerciseMenu /></AnimatedDialog> -->
 
 <style>
 	button {
