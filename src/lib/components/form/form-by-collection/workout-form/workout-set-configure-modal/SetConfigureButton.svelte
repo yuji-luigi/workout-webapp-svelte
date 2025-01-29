@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import SetConfigureSection from './SetConfigureSection.svelte';
-	import DialogGeneric from '../../../../dialog/global/DialogGeneric.svelte';
+	import DialogGeneric from '../../../../dialog/global/AnimatedDialog.svelte';
 
 	let isOpen = $state(false);
 	let { name }: { name: string } = $props();

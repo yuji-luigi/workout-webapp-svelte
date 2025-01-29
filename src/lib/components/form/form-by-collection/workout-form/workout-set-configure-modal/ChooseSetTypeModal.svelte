@@ -2,7 +2,7 @@
 	import { db } from '../../../../../db/dexie-db/dexie-db';
 	import { getTable } from '../../../../../db/dexie-db/getDexieDb.svelte';
 	import { RoutineBlockType } from '../../../../../db/dexie-db/RoutineBlockType';
-	import DialogGeneric from '../../../../dialog/global/DialogGeneric.svelte';
+	import DialogGeneric from '../../../../dialog/global/AnimatedDialog.svelte';
 	import Menu from '../../../../menu/Menu.svelte';
 	import FetcherComponent from '../../../../util-component/FetcherComponent.svelte';
 	import { fetcherResults } from '../../../../util-component/fetcherData';
@@ -12,12 +12,14 @@
 </script>
 
 <FetcherComponent bind:results fetcher={RoutineBlockType.getAll} />
-<DialogGeneric maxWidth="md" bind:isOpen>
-	<h2 class="title">Choose set type</h2>
-	<section class="choose-set-type-container">
-		<Menu onclick={addSet} list={results.data} />
-	</section>
-</DialogGeneric>
+{#if isOpen}
+	<DialogGeneric maxWidth="md" bind:isOpen>
+		<h2 class="title">Choose set type</h2>
+		<section class="choose-set-type-container">
+			<Menu onclick={addSet} list={results.data} />
+		</section>
+	</DialogGeneric>
+{/if}
 
 <style>
 	h2 {

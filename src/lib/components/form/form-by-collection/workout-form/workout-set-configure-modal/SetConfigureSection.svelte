@@ -38,6 +38,7 @@
 		}}
 	/>
 </section>
+
 <ChooseSetTypeModal bind:isOpen={isOpenChooseSetTypeModal} {addSet} />
 
 <style>

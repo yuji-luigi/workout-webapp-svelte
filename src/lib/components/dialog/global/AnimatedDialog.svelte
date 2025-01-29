@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { onDestroy, onMount, type Component, type Snippet } from 'svelte';
 	import Dialog from '../Dialog.svelte';
 	import {
 		closeStackDialogNew,
@@ -15,15 +15,18 @@
 		fullScreen,
 		maxWidth,
 		isOpen = $bindable(false),
-		id
+		id,
+		PassedComponent,
+		...rest
 	}: {
 		fullScreen?: boolean;
 		isOpen?: boolean;
-		children: any;
+		children?: Snippet;
+
 		maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 		id?: string;
+		PassedComponent?: Component;
 	} = $props();
-
 	let dialog: HTMLDialogElement | undefined = $state();
 	const closeModal = () => {
 		if (!dialog) return;
@@ -69,9 +72,13 @@
 	$effect(() => {
 		if (!dialog) return;
 		if (isOpen) {
-			dialog.showModal();
-			dialog.classList.add('fade-in');
-			dialog.addEventListener('transitionend', closeModal);
+			setTimeout(() => {
+				if (dialog) {
+					dialog.showModal();
+					dialog.classList.add('fade-in');
+					dialog.addEventListener('transitionend', closeModal);
+				}
+			}, 0);
 		}
 		if (!isOpen) {
 			closeStackDialogNew();
@@ -89,7 +96,9 @@
 </script>
 
 <Dialog {id} {fullScreen} {maxWidth} bind:dialog>
-	{#if children}
+	{#if PassedComponent}
+		<PassedComponent {...rest} />
+	{:else if children}
 		{@render children()}
 	{:else}
 		no children provided

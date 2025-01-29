@@ -3,15 +3,15 @@
 	import { openDialog } from '../../../store/global-dialog-store.svelte';
 	import * as formsByCollection from '$lib/components/form/form-by-collection';
 	import BlackBoardCard from '../BlackBoardCard.svelte';
+	import { openStackDialogNew } from '../../../store/dialog-stack/dialogStackStoreNew';
 	let { collection }: { collection: Collection } = $props();
 	let FormByCollection = formsByCollection[collection];
 	// TODO: update the routine array in parent component. after adding a new routine.
 	const handleOpenDialog = () => {
-		openDialog({
-			componentInDialog: {
-				component: FormByCollection as any,
-				props: {}
-			}
+		console.log('handle add new');
+		openStackDialogNew({
+			component: FormByCollection as any,
+			props: {}
 		});
 	};
 </script>
