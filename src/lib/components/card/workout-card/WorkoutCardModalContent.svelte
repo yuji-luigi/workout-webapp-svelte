@@ -48,7 +48,6 @@
 	.set-up-container {
 		width: 100%;
 		display: grid;
-		background-color: blue;
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 	.exercise-row {

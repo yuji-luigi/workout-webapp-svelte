@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { RoutineJoined } from '../../../../types/db/routine';
+	import OverlayCard from './OverlayCard.svelte';
 
 	let {
 		index,
@@ -18,56 +19,37 @@
 	// When the component mounts, ensure the card position is available
 </script>
 
-<div
-	bind:this={cardEl}
+<button
+	class="button primary selection-card"
 	data-active={active}
 	data-id={routine.id}
-	role="button"
 	tabindex="-1"
-	class="card selection-card"
-	on:keydown={(e) => null}
+	onkeydown={(e) => null}
 >
-	<div class="info">
-		<h4>{routine.name}</h4>
-
-		<p>
-			{#each routine.blocks as set, index}
-				set#{index + 1}{set.name} ({set.type.name})
-				{#each set.exercises as exercise, index}
-					{exercise.name}
+	<OverlayCard>
+		<div class="info">
+			<h4>{routine.name}</h4>
+			<p>
+				{#each routine.blocks as set, index}
+					set#{index + 1}{set.name} ({set.type.name})
+					{#each set.exercises as exercise, index}
+						{exercise.name}
+					{/each}
 				{/each}
-			{/each}
-		</p>
-	</div>
-</div>
+			</p>
+		</div>
+	</OverlayCard>
+</button>
 
 <style>
 	/* TODO: RENAME CARD TO SOMETHING ELSE */
-	.card {
-		border-radius: unset;
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		cursor: pointer;
-		gap: 0.75rem;
-		background-image: linear-gradient(
-				transparent,
-				light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5))
-			),
-			var(--image-url, 'https://picsum.photos/410/300');
-		background-size: cover; /* Ensure the image covers the card */
-		background-position: center;
-		transition: height 1.5s;
+	.selection-card {
+		padding: 0;
+		transition: scale 0.5s;
 	}
 	.info {
+		text-align: left;
 		margin-top: auto;
 		position: relative;
-	}
-	.description {
-		text-overflow: ellipsis;
-		overflow: hidden;
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
 	}
 </style>

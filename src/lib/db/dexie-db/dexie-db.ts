@@ -51,11 +51,11 @@ class WorkoutDatabase extends Dexie {
 
 		this.version(1).stores({
 			workouts: '++id, slug, type, name, sets',
-			routines: '++id, slug, name, image, workouts, description, created_at, updated_at', // Updated from empty string
+			routines: '++id, slug, name, image, blocks, description, created_at, updated_at', // Updated from empty string
 			blocks: '++id, slug, type, name, n_set',
 			workout_set_types:
 				'++id, slug, name, repeat, use_active_time, use_rest_time, description, use_exercise_timer, use_set_timer',
-			exercises: '++id, name, slug, rest_time, active_time, description, image',
+			exercises: '++id, name, slug, rest_time, active_time, description, image, video',
 			users: '++id, name, suname, address, birth_date, locale',
 			files: '++id, name, slug, description, src, full_path, parent_collection'
 		});

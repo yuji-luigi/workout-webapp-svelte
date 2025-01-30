@@ -3,12 +3,10 @@
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
 	import { onMount } from 'svelte';
 	import AddNewCard from '../../lib/components/card/workout-card/AddNewCard.svelte';
-	import AnimatedDialog from '../../lib/components/dialog/global/AnimatedDialog.svelte';
-	import { openStackDialog } from '../../lib/store/dialog-stack/dialogStackStore';
+	import RoutineForm from '../../lib/components/form/form-by-collection/routine-form/RoutineForm.svelte';
+	import { openStackDialogNew } from '../../lib/store/dialog-stack/dialogStackStoreNew';
 	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
 	import RoutineList from './routine-list/RoutineList.svelte';
-	import { openStackDialogNew } from '../../lib/store/dialog-stack/dialogStackStoreNew';
-	import RoutineForm from '../../lib/components/form/form-by-collection/routine-form/RoutineForm.svelte';
 	let cardGrid: HTMLDivElement;
 	let routines = $derived(routinesStore.list);
 

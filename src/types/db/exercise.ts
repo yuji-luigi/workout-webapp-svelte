@@ -14,6 +14,7 @@ export interface Exercise {
 	slug: string;
 	description?: string;
 	image?: FileDB | number | File;
+	video?: FileDB | number | File;
 	created_by_id: number;
 }
 
@@ -42,4 +43,5 @@ export interface ExerciseInRoutineJoined extends Exercise {
 	interval?: Interval;
 	repetition: Repetition;
 	weight?: WeightJoined;
+	videoSrc?: string;
 }

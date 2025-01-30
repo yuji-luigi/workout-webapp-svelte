@@ -1,24 +1,26 @@
 <script lang="ts">
 	export let videoSrc;
-	export let videoStyle: string | undefined = ''; // Accept video source as a prop
+	export let videoStyle: string | undefined = '';
 </script>
 
 <div class={`video-container video-hero ${$$props.class}`}>
-	<video style={videoStyle} class={`video ${$$props.class}`} autoplay loop muted playsinline>
+	<video
+		style={videoStyle}
+		class={`video ${$$props.class}`}
+		autoplay
+		loop
+		muted
+		playsinline
+		webkit-playsinline
+	>
 		<source src={videoSrc} type="video/mp4" />
 	</video>
 	<div class="hero-content-container">
 		<div class="hero-content-top-right">
-			<slot name="top-right">
-				<h1 class="title">Fallback title</h1>
-				<p>Fallback content is shown here</p>
-			</slot>
+			<slot name="top-right"></slot>
 		</div>
 		<div class="hero-content-bottom-left">
-			<slot name="bottom-left">
-				<h2 class="title">Fallback title</h2>
-				<p>Fallback content is shown here</p>
-			</slot>
+			<slot name="bottom-left"></slot>
 		</div>
 	</div>
 </div>
@@ -36,6 +38,7 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
+		-webkit-playsinline: true;
 	}
 	.video-container {
 		min-height: 100dvh;

@@ -3,7 +3,7 @@
 	let { onclick, disabled = false }: { onclick: () => void; disabled?: boolean } = $props();
 </script>
 
-<button {disabled} {onclick} type="button" class="add-set-card">
+<button {disabled} {onclick} type="button" class="add-set-card button-primary-reactive-color">
 	<div class="flex-row add-workout">
 		<IconButton {disabled} isDiv --margin="0 0 0 auto">+</IconButton>
 		<h3 class="title">Add set</h3>
@@ -13,11 +13,12 @@
 <style>
 	.add-set-card {
 		cursor: pointer;
+		color: var(--text-color-white);
 		display: flex;
 		justify-content: center;
 		max-width: 350px;
 		width: 100%;
-		background-color: var(--color-primary-800);
+		/* background-color: var(--color-primary-800); */
 		padding-inline: var(--padding-inline-md);
 		gap: var(--spacing-lg);
 		border: var(--color-primary-600) solid 1.5px;
@@ -30,7 +31,7 @@
 			background-color: var(--color-primary-700);
 		}
 		&:active:is(:not(:disabled)) {
-			background-color: var(--color-primary-600);
+			/* background-color: var(--color-primary-600); */
 			scale: 0.9;
 		}
 		&:disabled {

@@ -12,6 +12,8 @@ export class Exercise implements ExerciseInRoutineJoined {
 	slug!: string;
 	rest_time?: number;
 	active_time?: number;
+	videoSrc?: string;
+
 	save() {
 		return db.exercise.put(this);
 	}

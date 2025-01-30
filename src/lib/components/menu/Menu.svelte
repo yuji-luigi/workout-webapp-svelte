@@ -17,7 +17,11 @@
 
 <section class="menu-container">
 	{#each list as item}
-		<button type="button" onclick={() => handleClick(item)} class="button primary menu-item">
+		<button
+			type="button"
+			onclick={() => handleClick(item)}
+			class=" primary menu-item button-primary-reactive-color button-reactive-size"
+		>
 			<h3 class="center-item">{item.name}</h3>
 		</button>
 	{/each}
@@ -43,7 +47,7 @@
 		gap: var(--spacing-sm);
 	}
 	.menu-container .menu-item {
-		background-color: var(--color-primary-800);
+		/* background-color: var(--color-primary-800); */
 		padding-inline: var(--padding-inline-md);
 		padding-block: var(--padding-block-md);
 		border-radius: var(--border-radius-lg);

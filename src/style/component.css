@@ -6,6 +6,27 @@
   color: light-dark(var(--text-color-black), var(--text-color-light));
 }
 
+.button-primary-reactive-color {
+  background: var(--color-button-primary);
+  transition: background-color 0.2s, scale 0.2s;
+
+  &:hover:is(:not(:disabled)) {
+    background: var(--color-button-primary-hover);
+  }
+
+  &:active:is(:not(:disabled)) {
+    background: var(--color-button-primary-active);
+  }
+}
+
+.button-reactive-size {
+  transition: scale 0.2s;
+
+  &:active:is(:not(:disabled)) {
+    scale: 0.9;
+  }
+}
+
 dialog[open] {
   max-height: 80%;
   overflow-y: scroll;
@@ -41,7 +62,7 @@ dialog:focus {
   height: fit-content;
 
   @media (max-width: 768px) {
-    padding: 0;
+    padding: 1rem 1rem;
   }
 }
 

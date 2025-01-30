@@ -1,30 +1,9 @@
-<script lang="ts">
-	import type { Collection } from '../../../../types/db/collections';
-	import { openDialog } from '../../../store/global-dialog-store.svelte';
-	import * as formsByCollection from '$lib/components/form/form-by-collection';
-	import BlackBoardCard from '../BlackBoardCard.svelte';
-	import { openStackDialogNew } from '../../../store/dialog-stack/dialogStackStoreNew';
-	let { collection, onclick }: { collection: Collection; onclick: () => void } = $props();
-	let FormByCollection = formsByCollection[collection];
-	// TODO: update the routine array in parent component. after adding a new routine.
-	const handleOpenDialog = () => {
-		if (onclick) {
-			onclick();
-			return;
-		}
-		openStackDialogNew({
-			component: FormByCollection as any,
-			props: {}
-		});
-	};
-</script>
-
-<div role="button" tabindex="-1" class="card" onkeydown={(e) => null} onclick={handleOpenDialog}>
+<button class="card" onkeydown={(e) => null} {onclick}>
 	<h4 class="title">+</h4>
 	<div class="info"></div>
 	<div class="description">Add new exercise</div>
 	<!-- <button on:click={handleOpenDialog} class="read-more">Read more</button> -->
-</div>
+</button>
 
 <style>
 	/* TODO: RENAME CARD TO SOMETHING ELSE */

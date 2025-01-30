@@ -8,7 +8,9 @@
 </script>
 
 <header>
-	<LeftDrawerButton />
+	<div class="corner">
+		<LeftDrawerButton />
+	</div>
 	<div class="main-nav-wrapper">
 		<MainNav />
 	</div>

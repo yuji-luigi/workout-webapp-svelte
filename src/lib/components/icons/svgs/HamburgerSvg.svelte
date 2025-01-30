@@ -5,7 +5,7 @@
 </script>
 
 <svg
-	style={`--size-svg: ${width};`}
+	style={`--size-svg: 24px;`}
 	{id}
 	class="icon-svg hamburger-svg"
 	viewBox="0 0 24 24"
@@ -19,7 +19,7 @@
 
 <style>
 	svg {
-		--size-svg: var(--sub-header-height);
+		/* --size-svg: var(--sub-header-height); */
 		height: calc(var(--size-svg) + 12px);
 		width: calc(var(--size-svg) + 12px);
 	}

@@ -1,4 +1,5 @@
 import type { Exercise, ExerciseInRoutineJoined } from '../../../types/db/exercise';
+import type { FileDB } from '../../../types/db/file-db';
 import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import { db } from '../dexie-db/dexie-db';
 import { Routine } from '../dexie-db/Routine';
@@ -70,10 +71,12 @@ function generateRoutines({ name, description }: { name: string; description: st
 		// const exercisesLength = 0;
 		const exercisesLength = Math.round(Math.random() * 10 + 1);
 		const exercises: ExerciseInRoutineJoined[] = Array.from({ length: exercisesLength }, (_, j) => {
+			const baseExercise =
+				calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)];
 			const exercise: ExerciseInRoutineJoined = {
-				...calisthenicExercises[Math.floor(Math.random() * calisthenicExercises.length)],
+				...baseExercise,
 				id: undefined as any, // TODO: fix this
-
+				videoSrc: test_videos.find((v) => v.id === baseExercise.video)?.full_path,
 				repetition: {
 					id: undefined as any, // TODO: fix this
 					count: Math.round(Math.random() * 10 + 1),
@@ -125,6 +128,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 1,
 		name: 'Pull Up',
 		slug: 'pull-up',
+		video: 1,
 		description:
 			'A bodyweight exercise where you pull yourself up until your chin is above the bar.',
 		image: undefined, // Replace with actual image reference if available
@@ -134,6 +138,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 2,
 		name: 'Push Up',
 		slug: 'push-up',
+		video: 2,
 		description: 'A classic upper-body exercise where you push your body up from a prone position.',
 		image: undefined,
 		created_by_id: 1
@@ -142,6 +147,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 3,
 		name: 'Body Rows',
 		slug: 'body-rows',
+		video: 3,
 		description: 'An exercise performed by pulling your body towards a horizontal bar.',
 		image: undefined,
 		created_by_id: 1
@@ -150,6 +156,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 4,
 		name: 'Ring Push Ups',
 		slug: 'ring-push-ups',
+		video: 1,
 		description: 'A push-up variation using gymnastic rings for additional instability.',
 		image: undefined,
 		created_by_id: 1
@@ -158,6 +165,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 5,
 		name: 'Ring Dips',
 		slug: 'ring-dips',
+		video: 2,
 		description: 'A dip exercise using gymnastic rings to target triceps, shoulders, and chest.',
 		image: undefined,
 		created_by_id: 1
@@ -166,6 +174,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 6,
 		name: 'Dips',
 		slug: 'dips',
+		video: 3,
 		description:
 			'An exercise where you lower and raise your body using parallel bars or a dip station.',
 		image: undefined,
@@ -175,6 +184,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 7,
 		name: 'Pike Push Ups',
 		slug: 'pike-push-ups',
+		video: 1,
 		description:
 			'A push-up variation focusing on the shoulders by performing the exercise in a pike position.',
 		image: undefined,
@@ -184,6 +194,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 8,
 		name: 'Handstand Push Ups',
 		slug: 'handstand-push-ups',
+		video: 1,
 		description:
 			'An advanced exercise performed in a handstand position, pushing your body up and down.',
 		image: undefined,
@@ -193,6 +204,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 9,
 		name: 'Squats',
 		slug: 'squats',
+		video: 2,
 		description: 'A lower-body exercise focusing on the quadriceps, hamstrings, and glutes.',
 		image: undefined,
 		created_by_id: 1
@@ -201,6 +213,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 10,
 		name: 'Lunges',
 		slug: 'lunges',
+		video: 1,
 		description:
 			'A single-leg bodyweight exercise that strengthens the quads, glutes, and hamstrings.',
 		image: undefined,
@@ -210,6 +223,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 11,
 		name: 'Plank',
 		slug: 'plank',
+		video: 2,
 		description: 'A core-strength exercise where you hold a position similar to the push-up.',
 		image: undefined,
 		created_by_id: 1
@@ -218,6 +232,7 @@ export const calisthenicExercises: Exercise[] = [
 		id: 12,
 		name: 'Mountain Climbers',
 		slug: 'mountain-climbers',
+		video: 3,
 		description: 'A dynamic bodyweight exercise that works the core and cardiovascular system.',
 		image: undefined,
 		created_by_id: 1
@@ -374,5 +389,35 @@ const defaultWorkoutTypes: RoutineBlockTypeI[] = [
 		use_exercise_timer: true, // Each pose may have its own interval
 		description: 'A series of yoga poses for relaxation and flexibility',
 		repeat: false
+	}
+];
+
+const test_videos: FileDB[] = [
+	{
+		id: 1,
+		name: 'test_video.mp4',
+		full_path: '/videos/test_video.mp4',
+		field_in_parent: 'video',
+		parent_collection: 'exercise',
+		slug: 'test_video',
+		description: 'test video'
+	},
+	{
+		id: 2,
+		name: 'test_video2.mp4',
+		full_path: '/videos/test_video2.mp4',
+		field_in_parent: 'video',
+		parent_collection: 'exercise',
+		slug: 'test_video2',
+		description: 'test video 2'
+	},
+	{
+		id: 3,
+		name: 'test_video3.mp4',
+		full_path: '/videos/test_video3.mp4',
+		field_in_parent: 'video',
+		parent_collection: 'exercise',
+		slug: 'test_video3',
+		description: 'test video 3'
 	}
 ];
