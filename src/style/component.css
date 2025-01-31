@@ -9,6 +9,7 @@
 .button-primary-reactive-color {
   background: var(--color-button-primary);
   transition: background-color 0.2s, scale 0.2s;
+  color: var(--text-color-white);
 
   &:hover:is(:not(:disabled)) {
     background: var(--color-button-primary-hover);
