@@ -15,16 +15,18 @@
 	import type { Snippet } from 'svelte';
 	// import { workoutsY } from '../lib/store/lofi-db/workout-lofi.svelte';
 	import { seedDexieDB } from '../lib/db/lofi-yjs-db/seedDb';
+	import { initTables } from '../lib/db/table_states.svelte';
 
 	let { children }: { children: Snippet } = $props();
 	const socketStates = createWebsocketStates();
-	onMount(() => {
+	onMount(async () => {
 		socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
 		socketStates.globalWebSocket?.addEventListener('open', () => {
 			// seedLocalDB();
 			seedDexieDB();
 		});
 		console.log(socketStates.isConnected && 'yjs socket connected!');
+		await initTables();
 	});
 </script>
 
