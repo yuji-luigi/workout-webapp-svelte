@@ -195,9 +195,9 @@ body {
   font-size: var(--font-size-md);
   --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
   --color-primary: light-dark(var(--color-primary-400), var(--color-primary-500));
-  --color-button-primary: light-dark(var(--color-primary-600), var(--color-primary-800));
-  --color-button-primary-hover: light-dark(var(--color-primary-500), var(--color-primary-600));
-  --color-button-primary-active: light-dark(var(--color-primary-500), var(--color-primary-600));
+  --color-card-primary: light-dark(var(--color-primary-600), var(--color-primary-800));
+  --color-card-primary-hover: light-dark(var(--color-primary-500), var(--color-primary-600));
+  --color-card-primary-active: light-dark(var(--color-primary-500), var(--color-primary-600));
 }
 
 body:has(dialog[open]) {
