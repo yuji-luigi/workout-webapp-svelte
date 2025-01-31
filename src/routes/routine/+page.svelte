@@ -53,7 +53,7 @@
 
 <VideoHero
 	videoStyle="--video-object-position: 50% 25%;"
-	videoSrc="/videos/cover/workout_with_yume.mov"
+	videoSrc="/videos/cover/workout_with_yume.mp4"
 	class="video"
 />
 <div class="stretch-container flex-column">
