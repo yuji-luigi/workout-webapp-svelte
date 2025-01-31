@@ -9,7 +9,6 @@
 .button-primary-reactive-color {
   background: var(--color-card-primary);
   transition: background-color 0.2s, scale 0.2s;
-  color: var(--text-color-white);
 
   &:hover:is(:not(:disabled)) {
     background: var(--color-card-primary-hover);
@@ -24,6 +23,7 @@
   transition: scale 0.2s;
 
   &:active:is(:not(:disabled)) {
+    transition: scale 0.2s;
     scale: 0.9;
   }
 }
@@ -129,7 +129,6 @@ dialog {
   padding-inline: 1rem;
   padding-block: 0.5rem;
   background: light-dark(var(--gray-300), var(--gray-300));
-  color: var(--text-color-black);
   /* color: black; */
   font-weight: 600;
   /* font-size: var(--text-size-md); */
@@ -172,7 +171,6 @@ dialog {
   background: var(--color-primary);
   /* background: transparent; */
   /* color: var(--color-primary-400); */
-  color: var(--text-color-white);
 
   &:hover {
     background: light-dark(var(--color-primary-700), var(--color-primary-400));

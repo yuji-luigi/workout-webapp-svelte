@@ -36,6 +36,8 @@
 
 <div class="set-config-header">
 	<div class="main-header">
+		<!-- <div class="circle"></div> -->
+
 		<h2 class="full-width">SET#{index + 1}</h2>
 		<button onclick={handleRemoveSet} type="button" class="error button delete-button"
 			>remove</button
@@ -68,6 +70,24 @@
 </div>
 
 <style>
+	/* .circle {
+		position: relative;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		background-color: white;
+		&::after {
+			content: '';
+			position: absolute;
+			top: 60%;
+			left: 50%;
+			border-radius: 90%;
+			transform: translate(-50%, -50%);
+			width: 60px;
+			height: 20px;
+			background-color: red;
+		}
+	} */
 	.set-config-header {
 		gap: var(--spacing-sm);
 	}
