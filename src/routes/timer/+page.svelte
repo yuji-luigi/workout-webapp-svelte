@@ -1,8 +1,8 @@
 <script lang="ts">
 	import VideoHero from '$lib/components/hero/video-hero/VideoHero.svelte';
-	import WorkoutTypeCard from '../../lib/components/card/cards/WorkoutTypeCard.svelte';
-	import WorkoutConfirmDialogContent from '../../lib/components/dialog/contents/WorkoutConfirmDialogContent.svelte';
-	import { openDialog } from '../../lib/store/global-dialog-store';
+	import WorkoutTypeCard from '$lib/components/card/cards/WorkoutTypeCard.svelte';
+	import WorkoutConfirmDialogContent from '$lib/components/dialog/contents/WorkoutConfirmDialogContent.svelte';
+	import { openDialog } from '$lib/store/global-dialog-store';
 
 	let cardGrid: HTMLDivElement;
 	export let data: any;
@@ -32,7 +32,7 @@
 </svelte:head>
 <VideoHero
 	videoStyle="--video-object-position: 50% 25%;"
-	videoSrc="/videos/cover/workout_with_yume.mov"
+	videoSrc="$/videos/cover/workout_with_yume.mov"
 	class="video"
 />
 

@@ -3,13 +3,14 @@
 	import VideoHero from '../../lib/components/hero/video-hero/VideoHero.svelte';
 	import HomeMainSection from './HomeMainSection.svelte';
 	import HomeWhyThisAppSection from './HomeWhyThisAppSection.svelte';
+	import runningVideo from '$assets/videos/cover/running.mp4';
 </script>
 
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
-<VideoHero videoSrc="/videos/cover/running.mp4">
+<VideoHero videoSrc={runningVideo}>
 	<div slot="top-right">
 		<HeroTextBlock>
 			<div>
@@ -31,7 +32,6 @@
 		</p>
 	</slot>
 </VideoHero>
-
 <HomeMainSection />
 <HomeWhyThisAppSection />
 

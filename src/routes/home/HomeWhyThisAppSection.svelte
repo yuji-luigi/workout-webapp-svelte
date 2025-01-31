@@ -3,26 +3,28 @@
 	import program_img from '$images/placeholder/placeholder-nike-program.jpg';
 	import program_img2 from '$images/placeholder/placeholder-nike-program-2.jpg';
 	import CardColumn from '$lib/components/card/CardColumn.svelte';
+	import nikeCard1 from '$images/placeholder/placeholder-nike-card1.jpg';
+	import nikeCard2 from '$images/placeholder/placeholder-nike-card-2.jpg';
+	import nikeCard3 from '$images/placeholder/placeholder-nike-card-3.jpg';
 
 	const cards = [
 		{
 			title: 'Create interval',
 			description:
 				'Simple! Just create interval for single workout to routine just like a interval app. You can share it or you can use the other user created interval.',
-			img: '/images/placeholder/placeholder-nike-card1.jpg'
+			img: nikeCard1
 		},
 		{
 			title: 'Save records and progress',
 			description:
 				'You can also share these information with the community. You can also follow along with workout videos and track your progress. Or even by geologically. So you can influence others and motivate each other.',
-
-			img: '/images/placeholder/placeholder-nike-card-3.jpg'
+			img: nikeCard3
 		},
 		{
 			title: 'Create your own workout plans',
 			description:
 				'You can create your own plan. Then you can make it as a subscription plan. So you can earn money by sharing your workout plan. You can also follow along with workout videos and track your progress.',
-			img: '/images/placeholder/placeholder-nike-card-2.jpg'
+			img: nikeCard2
 		}
 	];
 </script>

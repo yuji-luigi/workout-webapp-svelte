@@ -6,6 +6,7 @@
 	import RoutineForm from '../../lib/components/form/form-by-collection/routine-form/RoutineForm.svelte';
 	import { openStackDialogNew } from '../../lib/store/dialog-stack/dialogStackStoreNew';
 	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
+	import videoYume from '$assets/videos/cover/workout_with_yume.mp4';
 	import RoutineList from './routine-list/RoutineList.svelte';
 	let cardGrid: HTMLDivElement;
 	let routines = $derived(routinesStore.list);
@@ -51,11 +52,7 @@
 	}
 </script>
 
-<VideoHero
-	videoStyle="--video-object-position: 50% 25%;"
-	videoSrc="/videos/cover/workout_with_yume.mp4"
-	class="video"
-/>
+<VideoHero videoStyle="--video-object-position: 50% 25%;" videoSrc={videoYume} class="video" />
 <div class="stretch-container flex-column">
 	<div class="flex-row title-row">
 		<h1>Select workouts/routines</h1>
