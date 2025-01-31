@@ -24,7 +24,10 @@
       ],
       "$images/*": [
         "./src/lib/assets/images/*"
-      ]
+      ],
+      "$assets/*": [
+        "./src/lib/assets/*"
+      ],
     }
   }
   // Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
