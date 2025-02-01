@@ -5,11 +5,13 @@
 	let {
 		children,
 		position,
-		withCloseButton = false
+		withCloseButton = false,
+		className = ''
 	}: {
 		children: Snippet;
 		position: 'left' | 'right';
 		withCloseButton?: boolean;
+		className?: string;
 	} = $props();
 
 	const drawerState = leftDrawerState;
@@ -22,7 +24,7 @@
 	});
 </script>
 
-<div class="drawer-side-nav" data-open={drawerState.isOpen} data-position={position}>
+<div class={`drawer-side-nav ${className}`} data-open={drawerState.isOpen} data-position={position}>
 	{#if withCloseButton}
 		<button class="closebtn" onclick={closeVerticalMenu}>&times;</button>
 	{/if}

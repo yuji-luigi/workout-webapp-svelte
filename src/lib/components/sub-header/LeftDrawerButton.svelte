@@ -1,3 +1,7 @@
+<!--
+@component
+- visibility of the buttons are controlled via body tag with has selector.
+-->
 <script>
 	import ToggleRoutineDrawer from '$lib/sections/start-timer-components/ToggleRoutineDrawer.svelte';
 </script>

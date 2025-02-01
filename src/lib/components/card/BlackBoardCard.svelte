@@ -1,17 +1,18 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import blackBoardSrc from '$lib/assets/images/blackboard.jpg';
 
 	let { children }: { children: Snippet } = $props();
 </script>
 
-<div class="blackboard">
+<div style={`--image-src: url('${blackBoardSrc}')`} class="blackboard">
 	{@render children()}
 </div>
 
 <style>
 	.blackboard {
-		background-image: url('/images/blackboard.jpg');
-		width: var(--width,);
+		background-image: var(--image-src);
+		width: var(--width, 100%);
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;

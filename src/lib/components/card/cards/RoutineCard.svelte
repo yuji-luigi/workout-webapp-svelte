@@ -46,10 +46,14 @@
 	.selection-card {
 		padding: 0;
 		transition: scale 0.5s;
+		overflow: hidden;
 	}
 	.info {
+		display: -webkit-box; /* Must use webkit-box */
 		text-align: left;
-		margin-top: auto;
-		position: relative;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 8; /* Set # of lines to show */
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 </style>

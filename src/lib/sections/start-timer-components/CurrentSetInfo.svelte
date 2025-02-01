@@ -7,6 +7,7 @@
 
 <section class="blackboard-section">
 	<div class="container blackboard-content">
+		The next lesson will be at the Trans-Siberian Railway Station
 		<!-- <h3 class="full-width center">CURRENT EXERCISE</h3>
 		<h3>Set #{intervalTimer.currentFlow.set_index}</h3>
 		<p>{intervalTimer.currentExercise.name}</p> -->
@@ -19,7 +20,8 @@
 		font-family: 'DkCrayonCrumble';
 		font-size: 1.5rem;
 		padding: 2rem 3rem;
-		border-bottom: var(--color-primary) 5px solid;
+		color: var(--text-color-white);
+		/* border-bottom: var(--color-primary) 5px solid; */
 	}
 	.blackboard-content {
 		display: grid;
