@@ -15,8 +15,22 @@ export class IntervalTimer implements TimerBase {
 	workoutFlows: WorkoutFlow[] = $state([]);
 	/** whether rest, workout, set interval */
 	currentFlow: WorkoutFlow = $derived(this.workoutFlows[this.currentIndex]);
+	timers: number[] = $state([]);
 	constructor(data: any) {
 		this.workoutFlows = data;
+		this.timers = this.workoutFlows
+			.flatMap((flow) => {
+				if (flow.interval_preset) {
+					const times = Object.values(flow.interval_preset);
+					return times;
+				}
+
+				return null;
+			})
+			.filter((time) => {
+				console.log(time);
+				return time !== null && time !== undefined;
+			});
 	}
 	handleNext(): void {
 		if (this.currentIndex < this.workoutFlows.length - 1) {
@@ -42,6 +56,9 @@ export class IntervalTimer implements TimerBase {
 		this.blockIndex = this.currentFlow.block_index;
 		this.setIndex = this.currentFlow.set_index;
 		this.exerciseIndex = this.currentFlow.exercise_index;
+	}
+	printTimers() {
+		console.log($state.snapshot(this.timers));
 	}
 	printIntervalPresetsWithExercise() {
 		console.log(

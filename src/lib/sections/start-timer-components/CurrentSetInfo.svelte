@@ -5,7 +5,9 @@
 	const currentRoutineStore = new CurrentRoutineStore();
 	const intervalTimer = getIntervalTimer();
 	const n_set = $derived(routinesStore.currentRoutine?.blocks[intervalTimer.blockIndex]?.n_set);
-	intervalTimer.printIntervalPresetsWithExercise();
+	// intervalTimer.printIntervalPresetsWithExercise();
+	// console.log(intervalTimer.timers);
+	intervalTimer.printTimers();
 </script>
 
 <section class="blackboard-section">
