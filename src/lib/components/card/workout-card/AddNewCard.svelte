@@ -1,7 +1,17 @@
+<script lang="ts">
+	let {
+		onclick,
+		label = 'Add'
+	}: {
+		onclick: () => void;
+		label?: string;
+	} = $props();
+</script>
+
 <button class="card" onkeydown={(e) => null} {onclick}>
 	<h4 class="title">+</h4>
 	<div class="info"></div>
-	<div class="description">Add new exercise</div>
+	<div class="description">{label}</div>
 	<!-- <button on:click={handleOpenDialog} class="read-more">Read more</button> -->
 </button>
 

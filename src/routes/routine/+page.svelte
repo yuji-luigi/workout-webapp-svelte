@@ -29,17 +29,6 @@
 				props: { routine },
 				dialogClasses: ['max-width-800']
 			});
-			// openStackDialog({
-			// 	component: RoutineConfirmDialogContent,
-			// 	props: { routine },
-			// 	dialogClasses: ['max-width-800']
-			// });
-			// openDialog({
-			// 	componentInDialog: {
-			// 		component: RoutineConfirmDialogContent as any,
-			// 		props: { routine }
-			// 	}
-			// });
 		}
 	}
 	function handleAddNewClicked() {
@@ -59,7 +48,7 @@
 	</div>
 	<div role="button" tabindex="0" onclick={handleClick} onkeydown={null} class="card-grid">
 		<RoutineList {routines} sectionClicked={() => console.log('clicked')} />
-		<AddNewCard onclick={handleAddNewClicked} collection="routine" />
+		<AddNewCard onclick={handleAddNewClicked} />
 	</div>
 </div>
 

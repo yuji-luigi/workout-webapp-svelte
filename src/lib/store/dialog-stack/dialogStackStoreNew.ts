@@ -24,7 +24,6 @@ const createDialogId = () => {
 
 export const dialogStackNew = writable<DialogStackConfig[]>([]);
 export function openStackDialogNew(stackDialogConfig: Omit<DialogStackConfig, 'id'>) {
-	console.log('openStackDialogNew is called');
 	const bodyEl = document.body;
 	const _stackDialogConfig = { ...stackDialogConfig, id: createDialogId() };
 

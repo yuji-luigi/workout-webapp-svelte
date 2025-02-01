@@ -1,10 +1,28 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import { onDestroy, onMount, type Snippet } from 'svelte';
 
 	import type { RoutineJoined } from '../../../../types/db/routine';
 	import RoutineTimerDrawer from '../../../../lib/sections/start-timer-components/RoutineTimerDrawer.svelte';
+	import {
+		initCurrentRoutineStore,
+		routinesStore
+	} from '../../../../lib/store/states/routine_store.svelte';
 
-	let { children, data }: { children: Snippet; data: { routine: RoutineJoined } } = $props();
+	let {
+		children,
+		data
+	}: {
+		children: Snippet;
+		data: { routine: RoutineJoined };
+	} = $props();
+
+	onMount(() => {
+		routinesStore.currentRoutine = data.routine;
+		initCurrentRoutineStore();
+	});
+	onDestroy(() => {
+		routinesStore.currentRoutine = null;
+	});
 </script>
 
 <section>

@@ -8,7 +8,12 @@ import type { TimerBase } from './timer_abstract';
 
 export class IntervalTimer implements TimerBase {
 	currentIndex: number = $state(0);
+	blockIndex: number = $state(0);
+	setIndex: number = $state(0);
+	exerciseIndex: number = $state(0);
+	/** all the timers(exercise, rest, set interval) */
 	workoutFlows: WorkoutFlow[] = $state([]);
+	/** whether rest, workout, set interval */
 	currentFlow: WorkoutFlow = $derived(this.workoutFlows[this.currentIndex]);
 	constructor(data: any) {
 		this.workoutFlows = data;
@@ -16,11 +21,13 @@ export class IntervalTimer implements TimerBase {
 	handleNext(): void {
 		if (this.currentIndex < this.workoutFlows.length - 1) {
 			this.currentIndex++;
+			this._updateIndexes();
 		}
 	}
 	handlePrev(): void {
 		if (this.currentIndex > 0) {
 			this.currentIndex--;
+			this._updateIndexes();
 		}
 	}
 
@@ -29,6 +36,12 @@ export class IntervalTimer implements TimerBase {
 	}
 	handleResume(): void {
 		throw new Error('Method not implemented.');
+	}
+
+	private _updateIndexes() {
+		this.blockIndex = this.currentFlow.block_index;
+		this.setIndex = this.currentFlow.set_index;
+		this.exerciseIndex = this.currentFlow.exercise_index;
 	}
 	/** the same thing as the currentFlow */
 	get currentExercise(): ExerciseInRoutineJoined {
@@ -51,9 +64,11 @@ export class IntervalTimer implements TimerBase {
 }
 
 let routineTimer: IntervalTimer | null = null;
+
 export const initializeIntervalTimer = (data: any) => {
 	routineTimer = new IntervalTimer(data);
 };
+
 export const getIntervalTimer = () => routineTimer as IntervalTimer;
 
 // interval factory creates interval out of RoutineJoined, Interval[], or RoutineBlockJoined[] etc

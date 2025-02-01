@@ -1,20 +1,48 @@
 <script lang="ts">
+	import { exercise } from '../../data/template-json/dataTable';
 	import { getIntervalTimer } from '../../store/timers/interval_timer.svelte';
-
+	import { CurrentRoutineStore, routinesStore } from '../../store/states/routine_store.svelte';
+	const currentRoutineStore = new CurrentRoutineStore();
 	const intervalTimer = getIntervalTimer();
-	intervalTimer.currentFlow;
+	const n_set = $derived(routinesStore.currentRoutine?.blocks[intervalTimer.blockIndex]?.n_set);
 </script>
 
 <section class="blackboard-section">
 	<div class="container blackboard-content">
-		The next lesson will be at the Trans-Siberian Railway Station
-		<!-- <h3 class="full-width center">CURRENT EXERCISE</h3>
-		<h3>Set #{intervalTimer.currentFlow.set_index}</h3>
-		<p>{intervalTimer.currentExercise.name}</p> -->
+		<div class="full-width block-list">
+			{#each routinesStore.currentRoutine?.blocks || [] as block, index}
+				<h3 class="" data-active={intervalTimer.currentFlow.block_index === index}>
+					BLOCK#{index + 1}
+				</h3>
+			{/each}
+		</div>
+
+		<div class="full-width center">
+			<h3 class="n-set">Set {intervalTimer.currentFlow.set_index + 1}/{n_set}</h3>
+			<div class="exercise-list">
+				{#each routinesStore.currentRoutine?.blocks[intervalTimer.blockIndex]?.exercises || [] as exercise, index}
+					<p data-active={intervalTimer.currentFlow.exercise_index === index}>
+						{exercise.name},
+					</p>
+				{/each}
+			</div>
+		</div>
 	</div>
 </section>
 
 <style>
+	.block-list {
+		display: flex;
+		flex-direction: row;
+		gap: var(--gap-lg);
+		justify-content: center;
+		& :not([data-active='true']) {
+			opacity: 0.5;
+		}
+	}
+	.n-set {
+		text-align: right;
+	}
 	.blackboard-section {
 		min-height: 50vh;
 		font-family: 'DkCrayonCrumble';
@@ -23,8 +51,18 @@
 		color: var(--text-color-white);
 		/* border-bottom: var(--color-primary) 5px solid; */
 	}
+	.exercise-list {
+		display: flex;
+		flex-direction: row;
+		gap: var(--gap-sm);
+		& :not([data-active='true']) {
+			opacity: 0.5;
+		}
+		/* text-align: center; */
+	}
 	.blackboard-content {
 		display: grid;
+		place-items: center;
 		gap: var(--gap-md);
 		grid-template-columns: 1fr 1fr;
 	}
