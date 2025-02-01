@@ -46,6 +46,7 @@ button {
   font-size: unset;
   cursor: pointer;
   border: none;
+  color: inherit;
   background-color: transparent;
   -webkit-user-select: none;
   /* Safari */

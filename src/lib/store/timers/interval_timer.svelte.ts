@@ -43,6 +43,20 @@ export class IntervalTimer implements TimerBase {
 		this.setIndex = this.currentFlow.set_index;
 		this.exerciseIndex = this.currentFlow.exercise_index;
 	}
+	printIntervalPresetsWithExercise() {
+		console.log(
+			JSON.stringify(
+				$state.snapshot(
+					this.workoutFlows.map((flow) => ({
+						intervalPresets: flow.interval_preset,
+						exercise: 'exercise' in flow ? flow.exercise.name : 'rest'
+					}))
+				),
+				null,
+				2
+			)
+		);
+	}
 	/** the same thing as the currentFlow */
 	get currentExercise(): ExerciseInRoutineJoined {
 		if (isSetLog(this.currentFlow)) {
@@ -52,6 +66,7 @@ export class IntervalTimer implements TimerBase {
 		if (isSetLog(prevSet)) {
 			return prevSet.exercise;
 		}
+
 		// placeholder
 		return {
 			id: 0,

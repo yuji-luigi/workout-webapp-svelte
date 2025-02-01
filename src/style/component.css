@@ -179,6 +179,7 @@ dialog {
 
 .button.primary {
   background: var(--color-primary);
+  color: var(--text-color-white);
   /* background: transparent; */
   /* color: var(--color-primary-400); */
 

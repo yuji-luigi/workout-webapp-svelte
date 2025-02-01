@@ -25,18 +25,6 @@
 	onkeydown={(e) => null}
 >
 	{@render children?.()}
-	<!-- <div class="info">
-		<h4>{routine.name}</h4>
-
-		<p>
-			{#each routine.blocks as set, index}
-				set#{index + 1}{set.name} ({set.type.name})
-				{#each set.exercises as exercise, index}
-					{exercise.name}
-				{/each}
-			{/each}
-		</p>
-	</div> -->
 </div>
 
 <style>
@@ -50,7 +38,7 @@
 		gap: 0.75rem;
 		background-image: linear-gradient(
 				transparent,
-				light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5))
+				light-dark(rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.5))
 			),
 			var(--image-url, 'https://picsum.photos/410/300');
 		background-size: cover; /* Ensure the image covers the card */

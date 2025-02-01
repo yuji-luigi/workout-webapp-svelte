@@ -20,7 +20,7 @@
 </script>
 
 <button
-	class="button primary selection-card"
+	class="selection-card"
 	data-active={active}
 	data-id={routine.id}
 	tabindex="-1"
@@ -47,12 +47,14 @@
 		padding: 0;
 		transition: scale 0.5s;
 		overflow: hidden;
+		font-weight: 700;
 	}
 	.info {
 		display: -webkit-box; /* Must use webkit-box */
 		text-align: left;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 8; /* Set # of lines to show */
+		line-clamp: 8;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}

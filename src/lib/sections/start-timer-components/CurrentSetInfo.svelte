@@ -5,6 +5,7 @@
 	const currentRoutineStore = new CurrentRoutineStore();
 	const intervalTimer = getIntervalTimer();
 	const n_set = $derived(routinesStore.currentRoutine?.blocks[intervalTimer.blockIndex]?.n_set);
+	intervalTimer.printIntervalPresetsWithExercise();
 </script>
 
 <section class="blackboard-section">
@@ -37,6 +38,14 @@
 		font-size: 1.5rem;
 		padding: 2rem 3rem;
 		color: var(--text-color-white);
+		& [data-active='false'] {
+			transition: all 0.1s ease-in-out;
+			opacity: 0.5;
+		}
+		& [data-active='true'] {
+			transition: all 0.1s ease-in-out;
+			opacity: 1;
+		}
 		/* border-bottom: var(--color-primary) 5px solid; */
 	}
 	.block-list {
@@ -56,11 +65,7 @@
 		display: flex;
 		flex-direction: row;
 		gap: var(--gap-sm);
-		transition: all 0.5s ease-in-out;
-		& :not([data-active='true']) {
-			transition: all 0.1s ease-in-out;
-			opacity: 0.5;
-		}
+
 		/* text-align: center; */
 	}
 	.blackboard-content {
