@@ -31,6 +31,14 @@
 </section>
 
 <style>
+	.blackboard-section {
+		min-height: 50vh;
+		font-family: 'DkCrayonCrumble';
+		font-size: 1.5rem;
+		padding: 2rem 3rem;
+		color: var(--text-color-white);
+		/* border-bottom: var(--color-primary) 5px solid; */
+	}
 	.block-list {
 		display: flex;
 		flex-direction: row;
@@ -43,19 +51,14 @@
 	.n-set {
 		text-align: right;
 	}
-	.blackboard-section {
-		min-height: 50vh;
-		font-family: 'DkCrayonCrumble';
-		font-size: 1.5rem;
-		padding: 2rem 3rem;
-		color: var(--text-color-white);
-		/* border-bottom: var(--color-primary) 5px solid; */
-	}
+
 	.exercise-list {
 		display: flex;
 		flex-direction: row;
 		gap: var(--gap-sm);
+		transition: all 0.5s ease-in-out;
 		& :not([data-active='true']) {
+			transition: all 0.1s ease-in-out;
 			opacity: 0.5;
 		}
 		/* text-align: center; */
