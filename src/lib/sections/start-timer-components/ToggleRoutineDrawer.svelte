@@ -12,7 +12,7 @@
 	let showCloseIcon = $state(leftDrawerState.isOpen);
 </script>
 
-<div class="button-container">
+<div class="button-container left-drawer-button checklist-icon">
 	{#if !leftDrawerState.isOpen}
 		<div in:fade={{ duration: 300 }} out:fade={{ duration: 300 }} class="button-div">
 			<button
@@ -36,38 +36,6 @@
 			/>
 		</div>
 	{/if}
-	<!-- {#if showListIcon}
-		<div
-			onoutroend={handleTransitionEnd}
-			in:fade={{ duration: 200 }}
-			out:fade={{ duration: 200 }}
-			class="button-div"
-		>
-			<button
-				onclick={() => {
-					showListIcon = false;
-					handleClick();
-				}}
-			>
-				<ListMenuSvg />
-			</button>
-		</div>
-	{/if}
-	{#if showCloseIcon}
-		<div
-			class="button-div"
-			in:fade={{ duration: 200 }}
-			out:fade={{ duration: 200 }}
-			onoutroend={handleTransitionEnd}
-		>
-			<CloseButton
-				onclick={() => {
-					showCloseIcon = false;
-					handleClick();
-				}}
-			/>
-		</div>
-	{/if} -->
 </div>
 
 <style>

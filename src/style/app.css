@@ -192,3 +192,17 @@ fieldset[aria-busy="true"] {
   user-select: none;
   /* Standard syntax */
 }
+
+
+/* controlling the checklist icon drawer button visibility via the body tag */
+body:has([data-left-drawer-icon="checklist"]) {
+  .left-drawer-button.checklist-icon {
+    display: flex;
+  }
+}
+
+body:not(:has([data-left-drawer-icon="checklist"])) {
+  .left-drawer-button.checklist-icon {
+    display: none;
+  }
+}

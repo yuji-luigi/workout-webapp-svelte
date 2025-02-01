@@ -26,7 +26,7 @@
 <!-- <button class="appbar_toggle_btn" onclick={() => (isOpen = !isOpen)}>toggle</button> -->
 
 <VerticalMenuBase position="left">
-	<header>
+	<header data-left-drawer-icon="checklist">
 		<h4 class="title">
 			{routine.name.toUpperCase()}
 		</h4>
