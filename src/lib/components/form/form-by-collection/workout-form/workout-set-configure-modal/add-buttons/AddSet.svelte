@@ -20,9 +20,9 @@
 		cursor: pointer;
 		display: flex;
 		justify-content: center;
-		max-width: 350px;
 		width: 100%;
 		color: var(--text-color);
+		/* background-color: var(--color-card-primary); */
 		/* background-color: var(--color-primary-800); */
 		padding-inline: var(--padding-inline-md);
 		gap: var(--spacing-lg);

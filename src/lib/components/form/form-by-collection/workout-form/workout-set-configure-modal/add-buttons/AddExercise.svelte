@@ -17,7 +17,11 @@
 	}
 </script>
 
-<button onclick={handleClick} type="button" class="input-section button button-reactive-size">
+<button
+	onclick={handleClick}
+	type="button"
+	class="input-section button-reactive-size button-primary-reactive-color"
+>
 	<h3>Add exercise</h3>
 </button>
 
@@ -31,6 +35,5 @@
 		border-radius: var(--border-radius-lg);
 		grid-template-columns: 1fr auto auto;
 		padding-block: 2rem;
-		background-color: light-dark(var(--gray-50), var(--gray-700));
 	}
 </style>

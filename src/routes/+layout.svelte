@@ -24,8 +24,8 @@
 		socketStates.setGlobalWebSocket(new WebSocket('ws://localhost:1234'));
 		socketStates.globalWebSocket?.addEventListener('open', () => {
 			// seedLocalDB();
-			seedDexieDB();
 		});
+		await seedDexieDB();
 		console.log(socketStates.isConnected && 'yjs socket connected!');
 		await initTables();
 	});

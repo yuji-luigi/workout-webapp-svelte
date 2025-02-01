@@ -47,7 +47,7 @@
 		<SelectInputSingle
 			bind:selectEl
 			bind:selectedOption={selectedType}
-			width="auto"
+			width="100%"
 			label="set type"
 			collection="workout_set_type"
 			name={preName + '.workout_set_type'}
@@ -104,6 +104,10 @@
 		place-content: center;
 		place-items: center;
 		gap: var(--spacing-xs);
+		@media (max-width: 768px) {
+			gap: var(--spacing-sm);
+			grid-template-columns: 1fr;
+		}
 	}
 	.set-config-group {
 		display: grid;

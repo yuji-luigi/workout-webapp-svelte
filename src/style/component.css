@@ -6,15 +6,25 @@
   color: light-dark(var(--text-color-black), var(--text-color-light));
 }
 
+.card-primary {
+  background: var(--color-card-primary);
+  border: 1px solid transparent;
+  border-color: light-dark(var(--color-primary), transparent);
+}
+
 .button-primary-reactive-color {
+  border: 1px solid transparent;
+  border-color: light-dark(var(--color-primary), transparent);
   background: var(--color-card-primary);
   transition: background-color 0.2s, scale 0.2s;
 
   &:hover:is(:not(:disabled)) {
+    transition: background-color 0.2s, scale 0.2s;
     background: var(--color-card-primary-hover);
   }
 
   &:active:is(:not(:disabled)) {
+    transition: background-color 0.2s, scale 0.2s;
     background: var(--color-card-primary-active);
   }
 }

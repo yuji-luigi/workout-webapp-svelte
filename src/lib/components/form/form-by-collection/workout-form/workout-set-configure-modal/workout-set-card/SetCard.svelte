@@ -5,7 +5,7 @@
 	import { fade, scale } from 'svelte/transition';
 	import ExerciseConfigCard from '../../../../../../../routes/workout/ExerciseConfigCard.svelte';
 	import AddExercise from '../add-buttons/AddExercise.svelte';
-	import SetCardHeader from './SetCardHeader.svelte';
+	import BlockConfigs from './BlockConfigs.svelte';
 	let {
 		// wSet,
 		index,
@@ -48,9 +48,9 @@
 
 <input bind:this={inputEl} hidden type="text" name={preName} value={JSON.stringify(wSet)} />
 <div in:scale={{ duration: 300, start: 0.8 }}>
-	<div class="grid set-card">
+	<div class="grid set-card card-primary">
 		<div in:fade={{ duration: 300, delay: 150 }}>
-			<SetCardHeader {index} {preName} {removeSet} {wSet} bind:selectedType />
+			<BlockConfigs {index} {preName} {removeSet} {wSet} bind:selectedType />
 			{#each exercises as exercise, index}
 				<ExerciseConfigCard
 					{removeExercise}
@@ -75,10 +75,9 @@
 		/* border: var(--color-primary-600) solid 1.5px; */
 		padding-block: var(--padding-block-md);
 		border-radius: var(--border-radius-lg);
-		min-width: 350px;
 		@media (max-width: 768px) {
 			grid-template-columns: 1fr;
-
+			min-width: 100%;
 			gap: var(--spacing-sm);
 		}
 		& > div {

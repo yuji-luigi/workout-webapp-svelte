@@ -156,9 +156,9 @@ body {
   --text-color: light-dark(var(--text-color-black), var(--text-color-white));
   --fg-color: light-dark(var(--fg-color-light), var(--fg-color-dark));
   --color-primary: light-dark(var(--color-primary-400), var(--color-primary-500));
-  --color-card-primary: light-dark(var(--color-primary-400), var(--color-primary-800));
-  --color-card-primary-hover: light-dark(var(--color-primary-300), var(--color-primary-700));
-  --color-card-primary-active: light-dark(var(--color-primary-500), var(--color-primary-600));
+  --color-card-primary: light-dark(transparent, var(--color-primary-800));
+  --color-card-primary-hover: light-dark(var(--color-primary-100), var(--color-primary-700));
+  --color-card-primary-active: light-dark(var(--color-primary-200), var(--color-primary-600));
   /* font settings */
   color: var(--text-color);
   font-size: var(--font-size-md);

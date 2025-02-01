@@ -6,7 +6,6 @@ import { Routine } from '../dexie-db/Routine';
 
 export async function seedDexieDB() {
 	const { workout_set_type, exercise, routine } = db;
-
 	if ((await workout_set_type.toArray()).length === 0) {
 		// workout_set_typeY.push([...defaultWorkoutTypes]);
 		db.workout_set_type.bulkAdd(defaultWorkoutTypes);
