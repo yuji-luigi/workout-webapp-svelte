@@ -5,7 +5,13 @@ import type { TimerBase } from './timer_abstract';
 
 // need logic to control the current index of routine.
 // calculate the
-
+type Timer = {
+	blockIndex: number;
+	setIndex: number;
+	exerciseIndex: number;
+	timer: number;
+	name: string;
+};
 export class IntervalTimer implements TimerBase {
 	currentIndex: number = $state(0);
 	blockIndex: number = $state(0);
@@ -15,14 +21,30 @@ export class IntervalTimer implements TimerBase {
 	workoutFlows: WorkoutFlow[] = $state([]);
 	/** whether rest, workout, set interval */
 	currentFlow: WorkoutFlow = $derived(this.workoutFlows[this.currentIndex]);
-	timers: number[] = $state([]);
+	timers: Timer[] = $state([]);
+	currentTimer: Timer = $derived(this.timers[this.currentIndex]);
 	constructor(data: any) {
 		this.workoutFlows = data;
 		this.timers = this.workoutFlows
 			.flatMap((flow) => {
 				if (flow.interval_preset) {
-					const times = Object.values(flow.interval_preset);
-					return times;
+					const [activeTime, restTime] = Object.values(flow.interval_preset);
+					return [
+						activeTime && {
+							blockIndex: flow.block_index,
+							setIndex: flow.set_index,
+							exerciseIndex: flow.exercise_index,
+							timer: activeTime,
+							name: 'exercise' in flow ? flow.exercise.name : 'rest'
+						},
+						restTime && {
+							blockIndex: flow.block_index,
+							setIndex: flow.set_index,
+							exerciseIndex: flow.exercise_index,
+							timer: restTime,
+							name: 'rest'
+						}
+					].filter((timer) => timer !== null && timer !== undefined);
 				}
 
 				return null;
@@ -33,7 +55,8 @@ export class IntervalTimer implements TimerBase {
 			});
 	}
 	handleNext(): void {
-		if (this.currentIndex < this.workoutFlows.length - 1) {
+		// if (this.currentIndex < this.workoutFlows.length - 1) {
+		if (this.currentIndex < this.timers.length - 1) {
 			this.currentIndex++;
 			this._updateIndexes();
 		}
@@ -53,9 +76,9 @@ export class IntervalTimer implements TimerBase {
 	}
 
 	private _updateIndexes() {
-		this.blockIndex = this.currentFlow.block_index;
-		this.setIndex = this.currentFlow.set_index;
-		this.exerciseIndex = this.currentFlow.exercise_index;
+		this.blockIndex = this.currentTimer.blockIndex;
+		this.setIndex = this.currentTimer.setIndex;
+		this.exerciseIndex = this.currentTimer.exerciseIndex;
 	}
 	printTimers() {
 		console.log($state.snapshot(this.timers));

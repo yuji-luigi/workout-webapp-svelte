@@ -10,16 +10,16 @@
 
 	let { routine }: { routine: RoutineJoined } = $props();
 	const intervalTimer = getIntervalTimer();
-	const routineTimer = getRoutineTimer();
+	// const routineTimer = getRoutineTimer();
 
 	let drawerState = $state(leftDrawerState);
 	function handleNext() {
 		intervalTimer.handleNext();
-		routineTimer.handleNext();
+		// routineTimer.handleNext();
 	}
 	function handlePrev() {
 		intervalTimer.handlePrev();
-		routineTimer.handlePrev();
+		// routineTimer.handlePrev();
 	}
 </script>
 

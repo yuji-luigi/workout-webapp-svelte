@@ -18,9 +18,9 @@
 </script>
 
 <header class="set-stepper">
-	set {intervalTimer.currentFlow.set_index + 1}
-	{#if 'exercise' in intervalTimer.currentFlow}
-		{intervalTimer.currentFlow.exercise.name}
+	set {intervalTimer.currentTimer.setIndex + 1}
+	{#if 'exercise' in intervalTimer.currentTimer}
+		{intervalTimer.currentTimer.name}
 	{:else}
 		rest time
 	{/if}

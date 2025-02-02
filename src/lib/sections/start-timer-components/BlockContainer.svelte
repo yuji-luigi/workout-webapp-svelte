@@ -18,8 +18,8 @@
 </script>
 
 <div
-	data-is-current={blockIndex === intervalTimer.currentFlow.block_index}
-	data-is-done={blockIndex < intervalTimer.currentFlow.block_index}
+	data-is-current={blockIndex === intervalTimer.currentTimer.blockIndex}
+	data-is-done={blockIndex < intervalTimer.currentTimer.blockIndex}
 	class="block-container"
 >
 	<div class="block-heading">

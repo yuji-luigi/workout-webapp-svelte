@@ -14,17 +14,17 @@
 	<div class="container blackboard-content">
 		<div class="full-width block-list">
 			{#each routinesStore.currentRoutine?.blocks || [] as block, index}
-				<h3 class="" data-active={intervalTimer.currentFlow.block_index === index}>
+				<h3 class="" data-active={intervalTimer.currentTimer.blockIndex === index}>
 					BLOCK#{index + 1}
 				</h3>
 			{/each}
 		</div>
-
+		{intervalTimer.currentTimer.name}
 		<div class="full-width center">
-			<h3 class="n-set">Set {intervalTimer.currentFlow.set_index + 1}/{n_set}</h3>
+			<h3 class="n-set">Set {intervalTimer.currentTimer.setIndex + 1}/{n_set}</h3>
 			<div class="exercise-list">
 				{#each routinesStore.currentRoutine?.blocks[intervalTimer.blockIndex]?.exercises || [] as exercise, index}
-					<p data-active={intervalTimer.currentFlow.exercise_index === index}>
+					<p data-active={intervalTimer.currentTimer.exerciseIndex === index}>
 						{exercise.name},
 					</p>
 				{/each}

@@ -22,10 +22,10 @@
 	</button>
 	<p
 		class="exercise-name"
-		data-is-current={setInBlock.set_index === intervalTimer.currentFlow.set_index &&
-			blockIndex === intervalTimer.currentFlow.block_index}
-		data-is-done={blockIndex <= intervalTimer.currentFlow.block_index &&
-			setInBlock.set_index < intervalTimer.currentFlow.set_index}
+		data-is-current={setInBlock.set_index === intervalTimer.currentTimer.setIndex &&
+			blockIndex === intervalTimer.currentTimer.blockIndex}
+		data-is-done={blockIndex <= intervalTimer.currentTimer.blockIndex &&
+			setInBlock.set_index < intervalTimer.currentTimer.setIndex}
 	>
 		{setInBlock.exercise.name}
 	</p>
