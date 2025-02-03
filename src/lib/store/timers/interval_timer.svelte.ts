@@ -27,27 +27,34 @@ export class IntervalTimer implements TimerBase {
 		this.workoutFlows = data;
 		this.timers = this.workoutFlows
 			.flatMap((flow) => {
-				if (flow.interval_preset) {
-					const [activeTime, restTime] = Object.values(flow.interval_preset);
+				const [activeTime, restTime] = Object.values(flow.interval_preset || []);
+				if (!activeTime && !restTime) {
 					return [
-						activeTime && {
+						{
 							blockIndex: flow.block_index,
 							setIndex: flow.set_index,
 							exerciseIndex: flow.exercise_index,
-							timer: activeTime,
+							timer: 0,
 							name: 'exercise' in flow ? flow.exercise.name : 'rest'
-						},
-						restTime && {
-							blockIndex: flow.block_index,
-							setIndex: flow.set_index,
-							exerciseIndex: flow.exercise_index,
-							timer: restTime,
-							name: 'rest'
 						}
-					].filter((timer) => timer !== null && timer !== undefined);
+					];
 				}
-
-				return null;
+				return [
+					activeTime && {
+						blockIndex: flow.block_index,
+						setIndex: flow.set_index,
+						exerciseIndex: flow.exercise_index,
+						timer: activeTime,
+						name: 'exercise' in flow ? flow.exercise.name : 'rest'
+					},
+					restTime && {
+						blockIndex: flow.block_index,
+						setIndex: flow.set_index,
+						exerciseIndex: flow.exercise_index,
+						timer: restTime,
+						name: 'rest'
+					}
+				].filter((timer) => timer !== null && timer !== undefined);
 			})
 			.filter((time) => {
 				console.log(time);

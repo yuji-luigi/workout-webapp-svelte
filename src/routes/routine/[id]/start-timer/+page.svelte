@@ -42,13 +42,14 @@
 </script>
 
 <BlackBoardCard --width="100%">
-	<CurrentSetInfo />
+	<div class="workout-board">
+		<CurrentSetInfo />
+		<button onclick={handlePrev} class="button primary">prev</button>
+		<button onclick={handleNext} class="button primary">next</button>
+	</div>
 </BlackBoardCard>
-<div>
-	<button onclick={handlePrev} class="button primary">prev</button>
-	<button onclick={handleNext} class="button primary">next</button>
-</div>
-{#if routine && routineTimer.currentSet}
+
+<!-- {#if routine && routineTimer.currentSet}
 	<div class="flex-column">
 		<SetStepper />
 	</div>
@@ -72,9 +73,13 @@
 	{#if routineTimer.currentInterval}
 		<TimerWatchNew {routineTimer} time={routineTimer.currentTime || 0} />
 	{/if}
-{/if}
+{/if} -->
 
 <style>
+	.workout-board {
+		width: 100%;
+		min-height: calc(100dvh - var(--sub-header-height));
+	}
 	.flex-column {
 		gap: 1rem;
 		justify-content: center;

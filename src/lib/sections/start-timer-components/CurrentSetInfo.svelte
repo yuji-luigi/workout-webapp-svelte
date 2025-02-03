@@ -25,7 +25,7 @@
 			<div class="exercise-list">
 				{#each routinesStore.currentRoutine?.blocks[intervalTimer.blockIndex]?.exercises || [] as exercise, index}
 					<p data-active={intervalTimer.currentTimer.exerciseIndex === index}>
-						{exercise.name},
+						{exercise.name},{' '}
 					</p>
 				{/each}
 			</div>
@@ -35,7 +35,6 @@
 
 <style>
 	.blackboard-section {
-		min-height: 50vh;
 		font-family: 'DkCrayonCrumble';
 		font-size: 1.5rem;
 		padding: 2rem 3rem;
@@ -66,6 +65,7 @@
 	.exercise-list {
 		display: flex;
 		flex-direction: row;
+		flex-wrap: wrap;
 		gap: var(--gap-sm);
 
 		/* text-align: center; */

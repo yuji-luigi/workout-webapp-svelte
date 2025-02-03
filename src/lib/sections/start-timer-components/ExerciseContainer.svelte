@@ -14,19 +14,22 @@
 		intervalTimer: IntervalTimer;
 		setInBlock: SetLogJoined;
 	} = $props();
+	const isCurrent = $derived(
+		setInBlock.set_index === intervalTimer.currentTimer.setIndex &&
+			blockIndex === intervalTimer.currentTimer.blockIndex
+	);
+	// TODO: correct this.(line-through by exercise or block.)
+	const isDone = $derived(
+		blockIndex <= intervalTimer.currentTimer.blockIndex &&
+			setInBlock.set_index < intervalTimer.currentTimer.setIndex
+	);
 </script>
 
 <div class="flex-row gap-xs align-center">
 	<button class="button-min-style">
 		<AddNoteSvg --size="24px" />
 	</button>
-	<p
-		class="exercise-name"
-		data-is-current={setInBlock.set_index === intervalTimer.currentTimer.setIndex &&
-			blockIndex === intervalTimer.currentTimer.blockIndex}
-		data-is-done={blockIndex <= intervalTimer.currentTimer.blockIndex &&
-			setInBlock.set_index < intervalTimer.currentTimer.setIndex}
-	>
+	<p class="exercise-name" data-is-current={isCurrent} data-is-done={isDone}>
 		{setInBlock.exercise.name}
 	</p>
 </div>

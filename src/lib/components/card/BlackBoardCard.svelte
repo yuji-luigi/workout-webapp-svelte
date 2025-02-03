@@ -11,8 +11,10 @@
 
 <style>
 	.blackboard {
+		overflow: hidden;
 		background-image: var(--image-src);
 		width: var(--width, 100%);
+		height: var(--height, 100%);
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
