@@ -1,13 +1,19 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { getIntervalTimer, IntervalTimer } from '../../store/timers/interval_timer.svelte';
+	import VideoBg from '../hero/video-hero/VideoBG.svelte';
 
-	let { videoSrc }: { videoSrc: string } = $props();
+	let {
+		videoSrc,
+		children
+	}: {
+		videoSrc: string;
+		children?: Snippet;
+	} = $props();
 	let videoEl: HTMLVideoElement | undefined = $state();
 	const intervalTimer = getIntervalTimer();
 	// get the path to assets/video
-	const videoPath = $derived(
-		import.meta.env.VITE_ASSETS_PATH + intervalTimer.currentExercise?.videoSrc
-	);
+	const videoPath = $derived(import.meta.env.VITE_ASSETS_PATH + videoSrc);
 	$effect(() => {
 		handleVideoChange(videoPath);
 	});
@@ -18,15 +24,9 @@
 	}
 </script>
 
-<h1>{videoPath}</h1>
-<video bind:this={videoEl} class="video" autoplay loop playsinline aria-hidden="true">
-	<source id={videoPath} src={videoPath} type="video/mp4" />
-	<track kind="captions" label="English captions" src="" default />
-</video>
+<VideoBg videoSrc={videoPath}>
+	{@render children?.()}
+</VideoBg>
 
 <style>
-	.video {
-		width: 90px;
-		height: 90px;
-	}
 </style>

@@ -16,6 +16,7 @@
 	import type { WorkoutFlow } from '../../../../types/db/workout-flow';
 	import BlackBoardCard from '../../../../lib/components/card/BlackBoardCard.svelte';
 	import CurrentSetInfo from '../../../../lib/sections/start-timer-components/CurrentSetInfo.svelte';
+	import Video from '../../../../lib/components/video/Video.svelte';
 	let {
 		data
 	}: {
@@ -39,8 +40,12 @@
 		intervalTimer.handlePrev();
 		routineTimer.handlePrev();
 	}
+	$effect(() => {
+		console.log(intervalTimer.currentExercise?.videoSrc);
+	});
 </script>
 
+<Video videoSrc={intervalTimer.currentExercise?.videoSrc || ''} />
 <BlackBoardCard --width="100%">
 	<div class="workout-board">
 		<CurrentSetInfo />
@@ -48,45 +53,28 @@
 		<button onclick={handleNext} class="button primary">next</button>
 	</div>
 </BlackBoardCard>
-
-<!-- {#if routine && routineTimer.currentSet}
-	<div class="flex-column">
-		<SetStepper />
+<Video videoSrc={intervalTimer.currentExercise?.videoSrc || ''}>
+	<div class="video-foreground">
+		<div class="control-buttons">
+			<button onclick={handlePrev} class="button primary">prev</button>
+			<button onclick={handleNext} class="button primary">next</button>
+		</div>
 	</div>
-	<div>
-		<pre>
-      {#if routineTimer.currentSet.type.use_exercise_timer && routineTimer.currentExercise}
-				{formatSecondsToTimer(
-					routineTimer.currentExercise.interval?.rest_time || 0
-				)} rest
-				{formatSecondsToTimer(
-					routineTimer.currentExercise.interval?.active_time || 0
-				)} workout
-			{:else}
-				{formatSecondsToTimer(
-					routineTimer.currentSet?.interval?.rest_time || 0
-				)} rest
-				{formatSecondsToTimer(routineTimer.currentSet?.interval?.active_time || 0)} active
-			{/if}
-    </pre>
-	</div>
-	{#if routineTimer.currentInterval}
-		<TimerWatchNew {routineTimer} time={routineTimer.currentTime || 0} />
-	{/if}
-{/if} -->
+</Video>
 
 <style>
 	.workout-board {
 		width: 100%;
 		min-height: calc(100dvh - var(--sub-header-height));
 	}
-	.flex-column {
-		gap: 1rem;
-		justify-content: center;
-		align-items: center;
-	}
 
-	.chalk {
-		font-family: 'DkCrayonCrumble';
+	.video-foreground {
+		display: flex;
+		height: 100%;
+		width: 100%;
+	}
+	.control-buttons {
+		margin-top: auto;
+		margin-inline: auto;
 	}
 </style>
