@@ -34,7 +34,7 @@
 	>
 		<source src={videoSrc} type="video/mp4" />
 	</video>
-	<div class="hero-content-container">
+	<div class="video-foreground-container">
 		{@render children?.()}
 	</div>
 </div>
@@ -78,7 +78,7 @@
 			z-index: 1;
 		}
 	}
-	.hero-content-container {
+	.video-foreground-container {
 		display: flex;
 		color: var(--text-color-white);
 		flex-direction: column;
@@ -87,16 +87,7 @@
 		top: 0;
 		left: 0;
 		position: absolute;
-		padding: 2rem var(--padding-inline-main);
-		padding-top: calc(var(--sub-header-height) + 2rem);
+
 		z-index: 1;
-	}
-	.hero-content-bottom-left {
-		margin-top: auto;
-		margin-right: auto;
-	}
-	.hero-content-top-right {
-		margin-bottom: auto;
-		margin-left: auto;
 	}
 </style>

@@ -17,6 +17,7 @@ export class IntervalTimer implements TimerBase {
 	blockIndex: number = $state(0);
 	setIndex: number = $state(0);
 	exerciseIndex: number = $state(0);
+	isPaused: boolean = $state(false);
 	/** all the timers(exercise, rest, set interval) */
 	workoutFlows: WorkoutFlow[] = $state([]);
 	/** whether rest, workout, set interval */
@@ -75,11 +76,8 @@ export class IntervalTimer implements TimerBase {
 		}
 	}
 
-	handlePause(): void {
-		throw new Error('Method not implemented.');
-	}
-	handleResume(): void {
-		throw new Error('Method not implemented.');
+	togglePause(): void {
+		this.isPaused = !this.isPaused;
 	}
 
 	private _updateIndexes() {

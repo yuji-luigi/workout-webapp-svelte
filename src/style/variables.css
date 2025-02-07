@@ -110,9 +110,11 @@
   --padding-inline-lg: 1.25rem;
   --padding-block-md: 1.5rem;
 
+  --padding-md: var(--padding-inline-md) var(--padding-block-md);
+
   --padding-inline-header: 2rem;
 
-  ;
+
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.85rem;
