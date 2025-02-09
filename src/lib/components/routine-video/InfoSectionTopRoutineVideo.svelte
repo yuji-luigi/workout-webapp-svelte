@@ -1,11 +1,17 @@
 <script>
 	import OverlayTB from '../overlay/GradientOverlayTB.svelte';
+	import { getIntervalTimer } from '$lib/store/timers/interval_timer.svelte';
+	import { formatTime } from '../../helpers/formatTime';
+	const intervalTimer = getIntervalTimer();
+	$effect(() => {
+		console.log(intervalTimer.totalElapsedTimeString);
+	});
 </script>
 
 <OverlayTB --padding="var(--padding-md)">
 	<section class="routine-video-info-section">
 		<div class="elapsed-time-container">
-			<p class="total-elapsed-time">00:00</p>
+			<p class="total-elapsed-time">{intervalTimer.totalElapsedTimeString}</p>
 			<p class="set-elapsed-time">00:00</p>
 		</div>
 		<div class="block-info-container">block 2</div>
