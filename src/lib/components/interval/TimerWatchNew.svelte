@@ -10,14 +10,14 @@
 
 	let {
 		time,
-		routineTimer,
+		// routineTimer,
 		children,
 		onFinished
 	}: {
 		onFinished?: () => void;
 		children?: Snippet;
 		time: number;
-		routineTimer: RoutineTimer;
+		// routineTimer: RoutineTimer;
 	} = $props();
 	let interval: number;
 	let isRunning = false;
@@ -65,7 +65,7 @@
 				isRunning = false;
 				computedTime = getTimerTime(seconds - timePassed - 1);
 				onFinished?.();
-				routineTimer.handleNext();
+				// routineTimer.handleNext();
 				timePassed = 0;
 				countDown();
 				return;

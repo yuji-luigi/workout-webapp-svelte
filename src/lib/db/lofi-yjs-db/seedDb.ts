@@ -395,7 +395,7 @@ const test_videos: FileDB[] = [
 	{
 		id: 1,
 		name: 'test_video.mp4',
-		full_path: '/videos/test_video.mp4',
+		full_path: '/src/lib/assets/videos/test_video.mp4',
 		field_in_parent: 'video',
 		parent_collection: 'exercise',
 		slug: 'test_video',
@@ -404,7 +404,7 @@ const test_videos: FileDB[] = [
 	{
 		id: 2,
 		name: 'test_video2.mp4',
-		full_path: '/videos/test_video2.mp4',
+		full_path: '/src/lib/assets/videos/test_video2.mp4',
 		field_in_parent: 'video',
 		parent_collection: 'exercise',
 		slug: 'test_video2',
@@ -413,7 +413,7 @@ const test_videos: FileDB[] = [
 	{
 		id: 3,
 		name: 'test_video3.mp4',
-		full_path: '/videos/test_video3.mp4',
+		full_path: '/src/lib/assets/videos/test_video3.mp4',
 		field_in_parent: 'video',
 		parent_collection: 'exercise',
 		slug: 'test_video3',

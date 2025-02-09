@@ -1,6 +1,7 @@
 import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import { isSetLog } from '../../../types/db/session_history';
 import type { WorkoutFlow } from '../../../types/db/workout-flow';
+import { videoBgElState } from '../../components/hero/video-hero/VideoBGState.svelte';
 import type { TimerBase } from './timer_abstract';
 
 // need logic to control the current index of routine.
@@ -17,7 +18,7 @@ export class IntervalTimer implements TimerBase {
 	blockIndex: number = $state(0);
 	setIndex: number = $state(0);
 	exerciseIndex: number = $state(0);
-	isPaused: boolean = $state(false);
+	isPaused: boolean = $state(true);
 	/** all the timers(exercise, rest, set interval) */
 	workoutFlows: WorkoutFlow[] = $state([]);
 	/** whether rest, workout, set interval */
@@ -78,6 +79,13 @@ export class IntervalTimer implements TimerBase {
 
 	togglePause(): void {
 		this.isPaused = !this.isPaused;
+		if (videoBgElState?.element) {
+			if (this.isPaused) {
+				videoBgElState.element.pause();
+			} else {
+				videoBgElState.element.play();
+			}
+		}
 	}
 
 	private _updateIndexes() {
@@ -123,12 +131,12 @@ export class IntervalTimer implements TimerBase {
 	}
 }
 
-let routineTimer: IntervalTimer | null = null;
+let intervalTimer: IntervalTimer | null = null;
 
 export const initializeIntervalTimer = (data: any) => {
-	routineTimer = new IntervalTimer(data);
+	intervalTimer = new IntervalTimer(data);
 };
 
-export const getIntervalTimer = () => routineTimer as IntervalTimer;
+export const getIntervalTimer = () => intervalTimer as IntervalTimer;
 
 // interval factory creates interval out of RoutineJoined, Interval[], or RoutineBlockJoined[] etc

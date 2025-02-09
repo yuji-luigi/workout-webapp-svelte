@@ -3,11 +3,13 @@
 	import PrevButton from './interval-timer/PrevButton.svelte';
 	import PlayPauseButton from './interval-timer/PlayPauseButton.svelte';
 	import NextButton from './interval-timer/NextButton.svelte';
+	import AddSvg from '../icons/svgs/AddSvg.svelte';
 </script>
 
 <GradientOverlayBt --padding="var(--padding-md)" className="mt-auto mx-auto">
 	<section class="routine-video-bottom-section">
 		<h2 class="reps-count">12/18 reps</h2>
+		<AddSvg />
 		<div class="control-buttons">
 			<PrevButton />
 			<PlayPauseButton />

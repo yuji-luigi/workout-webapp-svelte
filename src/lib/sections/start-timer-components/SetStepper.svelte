@@ -13,7 +13,7 @@
 	// 	currentSetIndex: number;
 	// 	currentExerciseIndex: number | null;
 	// } = $props();
-	let routineTimer = getRoutineTimer();
+	// let routineTimer = getRoutineTimer();
 	const intervalTimer = getIntervalTimer();
 </script>
 

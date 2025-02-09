@@ -50,7 +50,8 @@
 	}
 	main {
 		width: 100%;
-		padding-bottom: var(--sub-header-height);
+		/* removed */
+		/* padding-bottom: var(--sub-header-height); */
 	}
 
 	@media (min-width: 480px) {

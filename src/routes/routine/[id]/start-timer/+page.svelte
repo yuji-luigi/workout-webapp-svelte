@@ -2,14 +2,14 @@
 	import type { RoutineJoined } from '$types/db/routine';
 	import { setContext } from 'svelte';
 	import BlackBoardCard from '../../../../lib/components/card/BlackBoardCard.svelte';
-	import Video from '../../../../lib/components/video/Video.svelte';
+	import Video from '../../../../lib/components/video/RoutineVideo.svelte';
 	import CurrentSetInfo from '../../../../lib/sections/start-timer-components/CurrentSetInfo.svelte';
 	import {
 		getIntervalTimer,
 		initializeIntervalTimer
 	} from '../../../../lib/store/timers/interval_timer.svelte';
 	import {
-		getRoutineTimer,
+		// getRoutineTimer,
 		initializeRoutineTimer
 	} from '../../../../lib/store/timers/routine_timer.svelte';
 	import type { SessionJoined } from '../../../../types/db/session_history';
@@ -17,6 +17,7 @@
 	import PrevButton from '../../../../lib/components/routine-video/interval-timer/PrevButton.svelte';
 	import NextButton from '../../../../lib/components/routine-video/interval-timer/NextButton.svelte';
 	import ForegroundRoutineVideo from '../../../../lib/components/routine-video/ForegroundRoutineVideo.svelte';
+	import RoutineVideo from '../../../../lib/components/video/RoutineVideo.svelte';
 	let {
 		data
 	}: {
@@ -27,26 +28,15 @@
 		};
 	} = $props();
 	const { routine, sessionLog, workoutFlows } = data;
-	initializeRoutineTimer(routine);
+	// initializeRoutineTimer(routine);
 	initializeIntervalTimer(workoutFlows);
 	setContext('timerSize', 150);
 	const intervalTimer = getIntervalTimer();
-	$effect(() => {
-		console.log(intervalTimer.currentExercise?.videoSrc);
-	});
 </script>
 
-<!-- <Video videoSrc={intervalTimer.currentExercise?.videoSrc || ''} /> -->
-<!-- <BlackBoardCard --width="100%">
-	<div class="workout-board">
-		<CurrentSetInfo />
-		<PrevButton />
-		<NextButton />
-	</div>
-</BlackBoardCard> -->
-<Video videoSrc={intervalTimer.currentExercise?.videoSrc || ''}>
+<RoutineVideo videoSrc={intervalTimer.currentExercise?.videoSrc || ''} className="video-hero">
 	<ForegroundRoutineVideo />
-</Video>
+</RoutineVideo>
 
 <style>
 </style>

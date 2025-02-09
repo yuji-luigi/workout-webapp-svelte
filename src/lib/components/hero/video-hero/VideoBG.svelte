@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-
+	import { onMount, type Snippet } from 'svelte';
+	import { videoBgElState } from './VideoBGState.svelte';
 	let {
 		videoSrc,
 		videoStyle,
@@ -12,26 +12,23 @@
 		className?: string;
 		children?: Snippet;
 	} = $props();
-
 	let videoEl: undefined | HTMLVideoElement = $state();
+	// NOTE: I can only do this to change the video. search other solution than effect
 	$effect(() => {
 		if (videoEl) {
 			videoEl.src = videoSrc;
 		}
 	});
+
+	onMount(() => {
+		if (videoBgElState && videoEl) {
+			videoBgElState.element = videoEl;
+		}
+	});
 </script>
 
 <div class={`video-container full-width ${className}`}>
-	<video
-		bind:this={videoEl}
-		style={videoStyle}
-		class={`video ${className}`}
-		autoplay
-		loop
-		muted
-		playsinline
-		webkit-playsinline
-	>
+	<video bind:this={videoEl} style={videoStyle} class={`video ${className}`} loop muted playsinline>
 		<source src={videoSrc} type="video/mp4" />
 	</video>
 	<div class="video-foreground-container">
@@ -53,6 +50,7 @@
 		top: 50%;
 		left: 50%;
 		-webkit-playsinline: true;
+		playsinline: true;
 	}
 	.video-container {
 		min-height: 100dvh;
@@ -87,6 +85,7 @@
 		top: 0;
 		left: 0;
 		position: absolute;
+		padding-top: var(--sub-header-height);
 
 		z-index: 1;
 	}

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { getIntervalTimer } from '../../../store/timers/interval_timer.svelte';
-	import PauseIcon from '../../icons/svgs/PauseIcon.svelte';
-	import PlayIcon from '../../icons/svgs/PlayIcon.svelte';
+	import { getIntervalTimer } from '$lib/store/timers/interval_timer.svelte';
+	import PauseIcon from '$lib/components/icons/svgs/PauseIcon.svelte';
+	import PlayIcon from '$lib/components/icons/svgs/PlayIcon.svelte';
 
 	const intervalTimer = getIntervalTimer();
 	function handleTogglePause() {
