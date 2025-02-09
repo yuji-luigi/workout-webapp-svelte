@@ -4,19 +4,22 @@
 	import VideoBg from '../hero/video-hero/VideoBG.svelte';
 
 	let {
-		videoSrc,
 		children,
 		className = ''
 	}: {
-		videoSrc: string;
 		children?: Snippet;
 		className?: string;
 	} = $props();
+	const intervalTimer = getIntervalTimer();
 	let videoEl: HTMLVideoElement | undefined = $state();
 	// get the path to assets/video
 </script>
 
-<VideoBg {videoSrc} {className}>
+<VideoBg
+	videoSrc={intervalTimer.currentExercise?.videoSrc || ''}
+	{className}
+	isAutoPlay={!intervalTimer.isPaused}
+>
 	{@render children?.()}
 </VideoBg>
 

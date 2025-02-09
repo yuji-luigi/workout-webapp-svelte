@@ -5,12 +5,14 @@
 		videoSrc,
 		videoStyle,
 		className,
-		children
+		children,
+		isAutoPlay = true
 	}: {
 		videoSrc: string;
 		videoStyle?: string;
 		className?: string;
 		children?: Snippet;
+		isAutoPlay?: boolean;
 	} = $props();
 	let videoEl: undefined | HTMLVideoElement = $state();
 	// NOTE: I can only do this to change the video. search other solution than effect
@@ -28,7 +30,15 @@
 </script>
 
 <div class={`video-container full-width ${className}`}>
-	<video bind:this={videoEl} style={videoStyle} class={`video ${className}`} loop muted playsinline>
+	<video
+		bind:this={videoEl}
+		style={videoStyle}
+		class={`video ${className}`}
+		loop
+		muted
+		playsinline
+		autoplay={isAutoPlay}
+	>
 		<source src={videoSrc} type="video/mp4" />
 	</video>
 	<div class="video-foreground-container">
