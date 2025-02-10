@@ -2,8 +2,12 @@ import { browser } from '$app/environment';
 import { db } from '../../../../lib/db/dexie-db/dexie-db';
 import type { WorkoutFlow } from '../../../../types/db/workout-flow';
 import { SessionJoinedFactory } from '../../../../lib/sections/start-timer-components/sessionLogFactory';
-import { routinesStore } from '../../../../lib/store/states/routine_store.svelte';
+import {
+	initCurrentRoutineStore,
+	routinesStore
+} from '../../../../lib/store/states/routine_store.svelte';
 import type { RoutineJoined } from '../../../../types/db/routine';
+import { onDestroy } from 'svelte';
 
 export const ssr = false; // Turn off SSR if you're using IndexDB in load
 
@@ -17,5 +21,6 @@ export async function load({ params }) {
 	const workoutFlows: WorkoutFlow[] = sessionLog.block_logs.flatMap((block) => {
 		return block.set_logs;
 	}, []);
+
 	return { routine, sessionLog, workoutFlows };
 }

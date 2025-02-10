@@ -3,7 +3,11 @@
 		size = 24,
 		stroke = 'var(--text-color)',
 		fill = 'none'
-	}: { size: number; stroke: string; fill?: string } = $props();
+	}: {
+		size?: number;
+		stroke?: string;
+		fill?: string;
+	} = $props();
 </script>
 
 <svg

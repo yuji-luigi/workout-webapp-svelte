@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { IntervalTimer } from '$lib/store/timers/interval_timer.svelte';
 	import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
-	import { isBlockSetLog } from '../../../types/db/session_history';
+	import { isBlockSetLog } from '../../../types/db/routine_log';
 	import Chip from '../../components/chip/Chip.svelte';
 	import AddNoteSvg from '../../components/icons/svgs/AddNoteSvg.svelte';
 	import ExerciseContainer from './ExerciseContainer.svelte';

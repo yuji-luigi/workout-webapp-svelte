@@ -7,15 +7,22 @@
 		initCurrentRoutineStore,
 		routinesStore
 	} from '../../../../lib/store/states/routine_store.svelte';
+	import type { RoutineLogJoined } from '../../../../types/db/routine_log';
+	import type { WorkoutFlow } from '../../../../types/db/workout-flow';
 
 	let {
 		children,
 		data
 	}: {
 		children: Snippet;
-		data: { routine: RoutineJoined };
+		data: {
+			routine: RoutineJoined;
+			sessionLog: RoutineLogJoined;
+			workoutFlows: WorkoutFlow[];
+		};
 	} = $props();
 
+	// NOTE: can be done in +layout.ts file but here manage the lifecycle of the store
 	onMount(() => {
 		routinesStore.currentRoutine = data.routine;
 		initCurrentRoutineStore();

@@ -38,6 +38,10 @@
   }
 }
 
+.icon-button>svg {
+  z-index: 1;
+}
+
 dialog[open] {
   max-height: 80%;
   overflow-y: scroll;

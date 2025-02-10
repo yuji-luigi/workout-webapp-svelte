@@ -19,7 +19,7 @@
 </script>
 
 {#if isDiv}
-	<div class={`primary button ${disabled ? 'disabled' : ''} ${className}`}>
+	<div class={`icon-button primary button ${disabled ? 'disabled' : ''} ${className}`}>
 		{#if children}
 			{@render children()}
 		{:else}{''}{/if}
@@ -37,6 +37,7 @@
 		--font-size-local: 2rem;
 		display: flex;
 		justify-content: center;
+
 		align-items: center;
 		border-radius: 90rem;
 		padding: var(--padding, 0);
@@ -44,9 +45,9 @@
 		width: var(--font-size, var(--font-size-local));
 		font-size: var(--font-size, var(--font-size-local));
 		margin: var(--margin);
-		-webkit-user-select: none; /* Safari */
-		-ms-user-select: none; /* IE 10 and IE 11 */
-		user-select: none; /* Standard syntax */
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
 		&.disabled {
 			cursor: not-allowed;
 			opacity: 0.5;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getIntervalTimer } from '$lib/store/timers/interval_timer.svelte';
-	import BottomSectionRoutineVideo from './BottomSectionRoutineVideo.svelte';
+	import BottomSectionRoutineVideo from './bottom-section-routine-video/BottomSectionRoutineVideo.svelte';
 	import InfoSectionTopRoutineVideo from './InfoSectionTopRoutineVideo.svelte';
 	const intervalTimer = getIntervalTimer();
 </script>

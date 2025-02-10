@@ -1,3 +1,3 @@
-import type { IntervalOnlyLog, SetLogJoined } from './session_history';
+import type { IntervalOnlyLog, SetLogJoined } from './routine_log';
 
 export type WorkoutFlow = SetLogJoined | IntervalOnlyLog;

@@ -1,5 +1,5 @@
 import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
-import { isSetLog } from '../../../types/db/session_history';
+import { isSetLog } from '../../../types/db/routine_log';
 import type { WorkoutFlow } from '../../../types/db/workout-flow';
 import { videoBgElState } from '../../components/hero/video-hero/VideoBGState.svelte';
 import { formatTime } from '../../helpers/formatTime';

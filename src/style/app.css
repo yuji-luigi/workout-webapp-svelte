@@ -45,6 +45,8 @@ button, a, input[type="button"], input[type="submit"] {
 
 
 button {
+  display: flex;
+  align-items: center;
   font-size: unset;
   cursor: pointer;
   border: none;

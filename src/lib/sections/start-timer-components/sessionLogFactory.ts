@@ -4,13 +4,13 @@ import type { RoutineJoined } from '../../../types/db/routine';
 import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import type {
 	IntervalOnlyLog,
-	SessionJoined,
+	RoutineLogJoined,
 	SetLogJoined
-} from '../../../types/db/session_history';
+} from '../../../types/db/routine_log';
 
 export class SessionJoinedFactory {
 	/** pass whole routine and get sessionJoined. nested with SetLogFactory  */
-	static fromRoutineJoined(routine: RoutineJoined): SessionJoined {
+	static fromRoutineJoined(routine: RoutineJoined): RoutineLogJoined {
 		const block_logs = routine.blocks.map((block, index) => {
 			return {
 				set_index: index,
@@ -40,7 +40,6 @@ export class SetLogFactory {
 		// create RoutineBlockJoined for n_set times
 		const setLogs: (SetLogJoined | IntervalOnlyLog)[] = [];
 		for (let set_index = 0; set_index < block.n_set; set_index++) {
-			// TODO: refactor with another factory that creates setLogJoined and intervalOnlyLog
 			block.exercises.forEach((exercise, exercise_index) => {
 				setLogs.push({
 					...this.fromExerciseInRoutineJoined(exercise, {
@@ -91,6 +90,7 @@ export class SetLogFactory {
 				},
 				interval_preset: exercise.interval
 			}),
+			exerciseLogs: [],
 			repetition_done: {
 				id: undefined as any, // TODO: fix this
 				count: 0,
