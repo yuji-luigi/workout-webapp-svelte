@@ -151,6 +151,8 @@ export class IntervalTimer implements TimerBase {
 
 	/** the same thing as the currentFlow */
 	get currentExercise(): ExerciseInRoutineJoined {
+		// NOTE: test code
+
 		if (isSetLog(this.currentFlow)) {
 			return this.currentFlow.exercise;
 		}

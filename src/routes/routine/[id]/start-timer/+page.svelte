@@ -12,7 +12,9 @@
 		};
 	} = $props();
 	const { workoutFlows } = data;
+	console.log(workoutFlows);
 	initializeIntervalTimer(workoutFlows);
+	// TODO: NOW WE DON'T NEED THIS.
 	setContext('timerSize', 150);
 </script>
 
