@@ -1,14 +1,14 @@
-import type { ExerciseLogJoined, RoutineLogJoined } from '../../../types/db/routine_log';
+import type { ExerciseLogJoined, RoutineLogJoinedInterface } from '../../../types/db/routine_log';
 import type { IntervalTimer } from '../timers/interval_timer.svelte';
 
 class SessionLogController {
-	routineLog: RoutineLogJoined = $state({} as RoutineLogJoined);
+	routineLog: RoutineLogJoinedInterface = $state({} as RoutineLogJoinedInterface);
 	private intervalTimer!: IntervalTimer;
 	constructor({
 		routineLog,
 		intervalTimer
 	}: {
-		routineLog: RoutineLogJoined;
+		routineLog: RoutineLogJoinedInterface;
 		intervalTimer: IntervalTimer;
 	}) {
 		if (!routineLog) {

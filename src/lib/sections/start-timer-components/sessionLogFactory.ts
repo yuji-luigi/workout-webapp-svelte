@@ -3,15 +3,22 @@ import { hasInterval, type Interval } from '../../../types/db/interval';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import type {
+	BlockLog,
 	ExerciseLogJoined,
 	IntervalOnlyLog,
-	RoutineLogJoined,
+	RoutineLogJoinedInterface,
 	SetLogJoined
 } from '../../../types/db/routine_log';
 
-export class SessionJoinedFactory {
+export class RoutineLogJoined implements RoutineLogJoinedInterface {
+	id: undefined;
+	created_at!: Date;
+	created_by!: string;
+	routine!: RoutineJoined;
+	block_logs!: BlockLog[];
+	time_spent!: number;
 	/** pass whole routine and get sessionJoined. nested with SetLogFactory  */
-	static fromRoutineJoined(routine: RoutineJoined): RoutineLogJoined {
+	static fromRoutineJoined(routine: RoutineJoined): RoutineLogJoinedInterface {
 		const block_logs = routine.blocks.map((block, index) => {
 			return {
 				set_index: index,

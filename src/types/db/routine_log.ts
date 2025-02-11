@@ -69,7 +69,7 @@ export type BlockLog = {
 	interval: Interval | undefined;
 	set_logs: SetLogJoined[];
 };
-export interface RoutineLogJoined {
+export interface RoutineLogJoinedInterface {
 	id: undefined;
 	created_at: Date;
 	created_by: string;

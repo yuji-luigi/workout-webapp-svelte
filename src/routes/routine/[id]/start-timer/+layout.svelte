@@ -7,7 +7,7 @@
 		initCurrentRoutineStore,
 		routinesStore
 	} from '../../../../lib/store/states/routine_store.svelte';
-	import type { RoutineLogJoined } from '../../../../types/db/routine_log';
+	import type { RoutineLogJoinedInterface } from '../../../../types/db/routine_log';
 	import type { WorkoutFlow } from '../../../../types/db/workout-flow';
 
 	let {
@@ -17,7 +17,7 @@
 		children: Snippet;
 		data: {
 			routine: RoutineJoined;
-			sessionLog: RoutineLogJoined;
+			sessionLog: RoutineLogJoinedInterface;
 			workoutFlows: WorkoutFlow[];
 		};
 	} = $props();
