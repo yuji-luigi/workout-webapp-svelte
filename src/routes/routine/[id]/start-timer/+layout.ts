@@ -19,7 +19,9 @@ export async function load({ params }) {
 	const sessionLog = RoutineLogJoined.fromRoutineJoined(routine as RoutineJoined);
 	/// creates array of intervals to pass to timer so timer does not have to worry about anything but the current index(of interval).
 	const workoutFlows: WorkoutFlow[] = sessionLog.block_logs.flatMap((block) => {
-		return block.set_logs;
+		return block.set_logs.flatMap((set) => {
+			return set.exerciseLogs;
+		});
 	}, []);
 
 	return { routine, sessionLog, workoutFlows };

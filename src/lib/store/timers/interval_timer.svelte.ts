@@ -172,6 +172,7 @@ export class IntervalTimer implements TimerBase {
 	}
 
 	private static buildTimers(workoutFlows: WorkoutFlow[]) {
+		console.log(workoutFlows);
 		return workoutFlows
 			.flatMap((flow) => {
 				const [activeTime, restTime] = Object.values(flow.interval_preset || []);
