@@ -1,5 +1,5 @@
 import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
-import { isSetLog } from '../../../types/db/routine_log';
+import { isBlockLog, isExerciseLog, isSetLog } from '../../../types/db/routine_log';
 import type { WorkoutFlow } from '../../../types/db/workout-flow';
 import { videoBgElState } from '../../components/hero/video-hero/VideoBGState.svelte';
 import { formatTime } from '../../helpers/formatTime';
@@ -21,6 +21,7 @@ type Pause = {
 };
 export class IntervalTimer implements TimerBase {
 	start_time: Date | undefined = $state();
+	/* current index of workoutFlows */
 	currentIndex: number = $state(0);
 	blockIndex: number = $state(0);
 	setIndex: number = $state(0);
@@ -153,12 +154,12 @@ export class IntervalTimer implements TimerBase {
 	get currentExercise(): ExerciseInRoutineJoined {
 		// NOTE: test code
 
-		if (isSetLog(this.currentFlow)) {
+		if (isExerciseLog(this.currentFlow)) {
 			return this.currentFlow.exercise;
 		}
 		const prevSet = this.workoutFlows[this.currentIndex - 1];
 		if (isSetLog(prevSet)) {
-			return prevSet.exercise;
+			return prevSet.exerciseLogs[prevSet.exerciseLogs.length - 1].exercise;
 		}
 
 		// placeholder
@@ -172,16 +173,27 @@ export class IntervalTimer implements TimerBase {
 	}
 
 	private static buildTimers(workoutFlows: WorkoutFlow[]) {
-		console.log(workoutFlows);
+		let blockIndex = 0;
+		let setIndex = 0;
+		let exerciseIndex = 0;
 		return workoutFlows
 			.flatMap((flow) => {
+				if (isBlockLog(flow)) {
+					blockIndex = flow.block_index;
+				}
+				if (isSetLog(flow)) {
+					setIndex = flow.set_index;
+				}
+				if (isExerciseLog(flow)) {
+					exerciseIndex = flow.exercise_index;
+				}
 				const [activeTime, restTime] = Object.values(flow.interval_preset || []);
 				if (!activeTime && !restTime) {
 					return [
 						{
-							blockIndex: flow.block_index,
-							setIndex: flow.set_index,
-							exerciseIndex: flow.exercise_index,
+							blockIndex: blockIndex,
+							setIndex: setIndex,
+							exerciseIndex: exerciseIndex,
 							timer: 0,
 							name: 'exercise' in flow ? flow.exercise.name : 'rest'
 						}
@@ -189,16 +201,16 @@ export class IntervalTimer implements TimerBase {
 				}
 				return [
 					activeTime && {
-						blockIndex: flow.block_index,
-						setIndex: flow.set_index,
-						exerciseIndex: flow.exercise_index,
+						blockIndex: blockIndex,
+						setIndex: setIndex,
+						exerciseIndex: exerciseIndex,
 						timer: activeTime,
 						name: 'exercise' in flow ? flow.exercise.name : 'rest'
 					},
 					restTime && {
-						blockIndex: flow.block_index,
-						setIndex: flow.set_index,
-						exerciseIndex: flow.exercise_index,
+						blockIndex: blockIndex,
+						setIndex: setIndex,
+						exerciseIndex: exerciseIndex,
 						timer: restTime,
 						name: 'rest'
 					}
@@ -214,6 +226,7 @@ let intervalTimer: IntervalTimer | null = null;
 
 export const initializeIntervalTimer = (data: any) => {
 	intervalTimer = new IntervalTimer(data);
+	return intervalTimer;
 };
 
 export const getIntervalTimer = () => intervalTimer as IntervalTimer;

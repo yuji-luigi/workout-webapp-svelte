@@ -29,24 +29,21 @@ export const getRoutines = async () => {
 };
 export class CurrentRoutineStore {
 	routine: RoutineJoined | null = $state(routinesStore.currentRoutine);
-	#intervalTimer: IntervalTimer = getIntervalTimer();
+	#intervalTimer: IntervalTimer = $state(getIntervalTimer());
 	currentBlock = $derived.by<RoutineBlockJoined | null>(() => {
-		return this.routine?.blocks[this.#intervalTimer.currentFlow.block_index] ?? null;
+		console.log(this.#intervalTimer.blockIndex);
+		return this.routine?.blocks[this.#intervalTimer.blockIndex] ?? null;
 	});
+	constructor(routine: RoutineJoined) {
+		this.routine = routine;
+		this.#intervalTimer = getIntervalTimer();
+	}
 }
 
 let currentRoutineStore: CurrentRoutineStore | null = null;
 
-export const initCurrentRoutineStore = () => {
-	currentRoutineStore = new CurrentRoutineStore();
+export const initCurrentRoutineStore = (routine: RoutineJoined) => {
+	currentRoutineStore = new CurrentRoutineStore(routine);
 };
 
-export const getCurrentRoutineStore = (): CurrentRoutineStore => {
-	if (!currentRoutineStore) {
-		initCurrentRoutineStore();
-	}
-	if (!currentRoutineStore) {
-		throw new Error('CurrentRoutineStore not initialized');
-	}
-	return currentRoutineStore;
-};
+export const getCurrentRoutineStore = () => currentRoutineStore;

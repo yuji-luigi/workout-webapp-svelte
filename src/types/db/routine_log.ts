@@ -19,8 +19,14 @@ export interface SetLog {
 	time_spent: number;
 }
 
+export function isBlockLog(log: WorkoutFlow): log is BlockLog {
+	return 'block_index' in log;
+}
 export function isSetLog(log: WorkoutFlow): log is SetLogJoined {
 	return 'exercise' in log;
+}
+export function isExerciseLog(log: WorkoutFlow): log is ExerciseLogJoined {
+	return 'exercise_index' in log;
 }
 
 export function isBlockSetLog(blockIndex: number) {
@@ -43,11 +49,14 @@ export type BlockLog = BaseLog & {
 // Join from SetLog and ExerciseInRoutine
 export type SetLogJoined = BaseLog & {
 	set_index: number;
+	block_index: number;
 	exerciseLogs: ExerciseLogJoined[];
 };
 export type ExerciseLogJoined = BaseLog & {
 	exercise: ExerciseInRoutineJoined;
 	exercise_index: number;
+	block_index: number;
+	set_index: number;
 	repetition_done: Repetition;
 	repetition_preset: Repetition;
 	weight_done?: Weight;

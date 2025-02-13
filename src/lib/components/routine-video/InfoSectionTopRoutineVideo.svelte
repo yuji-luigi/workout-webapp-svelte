@@ -1,11 +1,9 @@
 <script>
 	import OverlayTB from '../overlay/GradientOverlayTB.svelte';
 	import { getIntervalTimer } from '$lib/store/timers/interval_timer.svelte';
-	import { formatTime } from '../../helpers/formatTime';
+	import { getCurrentRoutineStore, getRoutines } from '../../store/states/routine_store.svelte';
 	const intervalTimer = getIntervalTimer();
-	$effect(() => {
-		console.log(intervalTimer.totalElapsedTimeString);
-	});
+	const currentRoutineStore = getCurrentRoutineStore();
 </script>
 
 <OverlayTB --padding="var(--padding-md)">
@@ -14,9 +12,11 @@
 			<p class="total-elapsed-time">{intervalTimer.totalElapsedTimeString}</p>
 			<p class="set-elapsed-time">00:00</p>
 		</div>
-		<div class="block-info-container">block 2</div>
+		<div class="block-info-container">block{intervalTimer.blockIndex + 1}</div>
 		<div class="set-info-container">
-			<p class="set-count">2/4 Sets</p>
+			<p class="set-count">
+				{intervalTimer.setIndex + 1}/{currentRoutineStore?.currentBlock?.n_set} Sets
+			</p>
 		</div>
 	</section>
 </OverlayTB>

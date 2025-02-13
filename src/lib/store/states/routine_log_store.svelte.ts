@@ -1,7 +1,7 @@
 import type { ExerciseLogJoined, RoutineLogJoinedInterface } from '../../../types/db/routine_log';
 import type { IntervalTimer } from '../timers/interval_timer.svelte';
 
-class SessionLogController {
+class RoutineLogController {
 	routineLog: RoutineLogJoinedInterface = $state({} as RoutineLogJoinedInterface);
 	private intervalTimer!: IntervalTimer;
 	constructor({
@@ -112,3 +112,25 @@ class SessionLogController {
 		return this._currentBlockLog.set_logs[this.intervalTimer.setIndex];
 	}
 }
+
+let routineLogStore: RoutineLogController | null = null;
+
+export const initRoutineLogStore = (
+	routineLog: RoutineLogJoinedInterface,
+	intervalTimer: IntervalTimer
+) => {
+	if (routineLogStore) {
+		return;
+	}
+	routineLogStore = new RoutineLogController({
+		routineLog: routineLog,
+		intervalTimer: intervalTimer
+	});
+};
+
+export const getRoutineLogStore = () => {
+	if (!routineLogStore) {
+		throw new Error('routineLogStore not initialized');
+	}
+	return routineLogStore;
+};

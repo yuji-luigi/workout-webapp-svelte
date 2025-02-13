@@ -4,11 +4,17 @@
 	import type { RoutineJoined } from '../../../../types/db/routine';
 	import RoutineTimerDrawer from '../../../../lib/sections/start-timer-components/RoutineTimerDrawer.svelte';
 	import {
+		CurrentRoutineStore,
 		initCurrentRoutineStore,
 		routinesStore
 	} from '../../../../lib/store/states/routine_store.svelte';
 	import type { RoutineLogJoinedInterface } from '../../../../types/db/routine_log';
 	import type { WorkoutFlow } from '../../../../types/db/workout-flow';
+	import { initRoutineLogStore } from '../../../../lib/store/states/routine_log_store.svelte';
+	import {
+		getIntervalTimer,
+		initializeIntervalTimer
+	} from '../../../../lib/store/timers/interval_timer.svelte';
 
 	let {
 		children,
@@ -24,8 +30,9 @@
 
 	// NOTE: can be done in +layout.ts file but here manage the lifecycle of the store
 	onMount(() => {
-		routinesStore.currentRoutine = data.routine;
-		initCurrentRoutineStore();
+		initCurrentRoutineStore(data.routine);
+		const intervalTimer = initializeIntervalTimer(data.workoutFlows);
+		initRoutineLogStore(data.sessionLog, intervalTimer);
 	});
 	onDestroy(() => {
 		routinesStore.currentRoutine = null;

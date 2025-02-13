@@ -78,10 +78,16 @@ export class SetLogFactory {
 		return {
 			set_index,
 			time_spent: 0,
+			block_index,
 			interval_preset: undefined,
 			interval_done: undefined,
 			exerciseLogs: exercises.map((exercise, exercise_index) => {
-				return ExerciseLogFactory.fromExerciseJoined({ exercise, exercise_index });
+				return ExerciseLogFactory.fromExerciseJoined({
+					exercise,
+					exercise_index,
+					block_index,
+					set_index
+				});
 			})
 		};
 	}
@@ -114,13 +120,19 @@ export class SetLogFactory {
 class ExerciseLogFactory {
 	static fromExerciseJoined({
 		exercise,
-		exercise_index
+		exercise_index,
+		block_index,
+		set_index
 	}: {
 		exercise: ExerciseInRoutineJoined;
 		exercise_index: number;
+		block_index: number;
+		set_index: number;
 	}): ExerciseLogJoined {
 		return {
 			exercise_index,
+			block_index,
+			set_index,
 			exercise,
 			time_spent: 0,
 			interval_preset: exercise.interval,
