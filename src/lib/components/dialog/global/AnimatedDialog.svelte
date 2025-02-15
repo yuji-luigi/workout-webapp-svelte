@@ -69,7 +69,6 @@
 	});
 
 	$effect(() => {
-		console.log({ isOpen });
 		if (!dialog) return;
 		if (isOpen) {
 			if (dialog) {
@@ -87,7 +86,6 @@
 		if (dialog) {
 			// popDialog(); // Clean up when dialog is destroyed
 			dialog.removeEventListener('keydown', handleEsc);
-			console.log('onDestroy');
 		}
 	});
 </script>

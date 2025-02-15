@@ -17,7 +17,6 @@
 	// Adjust the type as needed
 	//click event type
 	function handleClick(e: MouseEvent) {
-		console.log('handleClicked ');
 		const cardEl = (e.target as HTMLElement)?.closest('.selection-card') as HTMLDivElement;
 		if (cardEl) {
 			// target gets to active state.

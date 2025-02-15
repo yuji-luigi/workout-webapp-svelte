@@ -40,7 +40,6 @@
 			if (contentsEl && dialog) {
 				contentsEl.scrollTop = 0;
 				dialog.scrollTop = 0;
-				console.log('scroll to top');
 			}
 		}, 100);
 	});
