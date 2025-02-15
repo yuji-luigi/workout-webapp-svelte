@@ -1,8 +1,8 @@
-import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
-import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
-import { ValidationError } from '../../errors/validation-error';
-import { db } from './dexie-db';
-import type { RoutineBlockType } from './RoutineBlockType';
+import type { ExerciseInRoutineJoined } from '../../../../types/db/exercise';
+import type { RoutineBlockJoined } from '../../../../types/db/routine_block_interface';
+import { ValidationError } from '../../../errors/validation-error';
+import { db } from '../dexie-db';
+import type { RoutineBlockType } from './RoutineBlockTypeDexie';
 
 export class RoutineBlock {
 	id!: number;

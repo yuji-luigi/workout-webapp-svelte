@@ -32,7 +32,6 @@
 		}
 	}
 	function handleAddNewClicked() {
-		console.log('handle add new');
 		openStackDialogNew({
 			component: RoutineForm as any,
 			props: {}

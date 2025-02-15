@@ -2,7 +2,7 @@ import type { Exercise, ExerciseInRoutineJoined } from '../../../types/db/exerci
 import type { FileDB } from '../../../types/db/file-db';
 import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import { db } from '../dexie-db/dexie-db';
-import { Routine } from '../dexie-db/Routine';
+import { RoutineDexie } from '../dexie-db/orm/RoutineDexie';
 
 export async function seedDexieDB() {
 	const { workout_set_type, exercise, routine } = db;
@@ -81,11 +81,18 @@ function generateRoutines({ name, description }: { name: string; description: st
 			})
 		};
 	});
-	return new Routine({
+	return new RoutineDexie({
 		slug: name.toLowerCase().replace(' ', '-'),
 		name: name,
 		description: 'A sample routine with 3 workouts',
-		created_by: '',
+		created_by: {
+			id: 1,
+			name: 'John',
+			suname: 'Doe',
+			address: '',
+			birth_date: new Date('1990-12-23'),
+			locale: 'en'
+		},
 		blocks
 	});
 }
