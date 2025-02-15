@@ -141,7 +141,13 @@ class ExerciseLogFactory {
 				rest_time: 0,
 				active_time: 0
 			},
-			repetition_done: exercise.repetition,
+			repetition_done: {
+				id: undefined as any,
+				count: 0,
+				seconds_static_hold: 0,
+				rpe_from: 0,
+				rpe_to: 0
+			},
 			repetition_preset: exercise.repetition,
 			weight_done: exercise.weight,
 			weight_preset: exercise.weight
