@@ -102,6 +102,10 @@ class RoutineLogController {
 		this._currentBlockLog.time_spent = time_spent;
 	}
 
+	get currentLog(): ExerciseLogJoined | undefined {
+		return this._currentExerciseLog;
+	}
+
 	private get _currentExerciseLog(): ExerciseLogJoined {
 		return this._currentSetLog.exerciseLogs[this.intervalTimer.exerciseIndex];
 	}
