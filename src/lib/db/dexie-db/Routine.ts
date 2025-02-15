@@ -9,6 +9,7 @@ import { db } from './dexie-db';
 import { RoutineBlock } from './RoutineBlock';
 import type { User } from '../../../types/db/user';
 
+// api for using the dexie db
 export class Routine implements Omit<RoutineJoined, 'id'> {
 	id?: number;
 	slug: string;

@@ -29,38 +29,6 @@ export async function seedDexieDB() {
 		await db.routine.bulkAdd(routines);
 	}
 }
-// export async function seedLocalDB() {
-// 	try {
-// 		await persistenceWorkoutDB?.whenSynced;
-// 		const routinesDexie = await db.routine.toArray();
-// 		const { workout_set_types, exercises } = db_state;
-// 		if (workout_set_types.length === 0) {
-// 			workout_set_typeY.push([...defaultWorkoutTypes]);
-// 			db.workout_set_type.bulkAdd(defaultWorkoutTypes);
-// 		}
-// 		if (exercises.length === 0) {
-// 			exercisesY?.push([...calisthenicExercises]);
-// 			await db.exercise.bulkAdd(calisthenicExercises);
-// 		}
-// 		if (routinesDexie.length === 0) {
-// 			const routines = [
-// 				{ name: 'Routine 1', description: 'desc 1' },
-// 				{
-// 					name: 'Routine 2',
-// 					description: 'A sample routine with 3 workouts'
-// 				},
-// 				{ name: 'Routine 3', description: 'desc 3' },
-// 				{ name: 'Routine 4', description: 'desc 4' },
-// 				{ name: 'Routine 5', description: 'desc 5' },
-// 				{ name: 'Routine 6', description: 'desc 6' }
-// 			].map((r) => generateRoutines(r));
-// 			await db.routine.bulkAdd(routines);
-// 		}
-// 	} catch (error: any) {
-// 		console.error(error?.message || error || 'Error seeding local db');
-// 		console.error('Error seeding local db', error ? JSON.stringify(error, null, 4) : 'no message');
-// 	}
-// }
 
 function generateRoutines({ name, description }: { name: string; description: string }) {
 	const setsLength = Math.round(Math.random() * 7 + 3);
