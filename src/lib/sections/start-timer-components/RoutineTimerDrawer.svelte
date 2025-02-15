@@ -3,16 +3,16 @@
 	import Divider from '../../components/divider/Divider.svelte';
 	import VerticalMenuBase from '../../components/vertical-menu/VerticalMenuBase.svelte';
 	import { leftDrawerState } from '../../store/left_drawer_state.svelte';
+	import { getCurrentRoutineStore } from '../../store/states/routine_store.svelte';
 	import { getIntervalTimer } from '../../store/timers/interval_timer.svelte';
 	import { getRoutineTimer } from '../../store/timers/routine_timer.svelte';
 
 	import BlockContainer from './BlockContainer.svelte';
 
-	let { routine }: { routine: RoutineJoined } = $props();
 	const intervalTimer = getIntervalTimer();
+	const routineStore = getCurrentRoutineStore();
+	const drawerState = leftDrawerState;
 	// const routineTimer = getRoutineTimer();
-
-	let drawerState = $state(leftDrawerState);
 	function handleNext() {
 		intervalTimer.handleNext();
 		// routineTimer.handleNext();
@@ -28,11 +28,11 @@
 <VerticalMenuBase position="left">
 	<header data-left-drawer-icon="checklist">
 		<h4 class="title">
-			{routine.name.toUpperCase()}
+			{routineStore?.routine?.name.toUpperCase()}
 		</h4>
 	</header>
 	<section class="current-routine-board" data-open={drawerState.isOpen}>
-		{#each routine.blocks as block, blockIndex}
+		{#each routineStore?.routine?.blocks ?? [] as block, blockIndex}
 			<BlockContainer
 				--active-text-color="var(--color-primary-500)"
 				--current-text-color="var(--color-primary-100)"

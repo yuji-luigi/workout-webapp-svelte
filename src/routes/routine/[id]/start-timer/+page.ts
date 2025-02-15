@@ -1,17 +1,29 @@
-// import { browser } from '$app/environment';
-// import { db } from '../../../../lib/db/dexie-db/dexie-db';
-// export const ssr = false; // No server-side rendering for this page
+import { browser } from '$app/environment';
+import { db } from '../../../../lib/db/dexie-db/dexie-db';
+import type { WorkoutFlow } from '../../../../types/db/workout-flow';
+import { RoutineLogJoined } from '../../../../lib/sections/start-timer-components/sessionLogFactory';
+import {
+	initCurrentRoutineStore,
+	routinesStore
+} from '../../../../lib/store/states/routine_store.svelte';
+import type { RoutineJoined } from '../../../../types/db/routine';
+import { onDestroy } from 'svelte';
+import { initializeIntervalTimer } from '../../../../lib/store/timers/interval_timer.svelte';
+import { initRoutineLogStore } from '../../../../lib/store/states/routine_log_store.svelte';
 
-// export async function load({ params }) {
-// 	let data;
+export const ssr = false; // Turn off SSR if you're using IndexDB in load
 
-// 	if (browser) {
-// 		// Browser-only logic — e.g., read from IndexDB
-// 		data = await db.routine.get({ id: Number(params.id) });
-// 	} else {
-// 		// Server-only or fallback logic
-// 		data = null;
-// 	}
+export async function load({ params }) {
+	const routine = (await db.routine.get({ id: Number(params.id) })) as RoutineJoined;
+	const sessionLog = RoutineLogJoined.fromRoutineJoined(routine as RoutineJoined);
+	/// creates array of intervals to pass to timer so timer does not have to worry about anything but the current index(of interval).
+	const workoutFlows: WorkoutFlow[] = sessionLog.block_logs.flatMap((block) => {
+		return block.set_logs.flatMap((set) => {
+			return set.exerciseLogs;
+		});
+	}, []);
 
-// 	return { data };
-// }
+	const intervalTimer = initializeIntervalTimer(workoutFlows);
+	initCurrentRoutineStore({ routine, intervalTimer });
+	initRoutineLogStore(sessionLog, intervalTimer);
+}

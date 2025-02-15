@@ -17,23 +17,13 @@
 	} from '../../../../lib/store/timers/interval_timer.svelte';
 
 	let {
-		children,
-		data
+		children
 	}: {
 		children: Snippet;
-		data: {
-			routine: RoutineJoined;
-			sessionLog: RoutineLogJoinedInterface;
-			workoutFlows: WorkoutFlow[];
-		};
 	} = $props();
 
 	// NOTE: can be done in +layout.ts file but here manage the lifecycle of the store
-	onMount(() => {
-		initCurrentRoutineStore(data.routine);
-		const intervalTimer = initializeIntervalTimer(data.workoutFlows);
-		initRoutineLogStore(data.sessionLog, intervalTimer);
-	});
+
 	onDestroy(() => {
 		routinesStore.currentRoutine = null;
 	});
@@ -41,7 +31,7 @@
 
 <section>
 	{@render children()}
-	<RoutineTimerDrawer routine={data.routine} />
+	<RoutineTimerDrawer />
 </section>
 
 <style>

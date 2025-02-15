@@ -29,21 +29,35 @@ export const getRoutines = async () => {
 };
 export class CurrentRoutineStore {
 	routine: RoutineJoined | null = $state(routinesStore.currentRoutine);
-	#intervalTimer: IntervalTimer = $state(getIntervalTimer());
+	#intervalTimer: IntervalTimer;
 	currentBlock = $derived.by<RoutineBlockJoined | null>(() => {
-		console.log(this.#intervalTimer.blockIndex);
 		return this.routine?.blocks[this.#intervalTimer.blockIndex] ?? null;
 	});
-	constructor(routine: RoutineJoined) {
+	constructor({
+		routine,
+		intervalTimer
+	}: {
+		routine: RoutineJoined;
+		intervalTimer: IntervalTimer;
+	}) {
 		this.routine = routine;
-		this.#intervalTimer = getIntervalTimer();
+		this.#intervalTimer = intervalTimer;
 	}
 }
 
 let currentRoutineStore: CurrentRoutineStore | null = null;
 
-export const initCurrentRoutineStore = (routine: RoutineJoined) => {
-	currentRoutineStore = new CurrentRoutineStore(routine);
+export const initCurrentRoutineStore = ({
+	routine,
+	intervalTimer
+}: {
+	routine: RoutineJoined;
+	intervalTimer: IntervalTimer;
+}) => {
+	currentRoutineStore = new CurrentRoutineStore({
+		routine,
+		intervalTimer
+	});
 };
 
 export const getCurrentRoutineStore = () => currentRoutineStore;
