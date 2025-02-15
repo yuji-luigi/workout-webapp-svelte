@@ -12,7 +12,14 @@
 			<p class="total-elapsed-time">{intervalTimer.totalElapsedTimeString}</p>
 			<p class="set-elapsed-time">00:00</p>
 		</div>
-		<div class="block-info-container">block{intervalTimer.blockIndex + 1}</div>
+		<div class="block-info-container">
+			<p>
+				block {intervalTimer.blockIndex + 1}
+			</p>
+			<p class=" fw-bold">
+				{intervalTimer.currentFlow.exercise.name}
+			</p>
+		</div>
 		<div class="set-info-container">
 			<p class="set-count">
 				{intervalTimer.setIndex + 1}/{currentRoutineStore?.currentBlock?.n_set} Sets
@@ -40,8 +47,9 @@
 	}
 	.block-info-container {
 		display: flex;
-		justify-content: center;
-		align-items: flex-end;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
 		font-size: var(--font-size-lg);
 		font-weight: var(--font-weight-bold);
 	}
