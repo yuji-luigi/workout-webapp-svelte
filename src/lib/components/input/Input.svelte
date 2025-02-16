@@ -1,5 +1,5 @@
 <script>
-	import { getFormIDContext } from '../../store/form-store.svelte';
+	import { getFormIDContext } from '../../store/form/form-store.svelte';
 
 	let { value = $bindable(), ...rest } = $props();
 	const form_id = getFormIDContext();

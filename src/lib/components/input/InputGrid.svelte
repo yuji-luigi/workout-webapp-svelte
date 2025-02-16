@@ -11,6 +11,7 @@
 		name,
 		type,
 		className,
+		value,
 		...other
 	}: {
 		label: string;
