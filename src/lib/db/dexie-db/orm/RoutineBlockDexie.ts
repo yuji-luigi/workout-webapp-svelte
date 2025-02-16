@@ -36,10 +36,6 @@ export class RoutineBlock {
 	private validate(fields: Partial<RoutineBlockJoined>) {
 		const errors: Record<string, string> = {};
 
-		// if (!this.name) {
-		// 	errors[`name`] = 'name is required';
-		// }
-
 		if (!this.exercises?.length) {
 			errors[`exercises`] = 'Exercises are required. select at least one exercise';
 		}
