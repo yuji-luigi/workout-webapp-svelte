@@ -39,6 +39,10 @@ export class RoutineBlock {
 		if (!this.exercises?.length) {
 			errors[`exercises`] = 'Exercises are required. select at least one exercise';
 		}
+		if (!this.n_set) {
+			errors[`n_set`] = 'Number of sets is required';
+		}
+
 		if (!this.type) {
 			errors[`type`] = 'Type is required';
 		}
