@@ -11,15 +11,14 @@
 	import EditButton from '../../button/EditButton.svelte';
 	import TrashButton from '../../button/TrashButton.svelte';
 	import SetCard from '../../card/cards/SetCard.svelte';
-	import TrashIconSvg from '../../icons/svgs/TrashIconSvg.svelte';
 	import DeleteConfirmDialog from './DeleteConfirmDialog.svelte';
 
 	let props: { routine: RoutineJoined; id: string } = $props();
 	const { routine } = props;
 	async function handlePush() {
 		// push the routine to the workout list
-		await goto(`/routine/${routine.id}/start-timer`);
 		closeStackDialogNew();
+		await goto(`/routine/${routine.id}/start-timer`);
 	}
 
 	async function handleDelete() {
@@ -35,6 +34,10 @@
 			props: { routine, onDelete: handleDelete }
 		});
 	}
+	function editClicked() {
+		goto(`/routine/${routine.id}/edit`);
+		closeStackDialogNew();
+	}
 </script>
 
 {#if routine.image}
@@ -44,7 +47,7 @@
 	<h2>{routine?.name}</h2>
 	<div class="flex-row">
 		<TrashButton onclick={openConfirmDialog} />
-		<EditButton />
+		<EditButton onclick={editClicked} />
 	</div>
 </div>
 
