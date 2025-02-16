@@ -3,13 +3,13 @@
 	import { routineFormTableJson } from '../../../../data/template-json/dataTable/routine-form-table-json';
 	import { RoutineDexie } from '../../../../db/dexie-db/orm/RoutineDexie';
 	import { sleep } from '../../../../helpers/sleep';
-	import { setFormId } from '../../../../store/form-store.svelte';
 	import { routinesStore } from '../../../../store/states/routine_store.svelte';
 	import JsonForm from '../../JsonForm.svelte';
 	import { closeStackDialogNew } from '../../../../store/dialog-stack/dialogStackStoreNew';
+	import { setFormIdCtx, setFormTableJsonCtx } from '../../../../store/form/form-context';
 
-	setFormId('routine-form');
-	setContext('form_table_json', routineFormTableJson);
+	setFormIdCtx('routine-form');
+	setFormTableJsonCtx(routineFormTableJson);
 	async function handleSubmit(
 		_: SubmitEvent & { target: HTMLFormElement },
 		payload: Record<string, any>

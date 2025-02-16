@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { formatSecondsToTimer } from '../../../../../../helpers/format-time/formatSecondsToTimer';
 	import { openStackDialog } from '../../../../../../store/dialog-stack/dialogStackStore';
-	import { getFormIDContext } from '../../../../../../store/form-store.svelte';
+	import { getFormIDContext } from '../../../../../../store/form/form-store.svelte';
 	import Input from '../../../../../input/Input.svelte';
 	import TimerInputDialog from '../dialog-contents/TimerInputDialog.svelte';
 	let { name, label = '', suffix }: { name: string; label?: string; suffix?: string } = $props();
