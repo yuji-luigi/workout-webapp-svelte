@@ -3,7 +3,7 @@
 	import type { SlugFormTableField } from '../../../types/form/form-table-field';
 	import type { InputProps } from '../../../types/form/input-prop-type';
 	import InputGroupGrid from './InputGroupGrid.svelte';
-	import { getForm } from '../../store/form-store.svelte';
+	import { getForm } from '../../store/form/form-store.svelte';
 	import { createSlug } from '../../helpers/createSlug';
 
 	let { input, from = 'name', ...others }: SlugFormTableField = $props();
