@@ -35,6 +35,10 @@ export class RoutineDexie {
 		this.blocks = blocks;
 		this.created_by = created_by;
 	}
+
+	static async getById(id: number) {
+		return db.routines.get(id);
+	}
 	static validate(fields: Partial<RoutineJoined>) {
 		const errors: Record<string, string> = {};
 		if (!fields.name) {
@@ -69,9 +73,14 @@ export class RoutineDexie {
 	}
 
 	async create() {}
+	static async update(routine: RoutineJoined) {
+		return await db.routines.put(routine);
+	}
 	async save() {
 		if (hasId(this)) {
 			return await db.routines.put(this as any);
+		} else {
+			return await RoutineDexie.add(this as any);
 		}
 	}
 
