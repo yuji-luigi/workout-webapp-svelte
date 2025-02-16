@@ -21,10 +21,12 @@
 		hidden?: boolean;
 		value?: string | number;
 	} = $props();
+	const form = getForm(getFormIdCtx());
+	let defaultValue = $state(form?.[name] || value);
 </script>
 
 <InputGroupGrid {name} {label} {className} hidden={other.hidden}>
 	{#snippet input()}
-		<input {name} {type} {...other} />
+		<input {name} {type} bind:value={defaultValue} {...other} />
 	{/snippet}
 </InputGroupGrid>
