@@ -3,7 +3,7 @@
 	import type { Collection } from '../../../../../types/db/collections';
 	import type { FormTableField } from '../../../../../types/form/form-table-field';
 	import type { Option } from '../../../../../types/form/option';
-	import { getForm, getFormById, getFormIDContext } from '../../../../store/form-store.svelte';
+	import { getForm, getFormById, getFormIDContext } from '../../../../store/form/form-store.svelte';
 	import { db } from '../../../../db/dexie-db/dexie-db';
 	import { snapshot } from 'yjs';
 	let {

@@ -10,7 +10,7 @@
 	} from 'svelte';
 	import Chip from '$lib/components/chip/Chip.svelte';
 	import type { Option } from '$types/form/option';
-	import { getForm, setForm } from '../../../../store/form-store.svelte';
+	import { getForm, setForm } from '../../../../store/form/form-store.svelte';
 	import { sleep } from '../../../../helpers/sleep';
 	import ChipInput from '../../../chip/ChipInput.svelte';
 
@@ -46,7 +46,7 @@
 		}
 		selectedValues = selectedOptions.map((selected) => selected.value.toString());
 		updateSelectOptions(); // TODO:  See if necessary
-		setForm(form_id, { ...Object(form), [name]: selectedValues });
+		setForm({ ...Object(form), [name]: selectedValues });
 		const formEl = document.getElementById(form_id) as HTMLFormElement;
 	}
 

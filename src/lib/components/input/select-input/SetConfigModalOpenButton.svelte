@@ -5,7 +5,7 @@
 	import SelectInputMulti from './base/SelectInputMulti.svelte';
 	import type { FormTableField } from '../../../../types/form/form-table-field';
 	import SetConfigureButton from '../../form/form-by-collection/workout-form/workout-set-configure-modal/SetConfigureButton.svelte';
-	import { getForm, getFormIDContext } from '../../../store/form-store.svelte';
+	import { getForm, getFormIDContext } from '../../../store/form/form-store.svelte';
 	import SetConfigureSection from '../../form/form-by-collection/workout-form/workout-set-configure-modal/SetConfigureSection.svelte';
 
 	let {
