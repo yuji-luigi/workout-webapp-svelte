@@ -5,7 +5,7 @@ So store only form id to extract the form data from the store.
 -->
 <script lang="ts">
 	import { setContext } from 'svelte';
-	import { getForm, setForm } from '../../store/form-store.svelte';
+	import { getForm, setForm } from '../../store/form/form-store.svelte';
 
 	let {
 		children,
@@ -21,7 +21,6 @@ So store only form id to extract the form data from the store.
 	$effect(() => {
 		return () => {
 			setContext('form_id', '');
-			// setForm(form_id, {});
 		};
 	});
 </script>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { FormTableField } from '../../../types/form/form-table-field';
 	import InputController from '../input/input-controller/InputController.svelte';
 	import { excludeFormHidden } from './filterInputs';
@@ -7,14 +8,18 @@
 	let {
 		formTableFields,
 		className,
-		handleSubmit
+		handleSubmit,
+		actions
+		// defaultValues
 	}: {
 		formTableFields: FormTableField[];
 		className?: string;
+		// defaultValues?: Record<string, any>;
 		handleSubmit: (
 			event: SubmitEvent & { target: HTMLFormElement },
 			payload: Record<string, any>
 		) => Promise<void>;
+		actions?: Snippet;
 	} = $props();
 	let loading = false;
 </script>
@@ -23,19 +28,15 @@
 	{#each formTableFields.filter(excludeFormHidden) as formTableField}
 		<InputController {formTableField} />
 	{/each}
-
-	<div class="fullWidth flex-column button-div">
-		<button class="button" type="submit">Submit</button>
-	</div>
+	{#if actions}
+		{@render actions()}
+	{:else}
+		<div class="fullWidth flex-column button-div">
+			<button class="button" type="submit">Submit</button>
+		</div>{/if}
 </FormGrid>
 
 <style>
-	.sub-grid {
-		display: grid;
-		grid-template-columns: subgrid;
-		gap: 0.5rem;
-	}
-
 	.fullWidth {
 		grid-column: 1/-1;
 	}

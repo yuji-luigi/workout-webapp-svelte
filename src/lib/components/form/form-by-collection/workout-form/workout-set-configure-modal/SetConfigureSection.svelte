@@ -4,13 +4,21 @@
 	import AddSetCard from './add-buttons/AddSet.svelte';
 	import ChooseSetTypeModal from './ChooseSetTypeModal.svelte';
 	import RoutineBlockConfigCard from './workout-set-card/SetCard.svelte';
-	let { name }: { name: string } = $props();
-	let blocks = $state<Omit<RoutineBlockJoined, 'id'>[]>([]);
+
+	let {
+		name,
+		editingBlocks
+	}: {
+		name: string;
+		editingBlocks?: RoutineBlockJoined[];
+	} = $props();
+
+	let blocks = $state<Omit<RoutineBlockJoined, 'id'>[]>(editingBlocks || []);
+
 	const form_id: string = getContext('form_id') || 'NULL_ID';
 	let isOpenChooseSetTypeModal = $state(false);
 	let formEl = $state<HTMLFormElement>();
 	function addSet(setType: RoutineBlockTypeI) {
-		console.log('add set clicked');
 		blocks.push({
 			type: setType,
 			slug: '',
