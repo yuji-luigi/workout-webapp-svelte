@@ -17,6 +17,7 @@ export type BaseFormTableField = {
 	tableConfig?: InputConfig;
 	placeholder?: string;
 	hidden?: boolean; // hidden in table + form
+	defaultValue?: any;
 	// only when type is 'id-input'
 	collection?: Collection; //! can be circular dependency. watch out
 };
