@@ -19,13 +19,7 @@
 	// When the component mounts, ensure the card position is available
 </script>
 
-<button
-	class="selection-card"
-	data-active={active}
-	data-id={routine.id}
-	tabindex="-1"
-	onkeydown={(e) => null}
->
+<div class="selection-card" data-active={active} data-id={routine.id}>
 	<OverlayCard>
 		<div class="info">
 			<h4>{routine.name}</h4>
@@ -39,7 +33,7 @@
 			</p>
 		</div>
 	</OverlayCard>
-</button>
+</div>
 
 <style>
 	/* TODO: RENAME CARD TO SOMETHING ELSE */
@@ -48,6 +42,7 @@
 		transition: scale 0.5s;
 		overflow: hidden;
 		font-weight: 700;
+		cursor: pointer;
 	}
 	.info {
 		display: -webkit-box; /* Must use webkit-box */
