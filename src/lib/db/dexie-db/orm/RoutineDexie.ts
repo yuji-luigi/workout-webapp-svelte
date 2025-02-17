@@ -6,7 +6,7 @@ import { hasId } from '../../../../types/util-types/hasID';
 import type { SetOptional } from '../../../../types/util-types/setOptional';
 import { ValidationError } from '../../../errors/validation-error';
 import { db } from '../dexie-db';
-import { RoutineBlock } from './RoutineBlockDexie';
+import { RoutineBlock } from './RoutineBlock';
 import type { User } from '../../../../types/db/user';
 
 // api for using the dexie db
@@ -26,6 +26,10 @@ export class RoutineDexie {
 		blocks: RoutineBlockJoined[];
 		created_by: User;
 	}) {
+		const _blocks = fields.blocks.map((block) => {
+			return new RoutineBlock(block);
+		});
+		fields.blocks = _blocks;
 		RoutineDexie.validate(fields);
 		const { slug, name, description, blocks, created_by } = fields;
 		/** id is created for temporal purpose. before creation of the record it will be set to undefined to get the auto inc-ID */
@@ -57,7 +61,7 @@ export class RoutineDexie {
 		if (fields.blocks?.length) {
 			fields.blocks.forEach((workoutSet, index) => {
 				try {
-					RoutineBlock.checkFields(workoutSet);
+					RoutineBlock.validate(workoutSet);
 				} catch (error: any) {
 					errors[`blocks[${index}]`] = error.message;
 				}

@@ -8,7 +8,7 @@ import type { Weight, WeightJoined } from './weight';
  * GLOBALLY create exercise with name REST.
  * collection name is exercise but for commodity ue also REST as exercise.
  * */
-export interface Exercise {
+export interface ExerciseInterface {
 	id?: number; // primary key
 	name: string; // Foreign key to Interval
 	slug: string;
@@ -18,7 +18,7 @@ export interface Exercise {
 	created_by_id: number;
 }
 
-export interface ExerciseJoined extends Exercise {
+export interface ExerciseJoined extends ExerciseInterface {
 	created_by_name?: string;
 }
 
@@ -38,7 +38,7 @@ export interface ExerciseInRoutine {
 	repetition_id: number;
 	weight_id: number;
 }
-export interface ExerciseInRoutineJoined extends Exercise {
+export interface ExerciseInRoutineJoined extends ExerciseInterface {
 	id: number;
 	interval?: Interval;
 	repetition: Repetition;

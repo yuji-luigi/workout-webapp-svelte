@@ -1,4 +1,4 @@
-import type { Exercise, ExerciseInRoutineJoined } from '../../../types/db/exercise';
+import type { ExerciseInRoutineJoined } from '../../../types/db/exercise';
 import type { FileDB } from '../../../types/db/file-db';
 import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import { db } from '../dexie-db/dexie-db';
