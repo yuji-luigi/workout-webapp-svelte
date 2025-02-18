@@ -21,9 +21,35 @@ export async function load({ params }) {
 		return block.set_logs.flatMap((set) => {
 			return set.exerciseLogs;
 		});
-	}, []);
+	});
 
-	const intervalTimer = initializeIntervalTimer(workoutFlows);
+	const _workoutFlows = [];
+	for (const block of sessionLog.block_logs) {
+		for (const set of block.set_logs) {
+			for (let i = 0; i < set.exerciseLogs.length; i++) {
+				const exercise = set.exerciseLogs[i];
+				_workoutFlows.push({
+					...exercise,
+					block_index: block.block_index,
+					set_index: set.set_index,
+					exercise_index: i
+				});
+				if (i === set.exerciseLogs.length - 1 && set.interval_preset) {
+					_workoutFlows.push({
+						...set.interval_preset,
+						block_index: block.block_index,
+						set_index: set.set_index,
+						exercise: {
+							name: 'interval',
+							id: set.interval_preset.id
+						}
+					});
+				}
+			}
+		}
+	}
+
+	const intervalTimer = initializeIntervalTimer(_workoutFlows);
 	initCurrentRoutineStore({ routine, intervalTimer });
 	initRoutineLogStore(sessionLog, intervalTimer);
 }

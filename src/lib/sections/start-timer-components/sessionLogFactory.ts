@@ -42,9 +42,6 @@ export class BlockLogFactory {
 	static fromRoutineBlockJoined(block: RoutineBlockJoined, block_index: number): BlockLog {
 		return {
 			block_index,
-			time_spent: 0,
-			interval_preset: block.interval,
-			interval_done: undefined,
 			set_logs: SetLogFactory.fromRoutineBlockJoined(block, block_index)
 		};
 	}
@@ -60,18 +57,18 @@ export class SetLogFactory {
 				...this.fromExerciseInRoutineJoined({
 					set_index,
 					block_index,
-					exercises: block.exercises
+					blockJoined: block
 				})
 			});
 		}
 		return setLogs;
 	}
 	static fromExerciseInRoutineJoined({
-		exercises,
+		blockJoined,
 		set_index,
 		block_index
 	}: {
-		exercises: ExerciseInRoutineJoined[];
+		blockJoined: RoutineBlockJoined;
 		set_index: number;
 		block_index: number;
 	}): SetLogJoined {
@@ -79,9 +76,15 @@ export class SetLogFactory {
 			set_index,
 			time_spent: 0,
 			block_index,
-			interval_preset: undefined,
-			interval_done: undefined,
-			exerciseLogs: exercises.map((exercise, exercise_index) => {
+			interval_preset: blockJoined.interval,
+			interval_done: blockJoined.interval
+				? {
+						id: blockJoined.interval.id,
+						rest_time: 0,
+						active_time: 0
+					}
+				: undefined,
+			exerciseLogs: blockJoined.exercises.map((exercise, exercise_index) => {
 				return ExerciseLogFactory.fromExerciseJoined({
 					exercise,
 					exercise_index,

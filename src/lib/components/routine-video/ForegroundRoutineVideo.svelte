@@ -3,6 +3,7 @@
 	import BottomSectionRoutineVideo from './bottom-section-routine-video/BottomSectionRoutineVideo.svelte';
 	import InfoSectionTopRoutineVideo from './InfoSectionTopRoutineVideo.svelte';
 	const intervalTimer = getIntervalTimer();
+	console.log(intervalTimer);
 </script>
 
 <div class="video-foreground">
