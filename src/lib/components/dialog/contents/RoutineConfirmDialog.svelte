@@ -59,7 +59,7 @@
 </div>
 
 <div class="actions">
-	<button class="button" onclick={closeDialog}>Back</button>
+	<button class="button" onclick={closeStackDialogNew}>Back</button>
 	<button onclick={handlePush} class="button">Confirm</button>
 </div>
 

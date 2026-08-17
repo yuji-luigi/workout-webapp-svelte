@@ -66,6 +66,8 @@
   width: 100%;
   max-width: 64rem;
   margin: 0 auto;
+  padding-top: var(--padding-top-main);
+  padding-bottom: var(--padding-top-main);
 
   @media (max-width: 64rem) {
     padding-inline: var(--padding-inline-main);
@@ -76,6 +78,9 @@
 .stretch-container {
   /* TODO: IMPLEMENT CSS */
   padding-inline: var(--padding-inline-main);
+  padding-top: var(--padding-top-main);
+  padding-bottom: var(--padding-top-main);
+
 }
 
 .display-none {

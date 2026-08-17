@@ -8,6 +8,7 @@
 	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
 	import videoYume from '$assets/videos/cover/workout_with_yume.mp4';
 	import RoutineList from './routine-list/RoutineList.svelte';
+	import { goto } from '$app/navigation';
 	let routines = $derived(routinesStore.list);
 
 	onMount(async () => {
@@ -31,6 +32,7 @@
 		}
 	}
 	function handleAddNewClicked() {
+		// goto('/routine/create');
 		openStackDialogNew({
 			component: RoutineForm as any,
 			props: {}

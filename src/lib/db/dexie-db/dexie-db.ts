@@ -4,20 +4,22 @@ import type { ExerciseJoined } from '$types/db/exercise';
 import type { FileDB } from '$types/db/file-db';
 import type { RoutineBlockJoined } from '$types/db/routine_block_interface';
 import type { WorkoutJoined } from '$types/db/workout';
-import type { User } from '$types/db/user'; // If you have a separate type
+import type { User, UserInterface } from '$types/db/user'; // If you have a separate type
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { Collection } from '../../../types/db/collections';
 import type { IDOptional } from '../../../types/util-types/setOptional';
+import type { RoutineCategory } from '../../../types/db/routine_category';
 
 class WorkoutDatabase extends Dexie {
 	// Actual table properties
+	users!: Table<UserInterface, number, Omit<UserInterface, 'id'>>;
 	workouts!: Table<WorkoutJoined, number, Omit<WorkoutJoined, 'id'>>;
 	routines!: Table<RoutineJoined, number, Omit<RoutineJoined, 'id'>>;
 	blocks!: Table<RoutineBlockJoined, number, Omit<RoutineBlockJoined, 'id'>>;
 	workout_set_types!: Table<RoutineBlockTypeI, number, Omit<RoutineBlockTypeI, 'id'>>;
 	exercises!: Table<ExerciseJoined, number, Omit<ExerciseJoined, 'id'>>;
-	users!: Table<User, number, Omit<User, 'id'>>;
 	files!: Table<FileDB, number, Omit<FileDB, 'id'>>;
+	routine_categories!: Table<RoutineCategory, number, Omit<RoutineCategory, 'id'>>;
 
 	// ALIASES (getters)
 	get routine() {
@@ -43,6 +45,9 @@ class WorkoutDatabase extends Dexie {
 	get file() {
 		return this.files;
 	}
+	get routine_category() {
+		return this.routine_categories;
+	}
 
 	// Add more aliases as needed...
 
@@ -56,15 +61,14 @@ class WorkoutDatabase extends Dexie {
 			workout_set_types:
 				'++id, slug, name, repeat, use_active_time, use_rest_time, description, use_exercise_timer, use_set_timer',
 			exercises: '++id, name, slug, rest_time, active_time, description, image, video',
-			users: '++id, name, suname, address, birth_date, locale',
-			files: '++id, name, slug, description, src, full_path, parent_collection'
+			users: '++id, name, surname, address, birth_date, locale',
+			files: '++id, name, slug, description, src, full_path, parent_collection',
+			routine_categories: '++id, name, slug, description'
 		});
 	}
 }
 
 export const db = new WorkoutDatabase();
-
-type Tables = (typeof db)['exercises'];
 
 // TableNameMap.ts (or in the same file)
 

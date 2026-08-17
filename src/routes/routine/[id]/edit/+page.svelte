@@ -15,7 +15,6 @@
 	const FORM_ID = 'routine-edit-form';
 	setFormIdCtx(FORM_ID);
 	setForm(FORM_ID, routine);
-
 	setFormTableJsonCtx(routineFormTableJson);
 	async function handleSubmit(
 		event: SubmitEvent & { target: HTMLFormElement },
@@ -38,11 +37,21 @@
 	}
 </script>
 
-<JsonForm formTableFields={routineFormTableJson} {handleSubmit}>
-	{#snippet actions()}
-		<div class="fullWidth flex-column button-div">
-			<button class="button" type="submit" data-action="edit">Edit</button>
-			<button class="button" type="submit" data-action="copy">Copy</button>
-		</div>
-	{/snippet}
-</JsonForm>
+<div class="container">
+	<h1>Edit Routine</h1>
+	<!-- <form action="">
+		name <input type="text" name="name" value={routine.name} />
+		description <input type="text" name="description" value={routine.description} />
+	</form> -->
+	<JsonForm formTableFields={routineFormTableJson} {handleSubmit}>
+		{#snippet actions()}
+			<div class="fullWidth flex-column button-div">
+				<button class="button" type="submit" data-action="edit">Edit</button>
+				<button class="button" type="submit" data-action="copy">Copy</button>
+			</div>
+		{/snippet}
+	</JsonForm>
+</div>
+
+<style>
+</style>

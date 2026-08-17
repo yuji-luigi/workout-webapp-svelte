@@ -13,5 +13,5 @@
 </script>
 
 {#each routines as routine, index}
-	<RoutineCard {routine} active={false} {index} --image-url={`url(${createRandomImage()}`} />
+	<RoutineCard {routine} active={false} {index} --image-url={`url(`} />
 {/each}
