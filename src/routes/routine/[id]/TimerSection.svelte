@@ -1,41 +1,41 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import ProgressSvg from '../../../lib/components/progress/progress-svg/ProgressSvg.svelte';
-	import TimerWatch from '../../../lib/components/interval/TimerWatch.svelte';
-	import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
-	import { goto } from '$app/navigation';
-	import CountInput from '../../../lib/components/counter/CountInput.svelte';
-	import { openDialog } from '../../../lib/store/global-dialog-store.svelte';
-	let count = 0;
+	// import { onMount } from 'svelte';
+	// import ProgressSvg from '../../../lib/components/progress/progress-svg/ProgressSvg.svelte';
+	// import TimerWatch from '../../../lib/components/interval/TimerWatch.svelte';
+	// import { getTimerTime } from '../../../lib/helpers/formatTimerTime';
+	// import { goto } from '$app/navigation';
+	// import CountInput from '../../../lib/components/counter/CountInput.svelte';
+	// import { openDialog } from '../../../lib/store/global-dialog-store.svelte';
+	// let count = 0;
 
-	let reps = 0;
-	let currentSet = 1;
+	// let reps = 0;
+	// let currentSet = 1;
 
-	let timePassed = 0;
+	// let timePassed = 0;
 
-	let sets = '';
-	export let interval: Interval;
+	// let sets = '';
+	// export let interval: Interval;
 
-	onMount(() => {
-		const query = new URLSearchParams(location.search);
-		sets = query.get('sets') || '';
-	});
-	const handleBack = () => {
-		goto(`/timers`);
-	};
+	// onMount(() => {
+	// 	const query = new URLSearchParams(location.search);
+	// 	sets = query.get('sets') || '';
+	// });
+	// const handleBack = () => {
+	// 	goto(`/timers`);
+	// };
 
-	function onFinished() {
-		console.log('Rest is over!!');
-	}
+	// function onFinished() {
+	// 	console.log('Rest is over!!');
+	// }
 
-	$: {
-		if (timePassed >= interval.seconds) {
-			openDialog({});
-		}
-	}
+	// $: {
+	// 	if (timePassed >= interval.seconds) {
+	// 		// openDialog({});
+	// 	}
+	// }
 </script>
 
-<section class="interval-section">
+<!-- <section class="interval-section">
 	<button class="button">Open</button>
 	<TimerWatch {interval} {onFinished}>
 		<div class="contents">
@@ -47,10 +47,10 @@
 		<CountInput unit="Reps" {count} max={12} />
 		<button class="button" on:click={handleBack}> back </button>
 	</div>
-</section>
+</section> -->
 
 <style>
-	.interval-section {
+	/* .interval-section {
 		display: grid;
 		place-items: center;
 		justify-content: center;
@@ -66,5 +66,5 @@
 	}
 	.flex-column {
 		gap: 1rem;
-	}
+	} */
 </style>

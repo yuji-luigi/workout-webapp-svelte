@@ -8,6 +8,9 @@ node_modules
 
 todos
 
+# Baseline UI screenshots — large full-page PNGs, regenerate instead of committing
+docs/screenshots/before_mockup/
+
 # OS
 .DS_Store
 Thumbs.db

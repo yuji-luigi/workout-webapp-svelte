@@ -1,0 +1,4 @@
+allowBuilds:
+  '@sveltejs/kit': set this to true or false
+  '@swc/core': set this to true or false
+  leveldown: set this to true or false
