@@ -1,7 +1,7 @@
 import type { Exercise, ExerciseJoined } from '../../../types/db/exercise';
 import type { RoutineJoined } from '../../../types/db/routine';
 import type { Workout, WorkoutJoined } from '../../../types/db/workout';
-import type { RoutineBlock, RoutineBlockJoined } from '../../../types/db/routine_block_interface';
+import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 
 const db_state_fields = ['routines', 'workouts', 'exercises'] as const;
 type DBStateField = (typeof db_state_fields)[number];

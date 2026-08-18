@@ -8,6 +8,7 @@
 	import { getRoutines, routinesStore } from '../../lib/store/states/routine_store.svelte';
 	import videoYume from '$assets/videos/cover/workout_with_yume.mp4';
 	import RoutineList from './routine-list/RoutineList.svelte';
+	import { goto } from '$app/navigation';
 	let routines = $derived(routinesStore.list);
 
 	onMount(async () => {
@@ -17,7 +18,6 @@
 	// Adjust the type as needed
 	//click event type
 	function handleClick(e: MouseEvent) {
-		console.log('handleClicked ');
 		const cardEl = (e.target as HTMLElement)?.closest('.selection-card') as HTMLDivElement;
 		if (cardEl) {
 			// target gets to active state.
@@ -32,7 +32,7 @@
 		}
 	}
 	function handleAddNewClicked() {
-		console.log('handle add new');
+		// goto('/routine/create');
 		openStackDialogNew({
 			component: RoutineForm as any,
 			props: {}

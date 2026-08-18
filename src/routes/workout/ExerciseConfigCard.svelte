@@ -2,7 +2,7 @@
 	import type { ExerciseJoined } from '$types/db/exercise';
 	import { fade, scale } from 'svelte/transition';
 	import SetTimeInputGroup from '../../lib/components/form/form-by-collection/workout-form/workout-set-configure-modal/inputs/SetTimeInputGroup.svelte';
-	import { getForm, getFormIDContext } from '../../lib/store/form-store.svelte';
+	import { getForm, getFormIDContext } from '../../lib/store/form/form-store.svelte';
 	let {
 		exercise,
 		index,

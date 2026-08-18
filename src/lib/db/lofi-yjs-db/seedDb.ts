@@ -1,11 +1,22 @@
-import type { Exercise, ExerciseInRoutineJoined } from '../../../types/db/exercise';
+import type { ExerciseInRoutineJoined, ExerciseInterface } from '../../../types/db/exercise';
 import type { FileDB } from '../../../types/db/file-db';
 import type { RoutineBlockJoined } from '../../../types/db/routine_block_interface';
 import { db } from '../dexie-db/dexie-db';
-import { Routine } from '../dexie-db/Routine';
+import { RoutineDexie } from '../dexie-db/orm/RoutineDexie';
 
 export async function seedDexieDB() {
-	const { workout_set_type, exercise, routine } = db;
+	const { workout_set_type, exercise, routine, routine_category } = db;
+	// if ((await routine_category.toArray()).length === 0) {
+	// 	await db.routine_category.bulkAdd([
+	// 		{
+	// 			name: 'Strength',
+	// 			slug: 'strength',
+	// 			description: 'Strength training'
+	// 		},
+	// 		{
+	// 			name: 'Endurance',
+	// 	]);
+	// }
 	if ((await workout_set_type.toArray()).length === 0) {
 		// workout_set_typeY.push([...defaultWorkoutTypes]);
 		db.workout_set_type.bulkAdd(defaultWorkoutTypes);
@@ -14,20 +25,20 @@ export async function seedDexieDB() {
 		// exercisesY?.push([...calisthenicExercises]);
 		await db.exercise.bulkAdd(calisthenicExercises);
 	}
-	if ((await routine.toArray()).length === 0) {
-		const routines = [
-			{ name: 'Routine 1', description: 'desc 1' },
-			{
-				name: 'Routine 2',
-				description: 'A sample routine with 3 workouts'
-			},
-			{ name: 'Routine 3', description: 'desc 3' },
-			{ name: 'Routine 4', description: 'desc 4' },
-			{ name: 'Routine 5', description: 'desc 5' },
-			{ name: 'Routine 6', description: 'desc 6' }
-		].map((r) => generateRoutines(r));
-		await db.routine.bulkAdd(routines);
-	}
+	// if ((await routine.toArray()).length === 0) {
+	// 	const routines = [
+	// 		{ name: 'Routine 1', description: 'desc 1' },
+	// 		{
+	// 			name: 'Routine 2',
+	// 			description: 'A sample routine with 3 workouts'
+	// 		},
+	// 		{ name: 'Routine 3', description: 'desc 3' },
+	// 		{ name: 'Routine 4', description: 'desc 4' },
+	// 		{ name: 'Routine 5', description: 'desc 5' },
+	// 		{ name: 'Routine 6', description: 'desc 6' }
+	// 	].map((r) => generateRoutines(r));
+	// 	await db.routine.bulkAdd(routines);
+	// }
 }
 
 function generateRoutines({ name, description }: { name: string; description: string }) {
@@ -81,16 +92,23 @@ function generateRoutines({ name, description }: { name: string; description: st
 			})
 		};
 	});
-	return new Routine({
+	return new RoutineDexie({
 		slug: name.toLowerCase().replace(' ', '-'),
 		name: name,
 		description: 'A sample routine with 3 workouts',
-		created_by: '',
+		created_by: {
+			id: 1,
+			name: '__Admin',
+			surname: '__Admin',
+			address: '',
+			birth_date: new Date('1990-12-23'),
+			locale: 'en'
+		},
 		blocks
 	});
 }
 
-export const calisthenicExercises: Exercise[] = [
+export const calisthenicExercises: ExerciseInterface[] = [
 	{
 		id: 1,
 		name: 'Pull Up',

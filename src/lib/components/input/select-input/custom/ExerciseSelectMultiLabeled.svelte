@@ -5,7 +5,7 @@
 	import type { Option } from '../../../../../types/form/option';
 	import InputGroupGrid from '../../InputGroupGrid.svelte';
 	import NewExerciseModalFormOpenButton from '../../../open-dialog-button/NewExerciseModalFormOpenButton.svelte';
-	import { getForm } from '../../../../store/form-store.svelte';
+	import { getForm } from '../../../../store/form/form-store.svelte';
 	import { get } from 'svelte/store';
 	import { db } from '../../../../db/dexie-db/dexie-db';
 	import { exercise } from '../../../form/form-by-collection';

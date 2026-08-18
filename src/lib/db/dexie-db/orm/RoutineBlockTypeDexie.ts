@@ -1,4 +1,4 @@
-import { db } from './dexie-db';
+import { db } from '../dexie-db';
 import type { RoutineBlockJoined } from '$types/db/routine_block_interface';
 
 // RoutineBlockTypeI Class

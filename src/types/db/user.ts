@@ -1,9 +1,9 @@
 // Type for User table
-export interface User {
+export interface UserInterface {
 	id: number; // primary key
 	name: string;
-	suname: string;
+	surname: string;
 	address: string;
-	birth_date: Date;
-	locale: string;
+	birthDate?: Date;
+	locale: 'en-US' | 'ja-JP' | 'zh-CN' | 'fr-FR' | 'de-DE' | 'es-ES' | 'it-IT' | 'pt-PT' | 'ru-RU';
 }

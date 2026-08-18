@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { RoutineBlockType } from '../../../../../db/dexie-db/RoutineBlockType';
+	import { RoutineBlockType } from '../../../../../db/dexie-db/orm/RoutineBlockTypeDexie';
 	import AnimatedDialog from '../../../../dialog/global/AnimatedDialog.svelte';
 	import Menu from '../../../../menu/Menu.svelte';
 	import FetcherComponent from '../../../../util-component/FetcherComponent.svelte';

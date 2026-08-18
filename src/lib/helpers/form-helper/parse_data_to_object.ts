@@ -59,6 +59,4 @@ export function parseFormDataToObjects(formData: FormData, multiNames: string[] 
 		}
 	}
 	return data;
-	// Transform structured data into an array of objects
-	// return Object.values(data.sets || {});
 }

@@ -5,7 +5,7 @@
 		dispatchFormInputEvent,
 		getFormById,
 		getFormIDContext
-	} from '../../../../../../store/form-store.svelte';
+	} from '../../../../../../store/form/form-store.svelte';
 	let { name }: { name: string } = $props();
 	let n_sets = $state<number>(1);
 	const form_id = getFormIDContext();

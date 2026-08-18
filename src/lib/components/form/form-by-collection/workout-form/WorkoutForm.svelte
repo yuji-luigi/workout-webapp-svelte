@@ -8,12 +8,13 @@
 	import { setContext } from 'svelte';
 	import { db } from '../../../../db/dexie-db/dexie-db';
 	import { workoutDtoFactory } from './createWorkoutDto.svelte';
+	import { setFormIdCtx, setFormTableJsonCtx } from '../../../../store/form/form-context';
 
 	let loading = false;
 	const form_id = 'workout-create-form';
 	const workoutsY = db.workouts;
-	setContext('form_table_json', workoutFormTable);
-	setContext('form_id', form_id);
+	setFormTableJsonCtx(workoutFormTable);
+	setFormIdCtx(form_id);
 
 	async function handleSubmit(
 		event: SubmitEvent & { target: HTMLFormElement },

@@ -4,7 +4,7 @@
 	import SelectInputSingle from '../../../../../input/select-input/base/SelectInputSingle.svelte';
 	import SetNumberInput from '../inputs/SetNumberInput.svelte';
 	import TimerInputWithDialog from '../inputs/TimerInputWithDialog.svelte';
-	import { getForm, getFormIDContext } from '../../../../../../store/form-store.svelte';
+	import { getForm, getFormIDContext } from '../../../../../../store/form/form-store.svelte';
 
 	let {
 		index,
@@ -50,7 +50,7 @@
 			width="100%"
 			label="set type"
 			collection="workout_set_type"
-			name={preName + '.workout_set_type'}
+			name={preName + '.type'}
 			placeholder="type of set"
 			required
 			textAlign="center"

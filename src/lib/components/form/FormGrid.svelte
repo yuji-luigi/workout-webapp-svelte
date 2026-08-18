@@ -2,18 +2,25 @@
 	import { getContext, onMount, setContext } from 'svelte';
 	import { parseFormDataToObjects } from '../../helpers/form-helper/parse_data_to_object';
 	import { sleep } from '../../helpers/sleep';
-	import { getForm, getFormIDContext, resetForm, setForm } from '../../store/form-store.svelte';
+	import {
+		getForm,
+		getFormIDContext,
+		resetForm,
+		setForm
+	} from '../../store/form/form-store.svelte';
 	import FormContext from './FormContext.svelte';
 	import type { EventHandler } from 'svelte/elements';
 	import { validateForm } from '../../helpers/form-helper/form_validator';
 	import type { FormTableField } from '../../../types/form/form-table-field';
 	import { resetFormError } from '../../helpers/form-helper/setFormErrors';
+	import { getFormIdCtx, getFormTableJsonCtx } from '../../store/form/form-context';
 
 	let {
 		loading,
 		className = '',
 		handleSubmit,
 		children
+		// defaultValues
 	}: {
 		loading?: boolean;
 		className?: string | undefined;
@@ -22,6 +29,7 @@
 			payload: Record<string, any>
 		) => Promise<void>;
 		children?: any;
+		// defaultValues?: Record<string, any>;
 	} = $props();
 	let multiNames: string[] = [];
 	let form_id = getFormIDContext();
@@ -29,15 +37,15 @@
 	let errors = $state({});
 	// let isDebugForm = getContext('is_debug_form');
 	let isDebugForm = false;
-	const formTableJson = getContext('form_table_json');
+	const formTableJson = getFormTableJsonCtx();
 
 	// handle shape of the form data. creates js object and array from form data and pass it to the handleSubmit function above root form
 	async function onsubmit(event: any) {
 		try {
 			event.preventDefault();
 			if (!event || !event.target) return;
-			const form_data = new FormData(event.target as HTMLFormElement);
-			const submitPayload = parseFormDataToObjects(form_data, multiNames);
+			const formData = new FormData(event.target as HTMLFormElement);
+			const submitPayload = parseFormDataToObjects(formData, multiNames);
 			validateForm(submitPayload, formTableJson as FormTableField[], event.target);
 			loading = true;
 			await handleSubmit?.(event, submitPayload);
@@ -48,7 +56,7 @@
 		loading = false;
 	}
 	let formEl: HTMLFormElement | undefined = $state();
-
+	const formId = getFormIdCtx();
 	onMount(() => {
 		const multiSelects = formEl?.querySelectorAll('select[multiple]') as
 			| NodeListOf<HTMLSelectElement>
@@ -57,9 +65,9 @@
 		multiNames = Array.from(multiSelects?.values() || []).map((field) => field.name) || [];
 		formEl?.addEventListener('input', async (event) => {
 			await sleep(200); // wait for the input to finish
-			const form_data = new FormData(formEl);
-			const dto = parseFormDataToObjects(form_data, multiNames);
-			setForm(form_id, dto);
+			const formData = new FormData(formEl);
+			const dto = parseFormDataToObjects(formData, multiNames);
+			setForm(formId, dto);
 			resetFormError(event.target as HTMLElement);
 		});
 		return () => resetForm();

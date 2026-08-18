@@ -32,11 +32,6 @@ main {
     padding-bottom: var(--padding-top-main);
   }
 
-  &:has(.video-hero) .container,
-  &:has(.video-hero) .stretch-container {
-    padding-top: var(--padding-top-main);
-    padding-bottom: var(--padding-top-main);
-  }
 }
 
 button, a, input[type="button"], input[type="submit"] {

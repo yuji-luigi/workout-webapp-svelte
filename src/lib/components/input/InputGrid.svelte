@@ -4,6 +4,8 @@
 -->
 <script lang="ts">
 	import type { InputType } from '../../../types/input-type';
+	import { getFormIdCtx } from '../../store/form/form-context';
+	import { getForm } from '../../store/form/form-store.svelte';
 	import InputGroupGrid from './InputGroupGrid.svelte';
 
 	let {
@@ -11,6 +13,7 @@
 		name,
 		type,
 		className,
+		value,
 		...other
 	}: {
 		label: string;
@@ -20,10 +23,12 @@
 		hidden?: boolean;
 		value?: string | number;
 	} = $props();
+	const form = getForm(getFormIdCtx());
+	let defaultValue = $state(form?.[name] || value);
 </script>
 
 <InputGroupGrid {name} {label} {className} hidden={other.hidden}>
 	{#snippet input()}
-		<input {name} {type} {...other} />
+		<input {name} {type} bind:value={defaultValue} {...other} />
 	{/snippet}
 </InputGroupGrid>

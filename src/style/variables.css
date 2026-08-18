@@ -31,7 +31,11 @@
   --fg-color-light-700: oklch(48.14% 0.006 223.46);
   --fg-color-light-800: oklch(38.14% 0.006 223.46);
 
-  --bg-800: #003135;
+  --color-button-black: #0d0c22;
+  --color-button-black-hover: #565564;
+
+  /* only used for text dark color. should be renamed to text-dark */
+  --color-dark-primary: #003135;
 
   --fg-color-dark: oklch(40.18% 0.0121 212.58);
 
@@ -123,7 +127,7 @@
 
 
   --text-color-white: #dcf0fa;
-  --text-color-accent: var(--bg-800);
+  --text-color-accent: var(--color-dark-primary);
 
   --text-color-black: var(--gray-700);
 

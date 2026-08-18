@@ -36,23 +36,29 @@ export function isBlockSetLog(blockIndex: number) {
 	};
 }
 
-export type BaseLog = {
+type BaseLog = {
 	time_spent: number;
 	interval_preset: Interval | undefined;
 	interval_done: Interval | undefined;
 };
 
-export type BlockLog = BaseLog & {
+export type BlockLog = {
 	block_index: number;
 	set_logs: SetLogJoined[];
 };
 // Join from SetLog and ExerciseInRoutine
-export type SetLogJoined = BaseLog & {
+export type SetLogJoined = {
+	time_spent: number;
+	interval_preset: Interval | undefined;
+	interval_done: Interval | undefined;
 	set_index: number;
 	block_index: number;
 	exerciseLogs: ExerciseLogJoined[];
 };
-export type ExerciseLogJoined = BaseLog & {
+export type ExerciseLogJoined = {
+	time_spent: number;
+	interval_preset: Interval | undefined;
+	interval_done: Interval | undefined;
 	exercise: ExerciseInRoutineJoined;
 	exercise_index: number;
 	block_index: number;

@@ -13,10 +13,10 @@ export const mainNavList: NavItem[] = [
 		href: '/workout',
 		label: 'Workouts'
 	},
-	{
-		href: '/interval',
-		label: 'Timers'
-	},
+	// {
+	// 	href: '/intetirval',
+	// 	label: 'Timers'
+	// },
 	{
 		href: '/routine',
 		label: 'Routines'
